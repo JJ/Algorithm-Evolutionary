@@ -27,21 +27,20 @@ default is population and number of generations equal to 100.
 
 =cut
 
-
 use warnings;
 use strict;
 
-#use Time::HiRes qw( gettimeofday tv_interval);
+use Time::HiRes qw( gettimeofday tv_interval);
 
-use lib qw(.. ../..);
+use lib qw(lib ../lib);
 use Algorithm::Evolutionary::Individual::Vector;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::GaussianMutation;
 use Algorithm::Evolutionary::Op::VectorCrossover;
 
 #----------------------------------------------------------#
-my $popSize = shift || 100;
-my $numGens = shift || 100 ;
+my $popSize = shift || 100; #Population size
+my $numGens = shift || 100; #Max number of generations
 
 #----------------------------------------------------------#
 #Fitness function will be Tide
@@ -65,7 +64,7 @@ for ( 0..$popSize ) {
 
 
 #----------------------------------------------------------#
-#Definimos los operadores de variación
+# Variation operators
 my $m = Algorithm::Evolutionary::Op::GaussianMutation->new( 0, 0.1 );
 my $c = Algorithm::Evolutionary::Op::VectorCrossover->new(2);
 
@@ -77,8 +76,8 @@ my $c = Algorithm::Evolutionary::Op::VectorCrossover->new(2);
 # operadores de variación.
 my $generation = Algorithm::Evolutionary::Op::Easy->new( $funcionMarea , 0.2 , [$m, $c] ) ;
 
-#Inicializar el contador de tiempo
-#my $inicioTiempo = [gettimeofday()];
+#Time
+my $inicioTiempo = [gettimeofday()];
 
 #----------------------------------------------------------#
 for ( @pop ) {
@@ -105,10 +104,23 @@ my ( $x, $y ) = @{$pop[0]->{_array}};
 #Mostramos los resultados obtenidos
 print "El mejor es:\n\t ",$pop[0]->asString(),"\n\t x=$x \n\t y=$y \n\t Fitness: ",$pop[0]->Fitness(),"\n";
 
-#print "\n\nTiempo transcurrido: ". tv_interval( $inicioTiempo ) . "\n";
+print "\n\nTime: ". tv_interval( $inicioTiempo ) . "\n";
 
 =head1 AUTHOR
 
-Contributed by Pedro Castillo Valdivieso
+Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
+
+=cut
+
+=head1 Copyright
+  
+  This file is released under the GPL. See the LICENSE file included in this distribution,
+  or go to http://www.fsf.org/licenses/gpl.txt
+
+  CVS Info: $Date: 2008/02/12 19:14:17 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 1.2 2008/02/12 19:14:17 jmerelo Exp $ 
+  $Author: jmerelo $ 
+  $Revision: 1.2 $
+  $Name $
 
 =cut
