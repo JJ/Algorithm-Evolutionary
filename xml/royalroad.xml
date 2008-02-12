@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE ea SYSTEM "EvoSpec.dtd">
+<!-- Royal road function represented as an XML file. Ready for instantiating
+     an 'Experiment' class
+  CVS Info: $Date: 2008/02/12 17:49:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/xml/royalroad.xml,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  $Author: jmerelo $ 
+  $Revision: 1.1 $
+  $Name $    
+
+-->
+
+  <ea version='0.4'>
+
+  <initial>
+    <pop size='256'>
+      <param name='type' value='BitString' /> 
+      <param name='length' value='64' />
+    </pop>
+
+    <op name='Easy'  type='unary'>
+        <param name='selrate' value='0.4' />
+        <param name='maxgen' value='100' />
+        <code type='eval' language='perl'>
+    	  <src><![CDATA[ my $chrom = shift;
+                my $str = $chrom->Chrom();
+                my $fitness = 0;
+                my $blockSize = 4;
+                for ( my $i = 0; $i < length( $str ) / $blockSize; $i++ ) {
+	              my $block = 1;
+	              for ( my $j = 0; $j < $blockSize; $j++ ) {
+	                $block &= substr( $str, $i*$blockSize+$j, 1 );
+	              }
+	              ( $fitness += $blockSize ) if $block;
+                }
+                return $fitness;
+          ]]></src>
+        </code>
+        <op name='Mutation' type='unary' rate='1'>
+            <param name='mutRate' value='0.5' />
+      	</op>
+      	<op name='Crossover' type='binary' rate='0.5'>
+        	<param name='numPoints' value='2' />
+      	</op>
+    </op>
+    
+    
+  </initial>
+
+</ea>
