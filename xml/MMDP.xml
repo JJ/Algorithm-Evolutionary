@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE ea SYSTEM "EvoSpec.dtd">
+<!-- Massively multimodal deceptive function. Ready for instantiating
+     an 'Experiment' class
+  CVS Info: $Date: 2008/02/13 13:08:22 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/xml/MMDP.xml,v 1.1 2008/02/13 13:08:22 jmerelo Exp $ 
+  $Author: jmerelo $ 
+  $Revision: 1.1 $
+  $Name $    
+
+-->
+
+  <ea version='0.4'>
+
+  <initial>
+    <pop size='1024'>
+      <param name='type' value='BitString' /> 
+      <param name='length' value='120' />
+    </pop>
+
+    <op name='Easy'  type='unary'>
+        <param name='selrate' value='0.1' />
+        <code type='eval' language='perl'>
+    	  <src><![CDATA[  my $dude = shift;
+  our @unitation = qw( 1 0 0.360384 0.640576 0.360384 0 1);
+  our $block_size = 6;
+  my $fitness = 0;
+  my $str = $dude->{_str};
+  for ( my $i = 0; $i < length($str); $i+= $block_size ) {
+    my $block = substr( $str, $i, $block_size );
+    my $ones = grep ( /1/, split(//,$block));
+    $fitness += $unitation[$ones];
+  }
+  return $fitness;
+          ]]></src>
+        </code>
+        <op name='Mutation' type='unary' rate='1'>
+            <param name='mutRate' value='0.5' />
+      	</op>
+      	<op name='Crossover' type='binary' rate='2'>
+        	<param name='numPoints' value='2' />
+      	</op>
+    </op>
+    
+    
+  </initial>
+
+</ea>
