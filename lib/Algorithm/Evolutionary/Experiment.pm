@@ -31,7 +31,7 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use XML::Parser;
@@ -121,7 +121,8 @@ sub fromXML ($;$) {
     $xml = $p->parse($xml);
   }
 
-  my $self = { _pop => []}; # Create a reference
+  my $self = { _pop => [],
+	       _xml => $xml }; # Create a reference
   #Process population, via the creator operator
   for ( @{$xml->[0]{content}[0]{content}} ) { #Should process the <initial> tag
     if ( $_->{name} eq 'pop' ) {
@@ -189,7 +190,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 1.1 $ -->
+     Experiment $Revision: 1.2 $ -->
     <initial>
 EOC
 
@@ -210,10 +211,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/13 13:08:22 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 1.2 2008/02/13 13:08:22 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
