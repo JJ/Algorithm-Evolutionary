@@ -34,30 +34,80 @@ sub new {
   my $class = shift;
   my ($peaks, $bits ) = @_;
 
-  my $self = { bits => $bits };
-
   #Generate peaks
   my $generator = new String::Random;
   my @peaks;
   my $regex = "\[01\]{$bits}";
+  my $self = { bits => $bits,
+	       generator => $generator,
+	       regex => $regex };
   for my $p ( 1..$peaks ) {
     push( @peaks, $generator->randregex($regex));
   }
   $self->{'peaks'} = \@peaks;
-  bless $class, $self;
+  bless $self, $class;
   return $self;
 }
 
+=head2 random_string
+
+Returns random string in the same style than the peaks. Useful for testing
+
+=cut
+
+sub random_string {
+    my $self = shift;
+    return $self->{'generator'}->randregex($self->{'regex'});
+}
+
+=head2 apply
+
+Applies the instantiated problem to a chromosome
+
+=cut
+
+sub apply {
+    my $self = shift;
+    my $individual = shift;
+    return $self->p_peaks( $individual->{_str} );
+}
+
+=head2 p_peaks
+
+Applies the instantiated problem to a string
+
+=cut
+
+sub p_peaks {
+    my $self = shift;
+    my @peaks = @{$self->{'peaks'}};
+    my $string = shift;
+    my @distances = sort {$a <=> $b}  map( hamming( $string, $_), @peaks);
+
+    return $distances[0];
+
+}
+
+=head2 hamming
+
+Computes the number of positions that are different among two strings
+
+=cut
+
+sub hamming {
+    my ($string_a, $string_b) = @_;
+    return ( ( $string_a ^ $string_b ) =~ tr/\1//);
+}
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/13 13:41:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.1 2008/02/13 13:41:22 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/13 16:55:39 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.2 2008/02/13 16:55:39 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
