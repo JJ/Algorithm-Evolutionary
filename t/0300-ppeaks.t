@@ -24,3 +24,4 @@ is( Algorithm::Evolutionary::Fitness::P_Peaks::hamming( "111000111", "011100110"
 
 my $string = $p_peaks->random_string();
 ok( $p_peaks->p_peaks( $string ) > 0, "Seems to work" );
+
