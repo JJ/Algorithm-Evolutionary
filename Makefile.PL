@@ -10,7 +10,10 @@ WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 				    B::Deparse => 0.56,
 				    Algorithm::Permute => 0.01,
 				    XML::LibXML => 1.50 }, # e.g., Module::Name => 1.1
-	       'PMLIBDIRS'       => [ 'Evolutionary', 'Evolutionary/Op', 'Evolutionary/Individual' ],
+	       'PMLIBDIRS'       => [ 'Evolutionary', 
+				      'Evolutionary/Op', 
+				      'Evolutionary/Individual',
+				      'Evolutionary/Fitness'],
 	       ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
 		(ABSTRACT_FROM => 'lib/Algorithm/Evolutionary.pm', # retrieve abstract from module
 		 AUTHOR     => 'J. J. Merelo <jmerelo (at) geneura.ugr.es>') : ())
