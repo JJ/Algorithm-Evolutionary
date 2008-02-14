@@ -19,16 +19,18 @@ Just a fitness function, it just seemed nice to encapsulate everything here.
 
 package Algorithm::Evolutionary::Fitness::MMDP;
 
+use base qw(Algorithm::Evolutionary::Fitness::Base);
+
 our @unitation = qw( 1 0 0.360384 0.640576 0.360384 0 1);
 our $block_size = 6;
 
-=head2 apply
+=head2 _apply
 
 Applies the MMDP function to a chromosome
 
 =cut
 
-sub apply {
+sub _apply {
   my $class = shift;
   my $dude = shift;
   return mmdp( $dude->{_str} );
@@ -51,10 +53,10 @@ sub mmdp {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/13 13:08:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 1.1 2008/02/13 13:08:22 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/14 12:17:29 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 1.2 2008/02/14 12:17:29 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

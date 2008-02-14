@@ -20,6 +20,6 @@ for (my $i = 0; $i < 6; $i++ ) {
     substr($clone, $i, 1 ) = "1";
     is(  Algorithm::Evolutionary::Fitness::MMDP::mmdp( $clone ),
 	 $Algorithm::Evolutionary::Fitness::MMDP::unitation[$i+1],
-      "Unitation $i OK");
+      "Unitation $i = ". $Algorithm::Evolutionary::Fitness::MMDP::unitation[$i+1]." OK");
     $units = $clone;
 }

@@ -21,8 +21,9 @@ Just a fitness function, it just seemed nice to encapsulate everything here.
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-
 use String::Random;
+
+use base qw(Algorithm::Evolutionary::Fitness::Base);
 
 =head2 new
 
@@ -46,6 +47,7 @@ sub new {
   }
   $self->{'peaks'} = \@peaks;
   bless $self, $class;
+  $self->initialize();
   return $self;
 }
 
@@ -60,13 +62,13 @@ sub random_string {
     return $self->{'generator'}->randregex($self->{'regex'});
 }
 
-=head2 apply
+=head2 _apply
 
 Applies the instantiated problem to a chromosome
 
 =cut
 
-sub apply {
+sub _apply {
     my $self = shift;
     my $individual = shift;
     return $self->p_peaks( $individual->{_str} );
@@ -104,10 +106,10 @@ sub hamming {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/13 16:55:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.2 2008/02/13 16:55:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/14 12:17:29 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.3 2008/02/14 12:17:29 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
