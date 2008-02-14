@@ -28,6 +28,20 @@ Initializes common variables, like the number of evaluations
 
 =cut 
 
+sub new {
+  my $class = shift;
+  my $self = {};
+  bless $self, $class;
+  $self->initialize();
+  return $self;
+}
+
+=head2 new
+
+Initializes common variables, like the number of evaluations
+
+=cut 
+
 sub initialize {
   my $self = shift;
   $self->{_counter} = 0; 
@@ -76,10 +90,10 @@ sub evaluations {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/14 12:17:29 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.1 2008/02/14 12:17:29 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/14 12:39:39 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.2 2008/02/14 12:39:39 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
