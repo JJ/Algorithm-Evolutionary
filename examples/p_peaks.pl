@@ -100,11 +100,13 @@ do {
 #leemos el mejor resultado
 
 #Mostramos los resultados obtenidos
-print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
+print "Best is:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluaciones: ", $p_peaks->evaluations(), "\n";
+print "\n\tEvaluations: ", $p_peaks->evaluations(), "\n";
+
+print "\n\tCache size ratio: ", $p_peaks->cached_evals()/$p_peaks->evaluations(), "\n";
 
 =head1 AUTHOR
 
@@ -117,10 +119,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/14 12:17:29 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.2 2008/02/14 12:17:29 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/16 17:36:19 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.3 2008/02/16 17:36:19 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
