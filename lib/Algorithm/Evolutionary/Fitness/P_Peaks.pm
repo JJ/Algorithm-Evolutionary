@@ -71,7 +71,7 @@ Applies the instantiated problem to a chromosome
 sub _apply {
     my $self = shift;
     my $individual = shift;
-    return $self->p_peaks( $individual->{_str} );
+    return 1/(1+$self->p_peaks( $individual->{_str}) );
 }
 
 =head2 p_peaks
@@ -121,10 +121,10 @@ sub hamming {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/16 17:36:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.4 2008/02/16 17:36:20 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/16 20:34:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.5 2008/02/16 20:34:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
