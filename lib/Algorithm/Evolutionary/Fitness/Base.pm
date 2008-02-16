@@ -50,7 +50,7 @@ sub initialize {
 
 =head2 apply( $individual )
 
-Applies the instantiated problem to a chromosome. Actually it's a
+Applies the instantiated problem to a chromosome. Actually it is a
 wrapper around C<_apply>
 
 =cut
@@ -90,10 +90,10 @@ sub evaluations {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/14 12:39:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.2 2008/02/14 12:39:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/16 17:36:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.3 2008/02/16 17:36:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

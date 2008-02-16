@@ -80,14 +80,29 @@ Applies the instantiated problem to a string
 
 =cut
 
+our %cache;
+
 sub p_peaks {
     my $self = shift;
     my @peaks = @{$self->{'peaks'}};
     my $string = shift;
+    if ( $cache{$string} ) {
+	return $cache{$string};
+    }
     my @distances = sort {$a <=> $b}  map( hamming( $string, $_), @peaks);
+    $cache{$string} = $distances[0];
+    return $cache{$string};
 
-    return $distances[0];
+}
 
+=head2 cached_evals
+
+Returns the number of keys in the evaluation cache
+
+=cut
+
+sub cached_evals {
+    return scalar keys %cache;
 }
 
 =head2 hamming
@@ -106,10 +121,10 @@ sub hamming {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/14 12:17:29 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.3 2008/02/14 12:17:29 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/16 17:36:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.4 2008/02/16 17:36:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
