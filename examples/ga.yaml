@@ -1,0 +1,14 @@
+---
+length: 120
+pop_size:  1024
+mutation:
+  rate: 0.1
+  priority: 1
+crossover:
+  points: 2
+  priority: 4
+fitness:
+  class: MMDP
+max_generations: 1000
+max_fitness: 20
+selection_rate: 0.1
