@@ -27,7 +27,6 @@ use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
-use Algorithm::Evolutionary::Fitness::MMDP;
 
 
 #----------------------------------------------------------#
@@ -109,10 +108,10 @@ J. J. Merelo, C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/16 20:34:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/run_easy_ga.pl,v 1.1 2008/02/16 20:34:56 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/17 17:02:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/run_easy_ga.pl,v 1.2 2008/02/17 17:02:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
