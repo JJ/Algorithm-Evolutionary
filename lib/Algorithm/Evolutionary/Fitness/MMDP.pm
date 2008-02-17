@@ -22,7 +22,7 @@ package Algorithm::Evolutionary::Fitness::MMDP;
 use base qw(Algorithm::Evolutionary::Fitness::Base);
 
 our @unitation = qw( 1 0 0.360384 0.640576 0.360384 0 1);
-our $block_size = 6;
+use constant BLOCK_SIZE => 6;
 
 =head2 _apply
 
@@ -40,8 +40,8 @@ sub _apply {
 sub mmdp {
   my $str = shift;
   my $fitness = 0;
-  for ( my $i = 0; $i < length($str); $i+= $block_size ) {
-    my $block = substr( $str, $i, $block_size );
+  for ( my $i = 0; $i < length($str); $i+= BLOCK_SIZE ) {
+    my $block = substr( $str, $i, BLOCK_SIZE );
     my $ones = grep ( /1/, split(//,$block));
     $fitness += $unitation[$ones];
   }
@@ -53,10 +53,10 @@ sub mmdp {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/14 12:17:29 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 1.2 2008/02/14 12:17:29 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/17 13:34:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 1.3 2008/02/17 13:34:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
