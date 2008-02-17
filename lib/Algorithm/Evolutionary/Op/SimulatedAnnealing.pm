@@ -27,7 +27,7 @@ Simulated Annealing
 
 package Algorithm::Evolutionary::Op::SimulatedAnnealing;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 use Carp;
 use Algorithm::Evolutionary::Op::LinearFreezer;
 use Algorithm::Evolutionary::Op::Base;
@@ -53,8 +53,6 @@ sub new {
   bless $self, $class;
   return $self;
 }
-
-=cut
 
 =head2 apply
 
@@ -123,10 +121,10 @@ sub run ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/17 13:34:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.2 2008/02/17 13:34:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
