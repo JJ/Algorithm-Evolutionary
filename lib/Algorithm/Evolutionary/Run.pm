@@ -56,10 +56,10 @@ package Algorithm::Evolutionary::Run;
 
 use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
-use Algorithm::Evolutionary::Op::Mutation;
+use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -94,7 +94,7 @@ sub new {
   
 #----------------------------------------------------------#
 # Variation operators
-  my $m =  new Algorithm::Evolutionary::Op::Mutation( $self->{'mutation'}->{'rate'}, $self->{'mutation'}->{'priority'}  );
+  my $m =  new Algorithm::Evolutionary::Op::Bitflip( 1, $self->{'mutation'}->{'priority'}  );
   my $c = new Algorithm::Evolutionary::Op::Crossover($self->{'mutation'}->{'points'}, $self->{'crossover'}->{'priority'} );
   
 # Fitness function
@@ -181,10 +181,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/17 17:02:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.1 2008/02/17 17:02:56 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/18 19:35:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.2 2008/02/18 19:35:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

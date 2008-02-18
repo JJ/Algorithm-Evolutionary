@@ -33,7 +33,7 @@ Mutation operator for a GA
 
 package  Algorithm::Evolutionary::Op::Mutation;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -66,7 +66,7 @@ sub new {
 
 =head2 create
 
-Creates a new mutation operator with an application rate. Rate defaults to 0.5.
+Creates a new mutation operator with an application rate. Rate defaults to 0.5 (which is rather bit, you should not rely on it).
 
 Called create to distinguish from the classwide ctor, new. It just
 makes simpler to create a Mutation Operator
@@ -111,10 +111,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/18 19:35:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.2 2008/02/18 19:35:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

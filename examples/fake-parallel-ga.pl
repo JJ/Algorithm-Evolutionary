@@ -43,14 +43,18 @@ for my $s (1..$conf->{'sessions'}) {
 my @sigils = ( '<','>' );
 #Time
 my $io = IO::YAML->new($conf->{'ID'}.".yaml", ">");
-$io->print( { DateTime->now => 'Start' });
+$io->print( [ now(), 'Start' ]);
 $poe_kernel->post( "Population 1", "generation", "Population 2");
+
 $poe_kernel->run();
-$io->print( { DateTime->now => "Exiting" });
+$io->print( [ now(), "Exiting" ]);
 $io->close();
 exit(0);
 
-
+sub now {
+  my $now = DateTime->now();
+  return $now->ymd."T".$now->hms;
+}
 #----------------------------------------------------------#
 
 sub start {
@@ -64,21 +68,19 @@ sub start {
 #------------------------------------------------------------#
 
 sub generation {
-
   my ($kernel, $heap, $session, $next, $other_best ) = @_[KERNEL, HEAP, SESSION, ARG0, ARG1];
   my $alias =  $kernel->alias_list($session);
   my $algorithm = $heap->{'algorithm'};
-  my $now =  DateTime->now();
-  my $hash = { $now => {}};
+  my @data = ( now(), $alias );
   
   if ( $other_best ) {
-    $hash->{$now}->{'Receiving'} = $other_best;
+    push @data, { 'receiving' => $other_best };
     pop @{$algorithm->{'_population'}};
     push @{$algorithm->{'_population'}}, $other_best;
   }
   $algorithm->run();
   my $best = $algorithm->results()->{'best'};
-  $hash->{$now}->{'best'} = $best;
+  push @data, {'best' => $best };
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
        && ( $heap->{'counter'}++ < $conf->{'max_runs'} ) ) {
     $kernel->post($next, 'generation', $session->ID, $best );
@@ -86,12 +88,12 @@ sub generation {
     $kernel->post($session->ID, 'finish');
     $kernel->post($next, 'finish');
   }
-  print $io $hash;
+  $io->print( \@data );
 }
 
 sub finishing {
   my $heap   = $_[ HEAP ];
-  $io->print( {DateTime->now() => { Finish => $heap->{'algorithm'}->results }}) ;
+  $io->print( [now(), { Finish => $heap->{'algorithm'}->results }] ) ;
 }
 
 =head1 AUTHOR
@@ -105,10 +107,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/18 13:35:45 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.2 2008/02/18 13:35:45 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/18 19:35:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.3 2008/02/18 19:35:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
