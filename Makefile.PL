@@ -10,7 +10,8 @@ WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 				    B::Deparse => 0.56,
 				    Algorithm::Permute => 0.01,
 				    XML::LibXML => 1.50,
-				    String::Random => 0 }, # e.g., Module::Name => 1.1
+				    String::Random => 0,
+				    Time::HiRes => 0}, # e.g., Module::Name => 1.1
 	       'PMLIBDIRS'       => [ 'Evolutionary', 
 				      'Evolutionary/Op', 
 				      'Evolutionary/Individual',
