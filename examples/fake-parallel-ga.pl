@@ -73,7 +73,7 @@ sub generation {
   my $algorithm = $heap->{'algorithm'};
   my @data = ( now(), $alias );
   
-  if ( $other_best ) {
+  if ( $other_best && $heap->{'counter'}) {
     push @data, { 'receiving' => $other_best };
     pop @{$algorithm->{'_population'}};
     push @{$algorithm->{'_population'}}, $other_best;
@@ -107,10 +107,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/18 19:35:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.3 2008/02/18 19:35:03 jmerelo Exp $ 
+  CVS Info: $Date: 2008/02/19 07:03:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.4 2008/02/19 07:03:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
