@@ -6,12 +6,12 @@
 
 =head1 SYNOPSIS
 
-  prompt% ./fake_parallel_ga.pl params.yaml
+  prompt% ./fake_parallel_ga.pl params.yaml conf.yaml
 
 
 =head1 DESCRIPTION  
 
-A simple example of how to run a Evolutionary algorithm based on
+A somewhat more complex  example of how to run a Evolutionary algorithm based on
 Algorithm::Evolutionary. See L<Algorithm::Evolutionary::Run> for param structure. It works for the time being only on A::E::Fitness namespace fitness functions.
 
 =cut
@@ -34,7 +34,7 @@ my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
 for my $s (1..$conf->{'sessions'}) {
   POE::Session->create(inline_states => { _start => \&start,
 					  generation => \&generation,
-					finish => \&finishing},
+					  finish => \&finishing},
 		       args  => [$s]
 		       );
 }
@@ -81,13 +81,16 @@ sub generation {
   $algorithm->run();
   my $best = $algorithm->results()->{'best'};
   push @data, {'best' => $best };
-  if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
-       && ( $heap->{'counter'}++ < $conf->{'max_runs'} ) ) {
-    $kernel->post($next, 'generation', $session->ID, $best );
+  if ( ($alias eq 'Population 1') && ( $heap->{'counter'} < $conf->{'start_pop_2'}) ) {
+    $kernel->post( $alias, 'generation', "Population 2" );
+  } elsif ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
+	  && ( $heap->{'counter'} < $conf->{'max_runs'} ) ) {
+    $kernel->post($next, 'generation', $session->ID, $best );    
   } else {
     $kernel->post($session->ID, 'finish');
     $kernel->post($next, 'finish');
   }
+  $heap->{'counter'}++;
   $io->print( \@data );
 }
 
@@ -107,10 +110,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/19 07:03:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.4 2008/02/19 07:03:13 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/17 16:22:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.5 2008/03/17 16:22:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
