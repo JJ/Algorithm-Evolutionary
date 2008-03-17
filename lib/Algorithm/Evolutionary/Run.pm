@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Experiment - Class for setting up an experiment with algorithms and population
+    Algorithm::Evolutionary::Run - Class for setting up an experiment with algorithms and population
                  
 =head1 SYNOPSIS
   
@@ -59,7 +59,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -67,7 +67,7 @@ use Time::HiRes qw( gettimeofday tv_interval);
 
 =head2 new
 
-   Creates the whole stuff. Can be called from a hash with t options, as per the example. All of them are compulsory. See also the C<examples> subdir for examples of the YAML conf file.
+   Creates the whole stuff needed to run an algorithm. Can be called from a hash with t options, as per the example. All of them are compulsory. See also the C<examples> subdir for examples of the YAML conf file.
 
 =cut
 
@@ -181,10 +181,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/18 19:35:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.2 2008/02/18 19:35:03 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/17 17:45:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.3 2008/03/17 17:45:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
