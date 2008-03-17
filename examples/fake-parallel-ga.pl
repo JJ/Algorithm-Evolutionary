@@ -39,8 +39,6 @@ for my $s (1..$conf->{'sessions'}) {
 		       );
 }
 
-
-my @sigils = ( '<','>' );
 #Time
 my $io = IO::YAML->new($conf->{'ID'}.".yaml", ">");
 $io->print( [ now(), 'Start' ]);
@@ -110,10 +108,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/17 16:22:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.5 2008/03/17 16:22:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/17 17:45:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.6 2008/03/17 17:45:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut
