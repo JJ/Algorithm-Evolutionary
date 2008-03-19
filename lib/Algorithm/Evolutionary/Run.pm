@@ -59,7 +59,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -86,7 +86,7 @@ sub new {
   my @pop;
 #Creamos $popSize individuos
   my $bits = $self->{'length'}; 
-  for ( 0..$self->{'pop_size'} ) {
+  for ( 1..$self->{'pop_size'} ) {
       my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
       push( @pop, $indi );
   }
@@ -181,10 +181,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/17 17:45:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.3 2008/03/17 17:45:51 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/19 17:33:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.4 2008/03/19 17:33:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
