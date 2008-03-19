@@ -79,11 +79,13 @@ sub generation {
   $algorithm->run();
   my $best = $algorithm->results()->{'best'};
   push @data, {'best' => $best };
-  if ( ($alias eq 'Population 1') && ( $heap->{'counter'} < $conf->{'start_pop_2'}) ) {
-    $kernel->post( $alias, 'generation', "Population 2" );
-  } elsif ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
-	  && ( $heap->{'counter'} < $conf->{'max_runs'} ) ) {
-    $kernel->post($next, 'generation', $session->ID, $best );    
+  if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
+       && ( $heap->{'counter'} < $conf->{'max_runs'} ) ) {
+      if ( ($alias eq 'Population 1') && ( $heap->{'counter'} < $conf->{'start_pop_2'}) ) {
+	  $kernel->post( $alias, 'generation', "Population 2" );
+      } else {
+	  $kernel->post($next, 'generation', $session->ID, $best );    
+      }
   } else {
     $kernel->post($session->ID, 'finish');
     $kernel->post($next, 'finish');
@@ -108,10 +110,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/17 17:45:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.6 2008/03/17 17:45:13 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/19 12:25:17 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.7 2008/03/19 12:25:17 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut

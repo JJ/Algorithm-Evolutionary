@@ -30,37 +30,39 @@ my @evaluations;
 my $results_io = IO::YAML->new($yaml_file, '<') || die "Can't open $yaml_file: $@\n";
 my $conf_yaml = <$results_io>; #First is conf
 my $conf = YAML::Load($conf_yaml); #Don't use it now, but...
+my @generations;
+my $counter=0;
 while(defined(my $yaml = <$results_io>)) {
   my $these_results = YAML::Load($yaml);
-  my $size = scalar @$these_results;
-  my $finish_1 = $these_results->[$size-3]->[0]->[1];
-  my $finish_2 = $these_results->[$size-2]->[0]->[1]; #Yep, it's weird
-  push @times, $finish_2->{'Finish'}->{'time'};
-  push @evaluations, 
-    $finish_2->{'Finish'}->{'evaluations'} +
-      $finish_1->{'Finish'}->{'evaluations'};
+  my @results_after = map( $_->[0], @$these_results); #Extracts first element
+  for my $r ( @results_after ) {
+    push(@{$generations[$counter]->{$r->[1]}}, $r->[2]);
+  }
+  $counter++;
 }
-my ($fn, $foo ) = split( /\./, $yaml_file );
-
-
-write_file( "$fn.times.dat", map("$_\n", @times ));
-write_file( "$fn.evaluations.dat",map("$_\n", @evaluations ));
-
-#Extracts array from single key hash
-sub extract_content {
-  my $hash_ref = shift;
-  my @keys = keys %$hash_ref;
-  return $hash_ref->{$keys[0]};
+$counter = 0;
+for my $g ( @generations ) {
+  if ($g->{'Population 1'}) {
+    print "* Experiment $counter:\n",
+      "\t * Steps Population 1: ", 
+	scalar(@{$g->{'Population 1'}}), "\n";
+  }
+  if ( $g->{'Population 2'}) {
+    print "\t * Steps Population 2: ", scalar(@{$g->{'Population 2'}}), "\n";
+  }
+  $counter++;
 }
+
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2008/03/19 12:25:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_experiment.pl,v 1.2 2008/03/19 12:25:17 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_generations.pl,v 1.1 2008/03/19 12:25:17 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.1 $
   $Name $
 
 =cut
