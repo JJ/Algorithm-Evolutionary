@@ -42,7 +42,7 @@ $ec->{'uname'} = $Config{'myuname'}; # conf stuff
 $ec->{'arch'} = $Config{'myarchname'};
 print $io $ec;
 my $run_string = PROGRAM_NAME." $ec_file $program_params_file";
-for my $e ( 0..$params->{'number_of_runs'}) {
+for my $e ( 1..$params->{'number_of_runs'}) {
   print "Run $e\n";
  
   `$run_string`;
@@ -50,7 +50,7 @@ for my $e ( 0..$params->{'number_of_runs'}) {
   my $results_io = IO::YAML->new($result_file, '<')  or die "Can't open $result_file: $@\n";  # Open a stream for reading
   while(defined(my $yaml = <$results_io>)) {
     my @these_results = YAML::Load($yaml);
-    push @results, \@these_results;
+    push @results, @these_results;
   }
 
   $io->print( \@results  );
@@ -63,10 +63,10 @@ $io->close();
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/18 19:35:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/run_experiment.pl,v 1.1 2008/02/18 19:35:03 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/19 18:25:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/run_experiment.pl,v 1.2 2008/03/19 18:25:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
