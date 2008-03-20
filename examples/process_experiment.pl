@@ -33,8 +33,8 @@ my $conf = YAML::Load($conf_yaml); #Don't use it now, but...
 while(defined(my $yaml = <$results_io>)) {
   my $these_results = YAML::Load($yaml);
   my $size = scalar @$these_results;
-  my $finish_1 = $these_results->[$size-3]->[0]->[1];
-  my $finish_2 = $these_results->[$size-2]->[0]->[1]; #Yep, it's weird
+  my $finish_1 = $these_results->[$size-3]->[1];
+  my $finish_2 = $these_results->[$size-2]->[1]; #Yep, it's weird
   push @times, $finish_2->{'Finish'}->{'time'};
   push @evaluations, 
     $finish_2->{'Finish'}->{'evaluations'} +
@@ -57,10 +57,10 @@ sub extract_content {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/19 12:25:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_experiment.pl,v 1.2 2008/03/19 12:25:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/20 10:19:09 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_experiment.pl,v 1.3 2008/03/20 10:19:09 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

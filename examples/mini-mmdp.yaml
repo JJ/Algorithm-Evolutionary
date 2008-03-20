@@ -1,6 +1,6 @@
 ---
 length: 120
-pop_size:  1024
+pop_size:  512
 mutation:
   rate: 0.1
   priority: 2
@@ -9,6 +9,6 @@ crossover:
   priority: 3
 fitness:
   class: MMDP
-max_generations: 20
+max_generations: 10
 max_fitness: 20
 selection_rate: 0.1

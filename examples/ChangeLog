@@ -1,4 +1,20 @@
+2008-03-20  Juan J. Merelo  <jmerelo@vega>
+
+	* mini-mmdp.yaml (max_generations): Cambiando la configuración por
+	defecto de esto: a la mitad la población y el hueco generacional
+	(512 y 10).
+
+	* p_peaks_gg5_p256.yaml (crossover): Finalmente nos quedamos con
+	esta configuración para hacer los experimentos: hueco entre
+	inmigraciones igual a 5, y población = 256; la mitad de la
+	población usada para la configuración "single". 
+
 2008-03-19  Juan J. Merelo  <jmerelo@vega>
+
+	* p_peaks_gg2_p256.yaml (pop_size): Parece que finalmente,
+	disminuyendo la población a la mitad (como tenía que haber hecho
+	desde el principio, carallo), los resultados son los
+	esperables. Vaya tela marinera...
 
 	* mmdp-50.exp.yaml: Probando sobre este fichero de experimentos a
 	ver qué es lo que ha pasado. Los runs con 100 que he lanzado en

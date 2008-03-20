@@ -34,8 +34,7 @@ my @generations;
 my $counter=0;
 while(defined(my $yaml = <$results_io>)) {
   my $these_results = YAML::Load($yaml);
-  my @results_after = map( $_->[0], @$these_results); #Extracts first element
-  for my $r ( @results_after ) {
+  for my $r ( @$these_results ) {
     push(@{$generations[$counter]->{$r->[1]}}, $r->[2]);
   }
   $counter++;
@@ -59,10 +58,10 @@ for my $g ( @generations ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/19 12:25:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_generations.pl,v 1.1 2008/03/19 12:25:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/20 10:19:09 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/process_generations.pl,v 1.2 2008/03/20 10:19:09 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
