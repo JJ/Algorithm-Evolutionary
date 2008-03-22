@@ -1,18 +1,18 @@
 ---
-- 2008-03-19T18:15:29
+- 2008-03-21T17:29:34
 - Start
 ---
-- 2008-03-19T18:15:29
+- 2008-03-21T17:29:34
 - Population 1
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
-    _fitness: 0.0588235294117647
+    _fitness: 0.0666666666666667
     _length: 64
-    _str: 1100111111011111001111101110111111100000110011001111111110110101
+    _str: 0001001110011111111100110100010000010101001110001011101101101110
 ---
-- 2008-03-19T18:15:30
+- 2008-03-21T17:29:46
 - Population 2
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -20,9 +20,9 @@
       - 1
     _fitness: 0.0625
     _length: 64
-    _str: 0011111000110101001011010010001100101111111111100101001101000001
+    _str: 1011001000100001101001101011100110111111101001001111111101011101
 ---
-- 2008-03-19T18:15:30
+- 2008-03-21T17:30:30
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -30,50 +30,178 @@
       - 1
     _fitness: 0.0625
     _length: 64
-    _str: 0011111000110101001011010010001100101111111111100101001101000001
+    _str: 1011001000100001101001101011100110111111101001001111111101011101
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
-    _fitness: 0.0666666666666667
+    _fitness: 0.0714285714285714
     _length: 64
-    _str: 1101100100010100101010011000111011000000110110010011001111110100
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
 ---
-- 2008-03-19T18:15:31
+- 2008-03-21T17:30:31
 - Population 2
-- receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
-    _fitness: 0.0666666666666667
+    _fitness: 0.0714285714285714
     _length: 64
-    _str: 1101100100010100101010011000111011000000110110010011001111110100
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:32
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:36
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:36
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:37
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:37
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:37
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:38
+- Population 1
+- receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: &1
+      - 0
+      - 1
+    _fitness: 0.0714285714285714
+    _length: 64
+    _str: 0011000000101001100010101101110000001010101000100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: *1
+    _fitness: 0.0769230769230769
+    _length: 64
+    _str: 0011000000101001101010101101110000001010101000100000101100111000
+---
+- 2008-03-21T17:30:38
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
     _fitness: 0.0769230769230769
     _length: 64
-    _str: 0011111000110110011011010010001100101111111111100101001101000001
+    _str: 0011000000101001101010101101110000001010101000100000101100111000
+- best: *1
 ---
-- 2008-03-19T18:15:31
+- 2008-03-21T17:30:38
 - Population 1
-- receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
     _fitness: 0.0769230769230769
     _length: 64
-    _str: 0011111000110110011011010010001100101111111111100101001101000001
+    _str: 0011000000101001101010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:39
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0769230769230769
+    _length: 64
+    _str: 0011000000101001101010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:39
+- Population 1
+- receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: &1
+      - 0
+      - 1
+    _fitness: 0.0769230769230769
+    _length: 64
+    _str: 0011000000101001101010101101110000001010101000100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: *1
+    _fitness: 0.0833333333333333
+    _length: 64
+    _str: 0011000000101001111010101101110000001010101000100000101100111000
+---
+- 2008-03-21T17:30:40
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
     _fitness: 0.0833333333333333
     _length: 64
-    _str: 0110110011010011001011110101101101110011100101100011011111011100
+    _str: 0011000000101001111010101101110000001010101000100000101100111000
+- best: *1
 ---
-- 2008-03-19T18:15:31
+- 2008-03-21T17:30:40
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.0833333333333333
+    _length: 64
+    _str: 0011000000101001111010101101110000001010101000100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:40
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -81,10 +209,10 @@
       - 1
     _fitness: 0.0833333333333333
     _length: 64
-    _str: 0110110011010011001011110101101101110011100101100011011111011100
+    _str: 0011000000101001111010101101110000001010101000100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:32
+- 2008-03-21T17:30:41
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -92,62 +220,40 @@
       - 1
     _fitness: 0.0833333333333333
     _length: 64
-    _str: 0110110011010011001011110101101101110011100101100011011111011100
+    _str: 0011000000101001111010101101110000001010101000100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
-    _fitness: 0.0909090909090909
+    _fitness: 0.1
     _length: 64
-    _str: 0110110011010011001011110101101101100011100101100011011111011100
+    _str: 0011000000101001111010101101110000001110101001100000101100111000
 ---
-- 2008-03-19T18:15:32
+- 2008-03-21T17:30:41
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
       - 0
       - 1
-    _fitness: 0.0909090909090909
+    _fitness: 0.1
     _length: 64
-    _str: 0110110011010011001011110101101101100011100101100011011111011100
+    _str: 0011000000101001111010101101110000001110101001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:33
-- Population 1
-- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
-    _chars:
-      - 0
-      - 1
-    _fitness: 0.0909090909090909
-    _length: 64
-    _str: 0110110011010011001011110101101101100011100101100011011111011100
-- best: *1
----
-- 2008-03-19T18:15:33
-- Population 2
-- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
-    _chars:
-      - 0
-      - 1
-    _fitness: 0.0909090909090909
-    _length: 64
-    _str: 0110110011010011001011110101101101100011100101100011011111011100
-- best: *1
----
-- 2008-03-19T18:15:34
+- 2008-03-21T17:30:41
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
       - 0
       - 1
-    _fitness: 0.0909090909090909
+    _fitness: 0.1
     _length: 64
-    _str: 0110110011010011001011110101101101100011100101100011011111011100
+    _str: 0011000000101001111010101101110000001110101001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 0.111111111111111
     _length: 64
-    _str: 0110110011010011001011110101100101100011100101101011011111011100
+    _str: 0011010000101001000010101101110010001111001001100000101100111000
 ---
-- 2008-03-19T18:15:34
+- 2008-03-21T17:30:42
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -155,10 +261,10 @@
       - 1
     _fitness: 0.111111111111111
     _length: 64
-    _str: 0110110011010011001011110101100101100011100101101011011111011100
+    _str: 0011010000101001000010101101110010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:35
+- 2008-03-21T17:30:42
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -166,14 +272,14 @@
       - 1
     _fitness: 0.111111111111111
     _length: 64
-    _str: 0110110011010011001011110101100101100011100101101011011111011100
+    _str: 0011010000101001000010101101110010001111001001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 0.125
     _length: 64
-    _str: 0110010011010011001011110101100101100011100101101011011111011100
+    _str: 0011000000101001111010101101110000001111001001100000101100111000
 ---
-- 2008-03-19T18:15:35
+- 2008-03-21T17:30:42
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -181,10 +287,32 @@
       - 1
     _fitness: 0.125
     _length: 64
-    _str: 0110010011010011001011110101100101100011100101101011011111011100
+    _str: 0011000000101001111010101101110000001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:35
+- 2008-03-21T17:30:43
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.125
+    _length: 64
+    _str: 0011000000101001111010101101110000001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:43
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.125
+    _length: 64
+    _str: 0011000000101001111010101101110000001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:43
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -192,14 +320,14 @@
       - 1
     _fitness: 0.125
     _length: 64
-    _str: 0110010011010011001011110101100101100011100101101011011111011100
+    _str: 0011000000101001111010101101110000001111001001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 0.166666666666667
     _length: 64
-    _str: 1110110011010011001111110101100101100011100101101011011111010100
+    _str: 0011100000101001101000101101110010001111001001100000101100111000
 ---
-- 2008-03-19T18:15:36
+- 2008-03-21T17:30:44
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -207,10 +335,32 @@
       - 1
     _fitness: 0.166666666666667
     _length: 64
-    _str: 1110110011010011001111110101100101100011100101101011011111010100
+    _str: 0011100000101001101000101101110010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:36
+- 2008-03-21T17:30:44
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.166666666666667
+    _length: 64
+    _str: 0011100000101001101000101101110010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:44
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.166666666666667
+    _length: 64
+    _str: 0011100000101001101000101101110010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:45
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -218,14 +368,14 @@
       - 1
     _fitness: 0.166666666666667
     _length: 64
-    _str: 1110110011010011001111110101100101100011100101101011011111010100
+    _str: 0011100000101001101000101101110010001111001001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 0.25
     _length: 64
-    _str: 1110010011010011101111110101100101110111100101101011010111011100
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
 ---
-- 2008-03-19T18:15:37
+- 2008-03-21T17:30:45
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -233,10 +383,10 @@
       - 1
     _fitness: 0.25
     _length: 64
-    _str: 1110010011010011101111110101100101110111100101101011010111011100
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:37
+- 2008-03-21T17:30:45
 - Population 1
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -244,10 +394,10 @@
       - 1
     _fitness: 0.25
     _length: 64
-    _str: 1110010011010011101111110101100101110111100101101011010111011100
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:38
+- 2008-03-21T17:30:46
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -255,10 +405,54 @@
       - 1
     _fitness: 0.25
     _length: 64
-    _str: 1110010011010011101111110101100101110111100101101011010111011100
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:38
+- 2008-03-21T17:30:46
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.25
+    _length: 64
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:46
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.25
+    _length: 64
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:47
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.25
+    _length: 64
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:47
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.25
+    _length: 64
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:47
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -266,14 +460,40 @@
       - 1
     _fitness: 0.25
     _length: 64
-    _str: 1110010011010011101111110101100101110111100101101011010111011100
+    _str: 0011100000101001111000101101111010001111001001100000101100111000
+- best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: *1
+    _fitness: 0.333333333333333
+    _length: 64
+    _str: 1011000000101001011000101101111010001111001001100000101100111000
+---
+- 2008-03-21T17:30:48
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.333333333333333
+    _length: 64
+    _str: 1011000000101001011000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:48
+- Population 1
+- receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars: &1
+      - 0
+      - 1
+    _fitness: 0.333333333333333
+    _length: 64
+    _str: 1011000000101001011000101101111010001111001001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 0.5
     _length: 64
-    _str: 1110010011010111101111110101100101100011100101101011010111010100
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
 ---
-- 2008-03-19T18:15:38
+- 2008-03-21T17:30:48
 - Population 2
 - receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars:
@@ -281,10 +501,54 @@
       - 1
     _fitness: 0.5
     _length: 64
-    _str: 1110010011010111101111110101100101100011100101101011010111010100
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
 - best: *1
 ---
-- 2008-03-19T18:15:39
+- 2008-03-21T17:30:49
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.5
+    _length: 64
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:49
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.5
+    _length: 64
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:49
+- Population 1
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.5
+    _length: 64
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:49
+- Population 2
+- receiving: &1 !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 0.5
+    _length: 64
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
+- best: *1
+---
+- 2008-03-21T17:30:50
 - Population 1
 - receiving: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: &1
@@ -292,14 +556,14 @@
       - 1
     _fitness: 0.5
     _length: 64
-    _str: 1110010011010111101111110101100101100011100101101011010111010100
+    _str: 1011100000101001011000101101111010001111001001100000101100111000
 - best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
     _chars: *1
     _fitness: 1
     _length: 64
-    _str: 1110010011010111101111110101100101100111100101101011010111010100
+    _str: 1011100000101001011000101101111010101111001001100000101100111000
 ---
-- 2008-03-19T18:15:39
+- 2008-03-21T17:30:50
 - Finish:
     best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
       _chars:
@@ -307,11 +571,11 @@
         - 1
       _fitness: 1
       _length: 64
-      _str: 1110010011010111101111110101100101100111100101101011010111010100
-    evaluations: 12231
-    time: 10.042637
+      _str: 1011100000101001011000101101111010101111001001100000101100111000
+    evaluations: 6251
+    time: 76.956621
 ---
-- 2008-03-19T18:15:39
+- 2008-03-21T17:30:50
 - Finish:
     best: !!perl/hash:Algorithm::Evolutionary::Individual::BitString
       _chars:
@@ -319,9 +583,9 @@
         - 1
       _fitness: 0.5
       _length: 64
-      _str: 1110010011010111101111110101100101100011100101101011010111010100
-    evaluations: 11620
-    time: 9.846858
+      _str: 1011100000101001011000101101111010001111001001100000101100111000
+    evaluations: 6048
+    time: 76.604162
 ---
-- 2008-03-19T18:15:39
+- 2008-03-21T17:30:50
 - Exiting

@@ -30,6 +30,7 @@ use DateTime;
 my $spec = shift || die "Usage: $0 params.yaml conf.yaml\n";
 my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
+my $last_evals = 0; # Number of guys evaluated by the other session
 
 for my $s (1..$conf->{'sessions'}) {
   POE::Session->create(inline_states => { _start => \&start,
@@ -79,12 +80,14 @@ sub generation {
   $algorithm->run();
   my $best = $algorithm->results()->{'best'};
   push @data, {'best' => $best };
+  my $these_evals = $heap->{'algorithm'}->results()->{'evaluations'};
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
-       && ( $heap->{'counter'} < $conf->{'max_runs'} ) ) {
+       && ( ($these_evals + $last_evals) < $conf->{'max_evals'} ) ) {
       if ( ($alias eq 'Population 1') && ( $heap->{'counter'} < $conf->{'start_pop_2'}) ) {
 	  $kernel->post( $alias, 'generation', "Population 2" );
       } else {
 	  $kernel->post($next, 'generation', $session->ID, $best );    
+	  $last_evals = $these_evals;
       }
   } else {
     $kernel->post($session->ID, 'finish');
@@ -110,10 +113,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/19 12:25:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.7 2008/03/19 12:25:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/22 17:13:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/fake-parallel-ga.pl,v 1.8 2008/03/22 17:13:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut

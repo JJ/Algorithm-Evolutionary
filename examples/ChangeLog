@@ -1,4 +1,28 @@
+2008-03-22  Juan J. Merelo  <jmerelo@vega>
+
+	* p_peaks_5.exp.yaml (params_file): Finalmente, parece que la
+	hipótesis se comprueba: añadir mendas empeora el número de
+	evaluaciones (como era de esperar), y tampoco mejora mucho el
+	tiempo. Ahora, no sé si esto es terriblemente obvio o un resultado
+	interesante. 
+
+2008-03-21  Juan J. Merelo  <jmerelo@vega>
+
+	* conf.yaml (max_evals): Cambiando max_runs por max_evals. Vamos a
+	probarlo, ea. 
+
+	* fake-parallel-ga.pl (generation): Hay un error en la forma como
+	acaban las ejecuciones: depende, claro está, del número de pasos y
+	de lo que se evalúa en cada uno. Vamos a tratar de hacerlo
+	independiente de cómo sean los parámetros, y que se deje de
+	ejecutar cuando se llegue a un número de evaluaciones
+	determinado. 
+
 2008-03-20  Juan J. Merelo  <jmerelo@vega>
+
+	* p_peaks_gg5_p32-0.exp.yaml (ID): Con el tamaño de población 32,
+	las dos poblaciones funcionan peor por separado que juntas. Nos
+	quedaremos con el tamaño de población 64.
 
 	* mini-mmdp.yaml (max_generations): Cambiando la configuración por
 	defecto de esto: a la mitad la población y el hueco generacional
