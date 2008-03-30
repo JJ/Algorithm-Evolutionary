@@ -31,6 +31,7 @@ my $spec = shift || die "Usage: $0 params.yaml conf.yaml\n";
 my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
 my $last_evals = 0; # Number of guys evaluated by the other session
+my %best;
 
 my $sessions = $conf->{'sessions'};
 for my $s (1..$sessions) {
@@ -79,22 +80,38 @@ sub generation {
     push @{$algorithm->{'_population'}}, $other_best;
   }
   $algorithm->run();
-  my $somebody = $algorithm->random_member();
   my $best = $algorithm->results()->{'best'};
-  push @data, {'sending' => $somebody };
+  $best{$alias} = $best;
   my $these_evals = $heap->{'algorithm'}->results()->{'evaluations'};
   my ($idx) = ($next =~ /Population (\d+)/);
   my $after_punk = "Population ".($idx+1) ;
   if ( $after_punk gt "Population $sessions" ) {
     $after_punk = "Population 1";
   }
+
+  #Decide who to send
+  my $somebody;
+  if ( $conf->{'migration_policy'} eq 'multikulti' ) {
+      if ( $best{$next} ) {
+	  $somebody = worst_match( $heap->{'algorithm'}->{'_population'}, $best{$next});
+      } else {
+	  $somebody = $algorithm->random_member();
+      }
+  } elsif (  $conf->{'migration_policy'} eq 'random' ) {
+      $somebody = $algorithm->random_member();
+  } elsif (  $conf->{'migration_policy'} eq 'best' ) {
+      $somebody = $best;
+  }
+  push @data, {'sending' => $somebody };
+  push @data, {'best' => $best };
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
        && ( ($these_evals + $last_evals) < $conf->{'max_evals'} ) ) {
       $kernel->post($next, 'generation', $after_punk , $somebody );    
       $last_evals = $these_evals;
   } else {
-    $kernel->post($session->ID, 'finish');
-    $kernel->post($next, 'finish');
+    for( my $s = 1; $s <= $sessions; $s ++ ) {
+      $kernel->post("Population $s", 'finish');
+    }
   }
   $heap->{'counter'}++;
   $io->print( \@data );
@@ -103,6 +120,39 @@ sub generation {
 sub finishing {
   my $heap   = $_[ HEAP ];
   $io->print( [now(), { Finish => $heap->{'algorithm'}->results }] ) ;
+}
+
+=head2 hamming
+
+Computes the number of positions that are different among two strings
+
+=cut
+
+sub hamming {
+    my ($string_a, $string_b) = @_;
+    return ( ( $string_a ^ $string_b ) =~ tr/\1//);
+}
+
+
+=head2 worst_match 
+
+Computes the worst match of the population
+
+=cut
+
+sub worst_match {
+    my $population = shift || die "No population\n";
+    my $matchee = shift || die "No matchee";
+    my $distance = 0;
+    my $vive_la;
+    for my $p (@$population) {
+	my $this_distance = hamming( $p->{'_str'}, $matchee->{'_str'} );
+	if ($this_distance > $distance ) {
+	    $vive_la = $p;
+	    $distance = $this_distance;
+	}
+    }
+    return $vive_la;
 }
 
 =head1 AUTHOR
@@ -116,10 +166,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/27 10:06:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.1 2008/03/27 10:06:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/30 17:24:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.2 2008/03/30 17:24:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
