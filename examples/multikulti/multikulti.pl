@@ -101,6 +101,14 @@ sub generation {
       $somebody = $algorithm->random_member();
   } elsif (  $conf->{'migration_policy'} eq 'best' ) {
       $somebody = $best;
+  } elsif (  $conf->{'migration_policy'} eq 'multikulti-elite' ) {
+    if ( $best{$next} ) {
+      my @population = @{$heap->{'algorithm'}->{'_population'}};
+      my @population_elite = @population[0..(@population/2)];
+      $somebody = worst_match( \@population_elite, $best{$next});
+    } else {
+      $somebody = $algorithm->random_member();
+    }
   }
   push @data, {'sending' => $somebody };
   push @data, {'best' => $best };
@@ -166,10 +174,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/30 17:24:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.2 2008/03/30 17:24:26 jmerelo Exp $ 
+  CVS Info: $Date: 2008/03/31 19:16:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.3 2008/03/31 19:16:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
