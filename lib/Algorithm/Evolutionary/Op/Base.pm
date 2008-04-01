@@ -39,10 +39,13 @@ use lib qw( ../.. ../../.. );
 
 use XML::Parser;
 use XML::Parser::EasyTree;
+use Memoize;
+memoize('arity');
+
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 
 =head2 AUTOLOAD
@@ -323,10 +326,10 @@ L<Algorithm::Evolutionary::XML.pod|Algorithm::Evolutionary::XML.pod>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/01 08:24:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.2 2008/04/01 08:24:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
