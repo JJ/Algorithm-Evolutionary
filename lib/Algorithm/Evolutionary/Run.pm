@@ -59,7 +59,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -162,9 +162,21 @@ sub run {
 
 }
 
+=head2 random
+
+Returns a random guy from the population
+
+=cut
+
+sub random_member {
+    my $self = shift;
+    return $self->{'_population'}->[rand( @{$self->{'_population'}} )];
+}
+
 =head2 results
  
-Returns results in plain text format
+Returns results in a hash that contains the best, total time so far
+ and the number of evaluations. 
 
 =cut
 
@@ -181,10 +193,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/19 17:33:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.4 2008/03/19 17:33:00 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/01 08:24:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.5 2008/04/01 08:24:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
