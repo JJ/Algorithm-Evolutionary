@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use Test;
-BEGIN { plan tests => 40 };
+BEGIN { plan tests => 41 };
 use lib qw( lib ../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Individual::String;
@@ -228,8 +228,12 @@ for ( 0..$popSize ) {
   push( @pop, $indi );
 }
 
-use Algorithm::Evolutionary::Utils qw(entropy);
+#test utils
+use Algorithm::Evolutionary::Utils qw(entropy consensus);
 ok( entropy( \@pop ) > 0, 1 );
+ok( length(consensus( \@pop )) > 1, 1 );
+
+#fitness
 my $generation = 
   new Algorithm::Evolutionary::Op::GeneralGeneration( $onemax, $selector, [$m, $c], $replacementRate );
 my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
@@ -277,10 +281,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/03 18:37:19 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.2 2008/04/03 18:37:19 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/20 11:03:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.3 2008/04/20 11:03:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
