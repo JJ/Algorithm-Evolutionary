@@ -2,15 +2,15 @@
 
 =head1 NAME
 
-  tide_float.pl - Implementation of the Tide optimization using A::E
+  p_peaks.pl - Implementation of the p-peaks combinatorial optimization problem
 
 =head1 SYNOPSIS
 
-  prompt% ./tide_float.pl <population> <number of generations>
+  prompt% ./p_peaks.pl <population> <number of generations>
 
 or
 
-  prompt% perl tide_float.pl <population> <number of generations>
+  prompt% perl p_peaks.pl <bits> <peaks> <population> <number of generations>
 
   Shows the values of the two floating-point components of the
   chromosome and finally the best value and fitness reached, which
@@ -38,7 +38,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Fitness::P_Peaks;
-
+use Algorithm::Evolutionary::Utils qw(entropy consensus);
 
 #----------------------------------------------------------#
 my $bits = shift || 64;
@@ -56,7 +56,7 @@ for ( 0..$popSize ) {
   my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
   push( @pop, $indi );
 }
-
+print "Initial consensus: ", consensus(\@pop), "\n\n";
 
 #----------------------------------------------------------#
 # Variation operators
@@ -88,9 +88,9 @@ for ( @pop ) {
 my $contador=0;
 do {
   $generation->apply( \@pop );
-
+  
   print "$contador : ", $pop[0]->asString(), "\n" ;
-
+  print "$contador C ", consensus(\@pop), "\n\n";
   $contador++;
 } while( ($contador < $numGens) 
 	 && ($pop[0]->Fitness() < 1));
@@ -119,10 +119,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/16 17:36:19 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.3 2008/02/16 17:36:19 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/20 10:41:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.4 2008/04/20 10:41:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

@@ -21,6 +21,7 @@ use strict;
 
 use lib qw(../../lib ../lib);
 use Algorithm::Evolutionary::Run;
+use Algorithm::Evolutionary::Utils qw(consensus);
 
 use POE;
 use YAML qw(Dump LoadFile);
@@ -32,6 +33,9 @@ my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
 my $last_evals = 0; # Number of guys evaluated by the other session
 my %best;
+
+my $migration_policy = $conf->{'migration_policy'} || 'multikulti';
+my $match_policy = $conf->{'match_policy'} || 'best';
 
 my $sessions = $conf->{'sessions'};
 for my $s (1..$sessions) {
@@ -80,8 +84,14 @@ sub generation {
     push @{$algorithm->{'_population'}}, $other_best;
   }
   $algorithm->run();
+  my $match;
   my $best = $algorithm->results()->{'best'};
-  $best{$alias} = $best;
+  if ( $match_policy eq 'consensus' ) {
+      $match = consensus( $algorithm->{'_population'} );
+  } else {
+      $match = $best;
+  }
+  $best{$alias} = $match;
   my $these_evals = $heap->{'algorithm'}->results()->{'evaluations'};
   my ($idx) = ($next =~ /Population (\d+)/);
   my $after_punk = "Population ".($idx+1) ;
@@ -91,17 +101,17 @@ sub generation {
 
   #Decide who to send
   my $somebody;
-  if ( $conf->{'migration_policy'} eq 'multikulti' ) {
+  if ( $migration_policy eq 'multikulti' ) {
       if ( $best{$next} ) {
 	  $somebody = worst_match( $heap->{'algorithm'}->{'_population'}, $best{$next});
       } else {
 	  $somebody = $algorithm->random_member();
       }
-  } elsif (  $conf->{'migration_policy'} eq 'random' ) {
+  } elsif (  $migration_policy eq 'random' ) {
       $somebody = $algorithm->random_member();
-  } elsif (  $conf->{'migration_policy'} eq 'best' ) {
+  } elsif (  $migration_policy eq 'best' ) {
       $somebody = $best;
-  } elsif (  $conf->{'migration_policy'} eq 'multikulti-elite' ) {
+  } elsif (  $migration_policy eq 'multikulti-elite' ) {
     if ( $best{$next} ) {
       my @population = @{$heap->{'algorithm'}->{'_population'}};
       my @population_elite = @population[0..(@population/2)];
@@ -151,6 +161,9 @@ Computes the worst match of the population
 sub worst_match {
     my $population = shift || die "No population\n";
     my $matchee = shift || die "No matchee";
+    if ( !ref $matchee ) {
+      $matchee = { _str => $matchee }
+    }
     my $distance = 0;
     my $vive_la;
     for my $p (@$population) {
@@ -174,10 +187,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/03/31 19:16:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.3 2008/03/31 19:16:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/20 10:41:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.4 2008/04/20 10:41:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
