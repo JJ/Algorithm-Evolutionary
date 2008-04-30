@@ -78,11 +78,6 @@ sub generation {
   my $algorithm = $heap->{'algorithm'};
   my @data = ( now(), $alias );
   
-  if ( $other_best && $heap->{'counter'}) {
-    push @data, { 'receiving' => $other_best };
-    pop @{$algorithm->{'_population'}};
-    push @{$algorithm->{'_population'}}, $other_best;
-  }
   $algorithm->run();
   my $match;
   my $best = $algorithm->results()->{'best'};
@@ -130,6 +125,13 @@ sub generation {
     for( my $s = 1; $s <= $sessions; $s ++ ) {
       $kernel->post("Population $s", 'finish');
     }
+  }
+
+  #Incorporate at the end, as if it were asynchronous
+  if ( $other_best && $heap->{'counter'}) {
+      push @data, { 'receiving' => $other_best };
+      pop @{$algorithm->{'_population'}};
+      push @{$algorithm->{'_population'}}, $other_best;
   }
   $heap->{'counter'}++;
   $io->print( \@data );
@@ -187,10 +189,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/20 10:41:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.4 2008/04/20 10:41:49 jmerelo Exp $ 
+  CVS Info: $Date: 2008/04/30 16:31:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.5 2008/04/30 16:31:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
