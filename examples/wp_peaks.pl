@@ -37,15 +37,15 @@ use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
-use Algorithm::Evolutionary::Fitness::P_Peaks;
+use Algorithm::Evolutionary::Fitness::wP_Peaks;
 use Algorithm::Evolutionary::Utils qw(entropy consensus);
 
 #----------------------------------------------------------#
 my $bits = shift || 64;
 my $peaks = shift || 100;
-my $popSize = shift || 512; #Population size
-my $numGens = shift || 500; #Max number of generations
-my $selection_rate = shift || 0.2;
+my $popSize = shift || 1024; #Population size
+my $numGens = shift || 1000; #Max number of generations
+my $selection_rate = shift || 0.1;
 
 
 #----------------------------------------------------------#
@@ -60,11 +60,15 @@ print "Initial consensus: ", consensus(\@pop), "\n\n";
 
 #----------------------------------------------------------#
 # Variation operators
-my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1 );
-my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
+my $m = Algorithm::Evolutionary::Op::Mutation->new( 1/$bits ); # Rate = 1
+my $c = Algorithm::Evolutionary::Op::Crossover->new(2, 4 ); # Rate = 4
 
 # Fitness function
-my $p_peaks = new  Algorithm::Evolutionary::Fitness::P_Peaks( $peaks, $bits );
+my @weights = (1);
+for (my $i = 0; $i < $peaks - 1 ; $i ++ ) {
+    push @weights, 0.99;
+}
+my $p_peaks = new  Algorithm::Evolutionary::Fitness::wP_Peaks( $bits, @weights );
 
 #----------------------------------------------------------#
 #Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -120,9 +124,9 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.5 2008/06/16 16:31:28 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/wp_peaks.pl,v 1.1 2008/06/16 16:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.1 $
   $Name $
 
 =cut

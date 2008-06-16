@@ -6,7 +6,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 4;
+use Test::More tests => 3;
 
 use warnings;
 use strict;
@@ -15,14 +15,16 @@ use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-use_ok( "Algorithm::Evolutionary::Fitness::P_Peaks", "using Fitness::P_Peaks OK" );
+use_ok( "Algorithm::Evolutionary::Fitness::wP_Peaks", "using Fitness::wP_Peaks OK" );
 
 my $peaks = 100;
 my $bits = 32;
-my $p_peaks = new Algorithm::Evolutionary::Fitness::P_Peaks( $peaks, $bits );
-isa_ok( $p_peaks,  "Algorithm::Evolutionary::Fitness::P_Peaks" );
-
-is( hamming( "111000111", "011100110" ), 3, "Hamming OK" );
+my @weights = (1);
+for (1..$bits ) {
+  push @weights, 0.99;
+}
+my $p_peaks = new Algorithm::Evolutionary::Fitness::wP_Peaks( $bits, @weights );
+isa_ok( $p_peaks,  "Algorithm::Evolutionary::Fitness::wP_Peaks" );
 
 my $string = $p_peaks->random_string();
 ok( $p_peaks->p_peaks( $string ) > 0, "Seems to work" );
