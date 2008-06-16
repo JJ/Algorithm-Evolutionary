@@ -1,32 +1,33 @@
-use strict; # -*- cperl-mode -*-
+use strict;
 use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Fitness::P_Peaks - P Peaks problem generator
+    Algorithm::Evolutionary::Fitness::wP_Peaks - wP Peaks problem generator - weighted version of P_Peaks
 
 =head1 SYNOPSIS
 
-    my $number_of_peaks = 100;
     my $number_of_bits = 32;
-    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_peaks, $number_of_bits );
+    my @weights = (1);
+    for (my $i = 0; $i < 99; $i ++ ) {
+       push @weights, 0.99;
+    }
+    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_bits, @weights ); #Number of peaks = scalar  @weights
 
 =head1 DESCRIPTION
 
-P_Peaks fitness function, that measures the distance to a series of peaks
+    wP-Peaks fitness function, weighted version of the P-Peaks fitness function, which has now a single peak
 
 =head1 METHODS
 
 =cut
 
-package Algorithm::Evolutionary::Fitness::P_Peaks;
+package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
 use String::Random;
-
-use lib qw(../../.. ../.. ..);
+use Algorithm::Evolutionary::Utils qw(hamming);
 
 use base qw(Algorithm::Evolutionary::Fitness::Base);
-use Algorithm::Evolutionary::Utils qw(hamming);
 
 =head2 new
 
@@ -36,7 +37,7 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 sub new {
   my $class = shift;
-  my ($peaks, $bits ) = @_;
+  my ( $bits, @weights ) = @_;
 
   #Generate peaks
   my $generator = new String::Random;
@@ -45,8 +46,9 @@ sub new {
   my $self = { bits => $bits,
 	       generator => $generator,
 	       regex => $regex };
-  for my $p ( 1..$peaks ) {
-    push( @peaks, $generator->randregex($regex));
+  while ( @weights ) {
+      my $this_w = shift @weights;
+      push( @peaks, [$this_w, $generator->randregex($regex)]);
   }
   $self->{'peaks'} = \@peaks;
   bless $self, $class;
@@ -74,7 +76,7 @@ Applies the instantiated problem to a chromosome
 sub _apply {
     my $self = shift;
     my $individual = shift;
-    return $self->p_peaks( $individual->{_str})/$self->{'bits'} ;
+    return  $self->p_peaks( $individual->{_str})/$self->{'bits'};
 }
 
 =head2 p_peaks
@@ -93,7 +95,7 @@ sub p_peaks {
 	return $cache{$string};
     }
     my $bits = $self->{'bits'};
-    my @distances = sort {$b <=> $a}  map($bits - hamming( $string, $_), @peaks);
+    my @distances = sort {$b <=> $a} map($bits*$_->[0]- hamming( $string, $_->[1]), @peaks);
     $cache{$string} = $distances[0];
     return $cache{$string};
 
@@ -109,15 +111,17 @@ sub cached_evals {
     return scalar keys %cache;
 }
 
+
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.6 2008/06/16 16:31:28 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 1.1 2008/06/16 16:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.1 $
   $Name $
 
 =cut

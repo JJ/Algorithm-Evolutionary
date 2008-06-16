@@ -30,8 +30,8 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
-our @EXPORT_OK = qw( entropy consensus);
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our @EXPORT_OK = qw( entropy consensus hamming);
 
 use Carp;
 
@@ -45,7 +45,7 @@ Computes the entropy using the well known Shannon's formula: L<http://en.wikiped
 sub entropy {
   my $population = shift;
   my %frequencies;
-  map( $frequencies{$_->Fitness()}++, @$population );
+  map( (defined $_->Fitness())?$frequencies{$_->Fitness()}++:1, @$population );
   my $entropy = 0;
   my $gente = scalar(@$population); # Population size
   for my $f ( keys %frequencies ) {
@@ -53,6 +53,18 @@ sub entropy {
     $entropy -= $this_freq*log( $this_freq );
   }
   return $entropy;
+}
+
+
+=head2 hamming
+
+Computes the number of positions that are different among two strings
+
+=cut
+
+sub hamming {
+    my ($string_a, $string_b) = @_;
+    return ( ( $string_a ^ $string_b ) =~ tr/\1//);
 }
 
 =head2 consensus
@@ -84,15 +96,16 @@ sub consensus {
   return $consensus;
 }
 
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/20 11:03:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.2 2008/04/20 11:03:12 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/16 16:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.3 2008/06/16 16:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
