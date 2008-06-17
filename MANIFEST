@@ -5,9 +5,10 @@ MANIFEST
 README
 lib/Algorithm/Evolutionary.pm
 lib/Algorithm/Evolutionary/Experiment.pm
-lib/Algorithm/Evolutionary/Wheel.pm
 lib/Algorithm/Evolutionary/Run.pm
+lib/Algorithm/Evolutionary/Utils.pm
 lib/Algorithm/Evolutionary/XML.pod
+lib/Algorithm/Evolutionary/Wheel.pm
 lib/Algorithm/Evolutionary/Op/ArithCrossover.pm
 lib/Algorithm/Evolutionary/Op/Base.pm
 lib/Algorithm/Evolutionary/Op/Bitflip.pm
@@ -42,6 +43,15 @@ lib/Algorithm/Evolutionary/Individual/Vector.pm
 lib/Algorithm/Evolutionary/Fitness/Base.pm
 lib/Algorithm/Evolutionary/Fitness/MMDP.pm
 lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm
+lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm
+lib/Algorithm/Evolutionary/Fitness/Knapsack.pm
+t/00-load.t
+t/0200-run-ga.t
+t/p_peaks.yaml
+t/0300-ppeaks.t
+t/0301-wppeaks.t
+t/0302-knapsack.t
+t/0333-mmdp.t
 t/general.t
 t/GenerationalTerm.t
 t/NoChangeTerm.t
@@ -64,4 +74,4 @@ examples/5_marea_reales.pl
 examples/runfromXML.pl
 examples/mmdp.pl
 examples/p_peaks.pl
-
+examples/wp_peaks.pl

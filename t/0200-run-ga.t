@@ -10,7 +10,7 @@ use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
 use_ok( "Algorithm::Evolutionary::Run", "using A::E::Run OK" );
 my $path= 't';
-if ( ! -e "$path/mmdp.yaml" ) {
+if ( ! -e "$path/p_peaks.yaml" ) {
   $path = '.'; # Just in case we're testing in-dir
 }
 

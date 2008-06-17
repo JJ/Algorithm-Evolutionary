@@ -42,7 +42,7 @@ use Algorithm::Evolutionary::Utils qw(entropy consensus);
 
 #----------------------------------------------------------#
 my $bits = shift || 64;
-my $peaks = shift || 100;
+my $peaks = shift || 10;
 my $popSize = shift || 1024; #Population size
 my $numGens = shift || 1000; #Max number of generations
 my $selection_rate = shift || 0.1;
@@ -123,10 +123,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/wp_peaks.pl,v 1.1 2008/06/16 16:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/17 12:17:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/wp_peaks.pl,v 1.2 2008/06/17 12:17:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

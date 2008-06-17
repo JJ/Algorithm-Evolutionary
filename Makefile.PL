@@ -4,15 +4,16 @@ use ExtUtils::MakeMaker;
 WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 	       'VERSION_FROM'	=> 'lib/Algorithm/Evolutionary.pm', # finds $VERSION
 	       'PREREQ_PM'	=> {Test::Simple => 0.44,
-		 XML::Parser::EasyTree => 0.01,
-		 Math::Random => 0.63,
-		 Tree::DAG_Node => 1.04,
-		 B::Deparse => 0.56,
-		 Algorithm::Permute => 0.01,
-		 XML::LibXML => 1.50,
-		 String::Random => 0,
-		 Memoize => 0, # Para arity. Hace maravillas
-		 Time::HiRes => 0}, # e.g., Module::Name => 1.1
+				    XML::Parser::EasyTree => 0.01,
+				    Math::Random => 0.63,
+				    Tree::DAG_Node => 1.04,
+				    B::Deparse => 0.56,
+				    Algorithm::Permute => 0.01,
+				    XML::LibXML => 1.50,
+				    String::Random => 0,
+				    Memoize => 0, # Para arity. Hace maravillas
+				    Time::HiRes => 0,
+				    YAML => 0}, # e.g., Module::Name => 1.1
 	       'PMLIBDIRS'       => [ 'Evolutionary', 
 				      'Evolutionary/Op', 
 				      'Evolutionary/Individual',
