@@ -2,17 +2,16 @@
 
 =head1 NAME
 
-  fake_parallel_ga.pl - Two-population fake-parallel genetic algorithm
+  multikulti.pl - Seudoparallel implementation of the multikulti algorithm with variants
 
 =head1 SYNOPSIS
 
-  prompt% ./fake_parallel_ga.pl params.yaml conf.yaml
+  prompt% ./multikulti.pl params.yaml conf.yaml
 
 
 =head1 DESCRIPTION  
 
-A somewhat more complex  example of how to run a Evolutionary algorithm based on
-Algorithm::Evolutionary. See L<Algorithm::Evolutionary::Run> for param structure. It works for the time being only on A::E::Fitness namespace fitness functions.
+Implementation of the multikulti algorithm, submitted to PPSN (for the time being)
 
 =cut
 
@@ -21,7 +20,7 @@ use strict;
 
 use lib qw(../../lib ../lib);
 use Algorithm::Evolutionary::Run;
-use Algorithm::Evolutionary::Utils qw(consensus);
+use Algorithm::Evolutionary::Utils qw(entropy consensus);
 
 use POE;
 use YAML qw(Dump LoadFile);
@@ -49,7 +48,7 @@ for my $s (1..$sessions) {
 #Time
 my $io = IO::YAML->new($conf->{'ID'}.".yaml", ">");
 $io->print( [ now(), 'Start' ]);
-$poe_kernel->post( "Population 1", "generation", "Population 2");
+$poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
 
 $poe_kernel->run();
 $io->print( [ now(), "Exiting" ]);
@@ -77,12 +76,12 @@ sub generation {
   my $alias =  $kernel->alias_list($session);
   my $algorithm = $heap->{'algorithm'};
   my @data = ( now(), $alias );
-  
   $algorithm->run();
+
   my $match;
   my $best = $algorithm->results()->{'best'};
   if ( $match_policy eq 'consensus' ) {
-      $match = consensus( $algorithm->{'_population'} );
+      $match = consensus( $population );
   } else {
       $match = $best;
   }
@@ -98,7 +97,7 @@ sub generation {
   my $somebody;
   if ( $migration_policy eq 'multikulti' ) {
       if ( $best{$next} ) {
-	  $somebody = worst_match( $heap->{'algorithm'}->{'_population'}, $best{$next});
+	  $somebody = worst_match( $population, $best{$next});
       } else {
 	  $somebody = $algorithm->random_member();
       }
@@ -108,7 +107,7 @@ sub generation {
       $somebody = $best;
   } elsif (  $migration_policy eq 'multikulti-elite' ) {
     if ( $best{$next} ) {
-      my @population = @{$heap->{'algorithm'}->{'_population'}};
+      my @population = @$population;
       my @population_elite = @population[0..(@population/2)];
       $somebody = worst_match( \@population_elite, $best{$next});
     } else {
@@ -117,6 +116,7 @@ sub generation {
   }
   push @data, {'sending' => $somebody };
   push @data, {'best' => $best };
+  push @data, {'entropy' => entropy( $population ) };
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
        && ( ($these_evals + $last_evals) < $conf->{'max_evals'} ) ) {
       $kernel->post($next, 'generation', $after_punk , $somebody );    
@@ -189,10 +189,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/30 16:31:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.5 2008/04/30 16:31:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/17 10:40:30 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.6 2008/06/17 10:40:30 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut
