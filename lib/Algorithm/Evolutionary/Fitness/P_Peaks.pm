@@ -1,4 +1,4 @@
-use strict; # -*- cperl-mode -*-
+use strict; # -*- cperl -*-
 use warnings;
 
 =head1 NAME
@@ -114,10 +114,10 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.6 2008/06/16 16:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/17 11:38:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.7 2008/06/17 11:38:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
