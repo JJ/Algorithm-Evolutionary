@@ -6,7 +6,7 @@ use warnings;
 
 use Test;
 BEGIN { plan tests => 41 };
-use lib qw( lib ../lib ); #Just in case we are testing it in-place
+use lib qw( lib ../lib ../../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Individual::String;
 use Algorithm::Evolutionary::Individual::BitString;
@@ -281,10 +281,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/20 11:03:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.3 2008/04/20 11:03:12 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/17 12:17:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.4 2008/06/17 12:17:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
