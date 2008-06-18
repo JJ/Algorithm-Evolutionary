@@ -23,12 +23,12 @@ print "Testing Individual objects...String \n";
 ok( ref Algorithm::Evolutionary::Individual::String->new(['a'..'z'],10), "Algorithm::Evolutionary::Individual::String" );
 ok( ref Algorithm::Evolutionary::Individual::Base::create( 'String', { chars => ['a'..'e'], length => 10 }), "Algorithm::Evolutionary::Individual::String" );
 
-#Bitstring
+#Bitstring - 3 & 4
 print "BitString...\n";
 ok( ref Algorithm::Evolutionary::Individual::BitString->new(10), "Algorithm::Evolutionary::Individual::BitString" );
 ok( ref Algorithm::Evolutionary::Individual::Base::create( 'BitString', { length => 10 }), "Algorithm::Evolutionary::Individual::BitString" );
 
-#Vector
+#Vector - 5..7
 print "Vector...\n";
 ok( ref Algorithm::Evolutionary::Individual::Vector->new(10), "Algorithm::Evolutionary::Individual::Vector" );
 ok( ref Algorithm::Evolutionary::Individual::Base::create( 'Vector', 
@@ -46,7 +46,7 @@ my $primitives = { sum => [2, -1, 1],
 ok( ref Algorithm::Evolutionary::Individual::Tree->new( $primitives, 3 ), "Algorithm::Evolutionary::Individual::Tree" );
 
 ##############################
-print "Individual XML tests\n";
+print "Individual XML tests\n"; # 8..10
 use XML::Parser;
 use XML::Parser::EasyTree;
 my $p=new XML::Parser(Style=>'EasyTree');
@@ -78,58 +78,45 @@ $ref = $p->parse($xml);
 my $bs = Algorithm::Evolutionary::Individual::Base->fromParam( $ref->[0]{content}  );
 ok( ref $bs, "Algorithm::Evolutionary::Individual::BitString" );
 
-#Test operators
+#Test operators - 11 and following
 
-#test 8
 print "Op tests\n";
 use Algorithm::Evolutionary::Op::Mutation;
 my $m =  new Algorithm::Evolutionary::Op::Mutation 0.5;
 ok( ref $m, "Algorithm::Evolutionary::Op::Mutation" );
-
-#test 9
 ok( $bs->{_str} ne $m->apply($bs)->{_str}, 1); 
 
-#test 10
 use Algorithm::Evolutionary::Op::Bitflip;
 my $bf =  new Algorithm::Evolutionary::Op::Bitflip 10;
 ok( ref $bf, "Algorithm::Evolutionary::Op::Bitflip" );
 
-#test 11
 ok( $bs->{_str} ne $bf->apply($bs)->{_str}, 1); 
 
-#test 12
 use Algorithm::Evolutionary::Op::Crossover;
 my $x =  new Algorithm::Evolutionary::Op::Crossover 2;
 ok( ref $x, "Algorithm::Evolutionary::Op::Crossover" );
 
-#test 13
 my $bprime = new Algorithm::Evolutionary::Individual::String ['a'..'z'], 64;
 skip( $x->apply( $bs, $bprime )->{_str} ne $bs->{_str}, 1 );
 
-#test 14
 use Algorithm::Evolutionary::Op::GaussianMutation;
 my $g =  new Algorithm::Evolutionary::Op::GaussianMutation;
 ok( ref $g, "Algorithm::Evolutionary::Op::GaussianMutation" );
 
-#test 15
 my $v = new Algorithm::Evolutionary::Individual::Vector 10, -5, 5;;
 ok( $v->Atom(3) != $g->apply( $v )->Atom(3), 1);
 
-#test 19
 use Algorithm::Evolutionary::Op::TreeMutation;
 my $t =  new Algorithm::Evolutionary::Op::TreeMutation 0.5;
 ok( ref $t, "Algorithm::Evolutionary::Op::TreeMutation" );
 
-#test 20
 my $tv = Algorithm::Evolutionary::Individual::Tree->new($primitives, 4);
 skip( $tv->asString() ne $t->apply( $tv )->asString(), 1);
 
-#test 18
 use Algorithm::Evolutionary::Op::VectorCrossover;
 my $vx =  new Algorithm::Evolutionary::Op::VectorCrossover 2;
 ok( ref $vx, "Algorithm::Evolutionary::Op::VectorCrossover" );
 
-#test 19
 my $v2 = new Algorithm::Evolutionary::Individual::Vector 10, -5, 5;
 my $ok = 1;
 for ( my $i = 0; $i < 10; $i++ ) {
@@ -138,46 +125,33 @@ for ( my $i = 0; $i < 10; $i++ ) {
 }
 skip( $ok, 1); #might happen, if the two points span the whole chrom
 
-#test 20
 use Algorithm::Evolutionary::Op::CX;
 my $cx =  new Algorithm::Evolutionary::Op::CX;
 ok( ref $cx, "Algorithm::Evolutionary::Op::CX" );
 
-#test 21
 my $i1 = Algorithm::Evolutionary::Individual::Vector->fromString( "1,2,3,4,5");
 my $i2 = Algorithm::Evolutionary::Individual::Vector->fromString( "5,4,3,2,1");
 ok( $i2->asString()  ne $cx->apply( $i1, $i2 )->asString(), 1);
 
-#test 22
 use Algorithm::Evolutionary::Op::ChangeLengthMutation;
 my $clm =  new Algorithm::Evolutionary::Op::ChangeLengthMutation;
 ok( ref $clm, "Algorithm::Evolutionary::Op::ChangeLengthMutation" );
-
-#test 23
 ok( $bs->asString()  ne $clm->apply( $bs )->asString(), 1);
 
-#test 24
 use Algorithm::Evolutionary::Op::ArithCrossover;
 my $ax =  new Algorithm::Evolutionary::Op::ArithCrossover;
 ok( ref $ax, "Algorithm::Evolutionary::Op::ArithCrossover" );
 
-#test 25
 ok( $v2->asString()  ne $ax->apply( $v, $v2 )->asString(), 1);
 
-#test 26
 use Algorithm::Evolutionary::Op::Inverover;
 my $ix =  new Algorithm::Evolutionary::Op::Inverover;
 ok( ref $ix, "Algorithm::Evolutionary::Op::Inverover" );
-
-#test 27
 ok( $i2->asString()  ne $ix->apply( $i1, $i2 )->asString(), 1);
 
-#test 28
 use Algorithm::Evolutionary::Op::IncMutation;
 my $im =  new Algorithm::Evolutionary::Op::IncMutation;
 ok( ref $im, "Algorithm::Evolutionary::Op::IncMutation" );
-
-#test 29
 skip( $bs->asString()  ne $im->apply( $bs )->asString(), 1); # Might fail
 
 print "Testing algorithms\n";
@@ -281,10 +255,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/17 12:17:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.4 2008/06/17 12:17:56 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/18 06:22:23 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.5 2008/06/18 06:22:23 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut

@@ -4,6 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 	       'VERSION_FROM'	=> 'lib/Algorithm/Evolutionary.pm', # finds $VERSION
 	       'PREREQ_PM'	=> {Test::Simple => 0.44,
+				    XML::Parser => 0,
 				    XML::Parser::EasyTree => 0.01,
 				    Math::Random => 0.63,
 				    Tree::DAG_Node => 1.04,
