@@ -7,7 +7,8 @@ use warnings;
 
 =head1 SYNOPSIS
 
-Shouldn't be used directly, it's rather abstract
+Shouldn't be used directly, it's an abstract class whose siblings are
+used to implement fitness functions
 
 =head1 DESCRIPTION
 
@@ -22,7 +23,10 @@ package Algorithm::Evolutionary::Fitness::Base;
 
 use Carp;
 
-=head2 new
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+
+
+=head2 new()
 
 Initializes common variables, like the number of evaluations
 
@@ -36,9 +40,9 @@ sub new {
   return $self;
 }
 
-=head2 new
+=head2 initialize()
 
-Initializes common variables, like the number of evaluations
+Called from new, initializes the evaluations counter. 
 
 =cut 
 
@@ -62,7 +66,7 @@ sub apply {
     return $self->_apply( $individual );
 }
 
-=head2 _apply
+=head2 _apply( $individual )
 
 This is the one that really does the stuff. Should be overloaded by
 derived clases
@@ -74,9 +78,10 @@ sub _apply {
 }
 
 
-=head2 evaluations 
+=head2 evaluations() 
 
-Returns the number of evaluations made with this object
+Returns the number of evaluations made with this object. Useful for
+collecting stats
 
 =cut
 
@@ -85,15 +90,37 @@ sub evaluations {
   return $self->{_counter};
 }
 
+=head1 Known subclasses
+
+=over 4
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::MMDP>
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::P_Peaks>
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::wP_Peaks>
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::Knapsack>
+
+=back
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/16 17:36:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.3 2008/02/16 17:36:20 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/18 17:18:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.4 2008/06/18 17:18:11 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
