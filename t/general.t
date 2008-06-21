@@ -84,9 +84,9 @@ my $fitness = sub {
   return unpack("N", pack("B32", substr("0" x 32 . $indi->{'_str'}, -32)));
 };
 
-ok( $bs->evaluate( $fitness ) > 0, "Evaluation correct");
+ok( $bs->evaluate( $fitness ) > 0, 1, "Evaluation correct");
 my $fitness_obj = new Algorithm::Evolutionary::Fitness::ONEMAX;
-ok( $bs->evaluate( $fitness_obj ) > 0, "Evaluation object correct" );
+ok( $bs->evaluate( $fitness_obj ) > 0, 1,  "Evaluation object correct" );
 
 #Test operators - 11 and following
 
@@ -265,10 +265,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/21 11:40:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.6 2008/06/21 11:40:49 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/21 11:45:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.7 2008/06/21 11:45:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
