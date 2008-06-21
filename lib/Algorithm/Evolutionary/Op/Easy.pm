@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, with 
+Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, with 
                     variable operators.
                  
 
@@ -48,7 +48,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use Algorithm::Evolutionary::Wheel;
@@ -62,10 +62,13 @@ our @ISA = qw(Algorithm::Evolutionary::Op::Base);
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( $eval_func, [$operators_arrayref] )
 
-Creates an algorithm, with the usual operators. Includes a default mutation
-and crossover, in case they are not passed as parameters
+Creates an algorithm that optimizes the handled fitness function and
+reference to an array of operators. If this reference is null, an
+array consisting of bitflip mutation and 2 point crossover is
+generated. Which, of course, might not what you need in case you
+don't have a binary chromosome.
 
 =cut
 
@@ -88,10 +91,9 @@ sub new {
 
 }
 
-=head2 set
+=head2 set( $hashref, codehash, opshash )
 
-Sets the instance variables. Takes a ref-to-hash as
-input
+Sets the instance variables. Takes a ref-to-hash (for options), codehash (for fitness) and opshash (for operators)
 
 =cut
 
@@ -134,8 +136,7 @@ sub apply ($) {
   for ( @$pop ) {
     my $fitness;  #Evaluates only those that have no fitness
     if ( !defined ($_->Fitness() ) ) {
-      $fitness = $eval->( $_ );
-      $_->Fitness( $fitness );
+      $_->evaluate( $eval );
     }
     push @popEval, $_;
   }
@@ -200,10 +201,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/30 16:42:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.4 2008/04/30 16:42:40 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/21 21:05:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.5 2008/06/21 21:05:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut

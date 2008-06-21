@@ -1,6 +1,6 @@
 package Algorithm::Evolutionary;
 
-our $VERSION = '0.56';
+use version; our $VERSION = qv('0.5.7');
 
 # Preloaded methods go here.
 
@@ -27,7 +27,7 @@ The design principle of Algorithm::Evolutionary is I<flexibility>: it
 should be very easy to extend using this library, and it should be
 also quite easy to program what's already there in the evolutionary
 computation community. Besides, the library classes should have
-persistence provided by XML modules.
+persistence provided by XML modules, and, in some cases, YAML.
 
 The algorithm allows to create simple evolutionary algorithms, as well
 as more complex ones, that interface with databases or with the
@@ -56,6 +56,9 @@ of comment are welcome.
 
 =end html
 
+=head1 Examples
+
+There are a few examples in the C<examples> subdirectory, which should have been included with your CPAN bundle. Foor instance, check out C<tide_float.pl>, an example of floating point vector optimization, or C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a simple GA on the P_Peaks deceptive function.
 =head1 SEE ALSO
 
 L<Algorithm::Evolutionary::Op::Base>.
