@@ -23,7 +23,7 @@ Algorithm::Evolutionary::Individual::Base - Base class for chromosomes that know
 
 =head1 DESCRIPTION
 
-Base class for individuals in evolutionary computation algorithms
+Base class for individuals, that is, "chromosomes" in evolutionary computation algorithms. However, chromosomes needn't be bitstrings, so the name is a bit misleading. This is, however, an "empty" base class, that acts as a boilerplate for deriving others. 
 
 =cut
 
@@ -33,7 +33,7 @@ use XML::Parser;
 use XML::Parser::EasyTree;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 
 =head1 METHODS 
@@ -224,6 +224,20 @@ sub Fitness {
   return $self->{_fitness};
 }
 
+=head2 evaluate( $fitness )
+
+Evaluates using the $fitness function given. Can be a Fitness object or a ref-to-sub
+
+=cut
+
+sub evaluate {
+  my $self = shift;
+  if ( defined $_[0] ) {
+	$self->{_fitness} = shift;
+  }
+  return $self->{_fitness};
+}
+
 =head2 Chrom
 
 Sets or gets the chromosome itself, that is, the data
@@ -261,10 +275,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/18 17:18:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.2 2008/06/18 17:18:11 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/21 11:24:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.3 2008/06/21 11:24:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
