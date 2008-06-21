@@ -33,7 +33,7 @@ use XML::Parser;
 use XML::Parser::EasyTree;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
 
 
 =head1 METHODS 
@@ -234,9 +234,9 @@ sub evaluate {
   my $self = shift;
   my $fitness_func = shift || croak "Need a fitness function";
   if ( ref $fitness_func eq 'CODE' ) {
-      $self->Fitness( $fitness_func->($self) );
+      return $self->Fitness( $fitness_func->($self) );
   } elsif (  ( ref $fitness_func ) =~ 'Fitness' ) {
-      $self->Fitness( $fitness_func->apply($self) );
+      return $self->Fitness( $fitness_func->apply($self) );
   } else {
       croak "$fitness_func is can't be used to evaluate";
   }
@@ -280,10 +280,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/21 11:40:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.4 2008/06/21 11:40:49 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/21 11:45:25 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.5 2008/06/21 11:45:25 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
