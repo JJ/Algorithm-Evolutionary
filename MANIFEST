@@ -45,12 +45,14 @@ lib/Algorithm/Evolutionary/Fitness/MMDP.pm
 lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm
 lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm
 lib/Algorithm/Evolutionary/Fitness/Knapsack.pm
+lib/Algorithm/Evolutionary/Fitness/ONEMAX.pm
 t/00-load.t
 t/0200-run-ga.t
 t/p_peaks.yaml
 t/0300-ppeaks.t
 t/0301-wppeaks.t
 t/0302-knapsack.t
+t/0303-onemax.t
 t/0333-mmdp.t
 t/general.t
 t/GenerationalTerm.t
@@ -70,8 +72,11 @@ xml/royalroad.xml
 xml/onemax.xml
 xml/experiment.xml
 xml/MMDP.xml
-examples/5_marea_reales.pl
+examples/tide_float.pl
+examples/tide_biststring.pl
 examples/runfromXML.pl
 examples/mmdp.pl
 examples/p_peaks.pl
 examples/wp_peaks.pl
+examples/run_easy_ga.pl
+examples/p_peaks.yaml

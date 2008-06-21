@@ -2,19 +2,19 @@
 
 =head1 NAME
 
-  tide_float.pl - Implementation of the Tide optimization using A::E
+  tide_bitstring.pl - Implementation of the Tide optimization using A::E
 
 =head1 SYNOPSIS
 
-  prompt% ./tide_float.pl <population> <number of generations>
+  prompt% ./tide_bitstring.pl <population> <number of generations>
 
 or
 
-  prompt% perl tide_float.pl <population> <number of generations>
+  prompt% perl tide_bitstring.pl <population> <number of generations>
 
-  Shows the values of the two floating-point components of the
-  chromosome and finally the best value and fitness reached, which
-  should be as close to 1 as possible.
+  # Shows the values of the two floating-point components of the
+  # chromosome and finally the best value and fitness reached, which
+  # should be as close to 1 as possible.
   
 
 =head1 DESCRIPTION  
@@ -24,7 +24,8 @@ Algorithm::Evolutionary. Tries to find the max of the bidimensional
 Tide , and outputs the x and y coordinates, along with fitness. Best
 fitness is close to 1. Around 50 generations should be enough, but
 default is population and number of generations equal to 100.
-ti
+This one uses a bitstring, as opposed to floating point, representation.
+
 =cut
 
 use warnings;
@@ -37,6 +38,7 @@ use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
+use Algorithm::Evolutionary::Op::Creator;
 
 #----------------------------------------------------------#
 my $popSize = shift || 100; #Population size
@@ -64,16 +66,6 @@ my $funcionMarea = sub {
 };
 
 #----------------------------------------------------------#
-#Initial population
-my @pop;
-#Creamos $popSize individuos
-for ( 0..$popSize ) {
-  my $indi = Algorithm::Evolutionary::Individual::BitString->new( $precision*2 );
-  push( @pop, $indi );
-}
-
-
-#----------------------------------------------------------#
 # Variation operators
 my $m = Algorithm::Evolutionary::Op::Bitflip->new();
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
@@ -88,14 +80,12 @@ my $generation = Algorithm::Evolutionary::Op::Easy->new( $funcionMarea , 0.2 , [
 
 #Time
 my $inicioTiempo = [gettimeofday()];
-
 #----------------------------------------------------------#
-for ( @pop ) {
-  if ( !defined $_->Fitness() ) {
-    my $fitness = $funcionMarea->($_);
-    $_->Fitness( $fitness );
-  }
-}
+#Initial population
+my @pop;
+my $creator = new Algorithm::Evolutionary::Op::Creator( 20, 'BitString', { length => $precision*2 } );
+$creator->apply( \@pop );
+map( $_->evaluate($funcionMarea), @pop );
 
 my $contador=0;
 do {
@@ -108,11 +98,8 @@ do {
 
 
 #----------------------------------------------------------#
-#leemos el mejor resultado
-my ( $x, $y ) = @{$pop[0]->{_array}};
-
-#Mostramos los resultados obtenidos
-print "El mejor es:\n\t ",$pop[0]->asString(),"\n\t x=$x \n\t y=$y \n\t Fitness: ",$pop[0]->Fitness(),"\n";
+# Show the best
+print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
 
 print "\n\nTime: ". tv_interval( $inicioTiempo ) . "\n";
 
@@ -127,10 +114,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/30 16:31:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_bitstring.pl,v 1.1 2008/04/30 16:31:41 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/21 21:05:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_bitstring.pl,v 1.2 2008/06/21 21:05:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
