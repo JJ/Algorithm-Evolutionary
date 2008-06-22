@@ -24,12 +24,14 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+
 use String::Random;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
 use base qw(Algorithm::Evolutionary::Fitness::Base);
 
-=head2 new
+=head2 new( $number_of_bits, $ref_to_weights_hash )
 
     Creates a new instance of the problem, with the said number of bits and peaks
 
@@ -118,10 +120,10 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 1.1 2008/06/16 16:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/22 07:51:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 1.2 2008/06/22 07:51:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
