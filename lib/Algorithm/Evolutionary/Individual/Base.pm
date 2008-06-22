@@ -31,10 +31,12 @@ package Algorithm::Evolutionary::Individual::Base;
 
 use XML::Parser;
 use XML::Parser::EasyTree;
+use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ );
 
+use constant MY_OPERATORS => qw(None);
 
 =head1 METHODS 
 
@@ -198,6 +200,17 @@ sub asXML {
   return $str;
 }
 
+=head2 as_yaml
+
+Prints it as YAML. 
+
+=cut
+
+sub as_yaml {
+  my $self = shift;
+  return Dump($self);
+}
+
 =head2 Atom
 
 Sets or gets the value of an atom. Each individual is divided in atoms, which
@@ -222,6 +235,17 @@ sub Fitness {
 	$self->{_fitness} = shift;
   }
   return $self->{_fitness};
+}
+
+=head2 my_operators
+
+Operators that can act on this data structure. Returns an array with the names of the known operators
+
+=cut
+
+sub my_operators {
+    my $self = shift;
+    return $self->MY_OPERATORS;
 }
 
 =head2 evaluate( $fitness )
@@ -257,6 +281,7 @@ sub Chrom {
   croak "To be implemented in derived classes!";
 }
 
+
 =head1 Known subclasses
 
 =over 4
@@ -280,10 +305,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/21 11:45:25 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.5 2008/06/21 11:45:25 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/22 12:18:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.6 2008/06/22 12:18:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut

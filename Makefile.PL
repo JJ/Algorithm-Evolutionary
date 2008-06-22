@@ -3,7 +3,8 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 	       'VERSION_FROM'	=> 'lib/Algorithm/Evolutionary.pm', # finds $VERSION
-	       'PREREQ_PM'	=> {Test::Simple => 0.44,
+	       'PREREQ_PM'	=> {constant => 0,
+				    Test::Simple => 0.44,
 				    XML::Parser => 0,
 				    XML::Parser::EasyTree => 0.01,
 				    Math::Random => 0.63,
