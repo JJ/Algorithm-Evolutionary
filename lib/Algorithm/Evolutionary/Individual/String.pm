@@ -56,10 +56,17 @@ package Algorithm::Evolutionary::Individual::String;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
-use Algorithm::Evolutionary::Individual::Base;
-our @ISA = qw ( Algorithm::Evolutionary::Individual::Base );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
+use base 'Algorithm::Evolutionary::Individual::Base';
+
+use constant MY_OPERATORS => qw(Algorithm::Evolutionary::Op::Crossover 
+				Algorithm::Evolutionary::Op::QuadXOver
+				Algorithm::Evolutionary::Op::StringRand
+				Algorithm::Evolutionary::Op::Permutation	
+				Algorithm::Evolutionary::Op::IncMutation
+				Algorithm::Evolutionary::Op::ChangeLengthMutation );
+ 
 =head2 new
 
 Creates a new random string, with fixed initial length, and uniform
@@ -284,10 +291,10 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/22 12:18:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 1.2 2008/06/22 12:18:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

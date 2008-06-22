@@ -1,4 +1,4 @@
-#-*-Perl-*-
+#-*-cperl-*-
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 
@@ -9,8 +9,9 @@
 use Test::More;
 use warnings;
 use strict;
+use YAML qw(Load);
 
-BEGIN { plan tests => 8 };
+BEGIN { plan tests => 14 };
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 #Use: module name, args to ctor. 
@@ -46,11 +47,17 @@ sub createAndTest ($$;$) {
   my $newnct =  Algorithm::Evolutionary::Individual::Base->fromXML( $xml );
   
   ok( $xml, $newnct->asXML() );
-  
+  my $yaml = $nct->as_yaml();
+  my $fromyaml = Load($yaml);
+  ok( $yaml, $fromyaml->as_yaml());
   return $nct;
 }
 
 ###########################################################################
+
+use_ok( 'Algorithm::Evolutionary::Individual::Base' );
+my @ops= Algorithm::Evolutionary::Individual::Base->my_operators();
+ok( $ops[0], 'None');
 
 my %indis;
 for ( keys %modulesToTest ) {
@@ -64,10 +71,10 @@ for ( keys %modulesToTest ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 18:43:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.2 2008/06/16 18:43:20 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/22 12:18:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.3 2008/06/22 12:18:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
