@@ -26,6 +26,8 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::Knapsack;
 
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+
 use Carp qw( croak );
 use base qw(Algorithm::Evolutionary::Fitness::Base);
 
@@ -127,10 +129,10 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/17 11:38:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Knapsack.pm,v 1.1 2008/06/17 11:38:36 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/22 09:35:17 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Knapsack.pm,v 1.2 2008/06/22 09:35:17 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
