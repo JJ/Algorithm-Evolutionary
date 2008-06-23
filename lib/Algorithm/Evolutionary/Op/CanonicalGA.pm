@@ -36,7 +36,7 @@ population.
 
 package Algorithm::Evolutionary::Op::CanonicalGA;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use Algorithm::Evolutionary::Wheel;
@@ -50,10 +50,12 @@ our @ISA = qw(Algorithm::Evolutionary::Op::Easy);
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( $fitness[, $selection_rate][,$operators_ref_to_array] )
 
 Creates an algorithm, with the usual operators. Includes a default mutation
-and crossover, in case they are not passed as parameters
+and crossover, in case they are not passed as parameters. The first
+    element in the array ref should be an unary, and the second a
+    binary operator.
 
 =cut
 
@@ -78,10 +80,9 @@ sub new {
 
 =head2 apply
 
-Applies the algorithm to the population; checks that it receives a
+Applies a single generation of the algorithm to the population; checks that it receives a
 ref-to-array as input, croaks if it does not. Returns a sorted,
 culled, evaluated population for next generation.
-
 
 =cut
 
@@ -92,18 +93,17 @@ sub apply ($) {
 
   my $eval = $self->{_eval};
   for ( @$pop ) {
-    my $fitness;  #Evaluates only those that have no fitness
     if ( !defined ($_->Fitness() ) ) {
 	$_->evaluate( $eval );
     }
   }
 
   my @newPop;
-  my @rates;
-  for ( @$pop ) {
-    push @rates, $_->{_fitness};
-  }
-  my $popWheel=new Algorithm::Evolutionary::Wheel @rates;
+  my @rates = map( $_->Fitness(), @$pop );
+
+  #Creates a roulette wheel from the op priorities. Theoretically,
+  #they might have changed 
+  my $popWheel= new Algorithm::Evolutionary::Wheel @rates;
   my $popSize = scalar @$pop;
   my @ops = @{$self->{_ops}};
   for ( my $i = 0; $i < $popSize*(1-$self->{_selrate})/2; $i ++ ) {
@@ -113,8 +113,8 @@ sub apply ($) {
     $clone2 = $ops[0]->apply( $clone2 );
     $ops[1]->apply( $clone1, $clone2 ); #This should be a
                                           #crossover-like op
-    $clone1->Fitness( $eval->( $clone1 ));
-    $clone2->Fitness( $eval->( $clone2 ));
+    $clone1->evaluate( $eval );
+    $clone2->evaluate( $eval );
     push @newPop, $clone1, $clone2;
   }
   #Re-sort
@@ -122,15 +122,20 @@ sub apply ($) {
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
 }
 
+
+=head1 SEE ALSO
+
+L<Algorithm::Evolutionary::Op::Easy>.
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:27:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.2 2008/06/23 11:27:10 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:57:30 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.3 2008/06/23 11:57:30 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
