@@ -4,7 +4,7 @@
 
 #########################
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 use warnings;
 use strict;
@@ -27,5 +27,6 @@ isa_ok( $knap,  "Algorithm::Evolutionary::Fitness::Knapsack" );
 
 my $indi = new Algorithm::Evolutionary::Individual::BitString $Nmax ; # Build random bitstring with length 10
 ok( $knap->_apply( $indi ) > 0, "Works on indis" );
-ok( $knap->knapsack( $indi->{'_str'})  > 0, "Works on strings" );
+ok( $knap->knapsack( $indi->{'_str'})  > 0, "Works on strings and caches" );
+ok( $knap->cached_evals() == 1, "Cached evals OK");
 

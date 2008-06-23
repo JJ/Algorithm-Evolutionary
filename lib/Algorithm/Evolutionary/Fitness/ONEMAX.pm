@@ -4,21 +4,17 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Fitness::ONEMAX - Fitness function for the knapsack problem
+Algorithm::Evolutionary::Fitness::ONEMAX - Fitness function for the ONEMAX or count-ones problem
 
 =head1 SYNOPSIS
 
-    my $n_max=100;  #Max. number of elements to choose
-    my $capacity=286; #Max. Capacity of the knapsack
-    my $rho=5.0625; #Penalty coeficient
-    my @profits = qw( 1..100 );
-    my @weights = qw( 2.. 101 );
-
-    my $knapsack = Algorithm::Evolutionary::Fitness::Knapsack->new( $n_max, $capacity, $rho, \@profits, \@weights ); 
+    my $onemax =  new Algorithm::Evolutionary::Fitness::Knapsack;
+    my $string = "1010101010101010";
+    print $onemax->apply($string);
 
 =head1 DESCRIPTION
 
-    Knapsack function with penalties applied in a particular way.
+ONEMAX is the classical count-ones optimization function. Fast to implement, and good for early prototyping of new evolutionary algorithms.
 
 =head1 METHODS
 
@@ -26,68 +22,48 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::ONEMAX;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp qw( croak );
-use base qw(Algorithm::Evolutionary::Fitness::Base);
+use base qw(Algorithm::Evolutionary::Fitness::String);
 
 
-=head2 _apply
-
-Applies the instantiated problem to a chromosome
-
-=cut
-
-sub _apply {
+sub _really_apply {
     my $self = shift;
-    my $individual = shift;
-    return  $self->onemax( $individual->{_str});
+    return  $self->onemax( @_ );
 }
 
 =head2 onemax
 
-    Computes the number of ones
+Computes the number of ones, using base class cache
 
 =cut
-
-our %cache;
 
 sub onemax {
     my $self = shift;
     my $string = shift;
 
-    if ( $cache{$string} ) {
-	return $cache{$string};
+    my $cache = $self->{'_cache'};
+    if ( defined $cache->{$string} ) {
+	return $cache->{$string};
     }
     my $num_ones;
     while ( $string ) {
       $num_ones += chop( $string );
     }
-    $cache{$string} = $num_ones;
+    $cache->{$string} = $num_ones;
     return $num_ones;
 }
-
-=head2 cached_evals
-
-Returns the number of keys in the evaluation cache
-
-=cut
-
-sub cached_evals {
-    return scalar keys %cache;
-}
-
-
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/21 11:15:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ONEMAX.pm,v 1.1 2008/06/21 11:15:16 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:27:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ONEMAX.pm,v 1.2 2008/06/23 11:27:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

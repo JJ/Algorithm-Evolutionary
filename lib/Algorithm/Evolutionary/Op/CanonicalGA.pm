@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::CanonicalGA - Canonical Genetic Algorithm, with any representation
+Algorithm::Evolutionary::Op::CanonicalGA - Canonical Genetic Algorithm, with any representation
                  
 
 =head1 SYNOPSIS
@@ -36,7 +36,7 @@ population.
 
 package Algorithm::Evolutionary::Op::CanonicalGA;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use Algorithm::Evolutionary::Wheel;
@@ -94,8 +94,7 @@ sub apply ($) {
   for ( @$pop ) {
     my $fitness;  #Evaluates only those that have no fitness
     if ( !defined ($_->Fitness() ) ) {
-      $fitness = $eval->( $_ );
-      $_->Fitness( $fitness );
+	$_->evaluate( $eval );
     }
   }
 
@@ -128,10 +127,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:27:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.2 2008/06/23 11:27:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

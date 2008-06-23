@@ -17,10 +17,10 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 use_ok( "Algorithm::Evolutionary::Fitness::wP_Peaks", "using Fitness::wP_Peaks OK" );
 
-my $peaks = 100;
+my $peaks = 10;
 my $bits = 32;
 my @weights = (1);
-for (1..$bits ) {
+for (1..$peaks ) {
   push @weights, 0.99;
 }
 my $p_peaks = new Algorithm::Evolutionary::Fitness::wP_Peaks( $bits, @weights );

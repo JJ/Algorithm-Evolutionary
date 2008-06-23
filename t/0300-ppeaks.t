@@ -6,7 +6,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 4;
+use Test::More tests => 6;
 
 use warnings;
 use strict;
@@ -25,5 +25,8 @@ isa_ok( $p_peaks,  "Algorithm::Evolutionary::Fitness::P_Peaks" );
 is( hamming( "111000111", "011100110" ), 3, "Hamming OK" );
 
 my $string = $p_peaks->random_string();
-ok( $p_peaks->p_peaks( $string ) > 0, "Seems to work" );
+my $result = $p_peaks->p_peaks( $string );
+ok( $result > 0, "Seems to work" );
+is( $p_peaks->p_peaks( $string ), $result, "Caching" );
+is( $p_peaks->cached_evals(), 1, "Cached evals" );
 
