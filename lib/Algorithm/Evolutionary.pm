@@ -60,6 +60,7 @@ of comment are welcome.
 =head1 Examples
 
 There are a few examples in the C<examples> subdirectory, which should have been included with your CPAN bundle. Foor instance, check out C<tide_float.pl>, an example of floating point vector optimization, or C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a simple GA on the P_Peaks deceptive function.
+
 =head1 SEE ALSO
 
 L<Algorithm::Evolutionary::Op::Base>.
