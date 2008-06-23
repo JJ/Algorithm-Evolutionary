@@ -26,10 +26,10 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::Knapsack;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp qw( croak );
-use base qw(Algorithm::Evolutionary::Fitness::Base);
+use base qw(Algorithm::Evolutionary::Fitness::String);
 
 =head2 new
 
@@ -50,26 +50,21 @@ sub new {
      croak "Profits and weights differ";
    }
 
-  #Generate peaks
-  my $self = { capacity => $capacity,
-	       rho => $rho,
-	       profits => $profits_ref,
-	       weights => $weights_ref};
-  bless $self, $class;
+  #Instantiate superclass
+  my $self = $class->SUPER::new();
+  
+  $self->{'capacity'} = $capacity;
+  $self->{ 'rho' }  = $rho;
+  $self->{ 'profits'} = $profits_ref;
+  $self->{ 'weights'} = $weights_ref;
+
   $self->initialize();
   return $self;
 }
 
-=head2 _apply
-
-Applies the instantiated problem to a chromosome
-
-=cut
-
-sub _apply {
+sub _really_apply {
     my $self = shift;
-    my $individual = shift;
-    return  $self->knapsack( $individual->{_str});
+    return  $self->knapsack( @_ );
 }
 
 =head2 knapsack
@@ -78,14 +73,13 @@ sub _apply {
 
 =cut
 
-our %cache;
-
 sub knapsack {
     my $self = shift;
     my $string = shift;
 
-    if ( $cache{$string} ) {
-	return $cache{$string};
+    my $cache = $self->{'_cache'};
+    if ( $cache->{$string} ) {
+	return $cache->{$string};
     }
     my $profit=0.0;
     my $weight=0.0;
@@ -108,20 +102,9 @@ sub knapsack {
     }
 
     #Y devolvemos la ganancia calculada
-    $cache{$string} = $profit;
+    $cache->{$string} = $profit;
     return $profit;
 }
-
-=head2 cached_evals
-
-Returns the number of keys in the evaluation cache
-
-=cut
-
-sub cached_evals {
-    return scalar keys %cache;
-}
-
 
 
 =head1 Copyright
@@ -129,10 +112,10 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/22 09:35:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Knapsack.pm,v 1.2 2008/06/22 09:35:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:27:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Knapsack.pm,v 1.3 2008/06/23 11:27:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

@@ -1,4 +1,4 @@
-#-*-Perl-*-
+#-*-cperl-*-
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl test.pl'
 
@@ -15,11 +15,12 @@ use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 use_ok( "Algorithm::Evolutionary::Fitness::MMDP", "using Fitness::MMDP OK" );
 
 my $units = "000000";
-for (my $i = 0; $i < 6; $i++ ) {
+my $mmdp = new  Algorithm::Evolutionary::Fitness::MMDP;
+for (my $i = 0; $i < length($units); $i++ ) {
     my $clone = $units;
     substr($clone, $i, 1 ) = "1";
-    is(  Algorithm::Evolutionary::Fitness::MMDP::mmdp( $clone ),
+    is(  $mmdp->mmdp( $clone ),
 	 $Algorithm::Evolutionary::Fitness::MMDP::unitation[$i+1],
-      "Unitation $i = ". $Algorithm::Evolutionary::Fitness::MMDP::unitation[$i+1]." OK");
+	 "Unitation $i = ". $Algorithm::Evolutionary::Fitness::MMDP::unitation[$i+1]." OK");
     $units = $clone;
 }

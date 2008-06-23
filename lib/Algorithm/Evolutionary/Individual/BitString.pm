@@ -47,9 +47,9 @@ Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical
 
 package Algorithm::Evolutionary::Individual::BitString;
 use Carp;
-use Exporter;
 
-our ($VERSION) =  ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+
+our ($VERSION) =  ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -59,10 +59,14 @@ use constant MY_OPERATORS => (Algorithm::Evolutionary::Individual::String::MY_OP
 
 =head1 METHODS
 
+<<<<<<< BitString.pm
+=head2 new( $options_hash )
+=======
 =head2 new( $length )
+>>>>>>> 1.2
 
 Creates a new random bitstring individual, with fixed initial length, and 
-uniform distribution of bits.
+uniform distribution of bits. Options as in L<Algorithm::Evolutionary::Individual::String>
 
 =cut
 
@@ -94,10 +98,10 @@ sub set {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/22 12:18:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 1.2 2008/06/22 12:18:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:27:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 1.3 2008/06/23 11:27:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
