@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Mutation - BitFlip mutation, changes several bits in a bitstring, depending on the probability
+Algorithm::Evolutionary::Op::Mutation - BitFlip mutation, changes several bits in a bitstring, depending on the probability
 
 =head1 SYNOPSIS
 
@@ -33,12 +33,11 @@ Mutation operator for a GA
 
 package  Algorithm::Evolutionary::Op::Mutation;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw (Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::BitString';
@@ -46,7 +45,7 @@ our $ARITY = 1;
 
 =head1 METHODS
 
-=head2 new
+=head2 new( [$mutation_rate] [, $operator_probability] )
 
 Creates a new mutation operator with a bitflip application rate, which defaults to 0.5,
 and an operator application rate (general for all ops), which defaults to 1.
@@ -64,7 +63,7 @@ sub new {
 }
 
 
-=head2 create
+=head2 create( [$operator_probability] )
 
 Creates a new mutation operator with an application rate. Rate defaults to 0.5 (which is rather bit, you should not rely on it).
 
@@ -83,12 +82,13 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromosome )
 
 Applies mutation operator to a "Chromosome", a bitstring, really. Can be
 applied only to I<victims> with the C<_str> instance variable; 
 it checks before application that the operand is of type
-L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Individual::BitString>. It returns the victim.
+L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Individual::BitString>. 
+It returns the victim.
 
 =cut
 
@@ -111,10 +111,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/18 19:35:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.2 2008/02/18 19:35:03 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/23 11:37:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.3 2008/06/23 11:37:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
