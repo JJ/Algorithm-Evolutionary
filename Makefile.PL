@@ -16,7 +16,8 @@ WriteMakefile( 'NAME'		=> 'Algorithm::Evolutionary',
 				    Memoize => 0, # Para arity. Hace maravillas
 				    Time::HiRes => 0,
 				    YAML => 0,
-				    version => 0}, # e.g., Module::Name => 1.1
+				    version => 0,
+				    Clone::Fast => 0}, # e.g., Module::Name => 1.1
 	       'PMLIBDIRS'       => [ 'Evolutionary', 
 				      'Evolutionary/Op', 
 				      'Evolutionary/Individual',

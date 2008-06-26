@@ -36,15 +36,16 @@ population.
 
 package Algorithm::Evolutionary::Op::CanonicalGA;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
+use Clone::Fast qw(clone);
+
 use Algorithm::Evolutionary::Wheel;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::QuadXOver;
 
-use Algorithm::Evolutionary::Op::Easy;
-our @ISA = qw(Algorithm::Evolutionary::Op::Easy);
+use base 'Algorithm::Evolutionary::Op::Easy';
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
@@ -107,15 +108,19 @@ sub apply ($) {
   my $popSize = scalar @$pop;
   my @ops = @{$self->{_ops}};
   for ( my $i = 0; $i < $popSize*(1-$self->{_selrate})/2; $i ++ ) {
-    my $clone1 = $pop->[$popWheel->spin()]->clone();
-    my $clone2 = $pop->[$popWheel->spin()]->clone();
-    $clone1 = $ops[0]->apply($clone1 ); # This should be a mutation-like op
-    $clone2 = $ops[0]->apply( $clone2 );
-    $ops[1]->apply( $clone1, $clone2 ); #This should be a
+#    my $clone1 = $pop->[$popWheel->spin()]->clone();
+#    my $clone2 = $pop->[$popWheel->spin()]->clone();
+#       my $clone1 = clone($pop->[$popWheel->spin()]);
+#       my $clone2 = clone($pop->[$popWheel->spin()]);
+      my $clone1 = $ops[0]->apply( $pop->[$popWheel->spin()] ); # This should be a mutation-like op
+      my $clone2 = $ops[0]->apply( $pop->[$popWheel->spin()] );
+#       $clone1 = $ops[0]->apply( $clone1 ); # This should be a mutation-like op
+#       $clone2 = $ops[0]->apply( $clone2 ); # This should be a mutation-like op
+      $ops[1]->apply( $clone1, $clone2 ); #This should be a
                                           #crossover-like op
-    $clone1->evaluate( $eval );
-    $clone2->evaluate( $eval );
-    push @newPop, $clone1, $clone2;
+      $clone1->evaluate( $eval );
+      $clone2->evaluate( $eval );
+      push @newPop, $clone1, $clone2;
   }
   #Re-sort
   @{$pop}[$popSize*$self->{_selrate}..$popSize-1] =  @newPop;
@@ -132,10 +137,10 @@ L<Algorithm::Evolutionary::Op::Easy>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:57:30 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.3 2008/06/23 11:57:30 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.4 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

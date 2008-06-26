@@ -48,8 +48,9 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Crossover;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
+use Clone::Fast qw(clone);
 use Carp;
 
 use Algorithm::Evolutionary::Op::Base;
@@ -104,7 +105,8 @@ parents at the same time, check L<Algorithm::Evolutionary::Op:QuadXOver|Algorith
 sub  apply ($$$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-  my $victim = $arg->clone();
+#  my $victim = $arg->clone();
+  my $victim = clone( $arg );
   my $victim2 = shift || croak "No victim here!";
   croak "Incorrect type ".(ref $victim) if !$self->check($victim);
   croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
@@ -128,10 +130,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.2 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

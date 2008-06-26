@@ -48,15 +48,16 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our $VERSION = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
+use Clone::Fast qw(clone);
+
 use Algorithm::Evolutionary::Wheel;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
@@ -169,7 +170,7 @@ sub apply ($) {
       my $selectedOp = $ops[ $opWheel->spin()];
       for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
 	  my $chosen = $popsort[ rand( $originalSize )];
-	  push( @offspring, $chosen->clone() );
+	  push( @offspring, clone($chosen) );
       }
       my $mutante = $selectedOp->apply( @offspring );
       push( @popsort, $mutante );
@@ -207,10 +208,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:57:30 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.6 2008/06/23 11:57:30 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.7 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
