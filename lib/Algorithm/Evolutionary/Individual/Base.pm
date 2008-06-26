@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -54,7 +54,6 @@ sub new {
     $class = "Algorithm::Evolutionary::Individual::$class";
   }
   my $options = shift;
-  no strict qw(refs);
   my $self = { _fitness => undef }; # Avoid error
   bless $self, $class; # And bless it
 
@@ -305,10 +304,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/22 12:18:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.6 2008/06/22 12:18:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.7 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut

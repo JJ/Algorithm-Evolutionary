@@ -58,7 +58,7 @@ map( $_->evaluate( $rr ), @pop );
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-my $generation = Algorithm::Evolutionary::Op::Easy->new( $rr , $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::CanonicalGA->new( $rr , $selection_rate , [$m, $c] ) ;
 
 #Time, counter and do the do
 my $inicioTiempo = [gettimeofday()];
@@ -92,10 +92,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 15:14:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/canonical-genetic-algorithm.pl,v 1.1 2008/06/23 15:14:26 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/canonical-genetic-algorithm.pl,v 1.2 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

@@ -35,10 +35,11 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 
 use Carp;
+use Clone::Fast qw(clone);
 
 use Algorithm::Evolutionary::Op::Base;
 our @ISA = qw(Algorithm::Evolutionary::Op::Base);
@@ -88,7 +89,8 @@ L<BitString|Algorithm::Evolutionary::Individual::BitString>.
 sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-  my $victim = $arg->clone();
+#  my $victim = $arg->clone();
+  my $victim = clone( $arg );
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   for ( my $i = 0; $i < $self->{_howMany}; $i++ ) {
 	my $rnd = int (rand( length( $victim->{_str} ) ));
@@ -103,10 +105,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/06/26 11:37:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.2 2008/06/26 11:37:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
