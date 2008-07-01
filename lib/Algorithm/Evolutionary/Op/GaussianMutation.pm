@@ -3,10 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::GaussianMutation - Changes numeric chromosome components following the 
-                       gaussian distribution
-                     
-                 
+Algorithm::Evolutionary::Op::GaussianMutation - Changes numeric chromosome components following the gaussian distribution
 
 =cut
 
@@ -40,13 +37,13 @@ Mutation operator for a GA: applies gaussian mutation to a number
 
 package Algorithm::Evolutionary::Op::GaussianMutation;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Math::Random;
+use Clone::Fast qw(clone);
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = ('Algorithm::Evolutionary::Op::Base');
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::Vector';
@@ -86,7 +83,7 @@ sub create {
   
 
   my $self = {_avg => $avg,
-			  _stddev => $stddev };
+	      _stddev => $stddev };
 
   bless $self, $class;
   return $self;
@@ -104,7 +101,7 @@ type L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Indi
 sub apply ($$) {
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-  my $victim = $arg->clone();
+  my $victim = clone($arg);
   croak "Incorrect type ".(ref $victim) if !$self->check($victim);  
   my @deltas = random_normal( @{$victim->{_array}} + 1, $self->{_avg}, $self->{_stddev} );
   for ( @{$victim->{_array}} ) {
@@ -118,10 +115,10 @@ sub apply ($$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/01 08:45:57 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.2 2008/07/01 08:45:57 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
