@@ -23,13 +23,12 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package  Algorithm::Evolutionary::Op::LinearFreezer;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
-=head2 new
+=head2 new ($initial_temperature)
 
 Creates a new linear freezer
 
@@ -45,9 +44,9 @@ sub new {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $temperature )
 
-Applies freezer
+Applies freezing schedule to the temperature; returns new temperature
 
 =cut
 
@@ -66,10 +65,10 @@ sub apply ($$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/LinearFreezer.pm,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/01 08:49:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/LinearFreezer.pm,v 1.2 2008/07/01 08:49:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
