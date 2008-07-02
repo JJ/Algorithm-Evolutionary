@@ -35,7 +35,7 @@ Crossover operator for a  individual with vector (array) representation
 
 package Algorithm::Evolutionary::Op::VectorCrossover;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 
@@ -88,8 +88,8 @@ sub  apply ($$;$){
   my $self = shift;
   my $victim = shift || croak "No victim here!";
   my $victim2 = shift || croak "No victim here!";
-  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
-  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
+  croak "Incorrect type ".(ref $victim) if !$victim->{'_array'};
+  croak "Incorrect type ".(ref $victim2) if !$victim2->{'_array'};
   if ( (scalar @{$victim->{_array}} == 2) || (scalar @{$victim2->{_array}} == 2 ) ) {
     #Too small, don't pay attention to number of cutting points
     my $i = (rand() > 0.5 )? 0:1;
@@ -104,7 +104,6 @@ sub  apply ($$;$){
     } else {
       $range = $possibleRange + 1;
     }
-#    print "Puntos: $pt1, $possibleRange, $range \n";
     #Check length to avoid unwanted lengthening
     return $victim if ( ( $pt1+$range >= @{$victim->{_array}} ) || ( $pt1+$range >= @{$victim2->{_array}} ));
     
@@ -120,10 +119,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:07:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.3 2008/07/02 16:07:48 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:26:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.4 2008/07/02 16:26:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

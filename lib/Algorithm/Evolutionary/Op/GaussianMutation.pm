@@ -37,7 +37,7 @@ Mutation operator for a GA: applies gaussian mutation to a number
 
 package Algorithm::Evolutionary::Op::GaussianMutation;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Math::Random;
@@ -81,7 +81,6 @@ sub create {
   my $avg = shift || 0; 
   my $stddev = shift || 1;
   
-
   my $self = {_avg => $avg,
 	      _stddev => $stddev };
 
@@ -89,7 +88,7 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromosome )
 
 Applies mutation operator to a "Chromosome", a vector of stuff,
 really. Can be applied only to I<victims> with the C<_array> instance
@@ -101,8 +100,9 @@ type L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Indi
 sub apply ($$) {
   my $self = shift;
   my $arg = shift || croak "No victim here!";
+  croak "Incorrect type".(ref $arg) if !$arg->{_array};
   my $victim = clone($arg);
-  croak "Incorrect type ".(ref $victim) if !$self->check($victim);  
+#  croak "Incorrect type ".(ref $victim) if !$self->check($victim);  
   my @deltas = random_normal( @{$victim->{_array}} + 1, $self->{_avg}, $self->{_stddev} );
   for ( @{$victim->{_array}} ) {
 	$_ += pop @deltas;
@@ -115,10 +115,10 @@ sub apply ($$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/01 08:45:57 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.2 2008/07/01 08:45:57 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:26:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.3 2008/07/02 16:26:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

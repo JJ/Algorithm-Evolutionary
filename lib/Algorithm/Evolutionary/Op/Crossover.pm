@@ -19,7 +19,7 @@ Algorithm::Evolutionary::Op::Crossover - n-point crossover
   my $op3 = Algorithm::Evolutionary::Op::Base->fromXML( $xmlStr3 );
   print $op3->asXML(), "\n";
 
-  #Apply to 2 Individuals. Could be String.
+  #Apply to 2 Individuals of the String class
   my $indi = new Algorithm::Evolutionary::Individual::BitString 10;
   my $indi2 = $indi->clone();
   my $indi3 = $indi->clone();
@@ -48,7 +48,7 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Crossover;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -131,10 +131,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 07:48:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.3 2008/07/02 07:48:49 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:26:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.4 2008/07/02 16:26:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
