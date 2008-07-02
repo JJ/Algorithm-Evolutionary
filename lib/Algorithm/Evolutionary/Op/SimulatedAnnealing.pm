@@ -3,8 +3,8 @@ use warnings;
 
 =head1 NAME
 
-    SimulatedAnnealing - An operator that performs the simulated annealing algorithm
-                          on an individual, using an external freezer.
+SimulatedAnnealing - An operator that performs the simulated annealing algorithm
+                          on an individual, using an external freezing schedule
 
 =head1 SYNOPSIS
 
@@ -27,15 +27,18 @@ Simulated Annealing
 
 package Algorithm::Evolutionary::Op::SimulatedAnnealing;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
 use Carp;
+
 use Algorithm::Evolutionary::Op::LinearFreezer;
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw( Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
-=head2 new
 
-Creates a S.A. algorithm
+=head2 new( $evaluation_function, $change_operator, $freezer[,
+    $initial_temperature] [,$minimum_temperature]
+    [,$number_of_changes], [,$verbose] )
+
+Creates a simulated annealing object
 
 =cut
 
@@ -54,9 +57,10 @@ sub new {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $individual )
 
-Applies the algorithm to the individual
+Applies the algorithm to the individual, returns the resulting
+    individual when the min temperature is reached 
 
 =cut
 
@@ -121,10 +125,10 @@ sub run ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/17 13:34:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.2 2008/02/17 13:34:54 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 05:37:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.3 2008/07/02 05:37:27 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
