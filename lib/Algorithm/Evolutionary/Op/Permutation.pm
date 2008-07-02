@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Permutation - Per-mutation. Got it? 
+Algorithm::Evolutionary::Op::Permutation - Per-mutation. Got it? 
 
 =head1 SYNOPSIS
 
@@ -36,13 +36,13 @@ Class independent permutation operator; any individual that has the
 
 package  Algorithm::Evolutionary::Op::Permutation;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
+use Clone::Fast qw(clone);
 
-use Algorithm::Evolutionary::Op::Base;
+use base 'Algorithm::Evolutionary::Op::Base';
 use Algorithm::Permute;
-our @ISA = qw (Algorithm::Evolutionary::Op::Base);
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
@@ -95,7 +95,7 @@ Applies mutation operator to a "Chromosome" that includes the C<_str>
 sub apply ($;$) {
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-  my $victim = $arg->clone();
+  my $victim = clone($arg);
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   my @arr = split("",$victim->{_str});
   my $p = new Algorithm::Permute( \@arr );
@@ -108,10 +108,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:07:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 1.2 2008/07/02 16:07:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
