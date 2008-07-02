@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-  tide_float.pl - Implementation of the Tide optimization using A::E
+tide_float.pl - Optimization of the tide function using A::E
 
 =head1 SYNOPSIS
 
@@ -117,10 +117,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 19:14:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 1.2 2008/02/12 19:14:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:26:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 1.3 2008/07/02 16:26:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
