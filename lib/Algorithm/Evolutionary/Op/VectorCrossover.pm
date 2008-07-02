@@ -35,7 +35,7 @@ Crossover operator for a  individual with vector (array) representation
 
 package Algorithm::Evolutionary::Op::VectorCrossover;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 
@@ -120,10 +120,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:04:33 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.2 2008/07/02 16:04:33 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:07:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.3 2008/07/02 16:07:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
