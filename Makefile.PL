@@ -39,5 +39,18 @@ docs:
 		for i in *.pod; do base=`basename $$i .pod`; echo $$base; pod2html --verbose --htmlroot ../..   --podpath=Individual:Op --outfile $$base.html $$i; done; \
  		cd Op; for i in *.pm; do base=`basename $$i .pm`; echo $$base; pod2html --verbose --htmlroot ../../.. --podroot ..  --outfile $$base.html $$i; done ; \
 		cd ../Individual; for i in *.pm; do base=`basename $$i .pm`; echo $$base; pod2html --verbose --htmlroot ../../.. --podroot .. --outfile $$base.html $$i; done
+
+$(DISTVNAME)-examples.tar$(SUFFIX) : distdir
+	$(PREOP)
+	$(TO_UNIX)
+	$(TAR) $(TARFLAGS) $(DISTVNAME)-examples.tar $(DISTVNAME)/examples
+	$(RM_RF) $(DISTVNAME)
+	$(COMPRESS) $(DISTVNAME)-examples.tar
+	$(POSTOP)
+
+examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
+	$(NOECHO) $(NOOP)
+
+
 MAKE_FRAG
 }
