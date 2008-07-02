@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Crossover - n-point crossover
+Algorithm::Evolutionary::Op::Crossover - n-point crossover
     operator; puts a part of the second operand into the first
     operand; can be 1 or 2 points.
              
@@ -48,21 +48,23 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Crossover;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = ('Algorithm::Evolutionary::Op::Base');
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 2;
 
-=head2 new
+=head2 new( [$options_hash] [, $operation_priority] )
 
-Creates a new n-point crossover operator, with 2 as the default number of points
+Creates a new n-point crossover operator, with 2 as the default number
+of points, that is, the default would be
+    my $options_hash = { numPoints => 2 };
+    my $priority = 1;
 
 =cut
 
@@ -74,7 +76,7 @@ sub new {
   return $self;
 }
 
-=head2 create
+=head2 create( [$num_points] )
 
 Creates a new 1 or 2 point crossover operator. But this is just to have a non-empty chromosome
 Defaults to 2 point
@@ -89,7 +91,7 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromsosome_1, $chromosome_2 )
 
 Applies xover operator to a "Chromosome", a string, really. Can be
 applied only to I<victims> with the C<_str> instance variable; but
@@ -97,8 +99,7 @@ it checks before application that both operands are of type
 L<BitString|Algorithm::Evolutionary::Individual::String>.
 
 Changes the first parent, and returns it. If you want to change both
-parents at the same time, check L<Algorithm::Evolutionary::Op:QuadXOver|Algorithm::Evolutionary::Op:QuadXOver>
-
+parents at the same time, check L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOver>
 
 =cut
 
@@ -130,10 +131,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/26 11:37:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.2 2008/06/26 11:37:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 07:48:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.3 2008/07/02 07:48:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

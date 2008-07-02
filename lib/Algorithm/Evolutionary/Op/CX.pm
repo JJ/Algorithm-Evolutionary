@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; Builds offspreing in such a way
+Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; Builds offspreing in such a way
     that each gene comes from one of the parents. Preserves the absolute position of the elements 
     in the parent sequence
 
@@ -45,17 +45,15 @@ evolutionary computation tutorial>
 
 package Algorithm::Evolutionary::Op::CX;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = ('Algorithm::Evolutionary::Op::Base');
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::Vector';
 our $ARITY = 2;
-
 
 =head2 new
 
@@ -169,10 +167,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 07:48:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 1.2 2008/07/02 07:48:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
