@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::VectorCrossover - Crossover for L<Algorithm::Evolutionary::Individual::Vector>.
+Algorithm::Evolutionary::Op::VectorCrossover - Crossover for L<Algorithm::Evolutionary::Individual::Vector>.
 
 =head1 SYNOPSIS
 
@@ -29,27 +29,26 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Crossover operator for a  individual with vector representation
+Crossover operator for a  individual with vector (array) representation
 
 =cut
 
 package Algorithm::Evolutionary::Op::VectorCrossover;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = ('Algorithm::Evolutionary::Op::Base');
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::Vector';
 our $ARITY = 2;
 
-=head2 new
+=head2 new( [$number_of_crossing_points = 2], [$priority_rate = 1] )
 
 Creates a new 1 or 2 point crossover operator. But this is just to have a non-empty chromosome
-Defaults to 2 point
+Defaults to 2 point crossover
 
 =cut
 
@@ -61,10 +60,10 @@ sub new {
   return $self;
 }
 
-=head2 create
+=head2 create( [$number_of_crossing_points = 2] )
 
 Creates a new 1 or 2 point crossover operator. But this is just to have a non-empty chromosome
-Defaults to 2 point
+Defaults to 2 point. 
 
 =cut
 
@@ -76,7 +75,7 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromosome_1, $chromosome_2 )
 
 Applies xover operator to a "Chromosome",  a vector of stuff,
 really. Can be applied only to I<victims> with the C<_array> instance
@@ -121,10 +120,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/02 16:04:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 1.2 2008/07/02 16:04:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
