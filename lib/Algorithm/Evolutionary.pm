@@ -1,7 +1,7 @@
 package Algorithm::Evolutionary;
 
 #use version; our $VERSION = qv('0.58');
-our $VERSION = '0.60';
+our $VERSION = '0.61';
 
 # Preloaded methods go here.
 
@@ -36,11 +36,18 @@ web.
 
 =begin html
 
-The project is hosted at
+<p>The project is hosted at
 <a href='http://opeal.sourceforge.net'>Sourceforge </a>. Latest aditions, and
 nightly updates, can be downloaded from there before they are uploaded
 to CPAN. That page also hosts the mailing list, as well as bug
-reports, news, updates, whatever.
+reports, news, updates, whatever.</p>
+
+<p>In case the examples are hidden somewhere in the C<.cpan> directory,
+    you can also download them from <a
+    href='http://opeal.cvs.sourceforge.net/opeal/Algorithm-Evolutionary/'>the
+    CVS repository</a>, and the <a
+    href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
+    tarballs in the file download area of that repository</
 
 =end html
 
