@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -61,27 +61,33 @@ use constant MY_OPERATORS => ( qw(Algorithm::Evolutionary::Op::BitFlip Algorithm
 
 =head1 METHODS
 
-=head2 new( $length )
+=head2 new( $arg )
 
-Creates a new random bitstring individual, with fixed initial length, and 
-uniform distribution of bits. Options as in L<Algorithm::Evolutionary::Individual::String>
-If no length is given, a default of 16 is assigned
+Creates a new bitstring individual. C<$arg> can be either { length =>
+    $length} or { string => [binary string] }. With no argument, a
+    length of 16 is given by default.
 
 =cut
 
 sub new {
     my $class = shift; 
     my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
-    my $length = shift || 16;
-    my $rander = new String::Random;
-    my $hex_string = $rander->randregex("[0..9A..F]{".$length/4."}");
-    $self->{'_bit_vector'} = Bit::Vector->new_Hex( $hex_string );
+    my $arg = shift || { length => 16};
+    if ( $arg->{'length'} ) {
+	my $length = $arg->{'length'};
+	my $rander = new String::Random;
+	my $hex_string = $rander->randregex("[0-9A-F]{".($length/4)."}");
+	$self->{'_bit_vector'} = Bit::Vector->new_Hex( $length, $hex_string );
+    } elsif ( $arg->{'string'} ) {
+	$self->{'_bit_vector'} = 
+	    Bit::Vector->new_Bin( length($arg->{'string'}), $arg->{'string'} );
+    }
     return $self;
 }
 
 sub TIEARRAY {
   my $class = shift; 
-  my $self = { _bit_vector => Bit::Vector->new_Bin(join("",@_)) };
+  my $self = { _bit_vector => Bit::Vector->new_Bin(scalar( @_), join("",@_)) };
   bless $self, $class;
   return $self;
 }
@@ -101,6 +107,17 @@ sub Atom: lvalue {
   } else {
       $self->{'_bit_vector'}->bit_test($index);
   }
+}
+
+=head2 size()
+
+Returns size in bits 
+
+=cut
+
+sub size {
+    my $self = shift;
+    return $self->{'_bit_vector'}->Size();
 }
 
 =head2 TIE methods
@@ -134,25 +151,28 @@ sub UNSHIFT {
 
 sub POP {
   my $self = shift;
-  my $pop = substr( $self->{_str}, length( $self->{_str} )-1, 1 );
-  substr( $self->{_str}, length( $self->{_str} ) -1, 1 ) = ''; 
+  my $bit_vector = $self->{'_bit_vector'};
+  my $length = $bit_vector->Size();
+  my $pop = $bit_vector->bit_test($length - 1);
+  $self->{'_bit_vector'}->Resize($length - 1);
   return $pop;
 }
 
 sub SHIFT {
   my $self = shift;
-  my $shift = substr( $self->{_str}, 0, 1 );
-  substr( $self->{_str}, 0, 1 ) = ''; 
+  return  $self->{'_bit_vector'}->shift_left();
 }
 
 sub SPLICE {
   my $self = shift;
-  substr( $self->{_str}, shift, shift ) = join("", @_ );
+  my $new_vector =  Bit::Vector->new_Bin(join("",@_));
+  $self->{'_bit_vector'}->( $new_vector, 0, $new_vector->Size(), shift, shift  );
+
 }
 
 sub FETCHSIZE {
   my $self = shift;
-  return length( $self->{_str} );
+  return length( $self->{'_bit_vector'}->Size() );
 }
 
 
@@ -161,10 +181,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/23 06:06:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.1 2008/07/23 06:06:22 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/23 18:55:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.2 2008/07/23 18:55:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
