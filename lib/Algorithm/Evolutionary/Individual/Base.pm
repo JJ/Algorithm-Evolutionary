@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.8 $ ' =~ /(\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -266,7 +266,7 @@ sub evaluate {
 
 }
 
-=head2 Chrom
+=head2 Chrom()
 
 Sets or gets the chromosome itself, that is, the data
 structure evolved. Since each derived class has its own
@@ -280,6 +280,17 @@ sub Chrom {
   croak "To be implemented in derived classes!";
 }
 
+=head2 size()
+
+OK, OK, this is utter inconsistence, but I'll re-consistence it
+    eventually. Returns a meaningful size; but should be reimplemented
+    by siblings
+
+=cut
+
+sub size() {
+    croak "To be implemented in derived classes!";
+}
 
 =head1 Known subclasses
 
@@ -304,10 +315,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/26 11:37:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.7 2008/06/26 11:37:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/23 18:55:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.8 2008/07/23 18:55:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut
