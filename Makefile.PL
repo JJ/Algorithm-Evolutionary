@@ -1,6 +1,5 @@
 use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
+
 WriteMakefile(
     NAME                => 'Algorithm::Evolutionary',
     AUTHOR              => 'JJ Merelo <jj /at/ merelo.net>',
@@ -20,7 +19,8 @@ WriteMakefile(
 	'Algorithm::Permute' => 0.01,
 	'XML::LibXML' => 1.50,
 	'String::Random' => 0,
-	'Memoize' => 0, # Para arity. Hace maravillas
+	'Bit::Vector' => 0,
+	'Memoize' => 0, 
 	'Time::HiRes' => 0,
         'Clone::Fast' => 0,
 	YAML => 0,
