@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -12,23 +12,23 @@ use warnings;
   my $algorithm = new Algorithm::Evolutionary::Run 'conf.yaml';
   #or
   my $conf = {
-  'fitness' => {
-    'class' => 'MMDP'
-  },
-  'crossover' => {
-    'priority' => '3',
-    'points' => '2'
-  },
-  'max_generations' => '1000',
-  'mutation' => {
-    'priority' => '2',
-    'rate' => '0.1'
-  },
-  'length' => '120',
-  'max_fitness' => '20',
-  'pop_size' => '1024',
-  'selection_rate' => '0.1'
-};
+    'fitness' => {
+      'class' => 'MMDP'
+    },
+    'crossover' => {
+      'priority' => '3',
+      'points' => '2'
+     },
+    'max_generations' => '1000',
+    'mutation' => {
+      'priority' => '2',
+      'rate' => '0.1'
+    },
+    'length' => '120',
+    'max_fitness' => '20',
+    'pop_size' => '1024',
+    'selection_rate' => '0.1'
+  };
 
   my $algorithm = new Algorithm::Evolutionary::Run $conf;
 
@@ -43,10 +43,13 @@ use warnings;
   
 =head1 DESCRIPTION
 
-This is a no-fuss class to have everything in a single class, although for the time being it's reduced to fitness functions in the A::E::F namespace, and binary strings. Mostly for demo purposes, but can be an example of class for other stuff
+This is a no-fuss class to have everything needed to run an algorithm
+    in a single place, although for the time being it's reduced to
+    fitness functions in the A::E::F namespace, and binary
+    strings. Mostly for demo purposes, but can be an example of class
+    for other stuff 
 
 =cut
-
 
 =head1 METHODS
 
@@ -59,7 +62,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -84,7 +87,8 @@ sub new {
       
   #Initial population
   my @pop;
-#Creamos $popSize individuos
+
+  #Creamos $popSize individuos
   my $bits = $self->{'length'}; 
   for ( 1..$self->{'pop_size'} ) {
       my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
@@ -162,7 +166,7 @@ sub run {
 
 }
 
-=head2 random
+=head2 random_member()
 
 Returns a random guy from the population
 
@@ -173,7 +177,7 @@ sub random_member {
     return $self->{'_population'}->[rand( @{$self->{'_population'}} )];
 }
 
-=head2 results
+=head2 results()
  
 Returns results in a hash that contains the best, total time so far
  and the number of evaluations. 
@@ -193,10 +197,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/01 08:24:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.5 2008/04/01 08:24:13 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 16:19:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.6 2008/07/24 16:19:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut

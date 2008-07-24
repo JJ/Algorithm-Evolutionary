@@ -1,9 +1,9 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Bitflip - BitFlip mutation
+  Algorithm::Evolutionary::Op::Bitflip - Bit-flip mutation
 
 =head1 SYNOPSIS
 
@@ -32,11 +32,9 @@ does not need a rate
 
 =cut
 
-
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
-
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -45,9 +43,9 @@ use Algorithm::Evolutionary::Op::Base;
 our @ISA = qw(Algorithm::Evolutionary::Op::Base);
 
 #Class-wide constants
-our $APPLIESTO =  'Algorithm::Evolutionary::Individual::BitString';
 our $ARITY = 1;
-=head2 new
+
+=head2 new( [$how_many] [,$priority] )
 
 Creates a new mutation operator with a bitflip application rate, which defaults to 0.5,
 and an operator application rate (general for all ops), which defaults to 1.
@@ -64,7 +62,7 @@ sub new {
   return $self;
 }
 
-=head2 create
+=head2 create()
 
 Creates a new mutation operator.
 
@@ -77,11 +75,11 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromosome )
 
 Applies mutation operator to a "Chromosome", a bitstring, really. Can be
-applied only to I<victims> with the C<_str> instance variable; but
-it checks before application that both operands are of type
+applied only to I<victims> composed of [0,1] atoms, independently of representation; but 
+it checks before application that the operand is of type
 L<BitString|Algorithm::Evolutionary::Individual::BitString>.
 
 =cut
@@ -91,10 +89,10 @@ sub apply ($;$){
   my $arg = shift || croak "No victim here!";
 #  my $victim = $arg->clone();
   my $victim = clone( $arg );
-  croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
+#  croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   for ( my $i = 0; $i < $self->{_howMany}; $i++ ) {
-	my $rnd = int (rand( length( $victim->{_str} ) ));
-	$victim->Atom( $rnd, $victim->Atom( $rnd )?0:1 );
+      my $rnd = int (rand( length( $victim->{_str} ) ));
+      $victim->Atom( $rnd, $victim->Atom( $rnd )?0:1 );
   }
   $victim->Fitness(undef); #Invalidate fitness
   return $victim;
@@ -105,10 +103,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/26 11:37:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.2 2008/06/26 11:37:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 16:19:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.3 2008/07/24 16:19:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
