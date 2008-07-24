@@ -39,13 +39,12 @@ use lib qw( ../.. ../../.. );
 use XML::Parser;
 use XML::Parser::EasyTree;
 use Memoize;
-memoize('arity');
-#memoize('check');
+memoize('arity'); #To speed up this frequent computation
 
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.6 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -68,7 +67,7 @@ sub AUTOLOAD {
 
 }
 
-=head2 new
+=head2 new( [$priority] [,$options_hash] )
 
 Takes a hash with specific parameters for each subclass, creates the 
 object, and leaves subclass-specific assignments to subclasses
@@ -86,7 +85,7 @@ sub new {
   return $self;
 }
 
-=head2 fromXML
+=head2 fromXML()
 
 Takes a definition in the shape <op></op> and turns it into an object, 
 if it knows how to do it. The definition must have been processed using XML::Simple.
@@ -199,7 +198,7 @@ sub asXML {
   return $str;
 }
 
-=head2 rate
+=head2 rate( [$rate] )
 
 Gets or sets the rate of application of the operator
 
@@ -211,7 +210,7 @@ sub rate {
   return $self;
 }
 
-=head2 check
+=head2 check()
 
 Check if the object the operator is applied to is in the correct
 class. 
@@ -225,7 +224,7 @@ sub check {
   return $object->isa( $at ) ;
 }
 
-=head2 arity
+=head2 arity()
 
 Returns the arity, ie, the number of individuals it can be applied to
 
@@ -236,7 +235,7 @@ sub arity {
   return eval( "\$"."$class"."::ARITY" );
 }
 
-=head2 set
+=head2 set( $options_hashref )
 
 Converts the parameters passed as hash in instance variables. Default
 method, probably should be overriden by derived classes. If it is not,
@@ -266,6 +265,10 @@ L<Algorithm::Evolutionary::Op::Creator|Algorithm::Evolutionary::Op::Creator>
 =item * 
 
 L<Algorithm::Evolutionary::Op::Mutation|Algorithm::Evolutionary::Op::Mutation>
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::Mutation|Algorithm::Evolutionary::Op::IncMutation>
 
 =item * 
 
@@ -325,10 +328,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:26:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.5 2008/07/02 16:26:02 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:49:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.6 2008/07/24 11:49:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut

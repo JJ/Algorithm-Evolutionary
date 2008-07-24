@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.8 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.9 $ ' =~ /(\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -199,7 +199,7 @@ sub asXML {
   return $str;
 }
 
-=head2 as_yaml
+=head2 as_yaml()
 
 Prints it as YAML. 
 
@@ -208,6 +208,28 @@ Prints it as YAML.
 sub as_yaml {
   my $self = shift;
   return Dump($self);
+}
+
+=head2 as_string()
+
+Prints it as a string in the most meaningful representation possible
+
+=cut
+
+sub as_string {
+  croak "This function is not defined at this level, you should override it in a subclass\n";
+}
+
+=head2 as_string_with_fitness( [$separator] )
+
+Prints it as a string followeb by fitness. Separator by default is C<;>
+
+=cut
+
+sub as_string_with_fitness {
+  my $self = shift;
+  my $separator = shift || "; ";
+  return $self->as_string().$separator.$self->Fitness();
 }
 
 =head2 Atom
@@ -315,10 +337,10 @@ L<Algorithm::Evolutionary::Individual::Tree>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/23 18:55:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.8 2008/07/23 18:55:07 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:49:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.9 2008/07/24 11:49:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.8 $
+  $Revision: 1.9 $
   $Name $
 
 =cut

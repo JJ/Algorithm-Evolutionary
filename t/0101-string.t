@@ -1,10 +1,4 @@
 #-*-cperl-*-
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl test.pl'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
 
 use Test::More;
 use warnings;
@@ -39,10 +33,25 @@ my $indi4 = Algorithm::Evolutionary::Individual::String->fromString( 'esto es un
 
 my $indi5 = $indi4->clone(); #Creates a copy of the individual
 is_deeply($indi4,$indi5,'Cloning');
+
+#Tie tests
 my @array = qw( a x q W z ñ); #Tie a String individual
 tie my @vector, 'Algorithm::Evolutionary::Individual::String', @array;
 is( tied( @vector )->Atom(3), 'W', 'Tieing');
 
+is( pop( @vector ), 'ñ', 'Pop' );
+is( shift( @vector), 'a', 'Shift' );
+push( @vector, 'p' );
+is( pop( @vector ), 'p', 'Push + pop' );
+unshift( @vector, 'u' );
+is( shift( @vector ), 'u', 'Unshift + shift' );
+$vector[3] = 'k';
+is( $vector[3], 'k', 'Store + fetch' );
+
+my @mini_vector = splice( @vector, 2, 2 );
+is( $mini_vector[1], 'W', 'Splice' );
+
+#Testing XML stuff
   my $xml=<<EOC;
 <indi type='String'>
     <atom>a</atom><atom>z</atom><atom>q</atom><atom>i</atom><atom>h</atom>
@@ -56,10 +65,10 @@ is( $indi4->Atom(4), 'h', 'from XML' );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/22 12:18:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/Attic/string.t,v 1.3 2008/06/22 12:18:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:49:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 1.1 2008/07/24 11:49:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.1 $
   $Name $
 
 =cut

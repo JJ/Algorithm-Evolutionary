@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -102,10 +102,11 @@ starts at 0, as usual in Perl arrays.
 sub Atom: lvalue {
   my $self = shift;
   my $index = shift;
+  my $last_index = $self->{'_bit_vector'}->Size()-1;
   if ( @_ ) {
-      $self->{'_bit_vector'}->Bit_Copy($index, shift );
+      $self->{'_bit_vector'}->Bit_Copy($last_index-$index, shift );
   } else {
-      $self->{'_bit_vector'}->bit_test($index);
+      $self->{'_bit_vector'}->bit_test($last_index - $index);
   }
 }
 
@@ -120,6 +121,17 @@ sub size {
     return $self->{'_bit_vector'}->Size();
 }
 
+=head2 as_string() 
+
+Overrides the default; prints the binary chromosome 
+
+=cut
+
+sub as_string {
+  my $self = shift;
+  return $self->{'_bit_vector'}->to_Bin();
+}
+
 =head2 TIE methods
 
 String implements FETCH, STORE, PUSH and the rest, so an String
@@ -129,23 +141,26 @@ can be tied to an array and used as such.
 
 sub FETCH {
   my $self = shift;
-  return $self->Atom( @_ );
+  my $bit_vector = $self->{'_bit_vector'};
+  return $bit_vector->bit_test( $bit_vector->Size() - 1 - shift );
 }
 
 sub STORE {
   my $self = shift;
-  $self->Atom( @_ );
+  my $bit_vector = $self->{'_bit_vector'};
+  my $index = shift;
+  $self->{'_bit_vector'}->Bit_Copy($bit_vector->Size()- 1 -$index, shift );
 }
 
 sub PUSH {
     my $self = shift;
-    my $new_vector =  Bit::Vector->new_Bin(join("",@_));
-    $self->{'_bit_vector'}->Concat( $new_vector );
+    my $new_vector =  Bit::Vector->new_Bin(scalar(@_), join("",@_));
+    $self->{'_bit_vector'} = $self->{'_bit_vector'}->Concat( $new_vector );
 }
 
 sub UNSHIFT {
     my $self = shift;
-    my $new_vector =  Bit::Vector->new_Bin(join("",@_));
+    my $new_vector =  Bit::Vector->new_Bin(scalar(@_), join("",@_));
     $self->{'_bit_vector'}  = Bit::Vector->Concat_List( $new_vector, $self->{'_bit_vector'}) ;
 }
 
@@ -153,20 +168,38 @@ sub POP {
   my $self = shift;
   my $bit_vector = $self->{'_bit_vector'};
   my $length = $bit_vector->Size();
-  my $pop = $bit_vector->bit_test($length - 1);
-  $self->{'_bit_vector'}->Resize($length - 1);
+  my $pop = $bit_vector->lsb();
+  $self->{'_bit_vector'}->Delete(0,1);
+  $self->{'_bit_vector'}->Resize($length-1);
   return $pop;
 }
 
 sub SHIFT {
   my $self = shift;
-  return  $self->{'_bit_vector'}->shift_left();
+  my $length = $self->{'_bit_vector'}->Size();
+  my $bit =  $self->{'_bit_vector'}->shift_left('0');
+  $self->{'_bit_vector'}->Reverse( $self->{'_bit_vector'});
+  $self->{'_bit_vector'}->Resize($length-1);
+  $self->{'_bit_vector'}->Reverse( $self->{'_bit_vector'});
+
+  return $bit;
 }
 
 sub SPLICE {
   my $self = shift;
-  my $new_vector =  Bit::Vector->new_Bin(join("",@_));
-  $self->{'_bit_vector'}->( $new_vector, 0, $new_vector->Size(), shift, shift  );
+  my $offset = shift;
+  my $bits = shift;
+  my $new_vector;
+  if ( @_ ) {
+    $new_vector =  Bit::Vector->new_Bin(scalar(@_), join("",@_));
+    return split(//, 
+		 $self->{'_bit_vector'}->Interval_Substitute( $new_vector, 0, $new_vector->Size()|| 0, 
+							      $offset, $bits  )->to_Bin());
+  } else {
+    $new_vector = Bit::Vector->new($bits);
+    $new_vector->Interval_Copy(  $self->{'_bit_vector'}, $offset, 0, $bits );
+    return split(//,$new_vector->to_Bin());
+  }
 
 }
 
@@ -181,10 +214,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/23 18:55:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.2 2008/07/23 18:55:07 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:49:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.3 2008/07/24 11:49:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
