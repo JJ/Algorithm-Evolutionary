@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.6 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.7 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -52,20 +52,20 @@ Automatically define accesors for instance variables
 
 =cut
 
-sub AUTOLOAD {
-  my $self = shift;
-  our $AUTOLOAD;
-  my ($method) = ($AUTOLOAD =~ /::(\w+)/);
-  my $instanceVar = "_".lcfirst($method);
-  if (defined ($self->{$instanceVar})) {
-    if ( @_ ) {
-	  $self->{$instanceVar} = shift;
-    } else {
-	  return $self->{$instanceVar};
-    }
-  }    
+# sub AUTOLOAD {
+#   my $self = shift;
+#   our $AUTOLOAD;
+#   my ($method) = ($AUTOLOAD =~ /::(\w+)/);
+#   my $instanceVar = "_".lcfirst($method);
+#   if (defined ($self->{$instanceVar})) {
+#     if ( @_ ) {
+# 	  $self->{$instanceVar} = shift;
+#     } else {
+# 	  return $self->{$instanceVar};
+#     }
+#   }    
 
-}
+# }
 
 =head2 new( [$priority] [,$options_hash] )
 
@@ -328,10 +328,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 11:49:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.6 2008/07/24 11:49:00 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 18:57:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.7 2008/07/24 18:57:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut

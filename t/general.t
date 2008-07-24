@@ -195,7 +195,7 @@ use Algorithm::Evolutionary::Op::GeneralGeneration;
 my $onemax = sub { 
   my $indi = shift;
   my $total = 0;
-  my $len = $indi->length();
+  my $len = $indi->size();
   my $i = 0;
   while ($i < $len ) {
     $total += substr($indi->{'_str'}, $i, 1);
@@ -265,10 +265,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/21 21:05:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.8 2008/06/21 21:05:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 18:57:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 1.9 2008/07/24 18:57:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.8 $
+  $Revision: 1.9 $
   $Name $
 
 =cut
