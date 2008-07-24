@@ -6,7 +6,7 @@ use strict;
 
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
-BEGIN { plan tests => 10;
+BEGIN { plan tests => 16;
     use_ok('Algorithm::Evolutionary::Individual::String');
 };
 
@@ -49,7 +49,7 @@ $vector[3] = 'k';
 is( $vector[3], 'k', 'Store + fetch' );
 
 my @mini_vector = splice( @vector, 2, 2 );
-is( $mini_vector[1], 'W', 'Splice' );
+is( $mini_vector[1], 'k', 'Splice' );
 
 #Testing XML stuff
   my $xml=<<EOC;
@@ -65,10 +65,10 @@ is( $indi4->Atom(4), 'h', 'from XML' );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 11:49:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 1.1 2008/07/24 11:49:00 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:55:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 1.2 2008/07/24 11:55:45 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
