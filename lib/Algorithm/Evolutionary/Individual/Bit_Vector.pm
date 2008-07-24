@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -119,6 +119,19 @@ Returns size in bits
 sub size {
     my $self = shift;
     return $self->{'_bit_vector'}->Size();
+}
+
+=head2 clone()
+
+Clones using native methods. Does not work with general Clone::Fast, since it's implemented as an XS
+
+=cut
+
+sub clone {
+    my $self = shift;
+    my $clone = Algorithm::Evolutionary::Individual::Base::new( ref $self );
+    $clone->{'_bit_vector'} = $self->{'_bit_vector'}->Clone();
+    return $clone;
 }
 
 =head2 as_string() 
@@ -214,10 +227,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 11:49:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.3 2008/07/24 11:49:00 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 18:57:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

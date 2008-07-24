@@ -30,7 +30,7 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming);
 
 use Carp;
@@ -77,7 +77,7 @@ sub consensus {
   my $population = shift;
   my @frequencies;
   for ( @$population ) {
-      for ( my $i = 0; $i < $_->length(); $i ++ ) {
+      for ( my $i = 0; $i < $_->size(); $i ++ ) {
 	  if ( !$frequencies[$i] ) {
 	      $frequencies[$i]={ 0 => 0,
 			     1 => 0};
@@ -102,10 +102,10 @@ sub consensus {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.3 2008/06/16 16:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 18:57:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

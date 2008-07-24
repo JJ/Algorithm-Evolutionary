@@ -34,7 +34,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -88,10 +88,16 @@ sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
 #  my $victim = $arg->clone();
-  my $victim = clone( $arg );
+  my $victim; 
+  if ( (ref $arg ) =~ /BitString/ ) {
+    $victim = clone( $arg );
+  } else {
+    $victim = $arg->clone();
+  }
+  my $size =  $victim->size();
 #  croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   for ( my $i = 0; $i < $self->{_howMany}; $i++ ) {
-      my $rnd = int (rand( length( $victim->{_str} ) ));
+      my $rnd = int (rand( $size ));
       $victim->Atom( $rnd, $victim->Atom( $rnd )?0:1 );
   }
   $victim->Fitness(undef); #Invalidate fitness
@@ -103,10 +109,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 16:19:35 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.3 2008/07/24 16:19:35 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 18:57:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
