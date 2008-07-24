@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::IncMutation - Increments/decrements by one the value of one of the components
+Algorithm::Evolutionary::Op::IncMutation - Increments/decrements by one the value of one of the components
                 of the string, takes into account the char class
 
 =cut
@@ -35,20 +35,19 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package Algorithm::Evolutionary::Op::IncMutation;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
 
 
 use Carp;
+use Clone::Fast qw(clone);
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 1;
 
-=head2 create
-
+=head2 create()
 
 Creates a new mutation operator.
 
@@ -73,14 +72,14 @@ the array of chars used for coding the the string
     $xmen->apply( $strChrom ) # will change 'acgt' into 'aagt' or
 			      # 'aggt', for instance
 
-Issues an error if there is no C<_chars> array.
+Issues an error if there is no C<_chars> array, which is needed for computing the next.
 
 =cut
 
 sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-  my $victim = $arg->clone();
+  my $victim = clone( $arg );
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   my $rnd = int (rand( length( $victim->{_str} ) ));
   my $char = $victim->Atom( $rnd );
@@ -104,10 +103,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/IncMutation.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/24 11:49:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/IncMutation.pm,v 1.2 2008/07/24 11:49:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 

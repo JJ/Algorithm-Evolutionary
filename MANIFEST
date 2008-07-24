@@ -41,6 +41,7 @@ lib/Algorithm/Evolutionary/Individual/String.pm
 lib/Algorithm/Evolutionary/Individual/BitString.pm
 lib/Algorithm/Evolutionary/Individual/Tree.pm
 lib/Algorithm/Evolutionary/Individual/Vector.pm
+lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm
 lib/Algorithm/Evolutionary/Fitness/Base.pm
 lib/Algorithm/Evolutionary/Fitness/String.pm
 lib/Algorithm/Evolutionary/Fitness/MMDP.pm
@@ -50,6 +51,8 @@ lib/Algorithm/Evolutionary/Fitness/Knapsack.pm
 lib/Algorithm/Evolutionary/Fitness/ONEMAX.pm
 lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm
 t/00-load.t
+t/0100-bitvector.t
+t/0101-string.t
 t/0200-run-ga.t
 t/p_peaks.yaml
 t/0300-ppeaks.t
@@ -67,7 +70,6 @@ t/individuals.t
 t/experiment.t
 t/validate.t
 t/run.t
-t/string.t
 xml/EvoSpec.dtd
 xml/EvoSpecValidate.pl
 xml/marea.xml
