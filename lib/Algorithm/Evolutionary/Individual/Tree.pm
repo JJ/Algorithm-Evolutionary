@@ -1,9 +1,9 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
 
-     Tree - A Direct Acyclic Graph, or tree, useful for Genetic Programming-Style stuff
+    Tree - A Direct Acyclic Graph, or tree, useful for Genetic Programming-Style stuff
 
 =head1 SYNOPSIS
 
@@ -31,7 +31,7 @@ L<Algorithm::Evolutionary::Individual::Base|Algorithm::Evolutionary::Individual:
 
 =head1 DESCRIPTION
 
-Array individual for a genetic programming. Uses Direct Acyclic graphs as
+Array individual for a genetic programming. Uses direct acyclic graphs as
 representation for trees, which is very convenient. 
 
 =cut
@@ -41,7 +41,7 @@ package Algorithm::Evolutionary::Individual::Tree;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Tree::DAG_Node;
 
@@ -60,8 +60,8 @@ Creates a new tree
 sub new {
   my $class = shift; 
   my $self = {_primitives => shift,
-			  _depth => shift,
-			  _fitness => undef };
+	      _depth => shift,
+	      _fitness => undef };
   my @keys = keys %{$self->{_primitives}};
   $self->{_keys} = \@keys;
   bless $self, $class;
@@ -294,16 +294,26 @@ sub growSubTree {
   }
 }
 
+=head2 size()
+
+Returns depth, for lack of another meaningful method
+
+=cut
+
+sub size {
+  my $self = shift;
+  return $self->{'_depth'};
+}
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 05:45:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.2 2008/07/25 05:45:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 08:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.3 2008/07/25 08:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
