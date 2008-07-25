@@ -41,7 +41,7 @@ package Algorithm::Evolutionary::Individual::Tree;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Tree::DAG_Node;
 
@@ -205,6 +205,18 @@ sub closeParens {
  
 }
 
+
+=head2 Atom
+
+Returns the tree, which is atomic by itself. Cannot be used as lvalue
+
+=cut
+
+sub Atom {
+  my $self = shift;
+  return $self->{'_tree'};
+}
+
 =head2 asXML
 
 Prints it as XML. It prints the tree as String, which does not mean
@@ -296,13 +308,13 @@ sub growSubTree {
 
 =head2 size()
 
-Returns depth, for lack of another meaningful method
+Returns 1, since it's got only 1 Atom
 
 =cut
 
 sub size {
   my $self = shift;
-  return $self->{'_depth'};
+  return 1;
 }
 
 =head1 Copyright
@@ -310,10 +322,10 @@ sub size {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 08:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.3 2008/07/25 08:20:46 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 09:02:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.4 2008/07/25 09:02:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
