@@ -56,7 +56,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -67,7 +67,7 @@ our @ISA = qw(Algorithm::Evolutionary::Op::Base);
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( $single_generation[, $termination_test] [, $verboseness] )
 
 Takes an already created algorithm and a terminator, and creates an object
 
@@ -84,6 +84,7 @@ sub new {
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
   return $self;
 }
+
 =head2 set
 
 Sets the instance variables. Takes a ref-to-hash as
@@ -147,8 +148,8 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 05:45:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.2 2008/07/25 05:45:53 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
