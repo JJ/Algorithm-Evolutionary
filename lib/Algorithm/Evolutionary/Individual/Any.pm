@@ -27,10 +27,9 @@ Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical
 package Algorithm::Evolutionary::Individual::Any;
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
-our  @ISA; # Will be needed later on
 
 =head1 METHODS
 
@@ -56,16 +55,39 @@ sub new {
 }
 
 
+=head2 Atom([$index]) 
+
+No matter what you write, it will return the object wrapped
+
+=cut 
+
+sub Atom {
+  my $self = shift;
+  return $self->{'_inner'};
+}
+
+
+=head2 size()
+
+Returns 1. Here for compatibility
+
+=cut 
+
+sub size {
+  1;
+}
+
+
 
 =head2 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 11:26:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 1.1 2008/07/25 11:26:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 18:38:31 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 1.2 2008/07/25 18:38:31 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
