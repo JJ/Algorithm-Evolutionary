@@ -18,10 +18,10 @@ Algorithm::Evolutionary::Op::Base - Base class for OPEAL operators; operators ar
     my $ref = XMLin($xmlStr);
     my $op = Algorithm::Evolutionary::Op::Base->fromXML( $ref ); #Takes a hash of parsed XML and turns it into an operator    
 
-    print $op->asXML(); #print its back in XML shape
+    print $op->asXML(); #prints it back in XML shape
 
     print $op->rate();  #application rate; relative number of times it must be applied
-    print "Yes" if $op->check( 'BinaryIndi' ); #Prints Yes, it can be applied to BinaryIndi
+    print "Yes" if $op->check( 'Algorithm::Evolutionary::Individual::Bit_Vector' ); #Prints Yes, it can be applied to Bit_Vector individual
     print $op->arity(); #Prints 1, number of operands it can be applied to
 
 =head1 DESCRIPTION
@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.8 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.9 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -328,10 +328,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 05:45:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.8 2008/07/25 05:45:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 05:57:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.9 2008/07/25 05:57:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.8 $
+  $Revision: 1.9 $
   $Name $
 
 =cut
