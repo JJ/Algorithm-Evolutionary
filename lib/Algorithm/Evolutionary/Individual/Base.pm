@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.10 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.11 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -79,7 +79,7 @@ after creation, it is initialized with random values.
 
 sub create {
   my $class = shift; 
-  my $ref = shift || carp "Can't find the parameters hash";
+  my $ref = shift ||  croak "Can't find the parameters hash";
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class, $ref );
   $self->randomize();
   return $self;
@@ -341,10 +341,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 05:57:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.10 2008/07/25 05:57:16 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 11:26:17 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.11 2008/07/25 11:26:17 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.10 $
+  $Revision: 1.11 $
   $Name $
 
 =cut

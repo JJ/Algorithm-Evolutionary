@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -23,6 +23,7 @@ use warnings;
     $indi3->Atom( 3 ) = 1;       #Sets the value
 
     $indi3->addAtom( 1 ); #Adds a new character to the bitstring at the end
+    my $size = $indi3->size(); #Common interface to all individuals, should return 21
 
     my $indi4 = Algorithm::Evolutionary::Individual::BitString->fromString( '10110101');   #Creates an individual from that string
 
@@ -49,8 +50,7 @@ Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical
 package Algorithm::Evolutionary::Individual::BitString;
 use Carp;
 
-
-our ($VERSION) =  ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -95,10 +95,10 @@ sub set {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:37:55 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 1.4 2008/06/23 11:37:55 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 11:26:17 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 1.5 2008/07/25 11:26:17 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
