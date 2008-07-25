@@ -29,12 +29,13 @@ use Time::HiRes qw( gettimeofday tv_interval );
 
 my $length = 16;
 my $iterations = 1000000;
+my $top_length = 16384;
 print "Bitsstring\n";
 do {
     my $indi = new Algorithm::Evolutionary::Individual::BitString($length);
     print "\t $length => ", time_mutations( $length, $indi ), "\n";
     $length *= 2;
-} while $length <= 2048;
+} while $length <= $top_length;
 
 print "Bit_Vector\n";
 $length = 16;
@@ -43,7 +44,7 @@ do {
 	length => $length } );
     print "\t $length => ", time_mutations( $length, $indi ), "\n";
     $length *= 2;
-} while $length <= 2048;
+} while $length <= $top_length;
 
 
 #--------------------------------------------------------------------

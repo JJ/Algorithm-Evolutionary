@@ -35,8 +35,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package Algorithm::Evolutionary::Op::IncMutation;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
-
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -60,7 +59,7 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $indiv )
 
 Applies mutation operator to a "Chromosome", a string, really. Can be
 applied only to I<victims> with the C<_str> instance variable; but
@@ -103,10 +102,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 11:49:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/IncMutation.pm,v 1.2 2008/07/24 11:49:00 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 05:45:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/IncMutation.pm,v 1.3 2008/07/25 05:45:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 

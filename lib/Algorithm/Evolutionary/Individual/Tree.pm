@@ -41,7 +41,7 @@ package Algorithm::Evolutionary::Individual::Tree;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Tree::DAG_Node;
 
@@ -165,6 +165,12 @@ sub asString {
   return $str;
 }
 
+=head2 nodePrint
+
+Prints a node
+
+=cut
+
 sub nodePrint {
   my $node = shift;
   my $options = shift;
@@ -179,6 +185,12 @@ sub nodePrint {
   }
   
 }
+
+=head2 closeParens
+
+Internal subrutine: closes node parenthesis
+
+=cut 
 
 sub closeParens {
   my $node = shift;
@@ -210,7 +222,13 @@ sub asXML {
   return $str.$str2."\n</indi>";
 }
 
-#Dummy sub
+
+=head2 adddAtom
+
+Dummy sub
+
+=cut 
+
 sub addAtom {
   my $self = shift;
   $self->{_tree} = Tree::DAG_Node->new();
@@ -282,10 +300,10 @@ sub growSubTree {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 05:45:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 1.2 2008/07/25 05:45:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

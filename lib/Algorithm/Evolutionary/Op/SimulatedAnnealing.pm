@@ -27,7 +27,7 @@ Simulated Annealing
 
 package Algorithm::Evolutionary::Op::SimulatedAnnealing;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
 use Carp;
 
 use Algorithm::Evolutionary::Op::LinearFreezer;
@@ -57,10 +57,11 @@ sub new {
   return $self;
 }
 
-=head2 apply( $individual )
+=head2 run( $individual )
 
 Applies the algorithm to the individual, returns the resulting
-    individual when the min temperature is reached 
+    individual when the min temperature is reached. Same as C<apply> in other operators
+
 
 =cut
 
@@ -125,10 +126,10 @@ sub run ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 05:37:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.3 2008/07/02 05:37:27 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 05:45:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm,v 1.4 2008/07/25 05:45:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
