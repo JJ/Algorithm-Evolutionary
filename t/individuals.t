@@ -5,7 +5,7 @@ use warnings;
 use strict;
 use YAML qw(Load);
 
-BEGIN { plan tests => 22 };
+BEGIN { plan tests => 87 };
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 my $size = 16;
@@ -41,7 +41,11 @@ sub createAndTest ($$;$) {
   if ( $module ne 'Tree' ) {
     is( $nct->size(), $size, "Size" );
   } else {
-    is( $nct->size(), $size/4, "Size" );
+    is( $nct->size(), 1, "Size" );
+  }
+
+  for (my $i = 0; $i < $nct->size(); $i ++ ) {
+    is( defined( $nct->Atom($i)), 1, "Atom($i)");
   }
   
   my $xml = $nct->asXML();
@@ -72,10 +76,10 @@ for ( keys %modulesToTest ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 08:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.4 2008/07/25 08:20:46 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 09:02:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.5 2008/07/25 09:02:27 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
