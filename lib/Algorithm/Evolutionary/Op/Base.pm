@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.9 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.10 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -328,10 +328,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 05:57:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.9 2008/07/25 05:57:16 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 18:38:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.10 2008/07/25 18:38:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.10 $
   $Name $
 
 =cut

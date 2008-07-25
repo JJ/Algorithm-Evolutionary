@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.11 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.12 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -51,7 +51,7 @@ on to the object of the class when it iss initialized.
 sub new {
   my $class = shift;
   if ( $class !~ /Algorithm::Evolutionary/ ) {
-    $class = "Algorithm::Evolutionary::Individual::$class";
+      $class = "Algorithm::Evolutionary::Individual::$class";
   }
   my $options = shift;
   my $self = { _fitness => undef }; # Avoid error
@@ -59,10 +59,10 @@ sub new {
 
   #If the class is not loaded, we load it. The 
   if ( !$INC{"$class\.pm"} ) {
-    eval "require $class" || croak "Can't find $class Module";
+      eval "require $class" || croak "Can't find $class Module";
   }
   if ( $options ) {
-	$self->set( $options );
+      $self->set( $options );
   }
 
   return $self;
@@ -146,7 +146,7 @@ sub fromXML {
 
 =head2 fromParam( $xml_fragment )
 
-Takes an array of params that describe the individual, and build it, with
+Takes an array of params that describe the individual, and builds it, with
 random initial values.
 
 Params have this shape:
@@ -341,10 +341,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 11:26:17 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.11 2008/07/25 11:26:17 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 18:38:31 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.12 2008/07/25 18:38:31 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.11 $
+  $Revision: 1.12 $
   $Name $
 
 =cut
