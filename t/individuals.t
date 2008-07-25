@@ -1,19 +1,14 @@
 #-*-cperl-*-
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as `perl test.pl'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
 
 use Test::More;
 use warnings;
 use strict;
 use YAML qw(Load);
 
-BEGIN { plan tests => 14 };
+BEGIN { plan tests => 22 };
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
+my $size = 16;
 #Use: module name, args to ctor. 
 my $primitives = { sum => [2, -1, 1],
 		   multiply => [2, -1, 1],
@@ -22,10 +17,11 @@ my $primitives = { sum => [2, -1, 1],
 		   x => [0, -10, 10],
 		   y => [0, -10, 10] };
 
-my %modulesToTest = ( String => [['a'..'z'],10 ],
-		      BitString => [10],
-		      Vector => [10],
-		      Tree => [$primitives, 3] );
+my %modulesToTest = ( String => [['a'..'z'],$size ],
+		      BitString => [$size],
+		      Vector => [$size],
+		      Bit_Vector => [{length =>  $size }],
+		      Tree => [$primitives, $size/4 ] );
 
 ####################################################################
 #Subroutine that tests and creates an op. Takes as argument
@@ -42,6 +38,11 @@ sub createAndTest ($$;$) {
   my $nct = new $class @$newArgs; 
   print "Testing $module\n";
   isa_ok( $nct, $class );
+  if ( $module ne 'Tree' ) {
+    is( $nct->size(), $size, "Size" );
+  } else {
+    is( $nct->size(), $size/4, "Size" );
+  }
   
   my $xml = $nct->asXML();
   my $newnct =  Algorithm::Evolutionary::Individual::Base->fromXML( $xml );
@@ -71,10 +72,10 @@ for ( keys %modulesToTest ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/22 12:18:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.3 2008/06/22 12:18:52 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 08:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/individuals.t,v 1.4 2008/07/25 08:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

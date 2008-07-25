@@ -1,4 +1,4 @@
-use strict;
+use strict;  #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Individual::Vector;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Algorithm::Evolutionary::Individual::Base;
 
@@ -81,6 +81,17 @@ sub new {
   bless $self, $class;
   $self->randomize();
   return $self;
+}
+
+=head2 size()
+
+Returns vector size (dimension)
+
+=cut
+
+sub size {
+  my $self = shift;
+  return $self->{'_length'};
 }
 
 sub TIEARRAY {
@@ -296,10 +307,10 @@ sub Chrom {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 08:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 1.2 2008/07/25 08:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

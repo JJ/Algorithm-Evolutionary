@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -76,7 +76,7 @@ sub new {
     if ( $arg->{'length'} ) {
 	my $length = $arg->{'length'};
 	my $rander = new String::Random;
-	my $hex_string = $rander->randregex("[0-9A-F]{".($length/4)."}");
+	my $hex_string = $rander->randregex("[0-9A-F]{".int($length/4)."}");
 	$self->{'_bit_vector'} = Bit::Vector->new_Hex( $length, $hex_string );
     } elsif ( $arg->{'string'} ) {
 	$self->{'_bit_vector'} = 
@@ -227,10 +227,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 18:57:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/25 08:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 1.5 2008/07/25 08:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
