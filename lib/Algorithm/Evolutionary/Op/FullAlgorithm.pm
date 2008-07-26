@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -56,7 +56,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -85,10 +85,10 @@ sub new {
   return $self;
 }
 
-=head2 set
+=head2 set( $hashref, $codehash, $opshash )
 
-Sets the instance variables. Takes a ref-to-hash as
-input
+Sets the instance variables. Takes hashes to the different options of
+    the algorithm: parameters, fitness functions and operators
 
 =cut
 
@@ -102,13 +102,12 @@ sub set {
   #Now reconstruct operators
   for ( keys %$opshash ) {
 	$self->{$opshash->{$_}[2]} = 
-#	  Algorithm::Evolutionary::Op::Base::fromXML( "Algorithm::Evolutionary::Op::$_", $opshash->{$_} );
 	  Algorithm::Evolutionary::Op::Base::fromXML( $_, $opshash->{$_}->[1], $opshash->{$_}->[0] ); 
   }
 
 }
 
-=head2 apply
+=head2 apply( $reference_to_population_array )
 
 Applies the algorithm to the population; checks that it receives a
 ref-to-array as input, croaks if it does not. Returns a sorted,
@@ -148,8 +147,8 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 05:45:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.2 2008/07/25 05:45:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/26 15:27:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.3 2008/07/26 15:27:45 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
