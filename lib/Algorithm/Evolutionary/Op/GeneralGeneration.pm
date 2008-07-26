@@ -51,18 +51,17 @@ used, along with its priorities
 
 package Algorithm::Evolutionary::Op::GeneralGeneration;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( $evaluation_function, $selector, $ref_to_operator_array, $replacement_rate )
 
 Creates an algorithm, with the usual operators. Includes a default mutation
 and crossover, in case they are not passed as parameters
@@ -168,10 +167,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/26 15:27:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.2 2008/07/26 15:27:45 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

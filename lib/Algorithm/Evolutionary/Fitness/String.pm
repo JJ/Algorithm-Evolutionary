@@ -24,7 +24,7 @@ Base class for fitness functions applied to string-based chromosomes; extracts c
 
 package Algorithm::Evolutionary::Fitness::String;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp qw( croak );
 use base qw(Algorithm::Evolutionary::Fitness::Base);
@@ -65,9 +65,11 @@ sub _really_apply {
   croak "This should be overriden";
 }
 
-=head2 cached_evals
+=head2 cached_evals()
 
-Returns the number of keys in the evaluation cache
+Returns the number of keys in the evaluation cache, which can be
+compared to the total number of evaluations to find the cache hit
+rate. 
 
 =cut
 
@@ -81,12 +83,12 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:27:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/String.pm,v 1.1 2008/06/23 11:27:10 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/26 15:27:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/String.pm,v 1.2 2008/07/26 15:27:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
 
-"What???";
+"Where???";
