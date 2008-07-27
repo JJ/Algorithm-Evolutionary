@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -7,6 +7,7 @@ use warnings;
                        and puts them into another
 
 =head1 SYNOPSIS
+
   my $popSize = 100;
   my $tournamentSize = 7;
   my $selector = new Algorithm::Evolutionary::Op::TournamentSelect $popSize, $tournamentSize;
@@ -14,7 +15,7 @@ use warnings;
 
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
+L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Selector>
 
 =head1 DESCRIPTION
 
@@ -31,25 +32,23 @@ the best.
 package Algorithm::Evolutionary::Op::TournamentSelect;
 use Carp;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 # Class-wide constants
-our $APPLIESTO =  'ARRAY';
-our $ARITY = 2; #Needs an array for input, a reference for output
+#our $APPLIESTO =  'ARRAY';
+#our $ARITY = 2; #Needs an array for input, a reference for output
 
-=head2 new
+=head2 new( $output_population_size, $tournament_size )
 
 Creates a new tournament selector
 
 =cut
 
 sub new {
- my $class = shift;
-  my $self = {};
-  $self->{_outputSize} = shift || croak "I need an output population size";
+  my $class = shift;
+  my $self = Algorithm::Evolutionary::Op::Selector::new($class, shift );
   $self->{_tournamentSize} = shift || 2;
   bless $self, $class;
   return $self;
@@ -85,8 +84,8 @@ sub apply (@) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/TournamentSelect.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 08:31:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/TournamentSelect.pm,v 1.2 2008/07/27 08:31:11 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.10 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.11 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -76,10 +76,10 @@ object, and leaves subclass-specific assignments to subclasses
 
 sub new {
   my $class = shift;
+  carp "Should be called from subclasses" if ( $class eq  __PACKAGE__ );
   my $rate = shift || 1;
   my $hash = shift; #No carp here, some operators do not need specific stuff
   my $self = { rate => $rate }; # Create a reference
-  carp "Should be called from subclasses" if ( $class eq  __PACKAGE__ );
   bless $self, $class; # And bless it
   $self->set( $hash ) if $hash ;
   return $self;
@@ -328,10 +328,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 18:38:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.10 2008/07/25 18:38:32 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 08:31:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.11 2008/07/27 08:31:11 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.10 $
+  $Revision: 1.11 $
   $Name $
 
 =cut
