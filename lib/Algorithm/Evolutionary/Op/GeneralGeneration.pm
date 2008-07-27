@@ -51,7 +51,7 @@ used, along with its priorities
 
 package Algorithm::Evolutionary::Op::GeneralGeneration;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -80,7 +80,7 @@ sub new {
 }
 
 
-=head2 set
+=head2 set( $ref_to_params_hash, $ref_to_code_hash, $ref_to_operators_hash )
 
 Sets the instance variables. Takes a ref-to-hash as
 input
@@ -167,10 +167,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 08:09:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.3 2008/07/27 08:09:32 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 08:31:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.4 2008/07/27 08:31:11 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
