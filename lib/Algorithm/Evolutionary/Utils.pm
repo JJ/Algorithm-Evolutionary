@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-CPerl-*-
 use warnings;
 
 =head1 NAME
@@ -30,12 +30,12 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming);
 
 use Carp;
 
-=head2 entropy
+=head2 entropy( $population)
 
 Computes the entropy using the well known Shannon's formula: L<http://en.wikipedia.org/wiki/Information_entropy>
 'to avoid botching highlighting
@@ -56,7 +56,7 @@ sub entropy {
 }
 
 
-=head2 hamming
+=head2 hamming( $string_a, $string_b )
 
 Computes the number of positions that are different among two strings
 
@@ -67,9 +67,10 @@ sub hamming {
     return ( ( $string_a ^ $string_b ) =~ tr/\1//);
 }
 
-=head2 consensus
+=head2 consensus( $population )
 
-Consensus sequence representing the majoritary value for each bit
+Consensus sequence representing the majoritary value for each bit;
+returns the consensus string. 
 
 =cut
 
@@ -102,10 +103,10 @@ sub consensus {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 18:57:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 16:10:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.5 2008/07/27 16:10:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut

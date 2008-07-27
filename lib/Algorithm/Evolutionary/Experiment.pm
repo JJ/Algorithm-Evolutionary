@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-CPerl-*-
 use warnings;
 
 =head1 NAME
@@ -31,7 +31,7 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use XML::Parser;
@@ -190,7 +190,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 1.2 $ -->
+     Experiment $Revision: 1.3 $ -->
     <initial>
 EOC
 
@@ -211,10 +211,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/13 13:08:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 1.2 2008/02/13 13:08:22 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 16:10:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 1.3 2008/07/27 16:10:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

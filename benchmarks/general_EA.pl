@@ -75,22 +75,24 @@ if ( $numGens ) {
 } else {
   $term = new Algorithm::Evolutionary::Op::DeltaTerm  $numBits, 0 ; #Run until optimum is found
 }
-my $fullAlgo = new Algorithm::Evolutionary::Op::FullAlgorithm  $generation, $term, 1 ;
+my $fullAlgo = new Algorithm::Evolutionary::Op::FullAlgorithm  $generation, $term;
 
 #Set initial time
 my $t0 = [gettimeofday()];
 
 #Go to define the initial population and evaluate it
 my @pop;
+print "Generating population\n";
 for ( 0..$popSize ) {
   my $indi = new Algorithm::Evolutionary::Individual::BitString $numBits ; #Creates random individual
-  print "Creating $_ =>\n", $indi->asString(), "\n";
+#  print "Creating $_ =>\n", $indi->asString(), "\n";
   my $fitness = $rr->apply( $indi );
   $indi->Fitness( $fitness );
   push( @pop, $indi );
 }
 
 #Apply the algorithm
+print "Running algorithm\n";
 $fullAlgo->apply( \@pop );
 
 #Print Results
@@ -102,9 +104,9 @@ print "Time elapsed ", tv_interval( $t0 );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 08:09:31 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/general_EA.pl,v 1.1 2008/07/27 08:09:31 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 16:10:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/general_EA.pl,v 1.2 2008/07/27 16:10:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
 
 =cut
