@@ -31,14 +31,9 @@ you want to apply some fancy diversity operator
 
 package Algorithm::Evolutionary::Op::NoChangeTerm;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
-
-# Class-wide constants
-our $APPLIESTO =  'ARRAY';
-our $ARITY = 1;
+use base 'Algorithm::Evolutionary::Op::Base';
 
 =head2 new
 
@@ -58,7 +53,7 @@ sub new {
 }
 
 
-=head2 apply
+=head2 apply( $population )
 
 Checks if the first member of the population has the same fitness as before,
 and increments counter. The population I<should be ordered>
@@ -80,6 +75,14 @@ sub apply ($) {
   
 }
   
+=head1 See Also
+
+L<Algorithm::Evolutionary::Op::FullAlgorithm> needs an object of this class to check
+for the termination condition. It's normally used alongside "generation-type"
+objects such as L<Algorithm::Evolutionary::Op::Easy>.
+
+There are other options for termination conditions: L<Algorithm::Evolutionary::Op::DeltaTerm> and  
+L<Algorithm::Evolutionary::Op::GenerationalTerm>.
 
 
 =head1 Copyright
@@ -87,10 +90,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/NoChangeTerm.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 10:55:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/NoChangeTerm.pm,v 1.2 2008/07/27 10:55:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
  
 =cut

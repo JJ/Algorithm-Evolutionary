@@ -71,19 +71,18 @@ my $mmdp = new  Algorithm::Evolutionary::Fitness::MMDP;
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-my $fitness = sub { $mmdp->apply(@_) };
+#my $fitness = sub { $mmdp->apply(@_) };
 
-my $generation = Algorithm::Evolutionary::Op::Easy->new( $fitness , $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::Easy->new( $mmdp , $selection_rate , [$m, $c] ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
 
 #----------------------------------------------------------#
 for ( @pop ) {
-  if ( !defined $_->Fitness() ) {
-    my $this_fitness = $fitness->($_);
-    $_->Fitness( $this_fitness );
-  }
+    if ( !defined $_->Fitness() ) {
+	$_->evaluate( $mmdp );
+    }
 }
 
 my $contador=0;
@@ -118,10 +117,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/16 17:36:19 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/mmdp.pl,v 1.2 2008/02/16 17:36:19 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 10:55:19 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/mmdp.pl,v 1.3 2008/07/27 10:55:19 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

@@ -1,4 +1,4 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 =head1 NAME
@@ -21,7 +21,7 @@ Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, w
   }
 
   #Define a default algorithm with predefined evaluation function,
-  #Mutation and crossover. Default selection rate ls 4
+  #Mutation and crossover. Default selection rate is 0.4
   my $algo = new Algorithm::Evolutionary::Op::Easy( $eval ); 
 
   #Define an easy single-generation algorithm with predefined mutation and crossover
@@ -31,7 +31,7 @@ Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, w
 
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
+L<Algorithm::Evolutionary::Op::Base>
 
 =cut
 
@@ -48,7 +48,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our $VERSION = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.8 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -61,7 +61,6 @@ use base 'Algorithm::Evolutionary::Op::Base';
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
-our $ARITY = 1;
 
 =head2 new( $eval_func, [$operators_arrayref] )
 
@@ -208,10 +207,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/26 11:37:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.7 2008/06/26 11:37:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 10:55:19 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.8 2008/07/27 10:55:19 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut
