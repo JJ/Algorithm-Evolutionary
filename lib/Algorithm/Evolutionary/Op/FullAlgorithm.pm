@@ -12,7 +12,7 @@ use warnings;
   $easyEA->apply(\@pop ); 
 
   #Or using the constructor
-   use Algorithm::Evolutionary::Op::Bitflip;
+  use Algorithm::Evolutionary::Op::Bitflip;
   my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
   my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
   my $replacementRate = 0.3; #Replacement rate
@@ -56,7 +56,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -126,18 +126,17 @@ sub apply ($) {
   my $eval = $algo->{_eval};
   for ( @$pop ) {
     if ( !defined $_->Fitness() ) {
-      my $fitness = $eval->($_);
-      $_->Fitness( $fitness );
+      $_->evaluate( $eval );
     }
   }
   #Run the algorithm
   do {
-	$algo->apply( $pop );
-	if  ($self->{_verbose}) {
-	  print "Best ", $pop->[0]->asString(), "\n" ;
-	  print "Median ", $pop->[@$pop/2]->asString(), "\n";
-	  print "Worst ", $pop->[@$pop-1]->asString(), "\n\n";
-	}
+    $algo->apply( $pop );
+    if  ($self->{_verbose}) {
+      print "Best ", $pop->[0]->asString(), "\n" ;
+      print "Median ", $pop->[@$pop/2]->asString(), "\n";
+      print "Worst ", $pop->[@$pop-1]->asString(), "\n\n";
+    }
   } while( $term->apply( $pop ) );
   
 }
@@ -147,8 +146,8 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/26 15:27:45 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.3 2008/07/26 15:27:45 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 10:55:19 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.4 2008/07/27 10:55:19 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

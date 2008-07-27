@@ -32,14 +32,9 @@ to the target as the differente indicated.
 package Algorithm::Evolutionary::Op::DeltaTerm;
 use Carp;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
-
-# Class-wide constants
-our $APPLIESTO =  'ARRAY';
-our $ARITY = 1;
+use base 'Algorithm::Evolutionary::Op::Base';
 
 =head2 new
 
@@ -52,8 +47,8 @@ epsilon (or delta, whatever you want to call it):
 
 Delta can be 0, which means that application of this operator will
 return true only when the first element fitness is the same as the
-target. Use this judiciously when your fitness is floating
-point.
+target. Use this judiciously when your fitness is a floating
+point number.
 
 =cut
 
@@ -68,14 +63,14 @@ sub new {
 }
 
 
-=head2 apply 
+=head2 apply( $population )
 
 Will return true while the difference between the fitness of the first element 
 in the population and the target is less than C<$delta>, true otherwise
 
     $dt->apply( \@pop ) == 1 
 
-if the target has not been reached
+if the target has not been reached. Population must be sorted before this.
 
 =cut
 
@@ -89,12 +84,12 @@ sub apply ($) {
   
 =head1 See Also
 
-L<Algorithm::Evolutionary::Op::EzFullAlgo|Algorithm::Evolutionary::Op::EZFullAlgo> needs an object of this class to check
+L<Algorithm::Evolutionary::Op::FullAlgorithm> needs an object of this class to check
 for the termination condition. It's normally used alongside "generation-type"
-objects such as L<Algorithm::Evolutionary::Op::EasyAlgorithm|EasyAlgorithm> or  L<Algorithm::Evolutionary::Op::ParallelAlgorithm|ParallelAlgorithm> 
+objects such as L<Algorithm::Evolutionary::Op::Easy>.
 
 There are other options for termination conditions: L<Algorithm::Evolutionary::Op::NoChangeTerm|Algorithm::Evolutionary::Op::NoChangeTerm> and  
-L<Algorithm::Evolutionary::Op::GenerationalTerm|Algorithm::Evolutionary::Op::GenerationalTerm> and  
+L<Algorithm::Evolutionary::Op::GenerationalTerm>.
 
 
 =head1 Copyright
@@ -102,8 +97,8 @@ L<Algorithm::Evolutionary::Op::GenerationalTerm|Algorithm::Evolutionary::Op::Gen
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/DeltaTerm.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 10:55:19 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/DeltaTerm.pm,v 1.2 2008/07/27 10:55:19 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
