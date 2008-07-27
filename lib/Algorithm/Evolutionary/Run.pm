@@ -47,7 +47,7 @@ This is a no-fuss class to have everything needed to run an algorithm
     in a single place, although for the time being it's reduced to
     fitness functions in the A::E::F namespace, and binary
     strings. Mostly for demo purposes, but can be an example of class
-    for other stuff 
+    for other stuff.
 
 =cut
 
@@ -62,15 +62,16 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
 use Time::HiRes qw( gettimeofday tv_interval);
 
-=head2 new
+=head2 new( $algorithm_description )
 
-   Creates the whole stuff needed to run an algorithm. Can be called from a hash with t options, as per the example. All of them are compulsory. See also the C<examples> subdir for examples of the YAML conf file.
+   Creates the whole stuff needed to run an algorithm. Can be called from a hash with t 
+   options, as per the example. All of them are compulsory. See also the C<examples> subdir for examples of the YAML conf file. 
 
 =cut
 
@@ -135,7 +136,7 @@ sub new {
   return $self;
 }
 
-=head2 step
+=head2 step()
 
 Runs a single step of the algorithm, that is, a single generation 
 
@@ -147,8 +148,7 @@ sub step {
     $self->{'_counter'}++;
 }
 
-=head2 run
-
+=head2 run()
 
 Applies the different operators in the order that they appear; returns the population
 as a ref-to-array.
@@ -197,10 +197,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 16:19:35 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.6 2008/07/24 16:19:35 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 16:10:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.7 2008/07/27 16:10:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
