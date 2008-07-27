@@ -51,7 +51,7 @@ used, along with its priorities
 
 package Algorithm::Evolutionary::Op::GeneralGeneration;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -153,8 +153,8 @@ sub apply ($) {
   #Eliminate and substitute
   splice( @$pop, -$pringaos );
   for ( @newpop ) {
-	my $fitness = $self->{_eval}->( $_ );
-	$_->Fitness( $fitness );
+      my $fitness = $self->{_eval};
+      $_->evaluate( $fitness );
   }
   push @$pop, @newpop;
   my @sortPop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop;
@@ -167,10 +167,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/26 15:27:45 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.2 2008/07/26 15:27:45 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 08:09:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.3 2008/07/27 08:09:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

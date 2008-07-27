@@ -34,7 +34,7 @@ use XML::Parser::EasyTree;
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.12 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.13 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -283,7 +283,7 @@ sub evaluate {
   } elsif (  ( ref $fitness_func ) =~ 'Fitness' ) {
       return $self->Fitness( $fitness_func->apply($self) );
   } else {
-      croak "$fitness_func is can't be used to evaluate";
+      croak "$fitness_func can't be used to evaluate";
   }
 
 }
@@ -341,10 +341,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 18:38:31 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.12 2008/07/25 18:38:31 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/27 08:09:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 1.13 2008/07/27 08:09:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.12 $
+  $Revision: 1.13 $
   $Name $
 
 =cut
