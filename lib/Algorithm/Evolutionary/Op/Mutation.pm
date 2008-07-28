@@ -33,7 +33,7 @@ Mutation operator for a GA
 
 package  Algorithm::Evolutionary::Op::Mutation;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -98,10 +98,10 @@ sub apply ($;$) {
   my $victim = $arg->clone();
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   for ( my $i = 0; $i < length( $victim->{_str} ); $i ++ ) {
-	if ( rand() < $self->{_mutRate} ) {
+      if ( rand() < $self->{_mutRate} ) {
 	  my $bit = $victim->Atom($i);
 	  $victim->Atom($i,  $bit?0:1 );
-	}
+      }
   }
   return $victim;
 }
@@ -111,10 +111,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:37:55 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.3 2008/06/23 11:37:55 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/28 06:13:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 1.4 2008/07/28 06:13:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

@@ -48,7 +48,7 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Crossover;
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -109,8 +109,8 @@ sub  apply ($$$){
 #  my $victim = $arg->clone();
   my $victim = clone( $arg );
   my $victim2 = shift || croak "No victim here!";
-  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
-  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
+#  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
+#  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
   my $minlen = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
 	 length( $victim2->{_str} ): length( $victim->{_str} );
   my $pt1 = int( rand( $minlen ) );
@@ -131,10 +131,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:26:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.4 2008/07/02 16:26:02 jmerelo Exp $ 
+  CVS Info: $Date: 2008/07/28 06:13:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.5 2008/07/28 06:13:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
