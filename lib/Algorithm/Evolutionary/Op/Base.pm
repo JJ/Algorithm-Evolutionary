@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 1.11 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.12 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -147,7 +147,7 @@ sub fromXML {
 }
 
 
-=head2 asXML
+=head2 asXML( [$id] )
 
 Prints as XML, following the EvoSpec 0.2 XML specification. Should be
 called from derived classes, not by itself. Provides a default
@@ -159,7 +159,8 @@ name='foo' rate='1' E<gt> >.
 If there is not anything special, this takes also care of the instance
 variables different from C<rate>: they are inserted as C<param> within
 the XML file. In this case, C<param>s are void tags; if you want
-anything more fancy, you will have to override this method.
+anything more fancy, you will have to override this method. An
+optional ID can be used.
 
 =cut
 
@@ -328,10 +329,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 08:31:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.11 2008/07/27 08:31:11 jmerelo Exp $ 
+  CVS Info: $Date: 2008/09/12 18:31:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 1.12 2008/09/12 18:31:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.11 $
+  $Revision: 1.12 $
   $Name $
 
 =cut

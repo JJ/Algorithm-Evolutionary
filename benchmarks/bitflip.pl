@@ -6,7 +6,7 @@
 
 =head1 SYNOPSIS
 
-  prompt% ./bitfpli.pl 
+  prompt% ./bitflip.pl 
 
 or
 
