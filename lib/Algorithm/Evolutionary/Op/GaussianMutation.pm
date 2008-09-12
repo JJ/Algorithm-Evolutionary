@@ -37,7 +37,7 @@ Mutation operator for a GA: applies gaussian mutation to a number
 
 package Algorithm::Evolutionary::Op::GaussianMutation;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Math::Random;
@@ -49,9 +49,9 @@ use base 'Algorithm::Evolutionary::Op::Base';
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::Vector';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( [$average = 0] [, $standard deviation = 1] [, $rate = 1 ]
 
-Creates a new mutation operator with an application rate. Rate defaults to 0.1.
+Creates a new mutation operator with an application rate. Rate defaults to 1.
 
 =cut
 
@@ -115,10 +115,10 @@ sub apply ($$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:26:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.3 2008/07/02 16:26:02 jmerelo Exp $ 
+  CVS Info: $Date: 2008/09/12 18:31:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 1.4 2008/09/12 18:31:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut

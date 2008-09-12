@@ -34,7 +34,7 @@ use warnings;
     tie my @vector, 'Algorithm::Evolutionary::Individual::Vector', @array;
     print tied( @vector )->asXML();
 
-    print $indi3->asString(); #Prints the individual
+    print $indi3->as_string(); #Prints the individual
     print $indi3->asXML() #Prints it as XML. See L<XML> for more info on this
 
 =head1 Base Class
@@ -54,15 +54,13 @@ package Algorithm::Evolutionary::Individual::Vector;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
 
-use Algorithm::Evolutionary::Individual::Base;
-
-our @ISA = qw (Algorithm::Evolutionary::Individual::Base);
+use base 'Algorithm::Evolutionary::Individual::Base';
 
 =head1 METHODS 
 
-=head2 new
+=head2 new( [$length = 10] [, $start_of_range = 0] [, $end_of_range = 1] )
 
 Creates a new random array individual, with fixed initial length, and uniform distribution
 of values within a range
@@ -103,7 +101,7 @@ sub TIEARRAY {
   return $self;
 }
 
-=head2 set
+=head2 set( $ref_to_hash )
 
 Sets values of an individual; takes a hash as input. The array is
 initialized to a null array, and the start and end range are
@@ -123,7 +121,7 @@ sub set {
   $self->{_fitness} = undef;
 }
 
-=head2 randomize
+=head2 randomize()
 
 Assigns random values to the elements
 
@@ -211,7 +209,7 @@ sub FETCHSIZE {
   return @{$self->{_array}} -1;
 }
 
-=head2 length
+=head2 length()
 
 Returns the number of atoms in the individual
 
@@ -222,7 +220,7 @@ sub length {
   return scalar @{$self->{_array}};
 }
 
-=head2 fromString
+=head2 fromString( $string )
 
 Similar to a copy ctor; creates a vector individual from a string composed of 
 stuff separated by a separator
@@ -240,7 +238,7 @@ sub fromString  {
   return $self;
 }
 
-=head2 clone
+=head2 clone()
 
 Similar to a copy ctor: creates a new individual from another one
 
@@ -258,22 +256,34 @@ sub clone {
 }
 
 
-=head2 asString
+=head2 asString()
 
-Prints it
+Prints it, including fitness. OK, this is a bit confusing
 
 =cut
 
 sub asString {
   my $self = shift;
-  my $str = join( ", ", @{$self->{_array}}) . " -> ";
+  my $str = $self->as_string();
   if ( defined $self->{_fitness} ) {
 	$str .=$self->{_fitness};
   }
   return $str;
 }
 
-=head2 asXML
+=head2 as_string()
+
+Prints just the chromosome, not the fitness
+
+=cut
+
+sub as_string {
+  my $self = shift;
+  my $str = join( ", ", @{$self->{_array}}) . " -> ";
+  return $str;
+}
+
+=head2 asXML()
 
 Prints it as XML. See the L<Algorithm::Evolutionary::XML|lgorithm::Evolutionary::XML> OPEAL manual for details.
 
@@ -287,7 +297,7 @@ sub asXML {
   return $str."\n</indi>";
 }
 
-=head2 Chrom
+=head2 Chrom( [$ref_to_array]
 
 Sets or gets the array that holds the chromosome. Not very nice, and
 I would never ever do this in C++
@@ -307,10 +317,10 @@ sub Chrom {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/25 08:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 1.2 2008/07/25 08:20:46 jmerelo Exp $ 
+  CVS Info: $Date: 2008/09/12 18:31:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 1.3 2008/09/12 18:31:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

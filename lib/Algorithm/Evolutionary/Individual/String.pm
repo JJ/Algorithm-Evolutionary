@@ -29,7 +29,7 @@ use warnings;
     tie my @vector, 'Algorithm::Evolutionary::Individual::String', @array;
     print tied( @vector )->asXML();
     
-    print $indi3->asString(); #Prints the individual
+    print $indi3->as_string(); #Prints the individual
     print $indi3->asXML(); #Prints it as XML. See 
 
     my $xml=<<EOC;
@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -253,6 +253,18 @@ sub size {
   return length($self->{_str}); #Solves ambiguity
 }
 
+=head2 as_string() 
+    
+    Returns the string used as internal representation
+
+=cut
+
+sub as_string {
+    my $self = shift;
+    return $self->{_str};
+}
+
+
 =head2 asXML()
 
 Prints it as XML. See L<Algorithm::Evolutionary::XML> for more info on this
@@ -298,10 +310,10 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 18:57:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
+  CVS Info: $Date: 2008/09/12 18:31:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 1.5 2008/09/12 18:31:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
