@@ -34,7 +34,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -100,7 +100,7 @@ sub apply ($;$){
       my $rnd = int (rand( $size ));
       $victim->Atom( $rnd, $victim->Atom( $rnd )?0:1 );
   }
-  $victim->Fitness(undef); #Invalidate fitness
+  $victim->{'_fitness'} = undef ;
   return $victim;
 }
 
@@ -109,10 +109,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/24 18:57:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.4 2008/07/24 18:57:36 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/02 05:56:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 1.5 2008/10/02 05:56:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
