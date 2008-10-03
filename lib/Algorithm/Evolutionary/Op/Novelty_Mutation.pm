@@ -25,7 +25,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Novelty_Mutation;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -78,6 +78,11 @@ sub apply ($;$){
     $test_clone->Atom( $i, $test_clone->Atom( $i )?0:1 );
     last if !$self->{'_population_hashref'}->{$test_clone->Chrom()};
   }
+  if ( $test_clone->Chrom() eq $arg->Chrom() ) { # Nothing done, zap
+    for ( my $i = 0; $i < $size; $i++ ) {
+      $test_clone->Atom( $i, (rand(100)>50)?0:1 );
+    }
+  }
   $test_clone->{'_fitness'} = undef ;
   return $test_clone;
 }
@@ -87,10 +92,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/02 05:58:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 1.2 2008/10/02 05:58:46 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/03 16:32:30 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 1.3 2008/10/03 16:32:30 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
