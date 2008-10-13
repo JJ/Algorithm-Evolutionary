@@ -36,8 +36,9 @@ my $program_params =  LoadFile( $program_params_file) || die "Can't load $progra
 
 my $ec_file = $params->{'ec_file'}.".yaml";
 my $ec = LoadFile( $ec_file ) || die "Can't load $ec_file: $@\n";
-my $result_file = $program_params->{'ID'}.".yaml";
-my $io = IO::YAML->new($params->{'ID'}."-".DateTime->now().".yaml", ">");
+my $result_file = "$params->{'ec_file'}-$program_params->{'migration_policy'}-$program_params->{'match_policy'}.yaml";
+my ($conf_name) = ( $program_params_file =~ /([^.]+)\.conf/);
+my $io = IO::YAML->new("$params->{'ec_file'}-$conf_name-".DateTime->now().".yaml", ">");
 $ec->{'uname'} = $Config{'myuname'}; # conf stuff
 $ec->{'arch'} = $Config{'myarchname'};
 print $io $ec;
@@ -63,10 +64,10 @@ $io->close();
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/04/03 17:11:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/run_experiment.pl,v 1.2 2008/04/03 17:11:38 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/13 08:25:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/run_experiment.pl,v 1.3 2008/10/13 08:25:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

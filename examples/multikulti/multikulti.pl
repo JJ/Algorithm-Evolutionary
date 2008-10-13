@@ -30,7 +30,7 @@ use DateTime;
 my $spec = shift || die "Usage: $0 params.yaml conf.yaml\n";
 my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
-my $last_evals = 0; # Number of guys evaluated by the other session
+my $total_evals; # Number of guys evaluated by the other session
 my %best;
 
 my $migration_policy = $conf->{'migration_policy'} || 'multikulti';
@@ -45,16 +45,18 @@ for my $s (1..$sessions) {
 		       );
 }
 
-#Time
-my $io = IO::YAML->new($conf->{'ID'}.".yaml", ">");
+#Timer
+my ($spec_name) = ( $spec =~ /([^.]+)\.yaml/);
+my $io = IO::YAML->new("$spec_name-$migration_policy-$match_policy.yaml", ">");
 $io->print( [ now(), 'Start' ]);
 $poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
 
 $poe_kernel->run();
 $io->print( [ now(), "Exiting" ]);
-$io->close();
+$io->close() || die "Can't close: $@";
 exit(0);
 
+#----------------------------------------------------------#
 sub now {
   my $now = DateTime->now();
   return $now->ymd."T".$now->hms;
@@ -77,7 +79,7 @@ sub generation {
   my $algorithm = $heap->{'algorithm'};
   my @data = ( now(), $alias );
   $algorithm->run();
-
+  my $population = $heap->{'algorithm'}->{'_population'};
   my $match;
   my $best = $algorithm->results()->{'best'};
   if ( $match_policy eq 'consensus' ) {
@@ -86,7 +88,13 @@ sub generation {
       $match = $best;
   }
   $best{$alias} = $match;
+  
   my $these_evals = $heap->{'algorithm'}->results()->{'evaluations'};
+  if ( $alias eq 'Population 1' ) {
+    $total_evals = $these_evals;
+  } else {
+    $total_evals += $these_evals;
+  }
   my ($idx) = ($next =~ /Population (\d+)/);
   my $after_punk = "Population ".($idx+1) ;
   if ( $after_punk gt "Population $sessions" ) {
@@ -118,9 +126,8 @@ sub generation {
   push @data, {'best' => $best };
   push @data, {'entropy' => entropy( $population ) };
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
-       && ( ($these_evals + $last_evals) < $conf->{'max_evals'} ) ) {
-      $kernel->post($next, 'generation', $after_punk , $somebody );    
-      $last_evals = $these_evals;
+       && ( ($total_evals) < $conf->{'max_evals'} ) ) {
+      $kernel->post($next, 'generation', $after_punk , $somebody );
   } else {
     for( my $s = 1; $s <= $sessions; $s ++ ) {
       $kernel->post("Population $s", 'finish');
@@ -189,10 +196,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/17 10:40:30 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.6 2008/06/17 10:40:30 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/13 08:25:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.7 2008/10/13 08:25:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
