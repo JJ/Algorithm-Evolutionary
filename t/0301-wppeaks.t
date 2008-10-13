@@ -6,7 +6,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 3;
+use Test::More tests => 5;
 
 use warnings;
 use strict;
@@ -29,3 +29,10 @@ isa_ok( $p_peaks,  "Algorithm::Evolutionary::Fitness::wP_Peaks" );
 my $string = $p_peaks->random_string();
 ok( $p_peaks->p_peaks( $string ) > 0, "Seems to work" );
 
+my $descriptor = { number_of_peaks => $peaks,
+		   weight => 0.99 };
+$p_peaks = new Algorithm::Evolutionary::Fitness::wP_Peaks( $bits, $descriptor );
+isa_ok( $p_peaks,  "Algorithm::Evolutionary::Fitness::wP_Peaks" );
+
+$string = $p_peaks->random_string();
+ok( $p_peaks->p_peaks( $string ) > 0, "Seems to work" );

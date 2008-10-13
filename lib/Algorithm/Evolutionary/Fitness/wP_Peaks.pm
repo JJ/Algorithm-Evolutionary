@@ -14,6 +14,11 @@ use warnings;
     }
     my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_bits, @weights ); #Number of peaks = scalar  @weights
 
+    # Or use an alternative ctor
+    my $descriptor = { number_of_peaks => 100,
+                       weight => 0.99 };
+    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_bits, $descriptor)
+
 =head1 DESCRIPTION
 
     wP-Peaks fitness function, weighted version of the P-Peaks fitness function, which has now a single peak
@@ -24,14 +29,16 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use String::Random;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
 use base qw(Algorithm::Evolutionary::Fitness::String);
 
-=head2 new( $number_of_bits, $ref_to_weights_hash )
+=head2 new( $number_of_bits, @weights_array )
+
+or new( $number_of_bits, $hash_with_number_of_peaks_and_weight )
 
 Creates a new instance of the problem, with the said number of bits and peaks
 
@@ -39,7 +46,17 @@ Creates a new instance of the problem, with the said number of bits and peaks
 
 sub new {
   my $class = shift;
-  my ( $bits, @weights ) = @_;
+  my ( $bits ) = shift;
+
+  my @weights;
+  if ( ref $_[0] eq 'HASH' ) {
+      push @weights, 1;
+      for (my $i = 0; $i < $_[0]->{'number_of_peaks'}-1; $i ++ ) {
+	  push @weights, $_[0]->{'weight'};
+      } 
+  } else {
+      @weights = @_;
+  }
   my $self = $class->SUPER::new();
 
   #Generate peaks
@@ -103,10 +120,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:27:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 1.3 2008/06/23 11:27:10 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/13 08:25:55 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 1.4 2008/10/13 08:25:55 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
