@@ -21,7 +21,7 @@ P_Peaks fitness function; optimizes the distance to the closest in a series of p
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-our $VERSION = ( '$Revision: 1.9 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.10 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use String::Random;
 
@@ -30,7 +30,7 @@ use lib qw(../../.. ../.. ..);
 use base qw(Algorithm::Evolutionary::Fitness::String);
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-=head2 new
+=head2 new( $peaks, $bits )
 
     Creates a new instance of the problem, with the said number of bits and peaks
 
@@ -39,6 +39,8 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 sub new {
   my $class = shift;
   my ($peaks, $bits ) = @_;
+  croak "No peaks" if !$peaks;
+  croak "Too few bits" if !$bits;
   my $self = $class->SUPER::new();
   #Generate peaks
   my $generator = new String::Random;
@@ -56,7 +58,7 @@ sub new {
   return $self;
 }
 
-=head2 random_string
+=head2 random_string()
 
 Returns random string in the same style than the peaks. Useful for testing
 
@@ -67,9 +69,9 @@ sub random_string {
     return $self->{'generator'}->randregex($self->{'regex'});
 }
 
-=head2 _apply
+=head2 _really_apply( $string )
 
-Applies the instantiated problem to a chromosome
+Applies the instantiated problem to a chromosome. Intended for internal use.
 
 =cut
 
@@ -78,7 +80,7 @@ sub _really_apply {
   return $self->p_peaks( @_ )/$self->{'bits'} ;
 }
 
-=head2 p_peaks
+=head2 p_peaks( $string )
 
 Applies the instantiated problem to a string
 
@@ -89,7 +91,7 @@ our %cache;
 sub p_peaks {
     my $self = shift;
     my @peaks = @{$self->{'peaks'}};
-    my $string = shift;
+    my $string = shift || croak "No string!";
     my $cache = $self->{'_cache'};
     if ( $cache->{$string} ) {
 	return $cache->{$string};
@@ -106,10 +108,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 11:27:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.9 2008/06/23 11:27:10 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/23 06:09:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.10 2008/10/23 06:09:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.10 $
   $Name $
 
 =cut
