@@ -34,9 +34,9 @@ computed by the algorithm"
 
 package Algorithm::Evolutionary::Fitness::ECC;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
-use String::Random;
+use Carp qw(croak);
 
 use lib qw(../../.. ../.. ..);
 
@@ -53,11 +53,11 @@ sub new {
   my $class = shift;
   my ($number_of_codewords, $min_distance ) = @_;
   croak "Too few codewords" if !$number_of_codewords;
-  croak "Distance too small" if !$min_distance
-  
+  croak "Distance too small" if !$min_distance;
   my $self = $class->SUPER::new();
   bless $self, $class;
   $self->initialize();
+  $self->{'number_of_codewords'} = $number_of_codewords;
   return $self;
 }
 
@@ -89,9 +89,9 @@ sub ecc {
     my @codewords = ( $string =~ /.{$length}/gs );
     my $distance;
     for ( my $i = 0; $i <= $#codewords; $i ++ ) {
-      for ( my $j = $i; $j <= $#codewords; $j ++ ) {
+      for ( my $j = $i+1; $j <= $#codewords; $j ++ ) {
 	my $this_distance = hamming( $codewords[$i], $codewords[$j] );
-	$distance += 1/($this_distance*$this_distance);
+	$distance += 1/(1+$this_distance*$this_distance);
       }
     }
     $cache->{$string} = 1/$distance;
@@ -104,10 +104,10 @@ sub ecc {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/23 06:09:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 1.1 2008/10/23 06:09:59 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/24 07:56:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 1.2 2008/10/24 07:56:01 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

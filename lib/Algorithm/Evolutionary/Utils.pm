@@ -30,10 +30,12 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
-our @EXPORT_OK = qw( entropy consensus hamming);
+our $VERSION = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ ) ;
+our @EXPORT_OK = qw( entropy consensus hamming random_bitstring);
 
 use Carp;
+use String::Random;
+
 
 =head2 entropy( $population)
 
@@ -97,16 +99,29 @@ sub consensus {
   return $consensus;
 }
 
+=head2 random_bitstring( $bits )
+
+Returns a random bitstring with the stated number of bits. Useful for testing,mainly
+
+=cut
+
+sub random_bitstring {
+  my $bits = shift || croak "No bits!";
+  my $generator = new String::Random;
+  my $regex = "\[01\]{$bits}";
+  return $generator->randregex($regex);
+}
+
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 16:10:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.5 2008/07/27 16:10:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/24 07:56:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 1.6 2008/10/24 07:56:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut
