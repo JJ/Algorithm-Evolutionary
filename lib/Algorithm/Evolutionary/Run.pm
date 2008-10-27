@@ -62,7 +62,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.8 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.9 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -86,15 +86,7 @@ sub new {
       $self = $param;
   }
       
-  #Initial population
-  my @pop;
-
-  #Creamos $popSize individuos
-  my $bits = $self->{'length'}; 
-  for ( 1..$self->{'pop_size'} ) {
-      my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
-      push( @pop, $indi );
-  }
+ 
   
   
 #----------------------------------------------------------#
@@ -107,6 +99,7 @@ sub new {
   eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
   my @params = $self->{'fitness'}->{'params'}? @{$self->{'fitness'}->{'params'}} : ();
   my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
+  $self->{'_fitness'} = $fitness_object;
   
 #----------------------------------------------------------#
 #Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -119,18 +112,38 @@ sub new {
   my $inicioTiempo = [gettimeofday()];
   
 #----------------------------------------------------------#
-  for ( @pop ) {
+  bless $self, $class;
+  $self->reset_population;
+  for ( @{$self->{'_population'}} ) {
     if ( !defined $_->Fitness() ) {
       $_->evaluate( $fitness_object );
     }
   }
 
-  $self->{'_population'} = \@pop;
   $self->{'_generation'} = $generation;
   $self->{'_start_time'} = $inicioTiempo;
-  $self->{'_fitness'} = $fitness_object;
-  bless $self, $class;
   return $self;
+}
+
+=head2 reset_population()
+
+Resets population, creating a new one; resets fitness counter to 0
+
+=cut 
+
+sub reset_population {
+  my $self = shift;
+  #Initial population
+  my @pop;
+
+  #Creamos $popSize individuos
+  my $bits = $self->{'length'}; 
+  for ( 1..$self->{'pop_size'} ) {
+      my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
+      push( @pop, $indi );
+  }
+  $self->{'_population'} = \@pop;
+  $self->{'_fitness'}->reset_evaluations;
 }
 
 =head2 step()
@@ -194,10 +207,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/27 18:00:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.8 2008/10/27 18:00:44 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/27 19:29:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.9 2008/10/27 19:29:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.8 $
+  $Revision: 1.9 $
   $Name $
 
 =cut
