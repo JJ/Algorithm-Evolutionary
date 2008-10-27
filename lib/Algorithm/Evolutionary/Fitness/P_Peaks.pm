@@ -21,9 +21,10 @@ P_Peaks fitness function; optimizes the distance to the closest in a series of p
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-our $VERSION = ( '$Revision: 1.10 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.11 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use String::Random;
+use Carp;
 
 use lib qw(../../.. ../.. ..);
 
@@ -39,7 +40,7 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 sub new {
   my $class = shift;
   my ($peaks, $bits ) = @_;
-  croak "No peaks" if !$peaks;
+  croak "No peaks"  if !$peaks;
   croak "Too few bits" if !$bits;
   my $self = $class->SUPER::new();
   #Generate peaks
@@ -86,8 +87,6 @@ Applies the instantiated problem to a string
 
 =cut
 
-our %cache;
-
 sub p_peaks {
     my $self = shift;
     my @peaks = @{$self->{'peaks'}};
@@ -108,10 +107,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/23 06:09:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.10 2008/10/23 06:09:59 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/27 18:00:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 1.11 2008/10/27 18:00:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.10 $
+  $Revision: 1.11 $
   $Name $
 
 =cut
