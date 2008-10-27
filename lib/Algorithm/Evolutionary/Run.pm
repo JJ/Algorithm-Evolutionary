@@ -62,7 +62,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.8 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -99,7 +99,7 @@ sub new {
   
 #----------------------------------------------------------#
 # Variation operators
-  my $m =  new Algorithm::Evolutionary::Op::Bitflip( 1, $self->{'mutation'}->{'priority'}  );
+  my $m = new Algorithm::Evolutionary::Op::Bitflip( 1, $self->{'mutation'}->{'priority'}  );
   my $c = new Algorithm::Evolutionary::Op::Crossover($self->{'mutation'}->{'points'}, $self->{'crossover'}->{'priority'} );
   
 # Fitness function
@@ -113,19 +113,16 @@ sub new {
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-  my $fitness = sub { $fitness_object->apply(@_) };
-  
-  my $generation = Algorithm::Evolutionary::Op::Easy->new( $fitness , $self->{'selection_rate'} , [$m, $c] ) ;
+  my $generation = Algorithm::Evolutionary::Op::Easy->new( $fitness_object , $self->{'selection_rate'} , [$m, $c] ) ;
   
 #Time
   my $inicioTiempo = [gettimeofday()];
   
 #----------------------------------------------------------#
   for ( @pop ) {
-      if ( !defined $_->Fitness() ) {
-	  my $this_fitness = $fitness->($_);
-	  $_->Fitness( $this_fitness );
-      }
+    if ( !defined $_->Fitness() ) {
+      $_->evaluate( $fitness_object );
+    }
   }
 
   $self->{'_population'} = \@pop;
@@ -197,10 +194,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 16:10:53 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.7 2008/07/27 16:10:53 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/27 18:00:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.8 2008/10/27 18:00:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut
