@@ -23,7 +23,7 @@ package Algorithm::Evolutionary::Fitness::Base;
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
 
 
 =head2 new()
@@ -74,7 +74,7 @@ derived clases
 =cut
 
 sub _apply {
-  carp "You should have overloaded this\n";
+  croak "You should have overloaded this\n";
 }
 
 
@@ -87,7 +87,28 @@ collecting stats
 
 sub evaluations {
   my $self = shift;
-  return $self->{_counter};
+  return $self->{'_counter'};
+}
+
+=head2 reset_evaluations() 
+
+Sets to 0 the number of evaluations; useful for repeated use of the fitness object
+=cut
+
+sub reset_evaluations {
+  my $self = shift;
+  $self->{'_counter'} = 0;
+}
+
+=head2 cache() 
+
+Returns a reference to the internal evaluations cache. Not very encapsulated, but...
+
+=cut
+
+sub cache {
+    my $self = shift;
+    return $self->{'cache'};
 }
 
 =head1 Known subclasses
@@ -110,6 +131,14 @@ L<Algorithm::Evolutionary::Fitness::wP_Peaks>
 
 L<Algorithm::Evolutionary::Fitness::Knapsack>
 
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::ECC>
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::Royal_Road>
+
 =back
 
 =head1 Copyright
@@ -117,10 +146,10 @@ L<Algorithm::Evolutionary::Fitness::Knapsack>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/18 17:18:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.4 2008/06/18 17:18:11 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/27 19:29:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.5 2008/10/27 19:29:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
