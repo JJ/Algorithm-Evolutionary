@@ -62,7 +62,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 
-our $VERSION = ( '$Revision: 1.9 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.10 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -85,9 +85,6 @@ sub new {
   } else { #It's a hashref
       $self = $param;
   }
-      
- 
-  
   
 #----------------------------------------------------------#
 # Variation operators
@@ -124,6 +121,21 @@ sub new {
   $self->{'_start_time'} = $inicioTiempo;
   return $self;
 }
+
+=head2 population_size( $new_size )
+
+Resets the population size to the C<$new_size>. It does not do
+anything to the actual population, just resests the number. You should
+do a C<reset_population> afterwards.
+
+=cut
+
+sub population_size {
+  my $self = shift;
+  my $new_size = shift || croak "Too small!";
+  $self->{'pop_size'} = $new_size;
+}
+
 
 =head2 reset_population()
 
@@ -207,10 +219,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/27 19:29:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.9 2008/10/27 19:29:10 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/28 12:54:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.10 2008/10/28 12:54:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.10 $
   $Name $
 
 =cut

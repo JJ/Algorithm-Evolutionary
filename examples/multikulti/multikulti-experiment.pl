@@ -31,7 +31,7 @@ my @methods= (['random','none'],['best','none'],
 	      ['multikulti','best'], ['multikulti','consensus'], 
 	      ['multikulti-elite','best'], ['multikulti-elite','consensus'] );
 	      
-my $spec = shift || die "Usage: $0 params.yaml conf.yaml\n";
+my $spec_file = shift || die "Usage: $0 params.yaml conf.yaml\n";
 my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
 my %best;
@@ -39,33 +39,36 @@ my %best;
 my $algorithm =  new Algorithm::Evolutionary::Run $spec;
 my ($spec_name) = ( $spec =~ /([^.]+)\.yaml/);
 
+my $spec = LoadFile( $spec_file) || die "Can't open $spec_file: $@\n";
+my $initial_polulation = $spec->{'pop_size'};
 for my $method ( @methods ) {
     my $migration_policy = $method->[0];
     my $match_policy = $method->[1];
-    
     for my $sessions ( qw (2 4 8 ) ) {
-	print "Starting $migration_policy $match_policy $sessions sessions\n";
-	my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
-	for my $i ( 1..5 ) {
-	    print "\t$i\n";
-	    $io->print( [ now(), 'Start' ]);
-	    for my $s (1..$sessions) {
-		POE::Session->create(inline_states => { _start => \&start,
-							generation => \&generation,
-							finish => \&finishing},
-				     args  => [$sessions, $s, $io, $algorithm,
-				     $migration_policy, $match_policy]
-		    );
-	    }
-	    
-	    #Timer
-	    
-	    $poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
-	    
-	    $poe_kernel->run();
-	    $io->print( [ now(), "Exiting" ]);
+      my $this_population = $initial_population/$sessions;
+      $algorithm->population_size($this_population);
+      print "Starting $migration_policy $match_policy $sessions sessions\n";
+      my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
+      for my $i ( 1..5 ) {
+	print "\t$i\n";
+	$io->print( [ now(), 'Start' ]);
+	for my $s (1..$sessions) {
+	  POE::Session->create(inline_states => { _start => \&start,
+						  generation => \&generation,
+						  finish => \&finishing},
+			       args  => [$sessions, $s, $io, $algorithm,
+					 $migration_policy, $match_policy]
+			      );
 	}
-	$io->close() || die "Can't close: $@";
+	    
+	#Timer
+	
+	$poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
+	
+	$poe_kernel->run();
+	$io->print( [ now(), "Exiting" ]);
+      }
+      $io->close() || die "Can't close: $@";
     }
 }
 exit(0);
@@ -212,10 +215,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/28 07:03:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.2 2008/10/28 07:03:49 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/28 12:54:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.3 2008/10/28 12:54:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
