@@ -2,11 +2,11 @@
 
 =head1 NAME
 
-  multikulti.pl - Seudoparallel implementation of the multikulti algorithm with variants
+  multikulti-experiment.pl - Seudoparallel implementation of the multikulti algorithm with variants
 
 =head1 SYNOPSIS
 
-  prompt% ./multikulti.pl params.yaml conf.yaml
+  prompt% ./multikulti-experiment.pl params.yaml conf.yaml
 
 
 =head1 DESCRIPTION  
@@ -27,38 +27,46 @@ use YAML qw(Dump LoadFile);
 use IO::YAML;
 use DateTime;
 
+my @methods= (['random','none'],['best','none'],
+	      ['multikulti','best'], ['multikulti','consensus'], 
+	      ['multikulti-elite','best'], ['multikulti-elite','consensus'] );
+	      
 my $spec = shift || die "Usage: $0 params.yaml conf.yaml\n";
 my $params_file = shift || "conf.yaml";
 my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
 my %best;
 
-my $migration_policy = $conf->{'migration_policy'} || 'multikulti';
-my $match_policy = $conf->{'match_policy'} || 'best';
-
-my ($spec_name) = ( $spec =~ /([^.]+)\.yaml/);
 my $algorithm =  new Algorithm::Evolutionary::Run $spec;
-for my $sessions ( qw (2 4 8 ) ) {
-    print "Starting $sessions sessions\n";
-    my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
-    for my $i ( 1..5 ) {
-      print "\t$i\n";
-      $io->print( [ now(), 'Start' ]);
-      for my $s (1..$sessions) {
-	POE::Session->create(inline_states => { _start => \&start,
-						generation => \&generation,
-						finish => \&finishing},
-			     args  => [$sessions, $s, $io, $algorithm]
-			    );
-      }
-      
-      #Timer
-      
-      $poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
-      
-      $poe_kernel->run();
-      $io->print( [ now(), "Exiting" ]);
+my ($spec_name) = ( $spec =~ /([^.]+)\.yaml/);
+
+for my $method ( @methods ) {
+    my $migration_policy = $method->[0];
+    my $match_policy = $method->[1];
+    
+    for my $sessions ( qw (2 4 8 ) ) {
+	print "Starting $migration_policy $match_policy $sessions sessions\n";
+	my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
+	for my $i ( 1..5 ) {
+	    print "\t$i\n";
+	    $io->print( [ now(), 'Start' ]);
+	    for my $s (1..$sessions) {
+		POE::Session->create(inline_states => { _start => \&start,
+							generation => \&generation,
+							finish => \&finishing},
+				     args  => [$sessions, $s, $io, $algorithm,
+				     $migration_policy, $match_policy]
+		    );
+	    }
+	    
+	    #Timer
+	    
+	    $poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
+	    
+	    $poe_kernel->run();
+	    $io->print( [ now(), "Exiting" ]);
+	}
+	$io->close() || die "Can't close: $@";
     }
-    $io->close() || die "Can't close: $@";
 }
 exit(0);
     
@@ -70,14 +78,16 @@ sub now {
 #----------------------------------------------------------#
 
 sub start {
-  my ($kernel, $heap, $sessions, $session, $io, $algorithm ) = 
-    @_[KERNEL, HEAP, ARG0, ARG1, ARG2, ARG3];
+  my ($kernel, $heap, $sessions, $session, $io, $algorithm, $migration_policy, $match_policy ) = 
+    @_[KERNEL, HEAP, ARG0, ARG1, ARG2, ARG3, ARG4, ARG5];
   $kernel->alias_set("Population $session");
   $heap->{'algorithm'} = $algorithm;
   $algorithm->reset_population; # Restarts population
   $heap->{'sessions'} = $sessions;
   $heap->{'io'} = $io;
   $heap->{'counter'} = 0;
+  $heap->{'migration_policy'} = $migration_policy;
+  $heap->{'match_policy'} = $match_policy;
 }
 
 #------------------------------------------------------------#
@@ -92,7 +102,7 @@ sub generation {
   my $population = $heap->{'algorithm'}->{'_population'};
   my $match;
   my $best = $algorithm->results()->{'best'};
-  if ( $match_policy eq 'consensus' ) {
+  if ( $heap->{'match_policy'} eq 'consensus' ) {
       $match = consensus( $population );
   } else {
       $match = $best;
@@ -108,6 +118,7 @@ sub generation {
 
   #Decide who to send
   my $somebody;
+  my $migration_policy = $heap->{'migration_policy'};
   if ( $migration_policy eq 'multikulti' ) {
       if ( $best{$next} ) {
 	  $somebody = worst_match( $population, $best{$next});
@@ -201,10 +212,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/27 19:29:09 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.1 2008/10/27 19:29:09 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/28 07:03:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.2 2008/10/28 07:03:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
