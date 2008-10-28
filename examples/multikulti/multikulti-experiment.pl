@@ -47,13 +47,15 @@ for my $method ( @methods ) {
       my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
       for my $i ( 1..5 ) {
 	print "\t$i\n";
-	$io->print( [ now(), 'Start' ]);
+#	$io->print( [ now(), 'Start' ]);
+	my %data_hash = { Start => now() };
 	for my $s (1..$sessions) {
 	  POE::Session->create(inline_states => { _start => \&start,
 						  generation => \&generation,
 						  finish => \&finishing},
 			       args  => [$sessions, $s, $io, $algorithm,
-					 $migration_policy, $match_policy]
+					 $migration_policy, $match_policy,
+					 \%data_hash]
 			      );
 	}
 	    
@@ -62,7 +64,7 @@ for my $method ( @methods ) {
 	$poe_kernel->post( "Population 1", "generation", "Population 2"); #First, function and next generation
 	
 	$poe_kernel->run();
-	$io->print( [ now(), "Exiting" ]);
+#	$io->print( [ now(), "Exiting" ]);
       }
       $io->close() || die "Can't close: $@";
     }
@@ -77,7 +79,9 @@ sub now {
 #----------------------------------------------------------#
 
 sub start {
-  my ($kernel, $heap, $sessions, $session, $io, $algorithm, $migration_policy, $match_policy ) = 
+  my ($kernel, $heap, $sessions, $session, 
+      $io, $algorithm, $migration_policy, $match_policy,
+      $data_hashref) = 
     @_[KERNEL, HEAP, ARG0, ARG1, ARG2, ARG3, ARG4, ARG5];
   $kernel->alias_set("Population $session");
   $heap->{'algorithm'} = $algorithm;
@@ -87,6 +91,8 @@ sub start {
   $heap->{'counter'} = 0;
   $heap->{'migration_policy'} = $migration_policy;
   $heap->{'match_policy'} = $match_policy;
+  $data_hashref->{'running'} = [];
+  $heap->{'data_hashref'} = $data_hashref;
 }
 
 #------------------------------------------------------------#
@@ -156,12 +162,14 @@ sub generation {
       push @{$algorithm->{'_population'}}, $other_best;
   }
   $heap->{'counter'}++;
-  $heap->{'io'}->print( \@data );
+  push @{$heap->{'data_hashref'}->{'running'}}, \@data;
+#  $heap->{'io'}->print( \@data );
 }
 
 sub finishing {
   my $heap   = $_[ HEAP ];
-  $heap->{'io'}->print( [now(), { Finish => $heap->{'algorithm'}->results }] ) ;
+  $heap->{'data_hashref'}->{'finish'} = [ now(),  $heap->{'algorithm'}->results ];
+  $heap->{'io'}->print( %{$heap->{'data_hashref'}} ) ;
 }
 
 =head2 hamming
@@ -211,10 +219,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/28 13:16:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.4 2008/10/28 13:16:58 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/28 13:33:24 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.5 2008/10/28 13:33:24 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
