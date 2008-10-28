@@ -18,7 +18,7 @@ Implementation of the multikulti algorithm, submitted to PPSN (for the time bein
 use warnings;
 use strict;
 
-use lib qw(../../lib ../lib);
+use lib qw(../../lib ../lib  ../../../../lib );
 use Algorithm::Evolutionary::Run;
 use Algorithm::Evolutionary::Utils qw(entropy consensus);
 
@@ -31,16 +31,12 @@ my @methods= (['random','none'],['best','none'],
 	      ['multikulti','best'], ['multikulti','consensus'], 
 	      ['multikulti-elite','best'], ['multikulti-elite','consensus'] );
 	      
-my $spec_file = shift || die "Usage: $0 params.yaml conf.yaml\n";
-my $params_file = shift || "conf.yaml";
-my $conf = LoadFile( $params_file ) || die "Can't open $params_file: $@\n";
+my $spec_file = shift || die "Usage: $0 params.yaml\n";
 my %best;
-
-my $algorithm =  new Algorithm::Evolutionary::Run $spec;
-my ($spec_name) = ( $spec =~ /([^.]+)\.yaml/);
-
 my $spec = LoadFile( $spec_file) || die "Can't open $spec_file: $@\n";
-my $initial_polulation = $spec->{'pop_size'};
+my $algorithm =  new Algorithm::Evolutionary::Run $spec;
+my ($spec_name) = ( $spec_file =~ /([^.]+)\.yaml/);
+my $initial_population = $spec->{'pop_size'};
 for my $method ( @methods ) {
     my $migration_policy = $method->[0];
     my $match_policy = $method->[1];
@@ -145,7 +141,7 @@ sub generation {
   push @data, {'best' => $best };
   push @data, {'entropy' => entropy( $population ) };
   if ( ( $best->Fitness() < $algorithm->{'max_fitness'} ) 
-       && ( ($these_evals) < $conf->{'max_evals'} ) ) {
+       && ( ($these_evals) < $spec->{'max_evals'} ) ) {
       $kernel->post($next, 'generation', $after_punk , $somebody );
   } else {
     for( my $s = 1; $s <= $sessions; $s ++ ) {
@@ -215,10 +211,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/28 12:54:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.3 2008/10/28 12:54:58 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/28 13:16:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.4 2008/10/28 13:16:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
