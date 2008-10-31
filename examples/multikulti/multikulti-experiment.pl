@@ -37,6 +37,7 @@ my $spec = LoadFile( $spec_file) || die "Can't open $spec_file: $@\n";
 my $algorithm =  new Algorithm::Evolutionary::Run $spec;
 my ($spec_name) = ( $spec_file =~ /([^.]+)\.yaml/);
 my $initial_population = $spec->{'pop_size'};
+my $experiments = $spec->{'experiments'} || 3;
 for my $method ( @methods ) {
     my $migration_policy = $method->[0];
     my $match_policy = $method->[1];
@@ -45,7 +46,7 @@ for my $method ( @methods ) {
       $algorithm->population_size($this_population);
       print "Starting $migration_policy $match_policy $sessions sessions\n";
       my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
-      for my $i ( 1..30 ) {
+      for my $i ( 1..$experiments ) {
 	print "\t$i\n";
 #	$io->print( [ now(), 'Start' ]);
 	my $data_hash = { Start => now() };
@@ -222,10 +223,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/29 19:39:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.6 2008/10/29 19:39:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/10/31 10:02:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.7 2008/10/31 10:02:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
