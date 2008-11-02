@@ -1,11 +1,11 @@
-#-*-Perl-*-
+#-*-CPerl-*-
 
 use strict;
 use warnings;
 
 use Test::More;
 
-BEGIN { plan tests => 34 };
+BEGIN { plan tests => 36 };
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Op::Base;
@@ -16,6 +16,7 @@ my %modulesToTest = (
 		     Permutation => [0.5], 
 		     Bitflip => [10],
 		     Crossover => [2],
+                     Gene_Boundary_Crossover => [2,2],
 		     GaussianMutation => [1,1],
 		     TreeMutation => [0.5],
 		     VectorCrossover => [0.5],
@@ -63,10 +64,10 @@ sub createAndTest ($$;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 18:43:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/ops.t,v 1.2 2008/06/16 18:43:20 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/02 19:21:57 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/ops.t,v 1.3 2008/11/02 19:21:57 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

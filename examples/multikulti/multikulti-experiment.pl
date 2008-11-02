@@ -41,7 +41,7 @@ my $experiments = $spec->{'experiments'} || 3;
 for my $method ( @methods ) {
     my $migration_policy = $method->[0];
     my $match_policy = $method->[1];
-    for my $sessions ( qw (2 4 8 ) ) {
+    for my $sessions ( qw (2) ) {
       my $this_population = $initial_population/$sessions;
       $algorithm->population_size($this_population);
       print "Starting $migration_policy $match_policy $sessions sessions\n";
@@ -223,10 +223,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/31 10:02:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.7 2008/10/31 10:02:32 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/02 19:21:57 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.8 2008/11/02 19:21:57 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut
