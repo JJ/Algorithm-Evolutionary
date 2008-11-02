@@ -61,8 +61,9 @@ use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
+use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 
-our $VERSION = ( '$Revision: 1.10 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.11 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -89,7 +90,15 @@ sub new {
 #----------------------------------------------------------#
 # Variation operators
   my $m = new Algorithm::Evolutionary::Op::Bitflip( 1, $self->{'mutation'}->{'priority'}  );
-  my $c = new Algorithm::Evolutionary::Op::Crossover($self->{'mutation'}->{'points'}, $self->{'crossover'}->{'priority'} );
+  my $c;
+  #Big hack here
+  if ( $self->{'crossover'} ) {
+    $c = new Algorithm::Evolutionary::Op::Crossover($self->{'crossover'}->{'points'}, $self->{'crossover'}->{'priority'} );
+  } elsif ($self->{'gene_boundary_crossover'}) {
+    $c = new Algorithm::Evolutionary::Op::Gene_Boundary_Crossover($self->{'gene_boundary_crossover'}->{'points'}, 
+								  $self->{'gene_boundary_crossover'}->{'gene_size'} , 
+								  $self->{'gene_boundary_crossover'}->{'priority'} );
+  }
   
 # Fitness function
   my $fitness_class = "Algorithm::Evolutionary::Fitness::".$self->{'fitness'}->{'class'};
@@ -219,10 +228,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/28 12:54:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.10 2008/10/28 12:54:58 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/02 19:21:57 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.11 2008/11/02 19:21:57 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.10 $
+  $Revision: 1.11 $
   $Name $
 
 =cut
