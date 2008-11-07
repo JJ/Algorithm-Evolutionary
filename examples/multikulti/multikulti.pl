@@ -137,7 +137,7 @@ sub generation {
   #Incorporate at the end, as if it were asynchronous
   if ( $other_best && $heap->{'counter'}) {
       push @data, { 'receiving' => $other_best };
-      pop @{$algorithm->{'_population'}};
+      pop @{$algorithm->{'_population'}}; #take out last individual in the population
       push @{$algorithm->{'_population'}}, $other_best;
   }
   $heap->{'counter'}++;
@@ -196,10 +196,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/13 08:25:55 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.7 2008/10/13 08:25:55 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/07 07:06:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti.pl,v 1.8 2008/11/07 07:06:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 1.8 $
   $Name $
 
 =cut

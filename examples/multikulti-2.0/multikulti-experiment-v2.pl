@@ -6,7 +6,7 @@
 
 =head1 SYNOPSIS
 
-  prompt% ./multikulti-experiment.pl params.yaml conf.yaml
+  prompt% ./multikulti-experiment.pl params.yaml
 
 
 =head1 DESCRIPTION  
@@ -27,33 +27,22 @@ use YAML qw(Dump LoadFile);
 use IO::YAML;
 use DateTime;
 
-my @methods= (['random','none'],['best','none'],
-	      ['multikulti','best'], ['multikulti','consensus'], 
-	      ['multikulti-elite','best'], ['multikulti-elite','consensus'] );
+# my @methods= ('random','best','multikulti' );
+my @methods= ('multikulti' );
 	      
 my $spec_file = shift || die "Usage: $0 params.yaml\n";
-my %best; # Keeps the best of the target population
+my %last_good; #
 my $spec = LoadFile( $spec_file) || die "Can't open $spec_file: $@\n";
+my $algorithm =  new Algorithm::Evolutionary::Run $spec;
 my ($spec_name) = ( $spec_file =~ /([^.]+)\.yaml/);
 my $initial_population = $spec->{'pop_size'};
 my $experiments = $spec->{'experiments'} || 3;
-
-#Load fitness object
-my $fitness_spec = $spec->{'fitness'};
-my $fitness_class = "Algorithm::Evolutionary::Fitness::".$fitness_spec->{'class'};
-eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
-my @params = $fitness_spec->{'params'}? @{$fitness_spec->{'params'}} : ();
-my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
-
-for my $method ( @methods ) {
-    my $migration_policy = $method->[0];
-    my $match_policy = $method->[1];
-    for my $sessions ( qw (2 4 8) ) {
+for my $migration_policy ( @methods ) {
+    for my $sessions ( qw (2) ) {
       my $this_population = $initial_population/$sessions;
-      my $algorithm =  new Algorithm::Evolutionary::Run $spec, $fitness_object;
       $algorithm->population_size($this_population);
-      print "Starting $migration_policy $match_policy $sessions sessions\n";
-      my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy-$match_policy.yaml", ">");
+      print "Starting $migration_policy $sessions sessions\n";
+      my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy.yaml", ">");
       for my $i ( 1..$experiments ) {
 	print "\t$i\n";
 #	$io->print( [ now(), 'Start' ]);
@@ -63,7 +52,7 @@ for my $method ( @methods ) {
 						  generation => \&generation,
 						  finish => \&finishing},
 			       args  => [$sessions, $s, $io, $algorithm,
-					 $migration_policy, $match_policy,
+					 $migration_policy, 
 					 $data_hash]
 			      );
 	}
@@ -91,7 +80,7 @@ sub now {
 
 sub start {
   my ($kernel, $heap, $sessions, $session, 
-      $io, $algorithm, $migration_policy, $match_policy,
+      $io, $algorithm, $migration_policy, 
       $data_hashref) = 
     @_[KERNEL, HEAP, ARG0, ARG1, ARG2, ARG3, ARG4, ARG5,ARG6];
   $kernel->alias_set("Population $session");
@@ -101,7 +90,6 @@ sub start {
   $heap->{'io'} = $io;
   $heap->{'counter'} = 0;
   $heap->{'migration_policy'} = $migration_policy;
-  $heap->{'match_policy'} = $match_policy;
   $data_hashref->{'running'} = [];
   $data_hashref->{'finish'} = [];
   $heap->{'data_hashref'} = $data_hashref;
@@ -118,13 +106,7 @@ sub generation {
   $algorithm->run();
   my $population = $heap->{'algorithm'}->{'_population'};
   my $match;
-  my $best = $algorithm->results()->{'best'};
-  if ( $heap->{'match_policy'} eq 'consensus' ) {
-      $match = consensus( $population );
-  } else {
-      $match = $best;
-  }
-  $best{$alias} = $match;
+  $last_good{$alias} = $algorithm->results()->{'last_good'}; #Keep for other
   
   my $these_evals = $heap->{'algorithm'}->results()->{'evaluations'};
   my ($idx) = ($next =~ /Population (\d+)/);
@@ -136,23 +118,29 @@ sub generation {
   #Decide who to send
   my $somebody;
   my $migration_policy = $heap->{'migration_policy'};
-  if ( $migration_policy eq 'multikulti' ) {
-      if ( $best{$next} ) {
-	  $somebody = worst_match( $population, $best{$next});
-      } else {
-	  $somebody = $algorithm->random_member();
-      }
-  } elsif (  $migration_policy eq 'random' ) {
-      $somebody = $algorithm->random_member();
+  my $best = $algorithm->results()->{'best'};
+  if (  $migration_policy eq 'random' ) {
+      $somebody = [$algorithm->random_member()];
   } elsif (  $migration_policy eq 'best' ) {
-      $somebody = $best;
-  } elsif (  $migration_policy eq 'multikulti-elite' ) {
-    if ( $best{$next} ) {
-      my @population = @$population;
-      my @population_elite = @population[0..(@population/2)];
-      $somebody = worst_match( \@population_elite, $best{$next});
+      $somebody = [ $best ];
+  } elsif (  $migration_policy eq 'multikulti' ) {
+    if ( !$last_good{$next} ) {
+      $somebody = [$algorithm->random_member()];
     } else {
-      $somebody = $algorithm->random_member();
+      $somebody = [];
+      my $counter;
+      my @this_population = @{$algorithm->{'_population'}};
+      my $loser;
+      do {
+	$loser = pop @this_population;
+      } while ( ($loser->Fitness() < $last_good{$next}->Fitness())
+		&& @this_population );
+
+      if ( @this_population ) {
+	for ( my $i = 0; $i < $spec->{'max_generations'}; $i++ ) {
+	  push @{$somebody}, $this_population[ rand( $#this_population ) ];
+	}; 
+      }
     }
   }
   push @data, {'sending' => $somebody };
@@ -169,13 +157,26 @@ sub generation {
 
   #Incorporate at the end, as if it were asynchronous
   if ( $other_best && $heap->{'counter'}) {
-      push @data, { 'receiving' => $other_best };
-      pop @{$algorithm->{'_population'}};
-      push @{$algorithm->{'_population'}}, $other_best;
+    pop @{$algorithm->{'_population'}};
+    if ( $migration_policy eq 'best' || $migration_policy eq 'random' ) {
+      push @data, { 'receiving' => $other_best->[0] };
+      push @{$algorithm->{'_population'}}, $other_best->[0];
+    } else {
+      my $min_distance = length( $other_best->[0]->{'_str'});
+      my $most_different;
+      for my $i ( @$other_best ) {
+	my $this_distance = $algorithm->compute_average_distance($i);
+	if ( $this_distance < $min_distance ) {
+	  $min_distance = $this_distance;
+	  $most_different = $i;
+	}
+      }
+      push @{$algorithm->{'_population'}}, $most_different;
+    }
   }
   $heap->{'counter'}++;
   push @{$heap->{'data_hashref'}->{'running'}}, \@data;
-#  $heap->{'io'}->print( \@data );
+
 }
 
 sub finishing {
@@ -231,10 +232,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/07 07:06:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.9 2008/11/07 07:06:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/07 07:06:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti-2.0/multikulti-experiment-v2.pl,v 1.1 2008/11/07 07:06:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.1 $
   $Name $
 
 =cut
