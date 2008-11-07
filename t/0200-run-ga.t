@@ -1,7 +1,7 @@
 #-*-cperl-*-
 
 
-use Test::More tests => 6;
+use Test::More tests => 9;
 
 use warnings;
 use strict;
@@ -19,7 +19,6 @@ isa_ok( $algorithm, 'Algorithm::Evolutionary::Run' );
 $algorithm->{'_counter'} = 0;
 $algorithm->step();
 ok( $algorithm->{'_counter'} == 1, "step OK" ); 
-
 my $conf = {
   'fitness' => {
     'class' => 'MMDP'
@@ -40,6 +39,12 @@ my $conf = {
 };
 my $another_algorithm = new Algorithm::Evolutionary::Run $conf;
 isa_ok( $another_algorithm, 'Algorithm::Evolutionary::Run' );
+my $somebody = $algorithm->random_member();
+isa_ok( $somebody, 'Algorithm::Evolutionary::Individual::BitString');
 $another_algorithm->run();
 ok( $another_algorithm->{'_counter'} == 10, "run OK" ); 
-cmp_ok( $another_algorithm->results()->{'evaluations'}, ">",100, "Evaluations OK" );
+my $results = $another_algorithm->results();
+cmp_ok( $results->{'evaluations'}, ">",100, "Evaluations OK" );
+cmp_ok( $results->{'best'}->Fitness(), ">", 
+	$results->{'last_good'}->Fitness(), "Evolution OK" );
+cmp_ok( $another_algorithm->compute_average_distance( $somebody), ">", 0, "Distances" );

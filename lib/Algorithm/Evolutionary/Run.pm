@@ -1,6 +1,8 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw(../../.. ../.. ); #Emacs does not allow me to save!!!
+
 =head1 NAME
 
     Algorithm::Evolutionary::Run - Class for setting up an experiment with algorithms and population
@@ -62,8 +64,9 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
+use Algorithm::Evolutionary::Utils qw(hamming);
 
-our $VERSION = ( '$Revision: 1.11 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.12 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -80,6 +83,7 @@ sub new {
   my $class = shift;
 
   my $param = shift;
+  my $fitness_object = shift; # Can be undef
   my $self;
   if ( ! ref $param ) { #scalar => read yaml file
       $self = LoadFile( $param ) || carp "Can't load $param: is it a file?\n";
@@ -101,10 +105,12 @@ sub new {
   }
   
 # Fitness function
-  my $fitness_class = "Algorithm::Evolutionary::Fitness::".$self->{'fitness'}->{'class'};
-  eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
-  my @params = $self->{'fitness'}->{'params'}? @{$self->{'fitness'}->{'params'}} : ();
-  my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
+  if ( !$fitness_object ) {
+    my $fitness_class = "Algorithm::Evolutionary::Fitness::".$self->{'fitness'}->{'class'};
+    eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
+    my @params = $self->{'fitness'}->{'params'}? @{$self->{'fitness'}->{'params'}} : ();
+    $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
+  }
   $self->{'_fitness'} = $fitness_object;
   
 #----------------------------------------------------------#
@@ -217,10 +223,31 @@ Returns results in a hash that contains the best, total time so far
 
 sub results {
   my $self = shift;
+  my $population_size = scalar @{$self->{'_population'}};
+  my $last_good_pos = $population_size*(1-$self->{'selection_rate'});
   my $results = { best => $self->{'_population'}->[0],
+		  median => $self->{'_population'}->[ $population_size / 2],
+		  last_good => $self->{'_population'}->[ $last_good_pos ],
 		  time =>  tv_interval( $self->{'_start_time'} ),
 		  evaluations => $self->{'_fitness'}->evaluations() };
+  return $results;
 
+}
+
+=head2 compute_average_distance( $individual )
+
+Computes the average hamming distance to the population 
+
+=cut
+
+sub compute_average_distance {
+  my $self = shift;
+  my $other = shift || croak "No other\n";
+  my $distance;
+  for my $p ( @{$self->{'_population'}} ) {
+    $distance += hamming( $p->{'_str'}, $other->{'_str'} );
+  }
+  $distance /= @{$self->{'_population'}};
 }
 
 =head1 Copyright
@@ -228,10 +255,10 @@ sub results {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/02 19:21:57 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.11 2008/11/02 19:21:57 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/07 07:06:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.12 2008/11/07 07:06:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.11 $
+  $Revision: 1.12 $
   $Name $
 
 =cut
