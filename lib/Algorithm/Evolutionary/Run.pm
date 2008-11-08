@@ -61,12 +61,13 @@ package Algorithm::Evolutionary::Run;
 
 use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
+use Algorithm::Evolutionary::Op::CanonicalGA;
 use Algorithm::Evolutionary::Op::Bitflip;
 use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our $VERSION = ( '$Revision: 1.12 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.13 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -102,6 +103,8 @@ sub new {
     $c = new Algorithm::Evolutionary::Op::Gene_Boundary_Crossover($self->{'gene_boundary_crossover'}->{'points'}, 
 								  $self->{'gene_boundary_crossover'}->{'gene_size'} , 
 								  $self->{'gene_boundary_crossover'}->{'priority'} );
+  } elsif ($self->{'quad_xover'} ) {
+    $c = new Algorithm::Evolutionary::Op::QuadXOver($self->{'crossover'}->{'points'}, $self->{'crossover'}->{'priority'} );
   }
   
 # Fitness function
@@ -118,19 +121,21 @@ sub new {
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-  my $generation = Algorithm::Evolutionary::Op::Easy->new( $fitness_object , $self->{'selection_rate'} , [$m, $c] ) ;
+  my $algorithm_class = "Algorithm::Evolutionary::Op::".($self->{'algorithm'}?$self->{'algorithm'}:'Easy');
+  my $generation = eval $algorithm_class."->new( \$fitness_object , \$self->{'selection_rate'} , [\$m, \$c] )" 
+    || die "Can't instantiate $algorithm_class: $@\n";;
   
 #Time
   my $inicioTiempo = [gettimeofday()];
   
 #----------------------------------------------------------#
   bless $self, $class;
-  $self->reset_population;
-  for ( @{$self->{'_population'}} ) {
-    if ( !defined $_->Fitness() ) {
-      $_->evaluate( $fitness_object );
-    }
-  }
+#   $self->reset_population;
+#   for ( @{$self->{'_population'}} ) {
+#     if ( !defined $_->Fitness() ) {
+#       $_->evaluate( $fitness_object );
+#     }
+#   }
 
   $self->{'_generation'} = $generation;
   $self->{'_start_time'} = $inicioTiempo;
@@ -167,6 +172,7 @@ sub reset_population {
   my $bits = $self->{'length'}; 
   for ( 1..$self->{'pop_size'} ) {
       my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
+      $indi->evaluate( $self->{'_fitness'} );
       push( @pop, $indi );
   }
   $self->{'_population'} = \@pop;
@@ -255,10 +261,10 @@ sub compute_average_distance {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/07 07:06:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.12 2008/11/07 07:06:44 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.13 2008/11/08 18:25:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.12 $
+  $Revision: 1.13 $
   $Name $
 
 =cut

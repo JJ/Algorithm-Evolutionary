@@ -36,7 +36,9 @@ population.
 
 package Algorithm::Evolutionary::Op::CanonicalGA;
 
-our $VERSION = ( '$Revision: 1.4 $ ' =~ /(\d+\.\d+)/ ) ;
+use lib qw(../../..);
+
+our $VERSION = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -79,11 +81,12 @@ sub new {
 
 }
 
-=head2 apply
+=head2 apply( $population) 
 
-Applies a single generation of the algorithm to the population; checks that it receives a
-ref-to-array as input, croaks if it does not. Returns a sorted,
-culled, evaluated population for next generation.
+Applies a single generation of the algorithm to the population; checks
+that it receives a ref-to-array as input, croaks if it does
+not. Returns a sorted, culled, evaluated population for next
+generation.
 
 =cut
 
@@ -137,10 +140,10 @@ L<Algorithm::Evolutionary::Op::Easy>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/26 11:37:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.4 2008/06/26 11:37:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 1.5 2008/11/08 18:25:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut

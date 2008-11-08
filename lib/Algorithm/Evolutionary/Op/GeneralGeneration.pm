@@ -51,11 +51,15 @@ used, along with its priorities
 
 package Algorithm::Evolutionary::Op::GeneralGeneration;
 
-our $VERSION = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
+use lib qw(../../..);
+
+our $VERSION = ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
+
+use Algorithm::Evolutionary::Wheel;
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
@@ -105,7 +109,7 @@ sub set {
   }
 }
 
-=head2 apply
+=head2 apply( $population )
 
 Applies the algorithm to the population, which should have
 been evaluated first; checks that it receives a
@@ -167,10 +171,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 08:31:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.4 2008/07/27 08:31:11 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 1.5 2008/11/08 18:25:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut

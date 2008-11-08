@@ -42,18 +42,19 @@ children from two parents
 
 package Algorithm::Evolutionary::Op::QuadXOver;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ );
+use lib qw( ../../.. );
+
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Crossover;
-our @ISA = ('Algorithm::Evolutionary::Op::Crossover');
+use base 'Algorithm::Evolutionary::Op::Crossover';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 2;
 
-=head2 apply
+=head2 apply( $parent_1, $parent_2 )
 
 Same as L<Algorithm::Evolutionary::Op::Crossover>, but changes
 parents, does not return anything
@@ -72,13 +73,13 @@ sub  apply ($$){
   my $range = 1 + int( rand( $minlen  - $pt1 ) );
 #  print "Puntos: $pt1, $range \n";
   if ( $self->{_numPoints} > 1 ) {
-	$range =  int ( rand( length( $victim->{_str} ) - $pt1 ) );
+    $range =  int ( rand( length( $victim->{_str} ) - $pt1 ) );
   }
   my $str = $victim->{_str};
   substr( $victim->{_str}, $pt1, $range ) = substr( $victim2->{_str}, $pt1, $range );
   substr( $victim2->{_str}, $pt1, $range ) = substr( $str, $pt1, $range );
   $victim->Fitness( undef );
-  $victim->Fitness( undef );
+  $victim2->Fitness( undef );
   return undef; #As a warning that you should not expect anything
 }
 
@@ -87,10 +88,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 1.1 2008/02/12 17:49:39 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 1.2 2008/11/08 18:25:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
