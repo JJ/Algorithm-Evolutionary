@@ -44,11 +44,16 @@ my $fitness_class = "Algorithm::Evolutionary::Fitness::".$fitness_spec->{'class'
 eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
 my @params = $fitness_spec->{'params'}? @{$fitness_spec->{'params'}} : ();
 my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
-
+my @nodes;
+if ( $spec->{'nodes'} ) {
+  @nodes = @{$spec->{'nodes'}}
+} else {
+  @nodes = qw( 2 4 8 );
+}
 for my $method ( @methods ) {
     my $migration_policy = $method->[0];
     my $match_policy = $method->[1];
-    for my $sessions ( qw (2 4 8) ) {
+    for my $sessions ( @nodes ) {
       my $this_population = $initial_population/$sessions;
       my $algorithm =  new Algorithm::Evolutionary::Run $spec, $fitness_object;
       $algorithm->population_size($this_population);
@@ -231,10 +236,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/07 07:06:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.9 2008/11/07 07:06:43 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 1.10 2008/11/08 18:25:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.10 $
   $Name $
 
 =cut

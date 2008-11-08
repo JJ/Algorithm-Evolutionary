@@ -48,7 +48,9 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Crossover;
 
-our ($VERSION) = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ );
+use lib qw(../../..);
+
+our ($VERSION) = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -72,7 +74,7 @@ sub new {
   my $class = shift;
   my $hash = { numPoints => shift || 2 };
   my $rate = shift || 1;
-  my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, $rate, $hash );
+  my $self = Algorithm::Evolutionary::Op::Base::new( $class, $rate, $hash );
   return $self;
 }
 
@@ -131,10 +133,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/02 05:56:55 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.6 2008/10/02 05:56:55 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/08 18:25:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.7 2008/11/08 18:25:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
   $Name $
 
 =cut
