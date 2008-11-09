@@ -27,25 +27,37 @@ use YAML qw(Dump LoadFile);
 use IO::YAML;
 use DateTime;
 
-# my @methods= ('random','best','multikulti' );
+#my @methods= ('random','best','multikulti' );
 my @methods= ('multikulti' );
 	      
 my $spec_file = shift || die "Usage: $0 params.yaml\n";
 my %last_good; #
 my $spec = LoadFile( $spec_file) || die "Can't open $spec_file: $@\n";
-my $algorithm =  new Algorithm::Evolutionary::Run $spec;
 my ($spec_name) = ( $spec_file =~ /([^.]+)\.yaml/);
 my $initial_population = $spec->{'pop_size'};
 my $experiments = $spec->{'experiments'} || 3;
+
+#Load fitness object
+my $fitness_spec = $spec->{'fitness'};
+my $fitness_class = "Algorithm::Evolutionary::Fitness::".$fitness_spec->{'class'};
+eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
+my @params = $fitness_spec->{'params'}? @{$fitness_spec->{'params'}} : ();
+my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
+my @nodes;
+if ( $spec->{'nodes'} ) {
+  @nodes = @{$spec->{'nodes'}}
+} else {
+  @nodes = qw( 2 4 8 );
+}
 for my $migration_policy ( @methods ) {
-    for my $sessions ( qw (2) ) {
+    for my $sessions ( @nodes ) {
       my $this_population = $initial_population/$sessions;
+      my $algorithm =  new Algorithm::Evolutionary::Run $spec, $fitness_object;
       $algorithm->population_size($this_population);
       print "Starting $migration_policy $sessions sessions\n";
       my $io = IO::YAML->new("$spec_name-s$sessions-$migration_policy.yaml", ">");
       for my $i ( 1..$experiments ) {
 	print "\t$i\n";
-#	$io->print( [ now(), 'Start' ]);
 	my $data_hash = { Start => now() };
 	for my $s (1..$sessions) {
 	  POE::Session->create(inline_states => { _start => \&start,
@@ -129,7 +141,7 @@ sub generation {
     } else {
       $somebody = [];
       my $counter;
-      my @this_population = @{$algorithm->{'_population'}};
+      my @this_population = $algorithm->evaluated_population();
       my $loser;
       do {
 	$loser = pop @this_population;
@@ -138,7 +150,9 @@ sub generation {
 
       if ( @this_population ) {
 	for ( my $i = 0; $i < $spec->{'max_generations'}; $i++ ) {
-	  push @{$somebody}, $this_population[ rand( $#this_population ) ];
+	  my $offset = rand( $#this_population );
+	  my $new_guy = splice( @this_population, $offset, 1 );
+	  push @$somebody, $new_guy ;
 	}; 
       }
     }
@@ -162,15 +176,16 @@ sub generation {
       push @data, { 'receiving' => $other_best->[0] };
       push @{$algorithm->{'_population'}}, $other_best->[0];
     } else {
-      my $min_distance = length( $other_best->[0]->{'_str'});
+      my $max_distance = 0;
       my $most_different;
       for my $i ( @$other_best ) {
 	my $this_distance = $algorithm->compute_average_distance($i);
-	if ( $this_distance < $min_distance ) {
-	  $min_distance = $this_distance;
+	if ( $this_distance > $max_distance ) {
+	  $max_distance = $this_distance;
 	  $most_different = $i;
 	}
       }
+      push @data, {'choosing' => [$most_different, $max_distance] };
       push @{$algorithm->{'_population'}}, $most_different;
     }
   }
@@ -232,10 +247,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/07 07:06:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti-2.0/multikulti-experiment-v2.pl,v 1.1 2008/11/07 07:06:44 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/09 08:37:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti-2.0/multikulti-experiment-v2.pl,v 1.2 2008/11/09 08:37:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

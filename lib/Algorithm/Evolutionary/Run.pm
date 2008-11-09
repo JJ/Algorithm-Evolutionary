@@ -67,7 +67,7 @@ use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our $VERSION = ( '$Revision: 1.13 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.14 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -240,6 +240,20 @@ sub results {
 
 }
 
+=head2 evaluated_population()
+
+Returns the portion of population that has been evaluated (all but the new ones)
+
+=cut 
+
+sub evaluated_population {
+  my $self = shift;
+  my $population_size = scalar @{$self->{'_population'}};
+  my $last_good_pos = $population_size*(1-$self->{'selection_rate'}) - 1;
+  return @{$self->{'_population'}}[0..$last_good_pos];
+}
+
+
 =head2 compute_average_distance( $individual )
 
 Computes the average hamming distance to the population 
@@ -261,10 +275,10 @@ sub compute_average_distance {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/08 18:25:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.13 2008/11/08 18:25:54 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/09 08:38:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.14 2008/11/09 08:38:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.13 $
+  $Revision: 1.14 $
   $Name $
 
 =cut

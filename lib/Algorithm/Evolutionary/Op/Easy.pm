@@ -1,6 +1,8 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw( ../../.. );
+
 =head1 NAME
 
 Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, with 
@@ -48,7 +50,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our $VERSION = ( '$Revision: 1.9 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.10 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -158,7 +160,7 @@ sub apply ($) {
       my @offspring;
       my $selectedOp = $ops[ $opWheel->spin()];
       for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
-	  my $chosen = $popsort[ rand( $originalSize )];
+	  my $chosen = $popsort[ int ( rand( $originalSize ) )];
 	  push( @offspring, $chosen ); #No need to clone, it's not changed in ops
       }
       my $mutante = $selectedOp->apply( @offspring );
@@ -185,10 +187,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/28 06:13:21 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.9 2008/07/28 06:13:21 jmerelo Exp $ 
+  CVS Info: $Date: 2008/11/09 08:38:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 1.10 2008/11/09 08:38:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.9 $
+  $Revision: 1.10 $
   $Name $
 
 =cut
