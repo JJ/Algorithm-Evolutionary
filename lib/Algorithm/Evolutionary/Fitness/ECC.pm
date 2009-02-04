@@ -34,7 +34,7 @@ computed by the algorithm"
 
 package Algorithm::Evolutionary::Fitness::ECC;
 
-our $VERSION = ( '$Revision: 1.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use String::Random;
 use Carp qw(croak);
@@ -105,10 +105,10 @@ sub ecc {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/27 18:00:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 1.3 2008/10/27 18:00:44 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

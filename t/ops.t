@@ -64,10 +64,10 @@ sub createAndTest ($$;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/02 19:21:57 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/ops.t,v 1.3 2008/11/02 19:21:57 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/ops.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

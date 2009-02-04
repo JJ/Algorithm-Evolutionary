@@ -117,10 +117,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 16:26:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 1.3 2008/07/02 16:26:02 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

@@ -67,7 +67,7 @@ use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our $VERSION = ( '$Revision: 1.15 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -293,10 +293,10 @@ sub compute_min_distance {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:26:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.15 2009/02/04 20:26:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.15 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

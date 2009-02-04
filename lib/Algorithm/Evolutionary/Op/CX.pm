@@ -45,7 +45,7 @@ evolutionary computation tutorial>
 
 package Algorithm::Evolutionary::Op::CX;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 
@@ -167,10 +167,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/02 07:48:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 1.2 2008/07/02 07:48:49 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

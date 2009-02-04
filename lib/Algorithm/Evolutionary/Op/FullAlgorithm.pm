@@ -56,7 +56,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our $VERSION = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -146,8 +146,8 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 10:55:19 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 1.4 2008/07/27 10:55:19 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

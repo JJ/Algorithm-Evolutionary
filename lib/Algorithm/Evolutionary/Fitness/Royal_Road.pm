@@ -20,7 +20,7 @@ Royal Road function, adds block_size to fitness only when the block is complete
 
 package Algorithm::Evolutionary::Fitness::Royal_Road;
 
-our $VERSION = ( '$Revision: 1.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use base qw(Algorithm::Evolutionary::Fitness::String);
 
@@ -82,10 +82,10 @@ sub royal_road {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/23 15:04:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm,v 1.1 2008/06/23 15:04:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

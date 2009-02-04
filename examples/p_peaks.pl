@@ -119,10 +119,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 16:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 1.5 2008/06/16 16:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

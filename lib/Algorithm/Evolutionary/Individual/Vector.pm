@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Individual::Vector;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -317,10 +317,10 @@ sub Chrom {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/09/12 18:31:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 1.3 2008/09/12 18:31:02 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

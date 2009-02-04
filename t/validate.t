@@ -41,10 +41,10 @@ sub validate {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/02/12 17:49:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 1.1 2008/02/12 17:49:38 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 2.1 $
   $Name $
 
 =cut
