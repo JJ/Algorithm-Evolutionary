@@ -33,10 +33,10 @@ for ( @files ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/06/16 18:43:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/run.t,v 1.2 2008/06/16 18:43:20 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/run.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

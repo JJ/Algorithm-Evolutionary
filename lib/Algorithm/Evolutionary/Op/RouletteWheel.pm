@@ -30,7 +30,7 @@ L<http://www.geatbx.com/docu/algselct.html#nameselectionrws|this GA tutorial>
 package  Algorithm::Evolutionary::Op::RouletteWheel;
 use Carp;
 
-our $VERSION = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Selector';
 
@@ -87,10 +87,10 @@ sub apply (@) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/07/27 08:31:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/RouletteWheel.pm,v 1.2 2008/07/27 08:31:11 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/RouletteWheel.pm,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

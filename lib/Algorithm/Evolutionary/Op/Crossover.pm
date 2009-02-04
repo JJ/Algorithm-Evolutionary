@@ -50,7 +50,7 @@ package Algorithm::Evolutionary::Op::Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.7 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -133,10 +133,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/08 18:25:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 1.7 2008/11/08 18:25:54 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:43:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.7 $
+  $Revision: 2.1 $
   $Name $
 
 =cut
