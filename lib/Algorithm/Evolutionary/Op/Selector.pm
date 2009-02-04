@@ -26,7 +26,7 @@ Abstract base class for population selectors; defines a few instance
 package Algorithm::Evolutionary::Op::Selector;
 use Carp;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -62,8 +62,8 @@ sub apply (@) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Selector.pm,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:51:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Selector.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

@@ -1,6 +1,8 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw( ../../../../lib );
+
 =head1 NAME
 
      Algorithm::Evolutionary::Op::RouletteWheel - Fitness-proportional selection, using a roulette wheel
@@ -30,7 +32,7 @@ L<http://www.geatbx.com/docu/algselct.html#nameselectionrws|this GA tutorial>
 package  Algorithm::Evolutionary::Op::RouletteWheel;
 use Carp;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Selector';
 
@@ -87,10 +89,10 @@ sub apply (@) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/RouletteWheel.pm,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:51:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/RouletteWheel.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
