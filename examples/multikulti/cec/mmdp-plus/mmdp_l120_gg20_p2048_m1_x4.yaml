@@ -1,6 +1,6 @@
 ---
-length: 64
-pop_size: 256
+length: 120
+pop_size: 2048
 mutation:
   rate: 0.1
   priority: 1
@@ -8,12 +8,8 @@ crossover:
   points: 2
   priority: 4
 fitness:
-  class: P_Peaks
-  params: 
-    - 100
-    - 64
+  class: MMDP
 max_generations: 20
-max_fitness: 1
+max_fitness: 20
 selection_rate: 0.2
-max_evals: 100000
-experiments: 30
+max_evals: 1000000
