@@ -23,12 +23,12 @@ package Algorithm::Evolutionary::Fitness::Base;
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.5 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 1.6 $ ' =~ /(\d+\.\d+)/ );
 
 
 =head2 new()
 
-Initializes common variables, like the number of evaluations
+Initializes common variables, like the number of evaluations. Cache is not initialized.
 
 =cut 
 
@@ -49,6 +49,7 @@ Called from new, initializes the evaluations counter.
 sub initialize {
   my $self = shift;
   $self->{_counter} = 0; 
+  $self->{_cache} = {};
 }
 
 
@@ -93,6 +94,7 @@ sub evaluations {
 =head2 reset_evaluations() 
 
 Sets to 0 the number of evaluations; useful for repeated use of the fitness object
+
 =cut
 
 sub reset_evaluations {
@@ -146,10 +148,10 @@ L<Algorithm::Evolutionary::Fitness::Royal_Road>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/27 19:29:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.5 2008/10/27 19:29:10 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 18:26:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 1.6 2009/02/04 18:26:01 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.5 $
+  $Revision: 1.6 $
   $Name $
 
 =cut
