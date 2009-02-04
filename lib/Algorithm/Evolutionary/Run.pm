@@ -67,7 +67,7 @@ use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our $VERSION = ( '$Revision: 1.14 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 1.15 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -130,12 +130,12 @@ sub new {
   
 #----------------------------------------------------------#
   bless $self, $class;
-#   $self->reset_population;
-#   for ( @{$self->{'_population'}} ) {
-#     if ( !defined $_->Fitness() ) {
-#       $_->evaluate( $fitness_object );
-#     }
-#   }
+  $self->reset_population;
+  for ( @{$self->{'_population'}} ) {
+    if ( !defined $_->Fitness() ) {
+      $_->evaluate( $fitness_object );
+    }
+  }
 
   $self->{'_generation'} = $generation;
   $self->{'_start_time'} = $inicioTiempo;
@@ -270,15 +270,33 @@ sub compute_average_distance {
   $distance /= @{$self->{'_population'}};
 }
 
+=head2 compute_min_distance( $individual )
+
+Computes the average hamming distance to the population 
+
+=cut
+
+sub compute_min_distance {
+  my $self = shift;
+  my $other = shift || croak "No other\n";
+  my $min_distance = length( $self->{'_population'}->[0]->{'_str'} );
+  for my $p ( @{$self->{'_population'}} ) {
+    my $this_distance = hamming( $p->{'_str'}, $other->{'_str'} );
+    $min_distance = ( $this_distance < $min_distance )?$this_distance:$min_distance;
+  }
+  return $min_distance;
+
+}
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/09 08:38:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.14 2008/11/09 08:38:00 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:26:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 1.15 2009/02/04 20:26:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.14 $
+  $Revision: 1.15 $
   $Name $
 
 =cut

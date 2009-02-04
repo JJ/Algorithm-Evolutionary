@@ -28,7 +28,8 @@ use IO::YAML;
 use DateTime;
 
 #my @methods= ('random','best','multikulti' );
-my @methods= ('multikulti' );
+my @methods= ('random','best','multikulti' );
+#my @methods= ('multikulti' );
 	      
 my $spec_file = shift || die "Usage: $0 params.yaml\n";
 my %last_good; #
@@ -247,10 +248,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/11/09 08:37:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti-2.0/multikulti-experiment-v2.pl,v 1.2 2008/11/09 08:37:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:26:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti-2.0/multikulti-experiment-v2.pl,v 1.3 2009/02/04 20:26:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

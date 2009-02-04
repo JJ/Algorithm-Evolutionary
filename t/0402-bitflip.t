@@ -23,8 +23,8 @@ my $bf = new Algorithm::Evolutionary::Op::Bitflip 1;
 isa_ok( $bf, 'Algorithm::Evolutionary::Op::Bitflip' );
 
 my $indi2 = $bf->apply($indi);
-isnt( $indi2->Chrom(), $indi->Chrom(), "Testing gene boundary crossover" );
-isnt( $bf->apply($indi2)->Chrom(), $indi->Chrom(), "Testing gene boundary crossover 2" );
+isnt( $indi2->Chrom(), $indi->Chrom(), "Testing bitflip" );
+isnt( $bf->apply($indi2)->Chrom(), $indi2->Chrom(), "Testing bitflip again" );
 
 $bf = new Algorithm::Evolutionary::Op::Bitflip 5;
 is( hamming($bf->apply($indi)->Chrom(), $indi->Chrom), 5, "5 bitflips" );

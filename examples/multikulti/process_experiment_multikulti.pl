@@ -27,6 +27,7 @@ my $files = shift || die "Need a file preffix to glob";
 
 my %results;
 while( my $yaml_file = <$files*> ) {
+#  print "$yaml_file\n";
   my ( $params ) = ($yaml_file =~ /$files-(\S+)\.yaml/ );
   next if !$params; #this is the params file
   $params =~ s/\-elite\-/_elite_/g;
@@ -36,7 +37,7 @@ while( my $yaml_file = <$files*> ) {
 #  print "Procesando $params\n";
   $results{$params} = [];
   while(defined(my $yaml_str = <$results_io>)) {
-    my $this_yaml = Load( $yaml_str );
+    my $this_yaml = Load( $yaml_str ) || die "$yaml_str chungo: $@";
     push @{$results{$params}}, $this_yaml->{'finish'}->[0]->[2]->{'evaluations'};
   }
 }
@@ -54,10 +55,10 @@ for my $r ( keys %results ) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2008/10/29 19:39:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/process_experiment_multikulti.pl,v 1.2 2008/10/29 19:39:39 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:26:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/process_experiment_multikulti.pl,v 1.3 2009/02/04 20:26:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
