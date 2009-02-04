@@ -1,6 +1,8 @@
 use strict; #-*-CPerl-*-
 use warnings;
 
+use lib qw( ../../../lib );
+
 =head1 NAME
 
     Algorithm::Evolutionary::Experiment - Class for setting up an experiment with algorithms and population
@@ -31,7 +33,7 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use XML::Parser;
@@ -190,7 +192,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 2.1 $ -->
+     Experiment $Revision: 2.2 $ -->
     <initial>
 EOC
 
@@ -211,10 +213,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/04 20:51:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
