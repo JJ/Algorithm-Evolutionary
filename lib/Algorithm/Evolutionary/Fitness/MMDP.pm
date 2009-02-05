@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib qw( ../../../../lib );
+
 =head1 NAME
 
 Algorithm::Evolutionary::Fitness::MMDP - Massively Multimodal Deceptive Problem
@@ -19,7 +21,7 @@ Massively Multimodal Deceptive Problem, tough for evolutionary algorithms.
 
 package Algorithm::Evolutionary::Fitness::MMDP;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base qw(Algorithm::Evolutionary::Fitness::String);
 
@@ -60,10 +62,10 @@ sub mmdp {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/05 07:10:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/MMDP.pm,v 2.2 2009/02/05 07:10:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

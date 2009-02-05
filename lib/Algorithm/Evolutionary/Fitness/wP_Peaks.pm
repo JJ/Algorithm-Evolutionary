@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib qw( ../../../../lib );
+
 =head1 NAME
 
     Algorithm::Evolutionary::Fitness::wP_Peaks - wP Peaks problem generator - weighted version of P_Peaks
@@ -29,7 +31,7 @@ use warnings;
 
 package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use String::Random;
 use Algorithm::Evolutionary::Utils qw(hamming);
@@ -120,10 +122,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/05 07:10:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 2.2 2009/02/05 07:10:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
