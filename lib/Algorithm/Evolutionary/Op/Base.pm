@@ -44,7 +44,7 @@ memoize('arity'); #To speed up this frequent computation
 use B::Deparse; #For serializing code
 
 use Carp;
-our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -103,7 +103,7 @@ sub fromXML {
     $XML::Parser::EasyTree::Noempty=1;
     $xml = $p->parse($xml);
   }
-  my $self = { rate => shift || $xml->[0]{attrib}{rate} }; # Create a reference
+  my $self = { rate => ( shift || $xml->[0]{attrib}{rate} ) }; # Create a reference
 
   if ( $class eq  __PACKAGE__ ) { #Deduct class from the XML
     $class = $xml->[0]{attrib}{name} || shift || croak "Class name missing";
@@ -329,10 +329,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/05 07:02:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.2 2009/02/05 07:02:01 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
