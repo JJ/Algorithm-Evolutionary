@@ -33,7 +33,7 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use XML::Parser;
@@ -42,9 +42,9 @@ use XML::Parser::EasyTree;
 =head2 new
 
    Creates a new experiment. An C<Experiment> has two parts: the population and the algorithm.
-   The population is created from a set of parameters: popSize, indiType and indiSize, and a 
+   The population is created from a set of parameters: popSize, indiType and indiSize, and an
    array of algorithms that will be applied sequentially. Alternatively, if only operators
-   is passed as an argument, it is understood as a array of algorithms (including, probably,
+   are passed as an argument, it is understood as an array of algorithms (including, probably,
    initialization of the population).
 
 =cut
@@ -124,7 +124,7 @@ sub fromXML ($;$) {
   }
 
   my @pop;
-  my $self = { _pop => \@pop,
+  my $self = { _pop => \@pop, #Just an empty reference
 	       _xml => $xml }; # Create a reference
   #Process population, via the creator operator
   for ( @{$xml->[0]{content}[0]{content}} ) { #Should process the <initial> tag
@@ -140,7 +140,7 @@ sub fromXML ($;$) {
 	}
       }
       my $creator = new Algorithm::Evolutionary::Op::Creator  $size, $type, \%params ;
-
+      
       $creator->apply( \@pop );
       push( @{$self->{_pop}}, @pop ) ;
     }
@@ -193,7 +193,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 2.3 $ -->
+     Experiment $Revision: 2.4 $ -->
     <initial>
 EOC
 
@@ -214,10 +214,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/05 07:02:01 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.3 2009/02/05 07:02:01 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/05 07:05:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.4 2009/02/05 07:05:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut
