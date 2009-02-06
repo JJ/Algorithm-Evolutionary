@@ -15,9 +15,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Base class for terminators, that is, checks performed at the
-end of the evolutionary algorithm loop to see if it should continue
-or not
+    Checks for termination after a number of generations
 
 =head1 METHODS
 
@@ -25,11 +23,11 @@ or not
 
 package Algorithm::Evolutionary::Op::GenerationalTerm;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
-=head2 new
+=head2 new( [$number_of_generations] )
 
 Creates a new generational terminator:
   my $gt = new Algorithm::Evolutionary::Op::GenerationalTerm 100; #apply will return false after 100 generations
@@ -49,7 +47,7 @@ sub new {
 =head2 apply()
 
 Checks if the counter has arrived to the allotted number of generations,
-returns false when it has. 
+returns false when it does. 
   $gt->apply(); 
 will return C<false> when it has been run for the number of times it has
 been initialized to
@@ -78,10 +76,10 @@ L<Algorithm::Evolutionary::Op::DeltaTerm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

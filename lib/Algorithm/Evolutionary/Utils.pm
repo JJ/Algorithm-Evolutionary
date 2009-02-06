@@ -32,12 +32,13 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ ) ;
-our @EXPORT_OK = qw( entropy consensus hamming random_bitstring);
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ ) ;
+our @EXPORT_OK = qw( entropy consensus hamming random_bitstring parse_xml);
 
 use Carp;
 use String::Random;
-
+use XML::Parser;
+use XML::Parser::EasyTree;
 
 =head2 entropy( $population)
 
@@ -114,16 +115,29 @@ sub random_bitstring {
   return $generator->randregex($regex);
 }
 
+=head2 parse_xml( $string ) 
+
+Parses the string and returns an XML tree
+
+=cut
+
+sub parse_xml {
+  my $string = shift || croak "No string to parse!\n";
+  my $p=new XML::Parser(Style=>'EasyTree');
+  $XML::Parser::EasyTree::Noempty=1;
+  return $p->parse($string);
+}
+
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:51:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.3 2009/02/06 16:03:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

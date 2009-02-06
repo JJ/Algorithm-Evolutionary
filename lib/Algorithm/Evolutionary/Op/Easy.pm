@@ -50,7 +50,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -118,7 +118,7 @@ sub set {
   }
 }
 
-=head2 apply
+=head2 apply( $population )
 
 Applies the algorithm to the population; checks that it receives a
 ref-to-array as input, croaks if it does not. Returns a sorted,
@@ -187,10 +187,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

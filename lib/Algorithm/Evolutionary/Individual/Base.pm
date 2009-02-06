@@ -29,12 +29,11 @@ Base class for individuals, that is, "chromosomes" in evolutionary computation a
 
 package Algorithm::Evolutionary::Individual::Base;
 
-use XML::Parser;
-use XML::Parser::EasyTree;
+use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -113,9 +112,7 @@ sub fromXML {
   my $class = shift;
   my $xml = shift || croak "XML fragment missing ";
   if ( ref $xml eq ''  ) { #We are receiving a string, parse it
-    my $p=new XML::Parser(Style=>'EasyTree');
-    $XML::Parser::EasyTree::Noempty=1;
-    $xml = $p->parse($xml);
+    $xml = parse_xml ($xml );
   }
 
   my $thisClassName = $xml->[0]{'attrib'}{'type'};
@@ -341,10 +338,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/05 07:02:01 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.2 2009/02/05 07:02:01 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.3 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

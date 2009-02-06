@@ -38,7 +38,7 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -111,14 +111,8 @@ sub apply ($) {
   my $popSize = scalar @$pop;
   my @ops = @{$self->{_ops}};
   for ( my $i = 0; $i < $popSize*(1-$self->{_selrate})/2; $i ++ ) {
-#    my $clone1 = $pop->[$popWheel->spin()]->clone();
-#    my $clone2 = $pop->[$popWheel->spin()]->clone();
-#       my $clone1 = clone($pop->[$popWheel->spin()]);
-#       my $clone2 = clone($pop->[$popWheel->spin()]);
       my $clone1 = $ops[0]->apply( $pop->[$popWheel->spin()] ); # This should be a mutation-like op
       my $clone2 = $ops[0]->apply( $pop->[$popWheel->spin()] );
-#       $clone1 = $ops[0]->apply( $clone1 ); # This should be a mutation-like op
-#       $clone2 = $ops[0]->apply( $clone2 ); # This should be a mutation-like op
       $ops[1]->apply( $clone1, $clone2 ); #This should be a
                                           #crossover-like op
       $clone1->evaluate( $eval );
@@ -140,10 +134,10 @@ L<Algorithm::Evolutionary::Op::Easy>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

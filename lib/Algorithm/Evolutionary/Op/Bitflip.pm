@@ -36,7 +36,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -99,7 +99,7 @@ sub apply ($;$){
   my $size =  $victim->size();
 #  croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   croak "Too many changes" if $self->{_howMany} >= $size;
-  my @bits = 0..$size; # Hash with all bits
+  my @bits = 0..($size-1); # Hash with all bits
   for ( my $i = 0; $i < $self->{_howMany}; $i++ ) {
       my $rnd = int (rand( @bits ));
       my $who = splice(@bits, $rnd, 1 );
@@ -114,10 +114,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
