@@ -29,15 +29,14 @@ using XML, and can read an XML description of the experiment.
 
 package Algorithm::Evolutionary::Experiment;
 
+use Algorithm::Evolutionary::Utils qw(parse_xml);
 use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
-use XML::Parser;
-use XML::Parser::EasyTree;
 
 =head2 new
 
@@ -118,9 +117,7 @@ sub fromXML ($;$) {
   my $class = shift;
   my $xml = shift || carp "XML fragment missing ";
   if ( ref $xml eq ''  ) { #We are receiving a string, parse it
-    my $p=new XML::Parser(Style=>'EasyTree');
-    $XML::Parser::EasyTree::Noempty=1;
-    $xml = $p->parse($xml);
+    $xml = parse_xml( $xml );
   }
 
   my @pop;
@@ -193,7 +190,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 2.4 $ -->
+     Experiment $Revision: 2.5 $ -->
     <initial>
 EOC
 
@@ -214,10 +211,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/05 07:05:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.4 2009/02/05 07:05:44 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.5 2009/02/06 16:03:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut

@@ -36,15 +36,14 @@ package Algorithm::Evolutionary::Op::Base;
 
 use lib qw( ../.. ../../.. );
 
-use XML::Parser;
-use XML::Parser::EasyTree;
 use Memoize;
 memoize('arity'); #To speed up this frequent computation
 
 use B::Deparse; #For serializing code
+use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our $VERSION = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -99,9 +98,7 @@ sub fromXML {
   my $class = shift;
   my $xml = shift || carp "XML fragment missing ";
   if ( ref $xml eq ''  ) { #We are receiving a string, parse it
-    my $p=new XML::Parser(Style=>'EasyTree');
-    $XML::Parser::EasyTree::Noempty=1;
-    $xml = $p->parse($xml);
+    $xml = parse_xml( $xml );
   }
   my $self = { rate => ( shift || $xml->[0]{attrib}{rate} ) }; # Create a reference
 
@@ -329,10 +326,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/05 07:02:01 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.2 2009/02/05 07:02:01 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.3 2009/02/06 16:03:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

@@ -22,9 +22,9 @@ used in several places; mainly in the L<Algorithm::Evolutionary::Op::CanonicalGA
 package Algorithm::Evolutionary::Wheel;
 use Carp;
 
-our $VERSION = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
-=head2 new
+=head2 new( @probabilites )
 
 Creates a new roulette wheel. Takes an array of numbers, which need not be
 normalized
@@ -53,9 +53,9 @@ sub new {
   return $self;
 }
 
-=head2 spin
+=head2 spin()
 
-Returns an individual according to fitness
+Returns an individual whose probability is related to its fitness
 
 =cut
 
@@ -72,8 +72,8 @@ sub spin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/06 16:03:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 2.2 2009/02/06 16:03:03 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
