@@ -43,7 +43,7 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -96,50 +96,59 @@ subclass via the "set" method.
 
 sub fromXML {
   my $class = shift;
-  my $xml = shift || carp "XML fragment missing ";
+  my $xml = shift || croak "XML fragment missing ";
+  my $fragment; # Inner part of the XML
   if ( ref $xml eq ''  ) { #We are receiving a string, parse it
     $xml = parse_xml( $xml );
+    croak "Incorrect XML fragment" if !$xml->{'op'}; #
+    $fragment = $xml->{'op'};
+  } else {
+    $fragment = $xml;
   }
-  my $self = { rate => ( shift || $xml->[0]{attrib}{rate} ) }; # Create a reference
+  my $rate = shift;
+  if ( !defined $rate && $fragment->{'-rate'} ) {
+    $rate = $fragment->{'-rate'};
+  }
+  my $self = { rate => $rate }; # Create a reference
 
   if ( $class eq  __PACKAGE__ ) { #Deduct class from the XML
-    $class = $xml->[0]{attrib}{name} || shift || croak "Class name missing";
+    $class = $fragment->{'-name'} || shift || croak "Class name missing";
   }
   
   $class = "Algorithm::Evolutionary::Op::$class" if $class !~ /Algorithm::Evolutionary/;
   bless $self, $class; # And bless it
-
-  my (%params, %codeFrags, %ops);
-  my $fragment;
-  if ( ( scalar @$xml > 1 ) || ! $xml->[0]{content}[0] ) { #Received from experiment or suchlike; already processed
-    $fragment = $xml;
-  }  else {
-    $fragment = $xml->[0]{content};
-  }
-  for (@$fragment ) {
-    next if !defined  $_->{name};
-    if ( $_->{name} eq 'param' ) { 
-      if ( ! defined ( $_->{'content'}[0] ) ) {
-	$params{$_->{'attrib'}{'name'}} = $_->{'attrib'}{'value'};
-      } else {
-	$params{$_->{'attrib'}{'name'}} = $_->{'content'}
+  
+  my (%params, %code_fragments, %ops);
+  
+  for ( @{ (ref $fragment->{'param'} eq 'ARRAY')?
+	     $fragment->{'param'}:
+	       [ $fragment->{'param'}] } ) {
+    if  ( defined $_->{'-value'} ) {
+      $params{$_->{'-name'}} = $_->{'-value'};
+    } elsif ( $_->{'param'} ) {
+      my %params_hash;
+      for my $p ( @{ (ref $_->{'param'} eq 'ARRAY')?
+		       $_->{'param'}:
+			 [ $_->{'param'}] } ) {
+	$params_hash{ $p->{'-name'}} = $p->{'-value'};
       }
+      $params{$_->{'-name'}} = \%params_hash;
     }
-
-    if ( $_->{name} eq 'code' ) { 
-      $codeFrags{$_->{'attrib'}{'type'}} = $_->{'content'}[0]{'content'}[0]{content};
-    }
-    
-    if ( $_->{name} eq 'op' ) { 
-      $ops{$_->{'attrib'}{'name'}} = [$_->{'attrib'}{'rate'}, $_->{'content'}, $_->{'attrib'}{'id'}];
-    }
+  }
+  
+  if ($fragment->{'code'} ) {
+    $code_fragments{$fragment->{'code'}->{'-type'}} = $fragment->{'code'}->{'src'};
+  }    
+       
+  for ( @{$fragment->{'op'}} ) { 
+    $ops{$_->{'-name'}} = [$_->{'-rate'}, $_];
   }
 
   #If the class is not loaded, we load it. The 
   eval "require $class" || croak "Can't find $class Module";
 
   #Let the class configure itself
-  $self->set( \%params, \%codeFrags, \%ops );
+  $self->set( \%params, \%code_fragments, \%ops );
   return $self;
 }
 
@@ -326,10 +335,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.3 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.4 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut

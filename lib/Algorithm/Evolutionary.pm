@@ -1,7 +1,6 @@
 package Algorithm::Evolutionary;
 
-#use version; our $VERSION = qv('0.62');
-our $VERSION = '0.62_2';
+our $VERSION = '0.62_3';
 
 # Preloaded methods go here.
 
@@ -42,12 +41,12 @@ nightly updates, can be downloaded from there before they are uploaded
 to CPAN. That page also hosts the mailing list, as well as bug
 reports, news, updates, whatever.</p>
 
-<p>In case the examples are hidden somewhere in the C<.cpan> directory,
+<p>In case the examples are hidden somewhere in the <code>.cpan</code> directory,
     you can also download them from <a
     href='http://opeal.cvs.sourceforge.net/opeal/Algorithm-Evolutionary/'>the
     CVS repository</a>, and the <a
     href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
-    tarballs in the file download area of that repository</
+    tarballs in the file download area of that repository</p>
 
 =end html
 
@@ -66,7 +65,11 @@ of comment are welcome.
 
 =head1 Examples
 
-There are a few examples in the C<examples> subdirectory, which should have been included with your CPAN bundle. Foor instance, check out C<tide_float.pl>, an example of floating point vector optimization, or C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a simple GA on the P_Peaks deceptive function.
+There are a few examples in the C<examples> subdirectory, which should
+have been included with your CPAN bundle. Foor instance, check out
+C<tide_float.pl>, an example of floating point vector optimization, or
+C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a
+simple GA on the P_Peaks deceptive function. 
 
 =head1 SEE ALSO
 
@@ -74,7 +77,7 @@ L<Algorithm::Evolutionary::Op::Base>.
 L<Algorithm::Evolutionary::Individual::Base>.
 L<Algorithm::Evolutionary::Fitness::Base>.
 L<Algorithm::Evolutionary::Experiment>.
-L<Algorithm::Evolutionary::XML>
+L<XML>
 
 
 =cut

@@ -1,6 +1,8 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw( ../../../../lib );
+
 =head1 NAME
 
 Algorithm::Evolutionary::Individual::Base - Base class for chromosomes that knows how to build them, and has some helper methods.
@@ -33,7 +35,7 @@ use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -111,32 +113,32 @@ about is C<require>d in runtime.
 sub fromXML {
   my $class = shift;
   my $xml = shift || croak "XML fragment missing ";
+  my $fragment; # Inner part of the XML
   if ( ref $xml eq ''  ) { #We are receiving a string, parse it
     $xml = parse_xml ($xml );
+    croak "Incorrect XML fragment" if !$xml->{'indi'}; #
+    $fragment = $xml->{'indi'};
+  } elsif ( $xml->{'indi'} ) { # parsed externally, as in general.t
+    $fragment = $xml->{'indi'};
+  } else { #parsed fragment
+    $fragment = $xml;
   }
 
-  my $thisClassName = $xml->[0]{'attrib'}{'type'};
+  my $thisClassName = $fragment->{'-type'};
   if ( $class eq  __PACKAGE__ ) { #Deduct class from the XML
     $class = $thisClassName || shift || croak "Class name missing";
   }
 
   #Calls new, adds preffix if it's not there
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
-  ($self->Fitness( $xml->[0]{attrib}{fitness} ) )if defined $xml->[0]{attrib}{fitness};
+  ($self->Fitness( $fragment->{'fitness'} ) ) if defined $fragment->{'fitness'};
  
   $class = ref $self;
   eval "require $class"  || croak "Can't find $class\.pm Module";
   no strict qw(refs); # To be able to check if a ref exists or not
-  my $fragment;
-  if ( scalar @$xml > 1 ) { #Received from experiment or suchlike; already processed
-    $fragment = $xml;
-  }  else {
-    $fragment = $xml->[0]{content};
-  } 
-  for (@$fragment ) {
-    if ( defined(  $_->{content} ) ) { 
-      $self->addAtom($_->{content}->[0]->{content}); #roundabout way of adding the content of the stuff
-    } 
+
+  for (@{$fragment->{'atom'}} ) {
+    $self->addAtom($_); #roundabout way of adding the content of the stuff
   }
   return $self;
 }
@@ -163,11 +165,11 @@ sub fromParam {
   my $thisClass;
   
   my %params;
-  for ( @$xml ) {
-    if ( $_->{attrib}{name} eq 'type' ) {
-      $thisClass = $_->{attrib}{value}
+  for ( @{$xml->{'param'}} ) {
+    if ( $_->{'-name'} eq 'type' ) {
+      $thisClass = $_->{'-value'}
     } else {
-      $params{ $_->{attrib}{name} } = $_->{attrib}{value};
+      $params{ $_->{'-name'} } = $_->{'-value'};
     }
   }
   $thisClass = "Algorithm::Evolutionary::Individual::$thisClass" if $thisClass !~ /Algorithm::Evolutionary/;
@@ -338,10 +340,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.3 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.4 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut

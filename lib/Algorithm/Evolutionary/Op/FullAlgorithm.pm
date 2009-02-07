@@ -1,6 +1,8 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw ( ../../../../lib);
+
 =head1 NAME
 
     Algorithm::Evolutionary::Op::FullAlgorithm - Skeleton class for a fully-featured evolutionary algorithm
@@ -56,7 +58,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -78,8 +80,8 @@ sub new {
   my $term = shift ||  new  Algorithm::Evolutionary::Op::GenerationalTerm 100;
   my $verbose = shift || 0;
   my $hash = { algo => $algo,
-			   terminator => $term,
-			   verbose => $verbose };
+	       terminator => $term,
+	       verbose => $verbose };
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
   return $self;
 }
@@ -97,11 +99,11 @@ sub set {
   my $codehash = shift;
   my $opshash = shift;
 
-  $self->SUPER::set( $hashref );
+  $self->SUPER::set( $hashref ); # Base class only aware of options
   #Now reconstruct operators
-  for ( keys %$opshash ) {
-	$self->{$opshash->{$_}[2]} = 
-	  Algorithm::Evolutionary::Op::Base::fromXML( $_, $opshash->{$_}->[1], $opshash->{$_}->[0] ); 
+  for my $o ( keys %$opshash ) { #ops are keyed by type
+	$self->{$opshash->{$o}->[1]->{'-id'}} = 
+	  Algorithm::Evolutionary::Op::Base::fromXML( $o, $opshash->{$o}->[1], $opshash->{$o}->[0] ); 
   }
 
 }
@@ -145,8 +147,8 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.3 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

@@ -52,7 +52,7 @@ my @mini_vector = splice( @vector, 2, 2 );
 is( $mini_vector[1], 'k', 'Splice' );
 
 #Testing XML stuff
-  my $xml=<<EOC;
+my $xml=<<EOC;
 <indi type='String'>
     <atom>a</atom><atom>z</atom><atom>q</atom><atom>i</atom><atom>h</atom>
 </indi>
@@ -65,10 +65,10 @@ is( $indi4->Atom(4), 'h', 'from XML' );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 2.2 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
