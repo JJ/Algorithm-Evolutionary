@@ -1,4 +1,4 @@
-#-*-Perl-*-
+#-*-CPerl-*-
 
 use Test::More;
 BEGIN { plan tests => 10 };
@@ -82,7 +82,8 @@ EOC
   my $bke2 = Algorithm::Evolutionary::Experiment->fromXML( $xpxml );
   ok ( scalar @{$bke2->{_pop}} == 20 ); # Test 5
 
-  open( I, "<xml/marea.xml" ) || die "Can't open xml/marea.xml";
+  my $testfile = (-e "xml/marea.xml")?"xml/marea.xml":"../xml/marea.xml"; # Test in-place
+  open( I, "<$testfile" ) || die "Can't open $testfile";
   my $xml2 = join( "", <I> );
   close I;
   my $mxp =  Algorithm::Evolutionary::Experiment->fromXML( $xml2 );
@@ -90,8 +91,10 @@ EOC
   isa_ok( $mxp->{_algo}[1], 'Algorithm::Evolutionary::Op::Easy' ); # Test 7
   $popRef = $mxp->go();
   ok( scalar  @{$popRef} == 20 );# Test 8
-  
-  open( I, "<xml/onemax.xml" ) || die "Can't open xml/onemax.xml";
+
+  #Check with an initial population
+  $testfile = (-e "xml/onemax.xml")?"xml/onemax.xml":"../xml/onemax.xml"; # Test in-place
+  open( I, "<$testfile" ) || die "Can't open $testfile";
   my $xml3 = join( "", <I> );
   close I;
   my $oxp =  Algorithm::Evolutionary::Experiment->fromXML( $xml3 );
@@ -103,10 +106,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/experiment.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/experiment.t,v 2.2 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

@@ -34,17 +34,19 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.6 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
-=head2 new
+=head2 new( $pop_size, $type_of_individual, $individual_size
 
-   Creates a new experiment. An C<Experiment> has two parts: the population and the algorithm.
-   The population is created from a set of parameters: popSize, indiType and indiSize, and an
-   array of algorithms that will be applied sequentially. Alternatively, if only operators
-   are passed as an argument, it is understood as an array of algorithms (including, probably,
-   initialization of the population).
+Creates a new experiment. An C<Experiment> has two parts: the
+   population and the algorithm. The population is created from a set
+   of parameters: popSize, indiType and indiSize, and an array of
+   algorithms that will be applied sequentially. Alternatively, if
+   only operators are passed as an argument, it is understood as an
+   array of algorithms (including, probably, initialization of the
+   population).
 
 =cut
 
@@ -123,37 +125,38 @@ sub fromXML ($;$) {
   my @pop;
   my $self = { _pop => \@pop, #Just an empty reference
 	       _xml => $xml }; # Create a reference
-  #Process population, via the creator operator
-  for ( @{$xml->[0]{content}[0]{content}} ) { #Should process the <initial> tag
-    if ( $_->{name} eq 'pop' ) {
-      my $size = $_->{attrib}{size};
-      my $type;
-      my %params;
-      for ( @{$_->{content}} ) {
-	if ( $_->{attrib}{name} eq 'type' ) {
-	  $type = $_->{attrib}{value};
-	} else {
-	  $params{ $_->{attrib}{name} } = $_->{attrib}{value};
-	}
+  #Process operators
+  for ( @{ ref $xml->{'ea'}->{'initial'}->{'op'} eq 'ARRAY' ?
+	 $xml->{'ea'}->{'initial'}->{'op'}:
+	   [ $xml->{'ea'}->{'initial'}->{'op'}]} ) { #Should process the <initial> tag
+    push( @{$self->{'_algo'}}, 
+	  Algorithm::Evolutionary::Op::Base::fromXML( $_->{'-name'},$_ ) );
+  }
+
+  #Process population
+  if ( $xml->{'ea'}->{'initial'}->{'pop'} ) {
+    my $pop_hash = $xml->{'ea'}->{'initial'}->{'pop'};
+    my $size = $pop_hash->{'-size'};
+    my $type;
+    my %params;
+    for my $p ( @{$pop_hash->{'param'}} ) {
+      if ( $p->{'-name'} eq 'type' ) {
+ 	$type = $p->{'-value'};
+      } else {
+ 	$params{ $p->{'-name'} } = $p->{'-value'};
       }
-      my $creator = new Algorithm::Evolutionary::Op::Creator  $size, $type, \%params ;
-      
-      $creator->apply( \@pop );
-      push( @{$self->{_pop}}, @pop ) ;
     }
-    if ( $_->{name} eq 'op' ) {
-      push( @{$self->{_algo}}, 
-	  Algorithm::Evolutionary::Op::Base::fromXML( $_->{attrib}{name}, $_->{content} ) );
-    }
+    my $creator = new Algorithm::Evolutionary::Op::Creator  $size, $type, \%params ;
+    
+     $creator->apply( \@pop );
+     push( @{$self->{_pop}}, @pop ) ;
   }
 
   #Process population, if it exists
-  if ( $xml->[0]{content}[1]{content} ) { #Process runtime population
-    for (  @{$xml->[0]{content}[1]{content}} ) {
-      if ( $_->{name} eq 'indi' ) {
-	push( @{$self->{_pop}}, 
-	      Algorithm::Evolutionary::Individual::Base::fromXML( $_->{attrib}{type}, $_->{content} ) );
-      }
+  if ( $xml->{'ea'}->{'pop'} ) { #Process runtime population
+    for my $i (  @{$xml->{'ea'}->{'pop'}->{'indi'}} ) { 
+      push( @{$self->{_pop}}, 
+	    Algorithm::Evolutionary::Individual::Base::fromXML( $i->{'-type'}, $i ) );
     }
   }
   #Bless and return
@@ -190,7 +193,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 2.5 $ -->
+     Experiment $Revision: 2.6 $ -->
     <initial>
 EOC
 
@@ -211,10 +214,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.5 2009/02/06 16:03:03 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.6 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.5 $
+  $Revision: 2.6 $
   $Name $
 
 =cut

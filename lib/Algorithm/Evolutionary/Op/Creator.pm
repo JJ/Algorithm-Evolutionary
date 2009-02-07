@@ -45,7 +45,7 @@ use Algorithm::Evolutionary::Individual::Base;
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( $number_of_individuals, $class_to_generate, $options_hash )
 
@@ -118,8 +118,8 @@ sub set {
   $self->{_number} = $hash->{number};
   $self->{_class} = $hash->{class};
   $self->{_hash} = {};
-  for ( @{$hash->{options}} ) {
-    $self->{_hash}->{$_->{attrib}{name}} = $_->{attrib}{value}
+  for my $k ( keys %{$hash->{options}} ) {
+    $self->{_hash}->{$k} = $hash->{'options'}->{$k};
   }
   
  # } else {
@@ -135,10 +135,10 @@ sub set {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Creator.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/07 18:31:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Creator.pm,v 2.3 2009/02/07 18:31:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
