@@ -1,8 +1,33 @@
 package Algorithm::Evolutionary;
 
-our $VERSION = '0.62_3';
+use Carp qw(croak);
+
+our $VERSION = '0.63';
 
 # Preloaded methods go here.
+
+# A bit of importing magic taken from POE
+sub import {
+  my $self = shift;
+
+  my @modules  = grep(!/^(Op|Indi|Fitness)$/, @_);
+
+  my $package = caller();
+  my @failed;
+
+  # Load all the others.
+  foreach my $module (@modules) {
+    my $code = "package $package; use Algorithm::Evolutionary::$module;";
+    # warn $code;
+    eval($code);
+    if ($@) {
+      warn $@;
+      push(@failed, $module);
+    }
+  }
+
+  @failed and croak "could not import qw(" . join(' ', @failed) . ")";
+}
 
 1;
 __END__
@@ -13,12 +38,12 @@ Algorithm::Evolutionary - Perl extension for performing paradigm-free evolutiona
 
 =head1 SYNOPSIS
 
-  use Algorithm::Evolutionary;
+  use Algorithm::Evolutionary; #Really not intended to be used directly
   
 
 =head1 DESCRIPTION
 
-Algorithm::Evolutionary is a set of classes for doing object-oriented
+C<Algorithm::Evolutionary> is a set of classes for doing object-oriented
 evolutionary computation in Perl. Why would anyone want to do that
 escapes my knowledge, but, in fact, we have found it quite useful for
 our own purposes. Same as Perl itself.
@@ -48,6 +73,32 @@ reports, news, updates, whatever.</p>
     href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
     tarballs in the file download area of that repository</p>
 
+<p>I have used this continously for my research all these year, and
+any search will return a number of papers; a journal article is
+already submitted, but meanwhile if you use it for any of your
+research, I would be very grateful if you quoted papers such as this
+one: 
+<blockquote>@InProceedings{jj:2008:PPSN,
+  author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman and Anna I. Esparcia-Alcázar and Eva Alfaro-Cid and Carlos Cotta",
+  title =	"Testing the Intermediate Disturbance Hypothesis: Effect of Asynchronous Population Incorporation on Multi-Deme Evolutionary Algorithms",
+  booktitle =	"Parallel Problem Solving from Nature - PPSN X",
+  year = 	"2008",
+  editor =	"Gunter Rudolph and Thomas Jansen and Simon Lucas and
+		 Carlo Poloni and Nicola Beume",
+  volume =	"5199",
+  series =	"LNCS",
+  pages =	"266-275",
+  address =	"Dortmund",
+  month =	"13-17 " # sep,
+  publisher =	"Springer",
+  keywords =	"genetic algorithms, genetic programming, p2p computing",
+  ISBN = 	"3-540-87699-5",
+  doi =  	"10.1007/978-3-540-87700-4_27",
+  size = 	"pages",
+  notes =	"PPSN X",
+}</blockquote>
+</p>
+
 =end html
 
 =head1 AUTHOR
@@ -56,7 +107,7 @@ reports, news, updates, whatever.</p>
 
 Main author and developer is J. J. Merelo, jmerelo (at)
 geneura.ugr.es. There have also been some contributions from Javi
-Garc�a, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
+García, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
 geneura.ugr.es. Patient users that have submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>. Bugs, requests and any kind
 of comment are welcome.
