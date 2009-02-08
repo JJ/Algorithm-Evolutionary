@@ -33,10 +33,8 @@ use strict;
 use Time::HiRes qw( gettimeofday tv_interval);
 
 use lib qw(lib ../lib);
-use Algorithm::Evolutionary::Individual::Vector;
-use Algorithm::Evolutionary::Op::Easy;
-use Algorithm::Evolutionary::Op::GaussianMutation;
-use Algorithm::Evolutionary::Op::VectorCrossover;
+use Algorithm::Evolutionary qw( Individual::Vector Op::Easy 
+				Op::GaussianMutation Op::VectorCrossover);
 
 #----------------------------------------------------------#
 my $popSize = shift || 100; #Population size
@@ -117,10 +115,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/08 18:44:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 2.2 2009/02/08 18:44:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
