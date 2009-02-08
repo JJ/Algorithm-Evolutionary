@@ -115,10 +115,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/08 18:44:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_float.pl,v 2.2 2009/02/08 18:44:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/08 18:46:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_float.pl,v 1.1 2009/02/08 18:46:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 1.1 $
   $Name $
 
 =cut
