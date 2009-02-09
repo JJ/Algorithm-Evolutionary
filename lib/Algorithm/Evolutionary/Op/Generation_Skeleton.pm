@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::GeneralGeneration - Customizable single generation for an evolutionary algorithm.
+Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single generation for an evolutionary algorithm.
                  
 =head1 SYNOPSIS
   #Taken from the t/general.t file, verbatim
@@ -49,26 +49,25 @@ used, along with its priorities
 
 =cut
 
-package Algorithm::Evolutionary::Op::GeneralGeneration;
+package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
-use Algorithm::Evolutionary::Wheel;
+use Algorithm::Evolutionary qw(Wheel Op::Replace_Worst);
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new( $evaluation_function, $selector, $ref_to_operator_array, $replacement_rate )
+=head2 new( $evaluation_function, $selector, $ref_to_operator_array, $replacement_operator )
 
-Creates an algorithm, with the usual operators. Includes a default mutation
-and crossover, in case they are not passed as parameters
+Creates an algorithm, with no defaults except for the default replacement operator
 
 =cut
 
@@ -77,8 +76,9 @@ sub new {
   my $self = {};
   $self->{_eval} = shift || croak "No eval function found";
   $self->{_selector} = shift || croak "No selector found";
-  $self->{_ops} = shift || croak "No operator found";
+  $self->{_ops} = shift || croak "No operators found";
   $self->{_replacementRate} = shift || 1; #Default to all  replaced
+  $self->{_replacement_op} = shift || new Algorithm::Evolutionary::Op::Replace_Worst;
   bless $self, $class;
   return $self;
 }
@@ -96,7 +96,6 @@ sub set {
   my $hashref = shift || croak "No params here";
   my $codehash = shift || croak "No code here";
   my $opshash = shift || croak "No ops here";
-  $self->{_selrate} = $hashref->{selrate};
 
   for ( keys %$codehash ) {
 	$self->{"_$_"} =  eval "sub { $codehash->{$_} } ";
@@ -104,8 +103,8 @@ sub set {
 
   $self->{_ops} =();
   for ( keys %$opshash ) {
-	push @{$self->{_ops}}, 
-	  Algorithm::Evolutionary::Op::Base::fromXML( $_, $opshash->{$_}->[1], $opshash->{$_}->[0] ) ;
+    push @{$self->{_ops}}, 
+      Algorithm::Evolutionary::Op::Base::fromXML( $_, $opshash->{$_}->[1], $opshash->{$_}->[0] ) ;
   }
 }
 
@@ -155,14 +154,9 @@ sub apply ($) {
   }
   
   #Eliminate and substitute
-  splice( @$pop, -$pringaos );
-  for ( @newpop ) {
-      my $fitness = $self->{_eval};
-      $_->evaluate( $fitness );
-  }
-  push @$pop, @newpop;
-  my @sortPop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop;
-  @$pop = @sortPop;
+  map( $_->evaluate( $self->{'_eval'}), @newpop );
+  my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
+  @$pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop_hash ;
   
 }
 
@@ -172,9 +166,9 @@ sub apply ($) {
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 2.3 2009/02/09 10:05:06 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.1 2009/02/09 10:05:06 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.1 $
   $Name $
 
 =cut

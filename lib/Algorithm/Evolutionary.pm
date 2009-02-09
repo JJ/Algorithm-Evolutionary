@@ -124,11 +124,20 @@ simple GA on the P_Peaks deceptive function.
 
 =head1 SEE ALSO
 
-L<Algorithm::Evolutionary::Op::Base>.
-L<Algorithm::Evolutionary::Individual::Base>.
-L<Algorithm::Evolutionary::Fitness::Base>.
-L<Algorithm::Evolutionary::Experiment>.
-L<XML>
+=over
+
+=item L<Algorithm::Evolutionary::Op::Base>.
+
+=item L<Algorithm::Evolutionary::Individual::Base>.
+
+=item L<Algorithm::Evolutionary::Fitness::Base>.
+
+=item L<Algorithm::Evolutionary::Experiment>.
+
+=item L<XML> for an explanation of the XML format used
+
+=item L<POE::Component::Algorithm::Evolutionary> if you want to mix
+evolutionary algorithms with anything else easily
 
 
 =cut
