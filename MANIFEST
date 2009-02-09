@@ -25,6 +25,7 @@ lib/Algorithm/Evolutionary/Op/GaussianMutation.pm
 lib/Algorithm/Evolutionary/Op/Gene_Boundary_Crossover.pm
 lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm
 lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm
+lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm
 lib/Algorithm/Evolutionary/Op/IncMutation.pm
 lib/Algorithm/Evolutionary/Op/Inverover.pm
 lib/Algorithm/Evolutionary/Op/LinearFreezer.pm
@@ -33,6 +34,7 @@ lib/Algorithm/Evolutionary/Op/NoChangeTerm.pm
 lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm
 lib/Algorithm/Evolutionary/Op/Permutation.pm
 lib/Algorithm/Evolutionary/Op/QuadXOver.pm
+lib/Algorithm/Evolutionary/Op/Replace_Worst.pm
 lib/Algorithm/Evolutionary/Op/RouletteWheel.pm
 lib/Algorithm/Evolutionary/Op/Selector.pm
 lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm
@@ -68,6 +70,7 @@ t/0304-royalroad.t
 t/0305-ecc.t
 t/0333-mmdp.t
 t/0444-stored.t
+t/0500-generation-skel.t
 t/general.t
 t/GenerationalTerm.t
 t/NoChangeTerm.t
@@ -87,7 +90,6 @@ xml/royalroad.xml
 xml/onemax.xml
 xml/experiment.xml
 xml/MMDP.xml
-examples/tide_float.pl
 examples/tide_bitstring.pl
 examples/runfromXML.pl
 examples/mmdp.pl
@@ -95,5 +97,4 @@ examples/p_peaks.pl
 examples/wp_peaks.pl
 examples/run_easy_ga.pl
 examples/p_peaks.yaml
-examples/canonical-genetic-algorithm.pl
 examples/simulated-annealing.pl
