@@ -44,7 +44,7 @@ ok( $bestIndi->Fitness() <= $sortPop[0]->Fitness(), 1 ); #fitness
                                                          #but not
                                                          #always 
 #This should have improved...
-ok( $worst_indi->Fitness() < $sortPop[$#sortPop]->Fitness(), 1 );
+ok( $worst_indi->Fitness() <= $sortPop[$#sortPop]->Fitness(), 1 );
                                                                  
 
 =head1 Copyright
@@ -52,10 +52,10 @@ ok( $worst_indi->Fitness() < $sortPop[$#sortPop]->Fitness(), 1 );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.1 2009/02/09 10:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/09 12:33:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.2 2009/02/09 12:33:11 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
