@@ -43,7 +43,7 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 AUTOLOAD
 
@@ -287,6 +287,10 @@ L<Algorithm::Evolutionary::Op:GaussianMutation|Algorithm::Evolutionary::Op:Gauss
 
 =item * 
 
+L<Algorithm::Evolutionary::Op:Novelty_Mutation>
+
+=item * 
+
 L<Algorithm::Evolutionary::Op:Crossover|Algorithm::Evolutionary::Op:Crossover>
 
 =item * 
@@ -335,10 +339,10 @@ L<Algorithm::Evolutionary::XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.4 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/09 10:05:06 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.5 2009/02/09 10:05:06 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut

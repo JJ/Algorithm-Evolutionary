@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Novelty_Mutation - Mutation guaranteeing new individual is not in the population
+Algorithm::Evolutionary::Op::Novelty_Mutation - Mutation guaranteeing new individual is not in the population
 
 =head1 SYNOPSIS
 
@@ -25,7 +25,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Novelty_Mutation;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -92,10 +92,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/09 10:05:06 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.2 2009/02/09 10:05:06 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
