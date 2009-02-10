@@ -13,6 +13,8 @@ use Algorithm::Evolutionary qw( Individual::BitString
 				Op::RouletteWheel
 				Fitness::ONEMAX Op::Generation_Skeleton);
 
+use Algorithm::Evolutionary::Utils qw(average);
+
 #########################
 
 my $onemax = new Algorithm::Evolutionary::Fitness::ONEMAX;
@@ -37,25 +39,24 @@ my $generation =
 
 my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
 my $bestIndi = $sortPop[0];
-my $worst_indi = $sortPop[$#sortPop];
+my $previous_average = average( \@sortPop );
 $generation->apply( \@sortPop );
 ok( $bestIndi->Fitness() <= $sortPop[0]->Fitness(), 1 ); #fitness
                                                          #improves,
                                                          #but not
                                                          #always 
 #This should have improved...
-ok( $worst_indi->Fitness() <= $sortPop[$#sortPop]->Fitness(), 1 );
-                                                                 
+ok( $previous_average <  average( \@sortPop ), 1 );
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 12:33:11 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.2 2009/02/09 12:33:11 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/10 12:56:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.3 2009/02/10 12:56:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
