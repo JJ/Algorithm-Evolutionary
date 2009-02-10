@@ -29,7 +29,8 @@ WriteMakefile(
 			    'Time::HiRes' => 0,
 			    'Clone::Fast' => 0,
 			    YAML => 0,
-			    'Object::Array' => 0
+			    'Object::Array' => 0,
+			    'Statistics::Basic' => 0
 			   },
 	      dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
 	      clean               => { FILES => 'Algorithm-Evolutionary-*' }
