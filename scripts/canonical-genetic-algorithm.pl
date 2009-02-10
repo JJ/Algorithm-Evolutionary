@@ -6,22 +6,51 @@ canonical-genetic-algorithm.pl - Canonical Genetic Algorithm on a simple fitness
 
 =head1 SYNOPSIS
 
-  prompt% ./canonical-genetic-algorithm.pl <population> <number of generations>
+  prompt% ./canonical-genetic-algorithm.pl <bits> <block size> <population> <number of generations> <selection rate>
 
 
 =head1 DESCRIPTION  
 
 A canonical GA uses mutation, crossover, binary representation, and
-    roulette wheel selection. 
+    roulette wheel selection. Here mainly for reference, and so that
+    you can peruse to start your own programs.
+
+In this case, we are optimizing the Royal Road function,
+L<http://web.cecs.pdx.edu/~mm/handbook-of-ec-rr.pdf>. By default,
+these values are used:
+
+=over
+
+=item number of bits: 64 (this is the chromosome length)
+
+=item size of block: 4 (RR goes by blocks)
+
+=item population size: 256
+
+=item number of generations: 200 (could end before, if solution is
+found) 
+
+=item selection rate: 20% (will be replaced each generation)
+
+=back
+
+This program also demonstrates the use of caches in the fitness
+evaluation, so be careful if you use too many bits or too many
+generations, check the memory.
+
+Output shows the number of generations, the winning chromosome, and
+fitness. After finishing, it outputs time, cache ratio and some other
+things. 
 
 =cut
 
 use warnings;
 use strict;
 
-use Time::HiRes qw( gettimeofday tv_interval);
+use Time::HiRes qw( gettimeofday tv_interval); #for benchmarking
 
 use lib qw(lib ../lib);
+#Importing all neded modules using the short POE-ish version
 use Algorithm::Evolutionary qw( Individual::BitString Op::Creator 
 				Op::CanonicalGA Op::Bitflip 
 				Op::Crossover Fitness::Royal_Road);
@@ -78,6 +107,15 @@ print "\n\tEvaluations: ", $rr->evaluations(), "\n";
 
 print "\n\tCache size ratio: ", $rr->cached_evals()/$rr->evaluations(), "\n";
 
+=head1 SEE ALSO
+
+L<Algorithm::Evolutionary::Op::Base>.
+L<Algorithm::Evolutionary::Individual::Base>.
+L<Algorithm::Evolutionary::Fitness::Base>.
+L<Algorithm::Evolutionary::Experiment>.
+L<XML>
+
+
 =head1 AUTHOR
 
 J. J. Merelo, C<jj (at) merelo.net>
@@ -89,10 +127,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/08 18:44:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.1 2009/02/08 18:44:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/10 06:51:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.2 2009/02/10 06:51:27 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

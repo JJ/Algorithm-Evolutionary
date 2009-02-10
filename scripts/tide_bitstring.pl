@@ -114,10 +114,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/Attic/tide_bitstring.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/10 06:51:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_bitstring.pl,v 1.1 2009/02/10 06:51:27 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 1.1 $
   $Name $
 
 =cut

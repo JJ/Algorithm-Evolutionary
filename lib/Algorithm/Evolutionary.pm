@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.63';
+our $VERSION = '0.64';
 
 # Preloaded methods go here.
 
@@ -34,11 +34,14 @@ __END__
 
 =head1 NAME
 
-Algorithm::Evolutionary - Perl extension for performing paradigm-free evolutionary algorithms. 
+Algorithm::Evolutionary - Perl module for performing paradigm-free evolutionary algorithms. 
 
 =head1 SYNOPSIS
 
-  use Algorithm::Evolutionary; #Really not intended to be used directly
+  #Short way of loading a lot of modules, POE-style
+  use Algorithm::Evolutionary qw( Op::This_Operator
+                                  Individual::That_Individual
+                                  Fitness::Some_Fitness); 
   
 
 =head1 DESCRIPTION
@@ -77,27 +80,36 @@ reports, news, updates, whatever.</p>
 any search will return a number of papers; a journal article is
 already submitted, but meanwhile if you use it for any of your
 research, I would be very grateful if you quoted papers such as this
-one: 
-<blockquote>@InProceedings{jj:2008:PPSN,
-  author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman and Anna I. Esparcia-Alcázar and Eva Alfaro-Cid and Carlos Cotta",
-  title =	"Testing the Intermediate Disturbance Hypothesis: Effect of Asynchronous Population Incorporation on Multi-Deme Evolutionary Algorithms",
-  booktitle =	"Parallel Problem Solving from Nature - PPSN X",
-  year = 	"2008",
-  editor =	"Gunter Rudolph and Thomas Jansen and Simon Lucas and
-		 Carlo Poloni and Nicola Beume",
-  volume =	"5199",
-  series =	"LNCS",
-  pages =	"266-275",
-  address =	"Dortmund",
-  month =	"13-17 " # sep,
-  publisher =	"Springer",
-  keywords =	"genetic algorithms, genetic programming, p2p computing",
-  ISBN = 	"3-540-87699-5",
-  doi =  	"10.1007/978-3-540-87700-4_27",
-  size = 	"pages",
-  notes =	"PPSN X",
-}</blockquote>
-</p>
+one:</p>
+
+=end html
+
+ @InProceedings{jj:2008:PPSN,
+   author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman and Anna I. Esparcia-Alcázar and Eva Alfaro-Cid and Carlos Cotta",
+   title =	"Testing the Intermediate Disturbance Hypothesis: Effect of Asynchronous Population Incorporation on Multi-Deme Evolutionary Algorithms",
+   booktitle =	"Parallel Problem Solving from Nature - PPSN X",
+   year = 	"2008",
+   editor =	"Gunter Rudolph and Thomas Jansen and Simon Lucas and
+		  Carlo Poloni and Nicola Beume",
+   volume =	"5199",
+   series =	"LNCS",
+   pages =	"266-275",
+   address =	"Dortmund",
+   month =	"13-17 " # sep,
+   publisher =	"Springer",
+   keywords =	"genetic algorithms, genetic programming, p2p computing",
+   ISBN = 	"3-540-87699-5",
+   doi =  	"10.1007/978-3-540-87700-4_27",
+   size = 	"pages",
+   notes =	"PPSN X",
+}
+
+=begin html
+
+<p>Some information on this paper and instructions from download can
+be found in <a
+href='http://nohnes.wordpress.com/2008/09/21/paper-on-performance-of-asynchronous-distributed-evolutionary-algorithms-available-online/'>our
+group blog</a></p> 
 
 =end html
 
@@ -139,5 +151,22 @@ simple GA on the P_Peaks deceptive function.
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
 evolutionary algorithms with anything else easily
 
+You might be interested in one of the other GA modules out there, such
+as L<AI::Genetic::Pro> 
+
+=back 
+
+=cut
+
+=head1 Copyright
+  
+  This file is released under the GPL. See the LICENSE file included in this distribution,
+  or go to http://www.fsf.org/licenses/gpl.txt
+
+  CVS Info: $Date: 2009/02/10 06:51:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.6 2009/02/10 06:51:27 jmerelo Exp $ 
+  $Author: jmerelo $ 
+  $Revision: 2.6 $
+  $Name $
 
 =cut
