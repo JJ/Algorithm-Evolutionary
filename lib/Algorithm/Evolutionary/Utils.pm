@@ -32,12 +32,13 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ ) ;
-our @EXPORT_OK = qw( entropy consensus hamming random_bitstring parse_xml);
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ /(\d+\.\d+)/ ) ;
+our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average parse_xml);
 
 use Carp;
 use String::Random;
 use XML::Parser;
+use Statistics::Basic qw(mean);
 
 =head2 entropy( $population)
 
@@ -101,6 +102,20 @@ sub consensus {
   return $consensus;
 }
 
+=head2 average( $population )
+
+Computes an average of population fitness
+
+=cut
+
+sub average {
+  my $population = shift;
+  my @frequencies;
+  my @fitnesses = map( $_->Fitness(), @$population );
+  return mean( @fitnesses );
+
+}
+
 =head2 random_bitstring( $bits )
 
 Returns a random bitstring with the stated number of bits. Useful for testing,mainly
@@ -134,10 +149,10 @@ sub parse_xml {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.4 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/10 12:29:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.5 2009/02/10 12:29:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut
