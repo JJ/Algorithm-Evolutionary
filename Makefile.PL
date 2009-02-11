@@ -30,7 +30,7 @@ WriteMakefile(
 			    'Clone::Fast' => 0,
 			    YAML => 0,
 			    'Object::Array' => 0,
-			    'Statistics::Basic' => 0
+			    'Statistics::Basic' => 1.6
 			   },
 	      dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
 	      clean               => { FILES => 'Algorithm-Evolutionary-*' }
