@@ -7,7 +7,8 @@ Algorithm::Evolutionary::Op::Replace_Worst - Incorporate an individual into the 
 
 =head1 SYNOPSIS
 
-  my $op = new Algorithm::Evolutionary::Op::Novelty_Mutation $ref_to_population_hash; #The population hash can be obtained from some fitness functions
+  my $op = new Algorithm::Evolutionary::Op::Replace_Worst; 
+  $op->apply( $old_population_hashref, $new_population_hashref );
 
 =head1 Base Class
 
@@ -25,7 +26,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Replace_Worst;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -70,15 +71,23 @@ sub apply ($;$){
 
 }
 
+=head1 SEE ALSO
+
+L<Algorithm::Evolutionary::Op::Generation_Skeleton>, where the
+replacement policy is one of the parameters 
+
+It can also be used in L<POE::Component::Algorithm::Evolutionary> for
+insertion of new individuals asynchronously.
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 2.1 2009/02/09 10:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/11 12:38:14 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 2.2 2009/02/11 12:38:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
