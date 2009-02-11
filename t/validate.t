@@ -3,21 +3,25 @@
 use Test;
 BEGIN { plan tests => 5 };
 
-use XML::LibXML;
-my $parser = XML::LibXML->new();
+SKIP: {
+    eval { require XML::LibXML };
 
+    skip "XML::LibXML not installed", 5 if $@;
 
-use lib qw( ../.. ../../.. .. ); #Just in case we are testing it in-place
-
-my @filesGood = qw( marea.xml royalroad.xml onemax.xml experiment.xml );
-my @filesBad = qw( marea-fails.xml );
-
-for ( @filesGood ) {
-  skip ( !$parser, validate ( "xml/$_", $parser ) =~ /Validated/, 1 );
-}
-
-for ( @filesBad ) {
-  skip ( !$parser,  validate ( "xml/$_", $parser ) =~ /error/, 1 );
+    my $parser = XML::LibXML->new();    
+    
+    use lib qw( ../.. ../../.. .. ); #Just in case we are testing it in-place
+    
+    my @filesGood = qw( marea.xml royalroad.xml onemax.xml experiment.xml );
+    my @filesBad = qw( marea-fails.xml );
+    
+    for ( @filesGood ) {
+	skip ( !$parser, validate ( "xml/$_", $parser ) =~ /Validated/, 1 );
+    }
+    
+    for ( @filesBad ) {
+	skip ( !$parser,  validate ( "xml/$_", $parser ) =~ /error/, 1 );
+    }
 }
 
 ########################################################################
@@ -41,10 +45,10 @@ sub validate {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/11 15:23:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 2.2 2009/02/11 15:23:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
