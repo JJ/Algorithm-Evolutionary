@@ -23,7 +23,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package Algorithm::Evolutionary::Op::GenerationalTerm;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -41,6 +41,17 @@ sub new {
 	       counter => 0 };
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
   return $self;
+}
+
+=head2 reset
+
+Resets the number of generations to 0
+
+=cut
+
+sub reset {
+  my $self = shift;
+  $self->{'counter'} =0;
 }
 
 
@@ -76,10 +87,10 @@ L<Algorithm::Evolutionary::Op::DeltaTerm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/16 16:16:40 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.3 2009/02/16 16:16:40 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
