@@ -35,7 +35,7 @@ use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -221,7 +221,7 @@ sub as_string {
 
 =head2 as_string_with_fitness( [$separator] )
 
-Prints it as a string followeb by fitness. Separator by default is C<;>
+Prints it as a string followed by fitness. Separator by default is C<;>
 
 =cut
 
@@ -270,7 +270,7 @@ sub my_operators {
 
 =head2 evaluate( $fitness )
 
-Evaluates using the $fitness function given. Can be a Fitness object or a ref-to-sub
+Evaluates using the $fitness thingy given. Can be a L<Algorithm::Evolutionary::Fitness::Base|Fitness> object or a ref-to-sub
 
 =cut
 
@@ -340,10 +340,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.4 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/21 12:33:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.5 2009/02/21 12:33:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut

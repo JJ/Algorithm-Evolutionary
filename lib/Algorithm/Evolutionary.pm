@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.64_1';
+our $VERSION = '0.64_2';
 
 # Preloaded methods go here.
 
@@ -134,6 +134,9 @@ C<tide_float.pl>, an example of floating point vector optimization, or
 C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a
 simple GA on the P_Peaks deceptive function. 
 
+Some other examples are installed: check out L<tide_bitstring.pl>, L<tide_float.pl> and L<canonical-genetic-algorithm.pl>, 
+which you can run and play with to get a taste of what EA programming is like. 
+
 =head1 SEE ALSO
 
 =over
@@ -163,10 +166,10 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/11 12:38:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.7 2009/02/11 12:38:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/21 12:33:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.8 2009/02/21 12:33:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.7 $
+  $Revision: 2.8 $
   $Name $
 
 =cut

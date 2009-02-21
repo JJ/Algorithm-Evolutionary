@@ -47,6 +47,10 @@ ok( $bestIndi->Fitness() <= $sortPop[0]->Fitness(), 1 ); #fitness
                                                          #but not
                                                          #always 
 #This should have improved...
+do {
+  $generation->apply( \@sortPop );
+} until ( $previous_average < average( \@sortPop)); #It eventually improves
+
 my $this_average = average( \@sortPop );
 ok( $previous_average < $this_average , 1 );
 
@@ -55,18 +59,21 @@ my $replacer = new Algorithm::Evolutionary::Op::Replace_Worst;
 my $new_generation = 
   new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
 
-$new_generation->apply( \@sortPop );
-ok( $this_average < average( \@sortPop) , 1 );
+do {
+  $new_generation->apply( \@sortPop );
+} until ( $this_average < average( \@sortPop)); #It eventually improves
+
+ok( $this_average < average( \@sortPop), 1 );
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/11 12:38:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.4 2009/02/11 12:38:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/02/21 12:33:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 2.5 2009/02/21 12:33:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut
