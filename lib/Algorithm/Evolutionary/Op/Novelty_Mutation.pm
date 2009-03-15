@@ -7,8 +7,17 @@ Algorithm::Evolutionary::Op::Novelty_Mutation - Mutation guaranteeing new indivi
 
 =head1 SYNOPSIS
 
-  my $op = new Algorithm::Evolutionary::Op::Novelty_Mutation $ref_to_population_hash; #The population hash can be obtained from some fitness functions
-
+  my $mmdp = new  Algorithm::Evolutionary::Fitness::MMDP;
+  my $bits = 36;
+  my @population;
+  for ( 1..100 ) { #Create and evaluate a population
+    my $indi = new Algorithm::Evolutionary::Individual::BitString $bits;
+    $indi->evaluate( $mmdp );
+    push @population, $indi;
+  }
+  my $nm = new Algorithm::Evolutionary::Op::Novelty_Mutation $mmdp->{'_cache'}; #Initialize using cache
+  $nm->apply($population[$i]);
+ 
 =head1 Base Class
 
 L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
@@ -25,13 +34,12 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Novelty_Mutation;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $ARITY = 1;
@@ -66,7 +74,6 @@ L<BitString|Algorithm::Evolutionary::Individual::BitString>.
 sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-#  my $victim = $arg->clone();
   my $test_clone; 
   my $size =  $arg->size();
   for ( my $i = 0; $i < $size; $i++ ) {
@@ -76,7 +83,7 @@ sub apply ($;$){
       $test_clone = $arg->clone();
     }
     $test_clone->Atom( $i, $test_clone->Atom( $i )?0:1 );
-    last if !$self->{'_population_hashref'}->{$test_clone->Chrom()};
+    last if !$self->{'_population_hashref'}->{$test_clone->Chrom()}; #Exit if not found in the population
   }
   if ( $test_clone->Chrom() eq $arg->Chrom() ) { # Nothing done, zap
     for ( my $i = 0; $i < $size; $i++ ) {
@@ -92,10 +99,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.2 2009/02/09 10:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/15 18:31:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.3 2009/03/15 18:31:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
