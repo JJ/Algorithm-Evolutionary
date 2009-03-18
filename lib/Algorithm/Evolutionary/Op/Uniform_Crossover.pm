@@ -3,16 +3,13 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Crossover - n-point crossover
-    operator; puts a part of the second operand into the first
-    operand
-             
+Algorithm::Evolutionary::Op::Uniform_Crossover - interchanges a set of atoms from one parent to the other.
 
 =head1 SYNOPSIS
 
   #Create from XML description using EvoSpec
   my $xmlStr3=<<EOC;
-  <op name='Crossover' type='binary' rate='1'>
+  <op name='Uniform_Crossover' type='binary' rate='1'>
     <param name='numPoints' value='3' /> #Max is 2, anyways
   </op>
   EOC
@@ -26,7 +23,7 @@ Algorithm::Evolutionary::Op::Crossover - n-point crossover
   my $offspring = $op3->apply( $indi2, $indi3 ); #$indi2 == $offspring
 
   #Initialize using OO interface
-  my $op4 = new Algorithm::Evolutionary::Op::Crossover 3; #Crossover with 3 crossover points
+  my $op4 = new Algorithm::Evolutionary::Op::Uniform_Crossover 0.5; # Crossover rate
 
 =head1 Base Class
 
@@ -34,23 +31,17 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Crossover operator for a Individuals of type
-L<Algorithm::Evolutionary::Individual::String|Individual::String> and
-their descendants
-(L<Algorithm::Evolutionary::Individual::BitString|Individual::BitString>). Crossover
-for L<Algorithm::Evolutionary::Individual::Vector|Individual::Vector>
-would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
-
+General purpose uniform crossover operator
 
 =head1 METHODS
 
 =cut
 
-package Algorithm::Evolutionary::Op::Crossover;
+package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -65,16 +56,16 @@ our $ARITY = 2;
 
 Creates a new n-point crossover operator, with 2 as the default number
 of points, that is, the default would be
-    my $options_hash = { numPoints => 2 };
+    my $options_hash = { crossover_rate => 0.5 };
     my $priority = 1;
 
 =cut
 
 sub new {
   my $class = shift;
-  my $hash = { numPoints => shift || 2 };
-  my $rate = shift || 1;
-  my $self = Algorithm::Evolutionary::Op::Base::new( $class, $rate, $hash );
+  my $hash = { crossover_rate => shift || 2 };
+  my $priority = shift || 1;
+  my $self = Algorithm::Evolutionary::Op::Base::new( $class, $priority, $hash );
   return $self;
 }
 
@@ -88,7 +79,7 @@ Defaults to 2 point
 sub create {
   my $class = shift;
   my $self;
-  $self->{_numPoints} = shift || 2;
+  $self->{_crossover_rate} = shift || 0.5;
   bless $self, $class;
   return $self;
 }
@@ -108,22 +99,15 @@ parents at the same time, check L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOve
 sub  apply ($$$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-#  my $victim = $arg->clone();
   my $victim = clone( $arg );
   my $victim2 = shift || croak "No victim here!";
-#  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
-#  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
-  my $minlen = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
-	 length( $victim2->{_str} ): length( $victim->{_str} );
-  my $pt1 = int( rand( $minlen ) );
-  my $range = 1 + int( rand( $minlen  - $pt1 ) );
-#  print "Puntos: $pt1, $range \n";
-  croak "No number of points to cross defined" if !defined $self->{_numPoints};
-  if ( $self->{_numPoints} > 1 ) {
-	$range =  int ( rand( length( $victim->{_str} ) - $pt1 ) );
+  my $min_length = (  $victim->size() >  $victim2->size() )?
+      $victim2->size():$victim->size();
+  for ( my $i = 0; $i < $min_length; $i++ ) {
+      if ( rand(100)>50) {
+	  $victim->Atom($i, $victim2->Atom($i));
+      }
   }
-  
-  substr( $victim->{_str}, $pt1, $range ) = substr( $victim2->{_str}, $pt1, $range );
   $victim->{'_fitness'} = undef;
   return $victim; 
 }
@@ -134,9 +118,9 @@ sub  apply ($$$){
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2009/03/18 20:41:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.2 2009/03/18 20:41:22 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.1 2009/03/18 20:41:22 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.1 $
   $Name $
 
 =cut
