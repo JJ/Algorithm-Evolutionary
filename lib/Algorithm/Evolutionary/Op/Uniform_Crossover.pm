@@ -41,7 +41,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -104,7 +104,7 @@ sub  apply ($$$){
   my $min_length = (  $victim->size() >  $victim2->size() )?
       $victim2->size():$victim->size();
   for ( my $i = 0; $i < $min_length; $i++ ) {
-      if ( rand(100)>50) {
+      if ( rand() < $self->{'_crossover_rate'}) {
 	  $victim->Atom($i, $victim2->Atom($i));
       }
   }
@@ -117,10 +117,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/18 20:41:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.1 2009/03/18 20:41:22 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 07:04:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.2 2009/03/19 07:04:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
