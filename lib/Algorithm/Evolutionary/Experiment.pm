@@ -1,12 +1,13 @@
-use strict; #-*-CPerl-*-
+use strict; #-*-CPerl-*- -*- hi-lock -*- 
 use warnings;
 
 use lib qw( ../../../lib );
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Experiment - Class for setting up an experiment with algorithms and population
-                 
+Algorithm::Evolutionary::Experiment - Class for setting up an
+experiment with algorithms and population 
+
 =head1 SYNOPSIS
   
   use Algorithm::Evolutionary::Experiment;
@@ -14,7 +15,8 @@ use lib qw( ../../../lib );
   my $indiType = 'BitString';
   my $indiSize = 64;
   
-  my $ex = new  Algorithm::Evolutionary::Experiment $popSize, $indiType, $indiSize, $algorithm; #Algorithm might be anything of type Op
+  #Algorithm might be anything of type Op
+  my $ex = new Algorithm::Evolutionary::Experiment $popSize, $indiType, $indiSize, $algorithm; 
 
 
 =head1 DESCRIPTION
@@ -34,11 +36,11 @@ use Algorithm::Evolutionary::Individual::Base;
 use Algorithm::Evolutionary::Op::Base;
 use Algorithm::Evolutionary::Op::Creator;
 
-our ($VERSION) = ( '$Revision: 2.6 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.7 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
-=head2 new( $pop_size, $type_of_individual, $individual_size
+=head2 new( $pop_size, $type_of_individual, $individual_size )
 
 Creates a new experiment. An C<Experiment> has two parts: the
    population and the algorithm. The population is created from a set
@@ -59,7 +61,8 @@ sub new ($$$$;$) {
     my $indiType = shift || carp "Empty individual class, can't create\n";
     my $indiSize = shift || carp "Empty individual size, no reasonable default, can't create\n";
     for ( my $i = 0; $i < $popSize; $i ++ ) {
-      my $indi = Algorithm::Evolutionary::Individual::Base::new( $indiType, { length => $indiSize } );
+      my $indi = Algorithm::Evolutionary::Individual::Base::new( $indiType, 
+								 { length => $indiSize } );
       $indi->randomize();
       push @{$self->{_pop}}, $indi;
     }
@@ -193,7 +196,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 2.6 $ -->
+     Experiment $Revision: 2.7 $ -->
     <initial>
 EOC
 
@@ -214,10 +217,10 @@ EOC
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.6 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 2.7 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.6 $
+  $Revision: 2.7 $
   $Name $
 
 =cut

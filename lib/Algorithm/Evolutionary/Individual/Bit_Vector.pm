@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -73,16 +73,23 @@ sub new {
     my $class = shift; 
     my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
     my $arg = shift || { length => 16};
-    if ( $arg->{'length'} ) {
-	my $length = $arg->{'length'};
-	my $rander = new String::Random;
-	my $hex_string = $rander->randregex("[0-9A-F]{".int($length/4)."}");
-	$self->{'_bit_vector'} = Bit::Vector->new_Hex( $length, $hex_string );
+    if ( $arg =~ /^\d+$/ ) { #It's a number
+      $self->{'_bit_vector'} = _create_bit_vector( $arg );
+    } elsif ( $arg->{'length'} ) {
+      $self->{'_bit_vector'} = _create_bit_vector( $arg->{'length'} );
     } elsif ( $arg->{'string'} ) {
-	$self->{'_bit_vector'} = 
-	    Bit::Vector->new_Bin( length($arg->{'string'}), $arg->{'string'} );
-    }
+      $self->{'_bit_vector'} = 
+	Bit::Vector->new_Bin( length($arg->{'string'}), $arg->{'string'} );
+    } 
+    croak "Incorrect creation options" if !$self->{'_bit_vector'};
     return $self;
+}
+
+sub _create_bit_vector {
+   my $length = shift || croak "No length!";
+   my $rander = new String::Random;
+   my $hex_string = $rander->randregex("[0-9A-F]{".int($length/4)."}");
+   return Bit::Vector->new_Hex( $length, $hex_string );
 }
 
 sub TIEARRAY {
@@ -214,16 +221,19 @@ sub SPLICE {
   my $offset = shift;
   my $bits = shift;
   my $new_vector;
+  my $slice = Bit::Vector->new($bits);
+  my $size =  $self->{'_bit_vector'}->Size();
+  $slice->Interval_Copy(  $self->{'_bit_vector'}, 0, $size-$offset-$bits,  $bits );
   if ( @_ ) {
     $new_vector =  Bit::Vector->new_Bin(scalar(@_), join("",@_));
-    return split(//, 
-		 $self->{'_bit_vector'}->Interval_Substitute( $new_vector, 0, $new_vector->Size()|| 0, 
-							      $offset, $bits  )->to_Bin());
+    $self->{'_bit_vector'}->Interval_Substitute( $new_vector, 
+						 $size-$offset-$bits, $bits, 0, 
+						 $new_vector->Size() );
   } else {
-    $new_vector = Bit::Vector->new($bits);
-    $new_vector->Interval_Copy(  $self->{'_bit_vector'}, $offset, 0, $bits );
-    return split(//,$new_vector->to_Bin());
-  }
+    $self->{'_bit_vector'}->Interval_Substitute( Bit::Vector->new(0), $size-$offset-$bits, $bits,
+						 0, 0  );
+  } 
+  return split(//,$slice->to_Bin());
 
 }
 
@@ -238,10 +248,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 2.2 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut

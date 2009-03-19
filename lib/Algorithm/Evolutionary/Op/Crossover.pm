@@ -20,12 +20,10 @@ Algorithm::Evolutionary::Op::Crossover - n-point crossover
 
   #Apply to 2 Individuals of the String class
   my $indi = new Algorithm::Evolutionary::Individual::BitString 10;
-  my $indi2 = $indi->clone();
-  my $indi3 = $indi->clone();
   my $offspring = $op3->apply( $indi2, $indi3 ); #$indi2 == $offspring
 
   #Initialize using OO interface
-  my $op4 = new Algorithm::Evolutionary::Op::Crossover 3; #Crossover with 3 crossover points
+  my $op4 = new Algorithm::Evolutionary::Op::Crossover 2; #Crossover with 2 crossover points
 
 =head1 Base Class
 
@@ -49,7 +47,7 @@ package Algorithm::Evolutionary::Op::Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -132,10 +130,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 18:07:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.3 2009/03/19 18:07:54 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.4 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut

@@ -85,12 +85,12 @@ one:</p>
 =end html
 
  @InProceedings{jj:2008:PPSN,
-   author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo 
-                 and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman 
-                 and Anna I. Esparcia-Alcázar and Eva Alfaro-Cid 
+   author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo
+                 and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman
+                 and Anna I. Esparcia-Alcázar and Eva Alfaro-Cid
                  and Carlos Cotta",
-   title =	"Testing the Intermediate Disturbance Hypothesis: Effect of 
-                 Asynchronous Population Incorporation on Multi-Deme 
+   title =	"Testing the Intermediate Disturbance Hypothesis: Effect of
+                 Asynchronous Population Incorporation on Multi-Deme
                  Evolutionary Algorithms",
    booktitle =	"Parallel Problem Solving from Nature - PPSN X",
    year = 	"2008",
@@ -107,7 +107,7 @@ one:</p>
    doi =  	"10.1007/978-3-540-87700-4_27",
    size = 	"pages",
    notes =	"PPSN X",
-}
+ }
 
 =begin html
 
@@ -134,13 +134,15 @@ of comment are welcome.
 =head1 Examples
 
 There are a few examples in the C<examples> subdirectory, which should
-have been included with your CPAN bundle. Foor instance, check out
+have been included with your CPAN bundle. For instance, check out
 C<tide_float.pl>, an example of floating point vector optimization, or
-C<run_easy_ga.pl p_peaks.yaml>, which should run an example of a
-simple GA on the P_Peaks deceptive function. 
+C<cd examples; run_easy_ga.pl p_peaks.yaml>, which should run an
+    example of a
+simple GA on the P_Peaks deceptive function.
 
-Some other examples are installed: check out L<tide_bitstring.pl>, L<tide_float.pl> and L<canonical-genetic-algorithm.pl>, 
-which you can run and play with to get a taste of what EA programming is like. 
+Some other examples are installed: check out L<tide_bitstring.pl>,
+    L<tide_float.pl> and L<canonical-genetic-algorithm.pl>,
+which you can run and play with to get a taste of what EA programming is like.
 
 =head1 SEE ALSO
 
@@ -171,10 +173,10 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 13:04:05 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.10 2009/03/19 13:04:05 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.11 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.10 $
+  $Revision: 2.11 $
   $Name $
 
 =cut
