@@ -6,12 +6,17 @@ onemax.pl - Optimization of the tide function using A::E
 
 =head1 SYNOPSIS
 
-  prompt% ./onemax.pl [bits] [population]
+  prompt% ./onemax.pl [bits] [population] [number of generations] [print interval]
 
 or
 
-  prompt% perl onemax.pl <population> <number of generations>
+  prompt% perl onemax.pl <bits>  <population> <number of generations>  <print interval>
 
+Default values:
+bits: 128
+population: 200
+number of generations: 500
+print interval: 1
 
 =head1 DESCRIPTION  
 
@@ -34,7 +39,8 @@ use Algorithm::Evolutionary::Fitness::ONEMAX;
 #----------------------------------------------------------#
 my $number_of_bits = shift || 128;
 my $popSize = shift || 200; #Population size
-my $num_generations = 500; #Max number of generations
+my $num_generations = shift || 500; #Max number of generations
+my $step = shift || 1; # Step for printing results
 
 #----------------------------------------------------------#
 #Initial population
@@ -74,7 +80,7 @@ my $contador=0;
 do {
   $generation->apply( \@pop );
   #----------------------------------------------------------#
-  if ( $contador % 100 == 0 ) {
+  if ( $contador % $step == 0 ) {
 #Mostramos los resultados obtenidos
       print "$contador; time: ". tv_interval( $inicioTiempo ) . "\n";
   }
@@ -94,10 +100,10 @@ J. J. Merelo C<jj [at] merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 18:55:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 2.2 2009/03/19 18:55:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
