@@ -6,7 +6,7 @@ use strict;
 
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
-BEGIN { plan tests => 16;
+BEGIN { plan tests => 18;
     use_ok('Algorithm::Evolutionary::Individual::String');
 };
 
@@ -38,17 +38,20 @@ is_deeply($indi4,$indi5,'Cloning');
 my @array = qw( a x q W z ñ); #Tie a String individual
 tie my @vector, 'Algorithm::Evolutionary::Individual::String', @array;
 is( tied( @vector )->Atom(3), 'W', 'Tieing');
+is( $vector[3], 'W', 'Untieing');
+my @splice_result = splice( @vector, 0, 2 );
+is_deeply( \@splice_result, [ 'a', 'x'], 'Splice '.tied(@vector)->as_string() );
 
 is( pop( @vector ), 'ñ', 'Pop' );
-is( shift( @vector), 'a', 'Shift' );
+is( shift( @vector), 'q', 'Shift' );
 push( @vector, 'p' );
 is( pop( @vector ), 'p', 'Push + pop' );
 unshift( @vector, 'u' );
 is( shift( @vector ), 'u', 'Unshift + shift' );
-$vector[3] = 'k';
-is( $vector[3], 'k', 'Store + fetch' );
+$vector[2] = 'k';
+is( $vector[2], 'k', 'Store + fetch' );
 
-my @mini_vector = splice( @vector, 2, 2 );
+my @mini_vector = splice( @vector, 1, 2 );
 is( $mini_vector[1], 'k', 'Splice' );
 
 #Testing XML stuff
@@ -65,10 +68,10 @@ is( $indi4->Atom(4), 'h', 'from XML' );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 2.2 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 2.3 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

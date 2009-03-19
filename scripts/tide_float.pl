@@ -12,9 +12,9 @@ or
 
   prompt% perl tide_float.pl <population> <number of generations>
 
-  Shows the values of the two floating-point components of the
-  chromosome and finally the best value and fitness reached, which
-  should be as close to 1 as possible.
+will show the values of the two floating-point components of the
+chromosome and finally the best value and fitness reached, which
+should be as close to 1 as possible.
   
 
 =head1 DESCRIPTION  
@@ -115,10 +115,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/08 18:46:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_float.pl,v 1.1 2009/02/08 18:46:18 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 21:13:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_float.pl,v 1.2 2009/03/19 21:13:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
