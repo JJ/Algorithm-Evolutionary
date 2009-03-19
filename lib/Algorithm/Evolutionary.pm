@@ -85,8 +85,13 @@ one:</p>
 =end html
 
  @InProceedings{jj:2008:PPSN,
-   author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman and Anna I. Esparcia-Alc√°zar and Eva Alfaro-Cid and Carlos Cotta",
-   title =	"Testing the Intermediate Disturbance Hypothesis: Effect of Asynchronous Population Incorporation on Multi-Deme Evolutionary Algorithms",
+   author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo 
+                 and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman 
+                 and Anna I. Esparcia-Alc·zar and Eva Alfaro-Cid 
+                 and Carlos Cotta",
+   title =	"Testing the Intermediate Disturbance Hypothesis: Effect of 
+                 Asynchronous Population Incorporation on Multi-Deme 
+                 Evolutionary Algorithms",
    booktitle =	"Parallel Problem Solving from Nature - PPSN X",
    year = 	"2008",
    editor =	"Gunter Rudolph and Thomas Jansen and Simon Lucas and
@@ -119,7 +124,7 @@ group blog</a></p>
 
 Main author and developer is J. J. Merelo, jmerelo (at)
 geneura.ugr.es. There have also been some contributions from Javi
-Garc√≠a, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
+GarcÌa, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
 geneura.ugr.es. Patient users that have submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>. Bugs, requests and any kind
 of comment are welcome.
@@ -166,10 +171,10 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/18 20:41:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.9 2009/03/18 20:41:22 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 13:04:05 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.10 2009/03/19 13:04:05 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.9 $
+  $Revision: 2.10 $
   $Name $
 
 =cut
