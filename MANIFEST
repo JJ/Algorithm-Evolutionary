@@ -42,6 +42,7 @@ lib/Algorithm/Evolutionary/Op/Storing.pm
 lib/Algorithm/Evolutionary/Op/TournamentSelect.pm
 lib/Algorithm/Evolutionary/Op/TreeMutation.pm
 lib/Algorithm/Evolutionary/Op/VectorCrossover.pm
+lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm
 lib/Algorithm/Evolutionary/Individual/Base.pm
 lib/Algorithm/Evolutionary/Individual/String.pm
 lib/Algorithm/Evolutionary/Individual/BitString.pm
@@ -69,6 +70,10 @@ t/0303-onemax.t
 t/0304-royalroad.t
 t/0305-ecc.t
 t/0333-mmdp.t
+t/0400-novelty.t
+t/0401-genebx.t
+t/0402-bitflip.t
+t/0403-uxover.t
 t/0444-stored.t
 t/0500-generation-skel.t
 t/general.t
