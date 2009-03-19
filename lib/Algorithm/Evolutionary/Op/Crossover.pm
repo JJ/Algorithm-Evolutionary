@@ -4,8 +4,7 @@ use warnings;
 =head1 NAME
 
 Algorithm::Evolutionary::Op::Crossover - n-point crossover
-    operator; puts a part of the second operand into the first
-    operand
+    operator; puts fragments of the second operand into the first operand
              
 
 =head1 SYNOPSIS
@@ -50,7 +49,7 @@ package Algorithm::Evolutionary::Op::Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -133,10 +132,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/18 20:41:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.2 2009/03/18 20:41:22 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 18:07:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.3 2009/03/19 18:07:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

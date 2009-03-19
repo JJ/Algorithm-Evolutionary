@@ -3,7 +3,8 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Uniform_Crossover - interchanges a set of atoms from one parent to the other.
+Algorithm::Evolutionary::Op::Uniform_Crossover - interchanges a set of atoms 
+  from one parent to the other.
 
 =head1 SYNOPSIS
 
@@ -23,7 +24,7 @@ Algorithm::Evolutionary::Op::Uniform_Crossover - interchanges a set of atoms fro
   my $offspring = $op3->apply( $indi2, $indi3 ); #$indi2 == $offspring
 
   #Initialize using OO interface
-  my $op4 = new Algorithm::Evolutionary::Op::Uniform_Crossover 0.5; # Crossover rate
+  my $op4 = new Algorithm::Evolutionary::Op::Uniform_Crossover 0.5;# Crossover rate
 
 =head1 Base Class
 
@@ -41,7 +42,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -63,16 +64,16 @@ of points, that is, the default would be
 
 sub new {
   my $class = shift;
-  my $hash = { crossover_rate => shift || 2 };
+  my $hash = { crossover_rate => shift || 0.5 };
   my $priority = shift || 1;
   my $self = Algorithm::Evolutionary::Op::Base::new( $class, $priority, $hash );
   return $self;
 }
 
-=head2 create( [$num_points] )
+=head2 create( [$crossover_rate] )
 
-Creates a new 1 or 2 point crossover operator. But this is just to have a non-empty chromosome
-Defaults to 2 point
+Creates a new 1 or 2 point crossover operator. But this is just to
+have a non-empty chromosome. Defaults to 2 point
 
 =cut
 
@@ -92,7 +93,8 @@ it checks before application that both operands are of type
 L<BitString|Algorithm::Evolutionary::Individual::String>.
 
 Changes the first parent, and returns it. If you want to change both
-parents at the same time, check L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOver>
+parents at the same time, check
+L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOver> 
 
 =cut
 
@@ -117,10 +119,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 07:04:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.2 2009/03/19 07:04:46 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 18:07:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.3 2009/03/19 18:07:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
