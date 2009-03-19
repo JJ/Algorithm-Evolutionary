@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-  tide_bitstring.pl - Implementation of the Tide optimization using A::E
+tide_bitstring.pl - Implementation of the Tide optimization using A::E
 
 =head1 SYNOPSIS
 
@@ -114,10 +114,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/10 06:51:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_bitstring.pl,v 1.1 2009/02/10 06:51:27 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/19 13:04:05 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_bitstring.pl,v 1.2 2009/03/19 13:04:05 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
