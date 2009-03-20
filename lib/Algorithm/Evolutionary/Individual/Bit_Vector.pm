@@ -52,7 +52,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -227,7 +227,7 @@ sub SPLICE {
   if ( @_ ) {
     $new_vector =  Bit::Vector->new_Bin(scalar(@_), join("",@_));
     $self->{'_bit_vector'}->Interval_Substitute( $new_vector, 
-						 $size-$offset-$bits, $bits, 0, 
+						 $size-$offset-$bits, 0 , 0, 
 						 $new_vector->Size() );
   } else {
     $self->{'_bit_vector'}->Interval_Substitute( Bit::Vector->new(0), $size-$offset-$bits, $bits,
@@ -248,10 +248,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 21:13:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 2.2 2009/03/19 21:13:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 2.3 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

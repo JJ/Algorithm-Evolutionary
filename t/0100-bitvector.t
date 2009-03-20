@@ -12,7 +12,7 @@ use strict;
 
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
-BEGIN { plan tests => 13;
+BEGIN { plan tests => 14;
     use_ok('Algorithm::Evolutionary::Individual::Bit_Vector');
 };
 
@@ -37,27 +37,32 @@ tie my @vector, 'Algorithm::Evolutionary::Individual::Bit_Vector', @array;
 is( tied( @vector )->Atom(3), '1', 'Tieing '.tied(@vector)->as_string());
 my @splice_result = splice( @vector, 0, 2 );
 is_deeply( \@splice_result, [ '0', '1'], 'Splice '.tied(@vector)->as_string() );
+
+splice(@vector, 0, 2, @splice_result);
+is($vector[1],'1','Spliced back '.tied(@vector)->as_string() );
+
 is( pop( @vector ), '0', 'Pop '.tied(@vector)->as_string() );
 is( shift( @vector), '0', 'Shift '.tied(@vector)->as_string() );
+my $this_vector = join("",tied(@vector)->as_string());
 push( @vector, '1' );
-is( tied( @vector )->as_string(), '11010111', 'Push' );
+is( tied( @vector )->as_string(), $this_vector.'1', 'Push' );
 unshift( @vector, '1' );
-is( tied( @vector )->as_string(), '111010111', 'Unshift '.tied(@vector)->as_string() );
+is( tied( @vector )->as_string(), '1'.$this_vector.'1', 'Unshift '.tied(@vector)->as_string() );
 $vector[3] = '0';
 is( $vector[3], '0', 'Store + fetch '.tied(@vector)->as_string()  );
 
 my @mini_vector = splice( @vector, 2, 3 );
-is( join("",@mini_vector), '101', 'Splice '.tied(@vector)->as_string()  );
+is( join("",@mini_vector), '001', 'Splice '.tied(@vector)->as_string()  );
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 21:13:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0100-bitvector.t,v 2.2 2009/03/19 21:13:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0100-bitvector.t,v 2.3 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

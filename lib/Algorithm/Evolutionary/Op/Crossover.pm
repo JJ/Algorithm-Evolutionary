@@ -47,7 +47,7 @@ package Algorithm::Evolutionary::Op::Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -98,7 +98,7 @@ it checks before application that both operands are of type
 L<BitString|Algorithm::Evolutionary::Individual::String>.
 
 Changes the first parent, and returns it. If you want to change both
-parents at the same time, check L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOver>
+parents at the same time, check L<QuadXOver|Algorithm::Evolutionary::Op::QuadXOver>
 
 =cut
 
@@ -130,10 +130,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 21:13:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.4 2009/03/19 21:13:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Crossover.pm,v 2.5 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut

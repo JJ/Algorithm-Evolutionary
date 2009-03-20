@@ -34,7 +34,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Novelty_Mutation;
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -44,7 +44,7 @@ use base 'Algorithm::Evolutionary::Op::Base';
 #Class-wide constants
 our $ARITY = 1;
 
-=head2 new( [$ref_to_population_hash] [,$priority] )
+=head2 new( $ref_to_population_hash [,$priority] )
 
 Creates a new mutation operator with an operator application rate
 (general for all ops), which defaults to 1, and stores the reference
@@ -99,10 +99,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/15 18:31:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.3 2009/03/15 18:31:02 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.4 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut

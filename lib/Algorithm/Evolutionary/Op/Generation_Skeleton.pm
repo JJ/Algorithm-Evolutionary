@@ -6,10 +6,10 @@ use warnings;
 Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single generation for an evolutionary algorithm.
                  
 =head1 SYNOPSIS
+
   #Taken from the t/general.t file, verbatim
   my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
   my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
-  my $replacementRate = 0.3; #Replacement rate
   use Algorithm::Evolutionary::Op::RouletteWheel;
   my $popSize = 20;
   my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $popSize; #One of the possible selectors
@@ -31,7 +31,7 @@ Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single
     push( @pop, $indi );
   }
   my $generation = 
-    new Algorithm::Evolutionary::Op::GeneralGeneration( $onemax, $selector, [$m, $c], $replacementRate );
+    new Algorithm::Evolutionary::Op::GeneralGeneration( $onemax, $selector, [$m, $c] );
   my @sortPop = sort { $a->Fitness() <=> $b->Fitness() } @pop;
   my $bestIndi = $sortPop[0];
   $generation->apply( \@sortPop );
@@ -42,8 +42,11 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Genetic algorithm that uses the other component. Must take as input the operators thar are going to be
-used, along with its priorities
+Skeleton class for a general single-generation (or single step) in an
+evolutionary algorithm; its instantiation requires a
+L<fitness|Algorithm::Evolutionary::Fitness::Base> function, a
+L<Selector|Algorithm::Evolutionary::Op::Selector>, a reference to an
+array of operators and a replacement operator
 
 =head1 METHODS
 
@@ -53,7 +56,7 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -67,7 +70,8 @@ our $ARITY = 1;
 
 =head2 new( $evaluation_function, $selector, $ref_to_operator_array, $replacement_operator )
 
-Creates an algorithm, with no defaults except for the default replacement operator
+Creates an algorithm, with no defaults except for the default
+replacement operator (defaults to L<Algorithm::Evolutionary::Op::ReplaceWorst>)
 
 =cut
 
@@ -87,7 +91,7 @@ sub new {
 =head2 set( $ref_to_params_hash, $ref_to_code_hash, $ref_to_operators_hash )
 
 Sets the instance variables. Takes a ref-to-hash as
-input
+input. Not intended to be used from outside the class
 
 =cut
 
@@ -165,10 +169,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.1 2009/02/09 10:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.2 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
