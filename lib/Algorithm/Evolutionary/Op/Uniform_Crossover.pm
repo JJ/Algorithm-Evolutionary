@@ -42,7 +42,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -90,11 +90,11 @@ sub create {
 Applies xover operator to a "Chromosome", a string, really. Can be
 applied only to I<victims> with the C<_str> instance variable; but
 it checks before application that both operands are of type
-L<BitString|Algorithm::Evolutionary::Individual::String>.
+L<String|Algorithm::Evolutionary::Individual::String>.
 
 Changes the first parent, and returns it. If you want to change both
 parents at the same time, check
-L<QuadXOver|Algorithm::Evolutionary::Op:QuadXOver> 
+L<QuadXOver|Algorithm::Evolutionary::Op::QuadXOver> 
 
 =cut
 
@@ -119,10 +119,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 18:07:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.3 2009/03/19 18:07:54 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/20 11:31:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.4 2009/03/20 11:31:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut
