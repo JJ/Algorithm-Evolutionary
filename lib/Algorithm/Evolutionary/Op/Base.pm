@@ -3,7 +3,9 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Base - Base class for OPEAL operators; operators are any object with the "apply" method, which does things to individuals or populations.
+Algorithm::Evolutionary::Op::Base - Base class for OPEAL operators;
+operators are any object with the "apply" method, which does things to
+individuals or populations. 
 
 =head1 SYNOPSIS
 
@@ -43,7 +45,8 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 2.6 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.7 $ ' =~ / (\d+\.\d+)/ ) ;
+our %parameters;
 
 =head2 AUTOLOAD
 
@@ -82,6 +85,22 @@ sub new {
   my $self = { rate => $rate }; # Create a reference
   bless $self, $class; # And bless it
   $self->set( $hash ) if $hash ;
+  return $self;
+}
+
+=head2 create( [@operator_parameters] )
+
+Creates an operator via its default parameters. Probably obsolete
+
+=cut
+
+sub create {
+  my $class = shift;
+  my $self;
+  for my $p ( keys %parameters ) {
+    $self->{"_$p"} = shift || $parameters{$p}; # Default
+  }
+  bless $self, $class;
   return $self;
 }
 
@@ -340,10 +359,10 @@ L<XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/21 12:33:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.6 2009/02/21 12:33:48 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/22 11:29:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.7 2009/03/22 11:29:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.6 $
+  $Revision: 2.7 $
   $Name $
 
 =cut

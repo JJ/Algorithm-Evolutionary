@@ -42,7 +42,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -52,6 +52,7 @@ use base 'Algorithm::Evolutionary::Op::Base';
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 2;
+our %parameters = ( crossover_rate => 2 );
 
 =head2 new( [$options_hash] [, $operation_priority] )
 
@@ -77,13 +78,13 @@ have a non-empty chromosome. Defaults to 2 point
 
 =cut
 
-sub create {
-  my $class = shift;
-  my $self;
-  $self->{_crossover_rate} = shift || 0.5;
-  bless $self, $class;
-  return $self;
-}
+# sub create {
+#   my $class = shift;
+#   my $self;
+#   $self->{_crossover_rate} = shift || 0.5;
+#   bless $self, $class;
+#   return $self;
+# }
 
 =head2 apply( $chromsosome_1, $chromosome_2 )
 
@@ -119,10 +120,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/20 11:31:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.4 2009/03/20 11:31:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/22 11:29:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.5 2009/03/22 11:29:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 2.5 $
   $Name $
 
 =cut

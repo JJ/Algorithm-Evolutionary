@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Wheel - Random selector of things depending on probabilities
+Algorithm::Evolutionary::Wheel - Random selector of things depending on probabilities
 
 =head1 SYNOPSIS
 
@@ -22,7 +22,7 @@ used in several places; mainly in the L<Algorithm::Evolutionary::Op::CanonicalGA
 package Algorithm::Evolutionary::Wheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( @probabilites )
 
@@ -72,8 +72,8 @@ sub spin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 2.2 2009/02/06 16:03:03 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/22 11:29:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 2.3 2009/03/22 11:29:33 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

@@ -8,6 +8,7 @@ Algorithm::Evolutionary::Op::CanonicalGA - Canonical Genetic Algorithm, with any
 
 =head1 SYNOPSIS
 
+  # Straightforward instance, with all defaults (except for fitness function)
   my $algo = new Algorithm::Evolutionary::Op::CanonicalGA( $eval ); 
 
   #Define an easy single-generation algorithm with predefined mutation and crossover
@@ -38,14 +39,14 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
 
-use Algorithm::Evolutionary::Wheel;
-use Algorithm::Evolutionary::Op::Bitflip;
-use Algorithm::Evolutionary::Op::QuadXOver;
+use Algorithm::Evolutionary qw(Wheel
+			       Op::Bitflip
+			       Op::QuadXOver );
 
 use base 'Algorithm::Evolutionary::Op::Easy';
 
@@ -127,17 +128,25 @@ sub apply ($) {
 
 =head1 SEE ALSO
 
-L<Algorithm::Evolutionary::Op::Easy>.
+=over 4
+
+=item L<Algorithm::Evolutionary::Op::Easy>
+
+=item L<Algorithm::Evolutionary::Wheel>
+
+=item L<Algorithm::Evolutionary::Fitness::Base>
+
+=back
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/06 16:03:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 2.2 2009/02/06 16:03:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/22 11:29:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 2.3 2009/03/22 11:29:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
