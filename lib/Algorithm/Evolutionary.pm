@@ -76,6 +76,8 @@ reports, news, updates, whatever.</p>
     href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
     tarballs in the file download area of that repository</p>
 
+<p>You can also get help from the <a href='https://sourceforge.net/forum/forum.php?forum_id=107255'>project forum</a> (where I usually hang around</a> or from <a href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing list</a> (information at <a href='https://lists.sourceforge.net/lists/listinfo/opeal-help'>its web site</a></p>
+
 <p>I have used this continously for my research all these year, and
 any search will return a number of papers; a journal article is
 already submitted, but meanwhile if you use it for any of your
@@ -111,19 +113,27 @@ one:</p>
 
 =begin html
 
-<p>Some information on this paper and instructions from download can
+<p>Some information on this paper and instructions for downloading the code used in it can
 be found in <a
 href='http://nohnes.wordpress.com/2008/09/21/paper-on-performance-of-asynchronous-distributed-evolutionary-algorithms-available-online/'>our
 group blog</a></p> 
 
 =end html
 
+=head1 DISCUSSION, FEATURE REQUESTS
+
+Head to the CPAN forum for this module: L<http://www.cpanforum.com/dist/Algorithm-Evolutionary>
+
+=head1 BUGS?
+
+Have you found any bugs? Use the CPAN tracker to inform about them (L<http://rt.cpan.org/Public/Dist/Display.html?Name=Algorithm-Evolutionary>) or email the author (below).
+
 =head1 AUTHOR
 
 =begin html
 
 Main author and developer is J. J. Merelo, jmerelo (at)
-geneura.ugr.es. There have also been some contributions from Javi
+geneura.ugr.es who blogs at L<http://blojj.blogalia.com>. There have also been some contributions from Javi
 García, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
 geneura.ugr.es. Patient users that have submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>. Bugs, requests and any kind
@@ -142,7 +152,7 @@ simple GA on the P_Peaks deceptive function.
 
 Some other examples are installed: check out L<tide_bitstring.pl>,
     L<tide_float.pl> and L<canonical-genetic-algorithm.pl>,
-which you can run and play with to get a taste of what EA programming is like.
+which you can run and play with to get a taste of what EA programming is like, and then ammend, add and modify at leisure to create your own evolutionary algorithms. 
 
 =head1 SEE ALSO
 
@@ -155,6 +165,8 @@ which you can run and play with to get a taste of what EA programming is like.
 =item L<Algorithm::Evolutionary::Fitness::Base>.
 
 =item L<Algorithm::Evolutionary::Experiment>.
+
+=item L<Algorithm::Evolutionary::CanonicalGA>.
 
 =item L<XML> for an explanation of the XML format used
 
@@ -173,10 +185,10 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/22 11:29:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.13 2009/03/22 11:29:32 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/23 06:44:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.14 2009/03/23 06:44:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.13 $
+  $Revision: 2.14 $
   $Name $
 
 =cut

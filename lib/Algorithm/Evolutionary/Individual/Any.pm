@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Individual::Any - Wrapper around any Perl class, turns into a I<Chromosome> any class
+Algorithm::Evolutionary::Individual::Any - Wrapper around any Perl class, turns it into a I<Chromosome> 
 
 =head1 SYNOPSIS
 
@@ -20,14 +20,16 @@ L<Algorithm::Evolutionary::Individual::Base>
 
 =head1 DESCRIPTION
 
-Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical GA
+Bitstring Individual for a Genetic Algorithm. Used, for instance, in a
+canonical GA. That does not mean it can be used for mutation or
+crossover; normally you'll have to write your own classes 
 
 =cut
 
 package Algorithm::Evolutionary::Individual::Any;
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -35,7 +37,9 @@ use base 'Algorithm::Evolutionary::Individual::Base';
 
 =head2 new( $base_class, $base_class_args )
 
-Creates a new individual by instantiating one of the given class with the arguments also issued here, which are forwarded to the class constructor.
+Creates a new individual by instantiating one of the given class with
+the arguments also issued here, which are forwarded to the class
+constructor.
 
 =cut
 
@@ -84,10 +88,10 @@ sub size {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/23 06:44:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 2.2 2009/03/23 06:44:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
