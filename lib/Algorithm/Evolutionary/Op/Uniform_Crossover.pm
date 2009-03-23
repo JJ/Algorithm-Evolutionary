@@ -42,7 +42,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.5 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.6 $ ' =~ /(\d+\.\d+)/ );
 
 use Clone::Fast qw(clone);
 use Carp;
@@ -70,21 +70,6 @@ sub new {
   my $self = Algorithm::Evolutionary::Op::Base::new( $class, $priority, $hash );
   return $self;
 }
-
-=head2 create( [$crossover_rate] )
-
-Creates a new 1 or 2 point crossover operator. But this is just to
-have a non-empty chromosome. Defaults to 2 point
-
-=cut
-
-# sub create {
-#   my $class = shift;
-#   my $self;
-#   $self->{_crossover_rate} = shift || 0.5;
-#   bless $self, $class;
-#   return $self;
-# }
 
 =head2 apply( $chromsosome_1, $chromosome_2 )
 
@@ -120,10 +105,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/22 11:29:33 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.5 2009/03/22 11:29:33 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/23 06:44:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 2.6 2009/03/23 06:44:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.5 $
+  $Revision: 2.6 $
   $Name $
 
 =cut

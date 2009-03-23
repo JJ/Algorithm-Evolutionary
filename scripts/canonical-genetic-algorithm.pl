@@ -21,16 +21,26 @@ these values are used:
 
 =over
 
-=item number of bits: 64 (this is the chromosome length)
+=item * 
 
-=item size of block: 4 (RR goes by blocks)
+I<number of bits>: 64 (this is the chromosome length)
 
-=item population size: 256
+=item * 
 
-=item number of generations: 200 (could end before, if solution is
+I<size of block>: 4 (RR goes by blocks)
+
+=item * 
+
+I<population size>: 256
+
+=item * 
+
+I<number of generations>: 200 (could end before, if solution is
 found) 
 
-=item selection rate: 20% (will be replaced each generation)
+=item * 
+
+I<selection rate>: 20% (will be replaced each generation); this means it's a steady state algorithm, which only changes a part of the population each generation.
 
 =back
 
@@ -127,10 +137,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/10 06:51:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.2 2009/02/10 06:51:27 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/23 06:44:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.3 2009/03/23 06:44:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut

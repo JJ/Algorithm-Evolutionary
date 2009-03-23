@@ -1,4 +1,4 @@
-use strict; #-*-cperl-*-
+use strict; #-*-cperl,hi-lock,auto-fill-*-
 use warnings;
 
 use lib qw( ../../../../lib );
@@ -25,7 +25,10 @@ Algorithm::Evolutionary::Individual::Base - Base class for chromosomes that know
 
 =head1 DESCRIPTION
 
-Base class for individuals, that is, "chromosomes" in evolutionary computation algorithms. However, chromosomes needn't be bitstrings, so the name is a bit misleading. This is, however, an "empty" base class, that acts as a boilerplate for deriving others. 
+Base class for individuals, that is, "chromosomes" in evolutionary
+computation algorithms. However, chromosomes needn't be bitstrings, so
+the name is a bit misleading. This is, however, an "empty" base class,
+that acts as a boilerplate for deriving others. 
 
 =cut
 
@@ -35,7 +38,7 @@ use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.6 $ ' =~ / (\d+\.\d+)/ );
 
 use constant MY_OPERATORS => qw(None);
 
@@ -71,7 +74,7 @@ sub new {
 
 =head2 create( $ref_to_hash )
 
-Creates a new random string, but uses a different interface: takes a
+Creates a new individual, but uses a different interface: takes a
 ref-to-hash, with named parameters, which gives it a common interface
 to all the hierarchy. The main difference with respect to new is that
 after creation, it is initialized with random values.
@@ -172,7 +175,8 @@ sub fromParam {
       $params{ $_->{'-name'} } = $_->{'-value'};
     }
   }
-  $thisClass = "Algorithm::Evolutionary::Individual::$thisClass" if $thisClass !~ /Algorithm::Evolutionary/;
+  $thisClass = "Algorithm::Evolutionary::Individual::$thisClass" 
+    if $thisClass !~ /Algorithm::Evolutionary/;
 
   eval "require $thisClass" || croak "Can't find $class\.pm Module";
   my $self = $thisClass->new();
@@ -340,10 +344,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/21 12:33:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.5 2009/02/21 12:33:48 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/23 06:44:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 2.6 2009/03/23 06:44:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.5 $
+  $Revision: 2.6 $
   $Name $
 
 =cut
