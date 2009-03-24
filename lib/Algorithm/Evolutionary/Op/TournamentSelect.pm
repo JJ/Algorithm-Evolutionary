@@ -5,8 +5,7 @@ use lib qw( ../../../../lib );
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::TournamentSelect - Tournament selector, takes individuals from one population
-                       and puts them into another
+Algorithm::Evolutionary::Op::TournamentSelect - Tournament selector, takes individuals from one population and puts them into another
 
 =head1 SYNOPSIS
 
@@ -17,7 +16,7 @@ use lib qw( ../../../../lib );
 
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Selector>
+L<Algorithm::Evolutionary::Op::Selector>
 
 =head1 DESCRIPTION
 
@@ -34,7 +33,7 @@ the best.
 package Algorithm::Evolutionary::Op::TournamentSelect;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -81,13 +80,18 @@ sub apply (@) {
   return @output;
 }
 
+=head1 See Also
+
+L<Algorithm::Evolutionary::Op::RouleteWheel> is another option for
+selecting a pool of individuals
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:51:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/TournamentSelect.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/24 17:12:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/TournamentSelect.pm,v 2.3 2009/03/24 17:12:52 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
