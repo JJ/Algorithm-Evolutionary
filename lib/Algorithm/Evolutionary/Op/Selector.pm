@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::Selector - Abstract base class for population selectors
+Algorithm::Evolutionary::Op::Selector - Abstract base class for population selectors
 
 =head1 SYNOPSIS
 
@@ -26,14 +26,15 @@ Abstract base class for population selectors; defines a few instance
 package Algorithm::Evolutionary::Op::Selector;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
 =head2 new( $output_population_size )
 
-Creates a new selector; all selectors must know in advance how many
-    they need
+Creates a new selector which outputs a fixed amount of
+    individuals. This goes to the base class, since all selectors must
+    know in advance how many they need to generate
 
 =cut
 
@@ -48,8 +49,9 @@ sub new {
 
 =head2 apply
 
-Applies the tournament selection to a population, returning
-another of the said size
+Applies the tournament selection to a population, returning another of
+the set size. This is an abstract method that should be implemented by
+descendants. 
 
 =cut
 
@@ -57,13 +59,28 @@ sub apply (@) {
     croak "To be redefined by siblings";
 }
 
+=head1 Known descendants
+
+
+=over 4
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::TournamentSelect>
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::RouletteWheel>
+
+=back
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:51:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Selector.pm,v 2.2 2009/02/04 20:51:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/24 17:12:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Selector.pm,v 2.3 2009/03/24 17:12:52 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
