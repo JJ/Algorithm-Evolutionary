@@ -5,7 +5,7 @@ use lib qw(../../..);
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::Inverover  - Michalewicz\'s inver-over Operator. 
+Algorithm::Evolutionary::Op::Inverover  - Michalewicz's inver-over Operator. 
 
 =head1 SYNOPSIS
 
@@ -17,14 +17,14 @@ use lib qw(../../..);
   my $op3 = Algorithm::Evolutionary::Op::Base->fromXML( $ref3 );
   print $op3->asXML(), "\n";
 
-  my $indi = new BinaryIndi 10;
+  my $indi = new Algorithm::Evolutionary::Individual::BitString 10;
   my $indi2 = $indi->clone();
   my $indi3 = $indi->clone();
   $op3->apply( $indi2, $indi3 );
 
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
+L<Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
@@ -32,10 +32,8 @@ Inver-over operator for a GA. Created by Michalewicz et al., mainly
 for the travelling salesman problem. Takes two chromosomes, which are
 permutations of each other.
 
-There is some information on this operator in
-L<http://www.dcs.napier.ac.uk/coil/news/feature48.html|this interview
-with Michalewicz>. You can also download papers from 
-L<http://www.cs.adelaide.edu.au/~zbyszek/Papers/|his home page>.
+There is some information on this operator in this interview
+with Michalewicz: L<http://www.dcs.napier.ac.uk/coil/news/feature48.html>. You can also download papers from his home page: L<http://www.cs.adelaide.edu.au/~zbyszek/Papers/>.
 
 =head1 METHODS
 
@@ -43,7 +41,7 @@ L<http://www.cs.adelaide.edu.au/~zbyszek/Papers/|his home page>.
 
 package Algorithm::Evolutionary::Op::Inverover;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -83,10 +81,8 @@ sub create {
 
 =head2 apply( $first, $second )
 
-Applies Algorithm::Evolutionary::Op::Inverover operator to a "Chromosome", a bitstring, really. Can be
-applied only to I<victims> with the C<_bitstring> instance variable; but
-it checks before application that both operands are of type
-L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Individual::Vector>.
+Applies Algorithm::Evolutionary::Op::Inverover operator to a
+    "Chromosome". Can be applied to anything with the Atom method. 
 
 =cut
 
@@ -149,10 +145,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Inverover.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/24 17:36:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Inverover.pm,v 2.2 2009/03/24 17:36:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $  
 
 =cut
