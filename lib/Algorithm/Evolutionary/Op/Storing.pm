@@ -3,13 +3,14 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::Storing - Applies the op and keeps the result
+Algorithm::Evolutionary::Op::Storing - Applies the op and keeps the result
 
 =head1 SYNOPSIS
 
   my %visited_population_hash;
 
-  my $op = new Algorithm::Evolutionary::Op::Bitflip 2; #Create from scratch with default rate
+  #Create from scratch with default operator rate
+  my $op = new Algorithm::Evolutionary::Op::Bitflip 2; 
 
   my $stored_op = new Algorithm::Evolutionary::Op::Storing ( $op, \%visited_population_hash );
 
@@ -20,8 +21,10 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Applies an operator and stores the result in a hash (can be a tied database),
-so that the whole population is kept
+Applies an operator and stores the result in a hash (can be a tied
+database), so that the whole population is stored. It creates an
+operator whose results are cached, which could be useful for expensive
+operators. 
 
 =head1 METHODS 
 
@@ -29,7 +32,7 @@ so that the whole population is kept
 
 package Algorithm::Evolutionary::Op::Storing;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -76,10 +79,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Storing.pm,v 2.1 2009/02/04 20:43:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/24 17:36:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Storing.pm,v 2.2 2009/03/24 17:36:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
