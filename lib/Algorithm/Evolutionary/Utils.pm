@@ -32,7 +32,7 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.5 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.6 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average parse_xml);
 
 use Carp;
@@ -72,15 +72,16 @@ sub hamming {
     return ( ( $string_a ^ $string_b ) =~ tr/\1//);
 }
 
-=head2 consensus( $population )
+=head2 consensus( $population, $rough = 0 )
 
 Consensus sequence representing the majoritary value for each bit;
-returns the consensus string. 
+returns the consensus string. If "rough", then the bit is set only if the difference is bigger than 0.4 (70/30 proportion)
 
 =cut
 
 sub consensus {
   my $population = shift;
+  my $rough = shift;
   my @frequencies;
   for ( @$population ) {
       for ( my $i = 0; $i < $_->size(); $i ++ ) {
@@ -93,11 +94,24 @@ sub consensus {
   }
   my $consensus;
   for my $f ( @frequencies ) {
+    if ( !$rough ) {
       if ( $f->{'0'} > $f->{'1'} ) {
-	  $consensus.='0';
+	$consensus.='0';
       } else {
-	  $consensus.='1';
+	$consensus.='1';
       }
+    } else {
+      my $difference = abs( $f->{'0'} - $f->{'1'} );
+      if ( $difference < 0.4 ) {
+	$consensus .= '-';
+      } else {
+	if ( $f->{'0'} > $f->{'1'} ) {
+	  $consensus.='0';
+	} else {
+	  $consensus.='1';
+	}
+      }
+    }
   }
   return $consensus;
 }
@@ -149,10 +163,10 @@ sub parse_xml {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/10 12:29:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.5 2009/02/10 12:29:02 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/29 09:42:41 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.6 2009/03/29 09:42:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.5 $
+  $Revision: 2.6 $
   $Name $
 
 =cut
