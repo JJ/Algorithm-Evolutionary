@@ -5,23 +5,25 @@ use lib qw ( ../../../../lib);
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::FullAlgorithm - Skeleton class for a fully-featured evolutionary algorithm
+Algorithm::Evolutionary::Op::FullAlgorithm - Skeleton class for a fully-featured evolutionary algorithm
                  
 
 =head1 SYNOPSIS
 
+  use Algorithm::Evolutionary qw( Op::Base Op::Bitflip Op::Crossover
+                                  Op::RouletteWheel Op::GeneralGeneration
+                                  Op::GenerationalTerm Op::FullAlgorithm );
+
+  # Using the base class as factory
   my $easyEA = Algorithm::Evolutionary::Op::Base->fromXML( $ref->{$xml} );
   $easyEA->apply(\@pop ); 
 
   #Or using the constructor
-  use Algorithm::Evolutionary::Op::Bitflip;
   my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
   my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
   my $replacementRate = 0.3; #Replacement rate
-  use Algorithm::Evolutionary::Op::RouletteWheel;
   my $popSize = 20;
   my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $popSize; #One of the possible selectors
-  use Algorithm::Evolutionary::Op::GeneralGeneration;
   my $onemax = sub { 
     my $indi = shift;
     my $total = 0;
@@ -35,12 +37,11 @@ use lib qw ( ../../../../lib);
   };
   my $generation = 
     new Algorithm::Evolutionary::Op::GeneralGeneration( $onemax, $selector, [$m, $c], $replacementRate );
-  use Algorithm::Evolutionary::Op::GenerationalTerm;
   my $g100 = new Algorithm::Evolutionary::Op::GenerationalTerm 10;
-  use Algorithm::Evolutionary::Op::FullAlgorithm;
   my $f = new Algorithm::Evolutionary::Op::FullAlgorithm $generation, $g100;
   print $f->asXML();
 
+  $f->apply( $pop ); # Pop should be defined else where
 
 =head1 Base Class
 
@@ -48,8 +49,8 @@ L<Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Class Easy-to-use full evolutionary algoritm.It takes a
-single-generarion algorithm, and mixes it with a termination condition
+Class for a configurable evolutionary algoritm. It takes a
+single-generarion object, and mixes it with a termination condition
 to create a full algorithm. Includes a sensible default
 (100-generation generational algorithm) if it is issued only an object
 of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
@@ -58,7 +59,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -142,15 +143,49 @@ sub apply ($) {
   
 }
 
+=head1 SEE ALSO
+
+More or less in the same ballpark, alternatives to this one
+
+=over 4
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::CanonicalGA>.
+
+=item 4
+
+L<Algorithm::Evolutionary::Op::Easy>.
+
+=back 
+
+Classes you can use within FullAlgorithm:
+
+=over 4
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::Convergence_Terminator>
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::GenerationalTerm>
+
+=item *
+
+L<Algorithm::Evolutionary::Op::Generation_Skeleton>
+
+=back
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/07 18:31:28 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.3 2009/02/07 18:31:28 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/29 18:55:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.4 2009/03/29 18:55:16 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
 
-"The truth is out there";
+"Who wants to rock the party";

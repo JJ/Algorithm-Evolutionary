@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::ChangeLengthMutation - Increases/decreases by one the length of the string
+Algorithm::Evolutionary::Op::ChangeLengthMutation - Increases/decreases by one the length of the string
 
 =head1 SYNOPSIS
 
@@ -32,19 +32,18 @@ eliminating it.
 
 package Algorithm::Evolutionary::Op::ChangeLengthMutation;
 
-our ($VERSION) = ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 
 use Carp;
 
-use Algorithm::Evolutionary::Op::Base;
-our @ISA = qw(Algorithm::Evolutionary::Op::Base);
+use base 'Algorithm::Evolutionary::Op::Base';
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 1;
 
-=head2 new
+=head2 new( $rate[, $increment_probability] [, $decrement_probability]
 
 Creates a new operator. It is called with 3 arguments: the rate it's
 going to be applied, and the probability of adding and substracting an
@@ -119,10 +118,10 @@ sub apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/29 18:55:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm,v 2.2 2009/03/29 18:55:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
