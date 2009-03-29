@@ -7,38 +7,42 @@ Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single
                  
 =head1 SYNOPSIS
 
-  #Taken from the t/general.t file, verbatim
-  my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
-  my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
-  use Algorithm::Evolutionary::Op::RouletteWheel;
-  my $popSize = 20;
-  my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $popSize; #One of the possible selectors
-  use Algorithm::Evolutionary::Op::GeneralGeneration;
-  my $onemax = sub { 
-    my $indi = shift;
-    my $total = 0;
-    for ( my $i = 0; $i < $indi->length(); $i ++ ) {
-      $total += substr( $indi->{_str}, $i, 1 );
+    use Algorithm::Evolutionary qw( Individual::BitString 
+				Op::Mutation Op::Crossover
+				Op::RouletteWheel
+				Fitness::ONEMAX Op::Generation_Skeleton
+				Op::Replace_Worst);
+
+    use Algorithm::Evolutionary::Utils qw(average);
+
+    my $onemax = new Algorithm::Evolutionary::Fitness::ONEMAX;
+
+    my @pop;
+    my $number_of_bits = 20;
+    my $population_size = 20;
+    my $replacement_rate = 0.5;
+    for ( 1..$population_size ) {
+      my $indi = new Algorithm::Evolutionary::Individual::BitString $number_of_bits ; #Creates random individual
+      $indi->evaluate( $onemax );
+      push( @pop, $indi );
     }
-    return $total;
-  };
-  my @pop;
-  my $numBits = 10;
-  for ( 0..$popSize ) {
-    my $indi = new Algorithm::Evolutionary::Individual::BitString $numBits ; #Creates random individual
-    my $fitness = $onemax->( $indi );
-    $indi->Fitness( $fitness );
-    push( @pop, $indi );
-  }
-  my $generation = 
-    new Algorithm::Evolutionary::Op::GeneralGeneration( $onemax, $selector, [$m, $c] );
-  my @sortPop = sort { $a->Fitness() <=> $b->Fitness() } @pop;
-  my $bestIndi = $sortPop[0];
-  $generation->apply( \@sortPop );
- 
+
+    my $m =  new Algorithm::Evolutionary::Op::Mutation 0.5;
+    my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
+
+    my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $population_size; #One of the possible selectors
+
+    my $generation = 
+      new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate );
+
+    my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
+    my $bestIndi = $sortPop[0];
+    my $previous_average = average( \@sortPop );
+    $generation->apply( \@sortPop );
+
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
+L<Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
@@ -56,7 +60,7 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -122,57 +126,69 @@ culled, evaluated population for next generation.
 =cut
 
 sub apply ($) {
-  my $self = shift;
-  my $pop = shift || croak "No population here";
-  croak "Incorrect type ".(ref $pop) if  ref( $pop ) ne $APPLIESTO;
+    my $self = shift;
+    my $pop = shift || croak "No population here";
+    croak "Incorrect type ".(ref $pop) if  ref( $pop ) ne $APPLIESTO;
 
-  #Evaluate only the new ones
-  my $eval = $self->{_eval};
-  my @ops = @{$self->{_ops}};
+    #Evaluate only the new ones
+    my $eval = $self->{_eval};
+    my @ops = @{$self->{_ops}};
 
-  #Breed
-  my $selector = $self->{_selector};
-  my @genitors = $selector->apply( @$pop );
+    #Breed
+    my $selector = $self->{_selector};
+    my @genitors = $selector->apply( @$pop );
 
-  #Reproduce
-  my $totRate = 0;
-  my @rates;
-  for ( @ops ) {
+    #Reproduce
+    my $totRate = 0;
+    my @rates;
+    for ( @ops ) {
 	push( @rates, $_->{rate});
-  }
-  my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
+    }
+    my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
 
-  my @newpop;
-  my $pringaos =  @$pop  * $self->{_replacementRate} ;
-  for ( my $i = 0; $i < $pringaos; $i++ ) {
-	  my @offspring;
-	  my $selectedOp = $ops[ $opWheel->spin()];
+    my @newpop;
+    my $pringaos =  @$pop  * $self->{_replacementRate} ;
+    for ( my $i = 0; $i < $pringaos; $i++ ) {
+	my @offspring;
+	my $selectedOp = $ops[ $opWheel->spin()];
 #	  print $selectedOp->asXML;
-	  for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
-		my $chosen = $genitors[ rand( @genitors )];
+	for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
+	    my $chosen = $genitors[ rand( @genitors )];
 #		print "Elegido ", $chosen->asString(), "\n";
-		push( @offspring, $chosen->clone() );
-	  }
-	  my $mutante = $selectedOp->apply( @offspring );
-	  push( @newpop, $mutante );
-  }
-  
-  #Eliminate and substitute
-  map( $_->evaluate( $self->{'_eval'}), @newpop );
-  my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
-  @$pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop_hash ;
-  
+	    push( @offspring, $chosen->clone() );
+	}
+	my $mutante = $selectedOp->apply( @offspring );
+	push( @newpop, $mutante );
+    }
+    
+    #Eliminate and substitute
+    map( $_->evaluate( $self->{'_eval'}), @newpop );
+    my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
+    @$pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop_hash ;
+    
 }
+
+=head1 SEE ALSO
+
+More or less in the same ballpark, alternatives to this one
+
+=over 4
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::GeneralGeneration>
+
+=back
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/20 11:31:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.2 2009/03/20 11:31:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/29 18:55:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.3 2009/03/29 18:55:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut

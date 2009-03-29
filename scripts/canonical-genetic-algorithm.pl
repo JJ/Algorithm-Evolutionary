@@ -119,12 +119,33 @@ print "\n\tCache size ratio: ", $rr->cached_evals()/$rr->evaluations(), "\n";
 
 =head1 SEE ALSO
 
+
+First, you should obviously check
+    L<Algorithm::Evolutionary::Op::CanonicalGA>, and then these other classes.
+
+=over 4
+
+=item *
+
 L<Algorithm::Evolutionary::Op::Base>.
+
+=item *
+
 L<Algorithm::Evolutionary::Individual::Base>.
+
+=item *
+
 L<Algorithm::Evolutionary::Fitness::Base>.
+
+=item *
+
 L<Algorithm::Evolutionary::Experiment>.
+
+=item *
+
 L<XML>
 
+=back
 
 =head1 AUTHOR
 
@@ -137,10 +158,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/23 06:44:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.3 2009/03/23 06:44:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/03/29 18:55:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/canonical-genetic-algorithm.pl,v 1.4 2009/03/29 18:55:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
   $Name $
 
 =cut
