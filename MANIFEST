@@ -15,6 +15,7 @@ lib/Algorithm/Evolutionary/Op/Base.pm
 lib/Algorithm/Evolutionary/Op/Bitflip.pm
 lib/Algorithm/Evolutionary/Op/CanonicalGA.pm
 lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm
+lib/Algorithm/Evolutionary/Op/Convergence_Terminator.pm
 lib/Algorithm/Evolutionary/Op/Creator.pm
 lib/Algorithm/Evolutionary/Op/Crossover.pm
 lib/Algorithm/Evolutionary/Op/CX.pm
@@ -79,6 +80,7 @@ t/0403-uxover.t
 t/0444-stored.t
 t/0500-generation-skel.t
 t/0500-replace.t
+t/0501-convergence-term.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t
