@@ -59,7 +59,7 @@ of class L<Algorithm::Evolutionary::Op::GeneralGeneration>.
 
 package Algorithm::Evolutionary::Op::FullAlgorithm;
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -153,7 +153,7 @@ More or less in the same ballpark, alternatives to this one
 
 L<Algorithm::Evolutionary::Op::CanonicalGA>.
 
-=item 4
+=item *
 
 L<Algorithm::Evolutionary::Op::Easy>.
 
@@ -182,8 +182,8 @@ L<Algorithm::Evolutionary::Op::Generation_Skeleton>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/29 18:55:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.4 2009/03/29 18:55:16 jmerelo Exp $ 
+  CVS Info: $Date: 2009/04/03 07:48:42 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm,v 2.5 2009/04/03 07:48:42 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
