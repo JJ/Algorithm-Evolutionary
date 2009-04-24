@@ -9,26 +9,16 @@ Algorithm::Evolutionary::Fitness::Trap - Error Correcting codes problem generato
 
 =head1 SYNOPSIS
 
-    my $number_of_peaks = 100;
-    my $number_of_bits = 32;
-    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_peaks, $number_of_bits );
+    my $number_of_bits = 5;
+    my $a = $number_of_bits -1;
+    my $b = $number_of_bits;
+    my $z = $number_of_bits -1;
+    my $trap = Algorithm::Evolutionary::Fitness::Trap->new( $number_of_bits, $a, $b, $z );
 
 =head1 DESCRIPTION
 
-Extracted from article "Effects of scale-free and small-world topologies on binary coded self-adaptive CEA", by Giacobini et al. Quoting:
-"                                                    The Trap problem was presented in
-[13]. We will consider a three-tuple (n, M, d), where n is the length of each codeword
-(number of bits), M is the number of codewords, and d is the minimum Hamming
-distance between any pair of codewords. Our objective will be to find a code which
-has a value for d as large as possible (reflecting greater tolerance to noise and errors),
-given previously fixed values for n and M . The problem we have studied is a simplified
-version of that in [13]. In our case we search half of the codewords (M/2) that will
-compose the code, and the other half is made up by the complement of the codewords
-computed by the algorithm"
-
-[13] F. J. MacWilliams and N. J. A. Sloane. The Theory of Error-Correcting Codes. North-
-    Holland, Amsterdam, 1977.
-
+Trap function act as "yucky" or deceptive for evolutionary algorithms;
+they "trap" population into going to easier, but local optima.
 
 =head1 METHODS
 
@@ -36,7 +26,7 @@ computed by the algorithm"
 
 package Algorithm::Evolutionary::Fitness::Trap;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use String::Random;
 use Carp qw(croak);
@@ -54,13 +44,18 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 sub new {
   my $class = shift;
-  my ($number_of_bits, $a, $b, $z ) = @_;
-  croak "Z too big" if $z >= $l;
+  my $number_of_bits = shift || croak "Need non-null number of bits\n";
+  my $a = shift || $number_of_bits - 1;
+  my $b = shift || $number_of_bits;
+  my $z = shift || $number_of_bits - 1;
+
+  croak "Z too big" if $z >= $number_of_bits;
   croak "Z too small" if $z < 1;
+  croak "A must be less than B" if $a > $b;
   my $self = $class->SUPER::new();
   bless $self, $class;
   $self->initialize();
-  $self->{'number_of_bits'} = $number_of_bits;
+  $self->{'l'} = $number_of_bits;
   $self->{'a'} = $a;
   $self->{'b'} = $b;
   $self->{'z'} = $z;
@@ -75,32 +70,43 @@ Applies the instantiated problem to a chromosome
 
 sub _really_apply {
   my $self = shift;
-  return $self->ecc( @_ );
+  return $self->trap( @_ );
 }
 
-=head2 ecc
+=head2 trap
 
-Applies the instantiated problem to a string
+Computes the value of the trap function
 
 =cut
 
-sub ecc {
+sub trap {
     my $self = shift;
-    my $string = shift || croak "Can't work with a null string";
+    my $string = shift;
     my $cache = $self->{'_cache'};
     if ( $cache->{$string} ) {
 	return $cache->{$string};
     }
-    my $length = length($string)/$self->{'number_of_codewords'};
-    my @codewords = ( $string =~ /.{$length}/gs );
-    my $distance;
-    for ( my $i = 0; $i <= $#codewords; $i ++ ) {
-      for ( my $j = $i+1; $j <= $#codewords; $j ++ ) {
-	my $this_distance = hamming( $codewords[$i], $codewords[$j] );
-	$distance += 1/(1+$this_distance*$this_distance);
+    my $l = $self->{'l'};
+    my $z = $self->{'z'};
+    my $total = 0;
+    for ( my $i = 0; $i < length( $string); $i+= $l ) {
+      my $substr = substr( $string, $i, $l );
+      my $key = $substr;
+      if ( !$cache->{$substr} ) {
+	my $num_ones = 0;
+	while ( $substr ) {
+	  $num_ones += chop( $substr );
+	}
+	if ( $num_ones <= $z ) {
+	  $cache->{$key} = $self->{'a'}*($z-$num_ones)/$z;
+	} else {
+	  $cache->{$key} = $self->{'b'}*($num_ones -$z)/($l-$z);
+	}
       }
+      $total += $cache->{$key};
     }
-    $cache->{$string} = 1/$distance;
+    $cache->{$string} = $total;
+	
     return $cache->{$string};
 
 }
@@ -110,10 +116,10 @@ sub ecc {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/04/24 11:52:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 1.1 2009/04/24 11:52:16 jmerelo Exp $ 
+  CVS Info: $Date: 2009/04/24 18:09:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 1.2 2009/04/24 18:09:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
