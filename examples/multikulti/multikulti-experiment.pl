@@ -6,7 +6,7 @@
 
 =head1 SYNOPSIS
 
-  prompt% ./multikulti-experiment.pl params.yaml conf.yaml
+  prompt% ./multikulti-experiment.pl params.yaml 
 
 
 =head1 DESCRIPTION  
@@ -236,10 +236,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/04/30 07:49:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/multikulti/multikulti-experiment.pl,v 2.2 2009/04/30 07:49:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
