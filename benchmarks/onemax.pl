@@ -29,7 +29,7 @@ use strict;
 
 use Time::HiRes qw( gettimeofday tv_interval);
 
-use lib qw(lib ../lib);
+use lib qw(lib ../lib ../../lib);
 use Algorithm::Evolutionary
   qw(Individual::BitString Individual::Bit_Vector
      Op::Easy Op::Bitflip 
@@ -105,10 +105,10 @@ J. J. Merelo C<jj [at] merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 21:13:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 2.3 2009/03/19 21:13:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/08 18:41:50 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 2.4 2009/06/08 18:41:50 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut
