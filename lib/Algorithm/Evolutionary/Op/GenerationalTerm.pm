@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::GenerationalTerm  - Checks for termination of an algorithm.
+Algorithm::Evolutionary::Op::GenerationalTerm  - Checks for termination of an algorithm.
                  
 =head1 SYNOPSIS
 
@@ -15,7 +15,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-    Checks for termination after a number of generations
+Checks for termination after a number of generations
 
 =head1 METHODS
 
@@ -23,14 +23,16 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package Algorithm::Evolutionary::Op::GenerationalTerm;
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
-=head2 new( [$number_of_generations] )
+=head2 new( [$number_of_generations = 100] )
 
 Creates a new generational terminator:
-  my $gt = new Algorithm::Evolutionary::Op::GenerationalTerm 100; #apply will return false after 100 generations
+
+    my $gt = new Algorithm::Evolutionary::Op::GenerationalTerm 100; #apply will return false after 100 generations
+
 will make the C<apply> method return false after 100 calls
 
 =cut
@@ -59,7 +61,9 @@ sub reset {
 
 Checks if the counter has arrived to the allotted number of generations,
 returns false when it does. 
-  $gt->apply(); 
+
+    $gt->apply(); 
+
 will return C<false> when it has been run for the number of times it has
 been initialized to
 
@@ -78,8 +82,7 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm> needs an object of this class to c
 for the termination condition. It's normally used alongside "generation-type"
 objects such as L<Algorithm::Evolutionary::Op::Easy>
 
-There are other options for termination conditions: L<Algorithm::Evolutionary::Op::NoChangeTerm|Algorithm::Evolutionary::Op::NoChangeTerm> and  
-L<Algorithm::Evolutionary::Op::DeltaTerm>.
+There are other options for termination conditions: L<Algorithm::Evolutionary::Op::NoChangeTerm|Algorithm::Evolutionary::Op::NoChangeTerm>,  L<Algorithm::Evolutionary::Op::Convergence_Terminator> and L<Algorithm::Evolutionary::Op::DeltaTerm>.
 
 
 =head1 Copyright
@@ -87,10 +90,10 @@ L<Algorithm::Evolutionary::Op::DeltaTerm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/16 16:16:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.3 2009/02/16 16:16:40 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/16 16:00:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GenerationalTerm.pm,v 2.4 2009/06/16 16:00:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
+  $Revision: 2.4 $
   $Name $
 
 =cut
