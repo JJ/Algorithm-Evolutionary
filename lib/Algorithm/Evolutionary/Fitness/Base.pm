@@ -1,11 +1,11 @@
-use strict;
+use strict; #-*-cperl-*-
 use warnings;
 
 use lib qw( ../../../../lib );
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Fitness::Base - Base class for Fitness functions
+Algorithm::Evolutionary::Fitness::Base - Base class for Fitness functions
 
 =head1 SYNOPSIS
 
@@ -14,8 +14,8 @@ used to implement fitness functions
 
 =head1 DESCRIPTION
 
-Has functionality that should be common to all fitness. Or at least it
-would be nice to have it in common
+This module includes functionality that should be common to all fitness. Or at least it
+would be nice to have it in common.
 
 =head1 METHODS
 
@@ -25,7 +25,7 @@ package Algorithm::Evolutionary::Fitness::Base;
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ );
 
 
 =head2 new()
@@ -150,10 +150,10 @@ L<Algorithm::Evolutionary::Fitness::Royal_Road>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/05 07:10:35 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 2.2 2009/02/05 07:10:35 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/16 16:00:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 2.3 2009/06/16 16:00:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
