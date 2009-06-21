@@ -30,7 +30,8 @@ WriteMakefile(
 	'Clone::Fast' => 0,
 	YAML => 0,
 	'Object::Array' => 0,
-	'Statistics::Basic' => 1.6
+	'Statistics::Basic' => 1.6,
+	'Pod::Escapes'	=> '0' #Dependence from Test::Pod, but produces failure in 1 platform
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
     clean               => { FILES => 'Algorithm-Evolutionary-*' }
