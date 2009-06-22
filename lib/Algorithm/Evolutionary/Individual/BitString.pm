@@ -37,6 +37,11 @@ use warnings;
     print $indi3->asXML() #Prints it as XML. See 
     print $indi3->as_yaml() #Change of convention, I know...
 
+    my $gene_size = 5;
+    my $min = -1;
+    my $range = 2;
+    my @decoded_vector = $indi3->decode( $gene_size, $min, $range);
+
 =head1 Base Class
 
 L<Algorithm::Evolutionary::Individual::String|Algorithm::Evolutionary::Individual::String>
@@ -50,7 +55,7 @@ Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical
 package Algorithm::Evolutionary::Individual::BitString;
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 2.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -89,16 +94,36 @@ sub set {
   $self->SUPER::set( $hash );
 }
 
+=head2 decode( $gene_size, $min, $range )
+
+Decodes to a vector, each one of whose components ranges between $min
+and $max. Returns that vector
+
+=cut
+
+sub decode {
+  my $self = shift;
+  my ( $gene_size, $min, $range ) = @_;
+
+  my @output_vector;
+  my $chromosome = $self->{'_str'};
+  my $max_range = eval "0b"."1"x$gene_size;
+  for (my $i = 0; $i < length($chromosome)/$gene_size; $i ++ ) {
+    my $substr = substr( $chromosome, $i*$gene_size, $gene_size );
+    push @output_vector, $range*eval("0b$substr")/$max_range - $min;
+  }
+  return @output_vector;
+}
 
 =head2 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 2.1 2009/02/04 20:43:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/22 17:18:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 2.2 2009/06/22 17:18:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 2.2 $
   $Name $
 
 =cut
