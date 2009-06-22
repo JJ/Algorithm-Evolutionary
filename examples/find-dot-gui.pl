@@ -1,5 +1,6 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
+use Tk;
 use strict;
 use warnings;
 
@@ -12,18 +13,29 @@ use Algorithm::Evolutionary qw( Individual::BitString Op::Easy
 				Op::Bitflip Op::Crossover );
 
 
+my $size = 600;
+
+# Create MainWindow and configure:
+my $mw = MainWindow->new;
+$mw->configure( -width=>$size, -height=>$size );
+$mw->resizable( 0, 0 ); # not resizable in any direction
+
+# Create and configure the canvas:
+my $canvas = $mw->Canvas( -cursor=>"crosshair", -background=>"white",
+              -width=>$size, -height=>$size )->pack;
 my $alg = Algorithm::RectanglesContainingDot->new;
 
-my $num_rects = shift || 25;
+my $num_rects = shift || 50;
 my $arena_side = shift || 10;
 my $dot_x = shift || 5;
 my $dot_y = shift || 5;
 
 my $bits = shift || 32;
 my $popSize = shift || 64; #Population size
-my $numGens = shift || 50; #Max number of generations
+my $numGens = shift || 200; #Max number of generations
 my $selection_rate = shift || 0.2;
 
+my $scale = $arena_side/$size;
 #Generate random rectangles
 for my $i (0 .. $num_rects) {
 
@@ -32,7 +44,11 @@ for my $i (0 .. $num_rects) {
   my $side_x = rand( $arena_side - $x_0 );
   my $side_y = rand($arena_side-$y_0);
   $alg->add_rectangle("rectangle_$i", $x_0, $y_0, $side_x, $side_y );
-
+  my $val = 255*$i/$num_rects;
+  my $color = sprintf( "#%02x%02x%02x", $val, $val, $val );
+  $canvas->createRectangle( $x_0/$scale, $y_0/$scale, 
+			    $side_x/$scale, $side_y/$scale, 
+			    -outline =>$color );
 }
 
 #Declare fitness function
@@ -81,8 +97,16 @@ my $contador=0;
 do {
   $generation->apply( \@pop );
   
-  print "$contador : ", $pop[0]->asString(), "\n" ;
+  my $val = 255*$contador/$numGens;
+  my $color = sprintf( "#%02x%02x00", 255-$val, 255-$val );
+  print "$contador : ", $pop[0]->asString(), ", Color $color\n" ;
   $contador++;
+  my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
+
+
+  $canvas->createOval($point[0]-2, $point[1]-2, 
+		      $point[0]+2, $point[1]+2, 
+		      -fill => $color );
 } while( ($contador < $numGens) 
 	 && ($pop[0]->Fitness() < $num_rects));
 
@@ -94,7 +118,12 @@ do {
 print "Best is:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
+my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
 
+$canvas->createOval($point[0]-3, $point[1]-3, 
+		    $point[0]+3, $point[1]+3, 
+		    -fill => 'black' );
+MainLoop;
 
 =head1 AUTHOR
 
@@ -108,9 +137,10 @@ Contributed by J. J. Merelo
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2009/06/22 18:48:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find_dot_in_rectangles.pl,v 1.2 2009/06/22 18:48:14 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find-dot-gui.pl,v 1.1 2009/06/22 18:48:14 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.1 $
   $Name $
 
 =cut
+
