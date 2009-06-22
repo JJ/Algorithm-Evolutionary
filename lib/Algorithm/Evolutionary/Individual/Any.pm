@@ -8,6 +8,7 @@ Algorithm::Evolutionary::Individual::Any - Wrapper around any Perl class, turns 
 =head1 SYNOPSIS
 
     use Algorithm::Evolutionary::Individual::Any;
+    use Class::Name; # Your class here; it's required if not included anyways
 
     my $indi = new Algorithm::Evolutionary::Individual::Any Class::Name $class_args ; 
 
@@ -29,7 +30,7 @@ crossover; normally you'll have to write your own classes
 package Algorithm::Evolutionary::Individual::Any;
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -53,7 +54,7 @@ sub new {
     eval "require $base_class" || croak "Can't find $base_class Module";
   }
   
-  my $inner_self = $base_class->new( $base_class_args );
+  my $inner_self = $base_class->new( $base_class_args ) || croak "Something is wrong when creating $base_class: $@\n";
   $self->{'_inner'} = $inner_self;
   return $self;
 }
@@ -61,7 +62,9 @@ sub new {
 
 =head2 Atom([$index]) 
 
-No matter what you write, it will return the object wrapped
+No matter what you write, it will return the object wrapped. You can
+subclass and overload, however, but then you win nothing to use this
+class; you're better off creating a new one altogether
 
 =cut 
 
@@ -88,10 +91,10 @@ sub size {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/23 06:44:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 2.2 2009/03/23 06:44:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/22 17:18:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Any.pm,v 2.3 2009/06/22 17:18:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
