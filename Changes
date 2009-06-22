@@ -1,18 +1,11 @@
-2009-03-22  Juan J. merelo  <jjmerelo@thirteen>
+2009-03-29    <jmerelo@localhost.localdomain>
 
-	* lib/Algorithm/Evolutionary.pm: 0.67 starts with mainly cosmetic
-	changes to module doc. 
+	* lib/Algorithm/Evolutionary.pm: 0.68 starts with the usual
+	cosmetic changes to the documentation.  
 
-2009-03-20  Juan J. merelo  <jjmerelo@thirteen>
-
-	* lib/Algorithm/Evolutionary.pm (import): Added things to manifest
-	to avoid 0.65 FAILs
-
-2009-03-18  Juan J. merelo  <jjmerelo@thirteen>
-
-	* lib/Algorithm/Evolutionary.pm: Added uniform crossover and
-	changed minor.
-
+	* Added "rough consensus" utility as well as a "convergence
+	terminator", which checks whether a part of the population has
+	converged. Upgraded to 0.67. Already!
 
 2009-02-21  jmerelo  <jmerelo@localhost.localdomain>
 
@@ -44,7 +37,7 @@
 
 2009-02-06  Juan Julian Merelo Guervos  <jmerelo@geneura.ugr.es>
 
-	* Fixed $VERSION bug that prevented correct indexint in CPAN
+	* Fixed $VERSION bug that prevented correct indexing in CPAN
 	* Changed to 0.62_2
 	* Moved XML parsing code to a new place, so that it can be fixed more easily.
 
