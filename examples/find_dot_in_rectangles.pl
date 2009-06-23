@@ -31,7 +31,7 @@ for my $i (0 .. $num_rects) {
   my $y_0 = rand( $arena_side);
   my $side_x = rand( $arena_side - $x_0 );
   my $side_y = rand($arena_side-$y_0);
-  $alg->add_rectangle("rectangle_$i", $x_0, $y_0, $side_x, $side_y );
+  $alg->add_rectangle("rectangle_$i", $x_0, $y_0, $x_0+$side_x, $y_0+$side_y );
 
 }
 
@@ -107,10 +107,10 @@ Contributed by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/06/22 18:48:14 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find_dot_in_rectangles.pl,v 1.2 2009/06/22 18:48:14 jmerelo Exp $ 
+  CVS Info: $Date: 2009/06/23 11:55:00 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find_dot_in_rectangles.pl,v 1.3 2009/06/23 11:55:00 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
