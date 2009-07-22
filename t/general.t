@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use Test;
-BEGIN { plan tests => 44 };
+BEGIN { plan tests => 45 };
 use lib qw( lib ../lib ../../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary qw( Individual::String Individual::BitString 
@@ -211,11 +211,22 @@ for ( 0..$popSize ) {
 }
 
 #test utils
-use Algorithm::Evolutionary::Utils qw(entropy consensus average decode_string);
+use Algorithm::Evolutionary::Utils qw(entropy consensus average decode_string vector_compare);
 ok( entropy( \@pop ) > 0, 1 );
 ok( length(consensus( \@pop )) > 1, 1 );
 ok( average( \@pop ) > 1, 1);
 ok( scalar( decode_string( $pop[0]->Chrom(), 10, -1, 1 ) ), 2 );
+my @vector_1 = qw( 1 1 1);
+my @vector_2 = qw( 0 0 0);
+ok( vector_compare( \@vector_1, \@vector_2 ), 1 );
+@vector_2 = qw( 0 0 1);
+ok( vector_compare( \@vector_1, \@vector_2 ), 1 );
+@vector_2 = qw( 1 1 1);
+ok( vector_compare( \@vector_1, \@vector_2 ), 0 );
+@vector_2 = qw( 2 2 1);
+ok( vector_compare( \@vector_1, \@vector_2 ), -1 );
+@vector_2 = qw( 2 0 1);
+ok( vector_compare( \@vector_1, \@vector_2 ), undef );
 
 #fitness
 my $generation = 
@@ -265,10 +276,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/22 12:07:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 2.6 2009/07/22 12:07:03 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 17:14:28 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 2.7 2009/07/22 17:14:28 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.6 $
+  $Revision: 2.7 $
   $Name $
 
 =cut

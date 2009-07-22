@@ -32,9 +32,9 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.7 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.8 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average 
-		     parse_xml decode_string);
+		     parse_xml decode_string vector_compare);
 
 use Carp;
 use String::Random;
@@ -158,7 +158,7 @@ sub parse_xml {
   return $xml_dom;
 }
 
-=head2 string_decode( $gene_size, $min, $range )
+=head2 decode_string( $gene_size, $min, $range )
 
 Decodes to a vector, each one of whose components ranges between $min
 and $max. Returns that vector.
@@ -179,15 +179,46 @@ sub decode_string {
   return @output_vector;
 }
 
+=head2 vector_compare( $vector_1, $vector_2 )
+
+Compares vectors, returns 1 if 1 dominates 2, -1 if it's the other way
+round, and 0 if neither dominates the other. Both vectors are supposed
+to be numeric. Returns C<undef> if neither is bigger, and they are not
+equal. 
+
+=cut
+
+sub vector_compare {
+  my ( $vector_1, $vector_2 ) = @_;
+
+  if ( scalar @$vector_1 != scalar @$vector_2 ) {
+    croak "Different lengths, can't compare\n";
+  }
+
+  my $length = scalar @$vector_1;
+  my @results = map( $vector_1->[$_] <=> $vector_2->[$_], 0..($length-1));
+  my %comparisons;
+  map( $comparisons{$_}++, @results );
+  if ( $comparisons{1} && !$comparisons{-1} ) {
+    return 1;
+  }
+  if ( !$comparisons{1} && $comparisons{-1} ) {
+    return -1;
+  }
+  if ( $comparisons{0} == $length ) {
+    return 0;
+  }
+}
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/22 12:07:03 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.7 2009/07/22 12:07:03 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 17:14:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.8 2009/07/22 17:14:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.7 $
+  $Revision: 2.8 $
 
 =cut
 
