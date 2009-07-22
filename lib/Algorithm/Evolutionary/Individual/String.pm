@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 2.2 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -290,7 +290,7 @@ I would never ever do this in C++
 sub Chrom {
   my $self = shift;
   if ( defined $_[0] ) {
-	$self->{_str} = shift;
+    $self->{_str} = shift;
   }
   return $self->{_str}
 }
@@ -310,10 +310,9 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/19 21:13:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 2.2 2009/03/19 21:13:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 12:07:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 2.3 2009/07/22 12:07:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
-  $Name $
+  $Revision: 2.3 $
 
 =cut

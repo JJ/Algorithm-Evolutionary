@@ -211,10 +211,11 @@ for ( 0..$popSize ) {
 }
 
 #test utils
-use Algorithm::Evolutionary::Utils qw(entropy consensus average);
+use Algorithm::Evolutionary::Utils qw(entropy consensus average decode_string);
 ok( entropy( \@pop ) > 0, 1 );
 ok( length(consensus( \@pop )) > 1, 1 );
 ok( average( \@pop ) > 1, 1);
+ok( scalar( decode_string( $pop[0]->Chrom(), 10, -1, 1 ) ), 2 );
 
 #fitness
 my $generation = 
@@ -264,10 +265,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/10 12:56:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 2.5 2009/02/10 12:56:18 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 12:07:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 2.6 2009/07/22 12:07:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.5 $
+  $Revision: 2.6 $
   $Name $
 
 =cut
