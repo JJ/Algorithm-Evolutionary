@@ -21,6 +21,7 @@ lib/Algorithm/Evolutionary/Op/Crossover.pm
 lib/Algorithm/Evolutionary/Op/CX.pm
 lib/Algorithm/Evolutionary/Op/DeltaTerm.pm	
 lib/Algorithm/Evolutionary/Op/Easy.pm
+lib/Algorithm/Evolutionary/Op/Eval/General.pm
 lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm
 lib/Algorithm/Evolutionary/Op/GaussianMutation.pm
 lib/Algorithm/Evolutionary/Op/Gene_Boundary_Crossover.pm
@@ -34,6 +35,7 @@ lib/Algorithm/Evolutionary/Op/Mutation.pm
 lib/Algorithm/Evolutionary/Op/NoChangeTerm.pm
 lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm
 lib/Algorithm/Evolutionary/Op/Permutation.pm
+lib/Algorithm/Evolutionary/Op/Population_Printer.pm
 lib/Algorithm/Evolutionary/Op/QuadXOver.pm
 lib/Algorithm/Evolutionary/Op/Replace_Worst.pm
 lib/Algorithm/Evolutionary/Op/RouletteWheel.pm
@@ -81,6 +83,8 @@ t/0444-stored.t
 t/0500-generation-skel.t
 t/0500-replace.t
 t/0501-convergence-term.t
+t/0501-eval-general.t
+t/0502-pop_printer.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t

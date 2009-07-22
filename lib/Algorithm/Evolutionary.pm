@@ -132,10 +132,13 @@ Have you found any bugs? Use the CPAN tracker to inform about them (L<http://rt.
 
 =begin html
 
-Main author and developer is J. J. Merelo, jmerelo (at)
-geneura.ugr.es who blogs at L<http://blojj.blogalia.com>. There have also been some contributions from Javi
-García, fjgc (at) decsai.ugr.es and Pedro Castillo, pedro (at)
-geneura.ugr.es. Patient users that have submitted bugs include <a
+Main author and developer is J. J. Merelo, jmerelo (at) geneura.ugr.es
+who blogs at <a href='http://blojj.blogalia.com'>BloJJ</a> and
+twitters at <a
+href='http://twitter.com/jmerelo'>twitter.com/jmerelo</a>. There have
+also been some contributions from Javi García, fjgc (at) decsai.ugr.es
+and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
+submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>. Bugs, requests and any kind
 of comment are welcome.
 
@@ -185,10 +188,9 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/06/16 16:00:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.16 2009/06/16 16:00:00 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 10:45:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 2.17 2009/07/22 10:45:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.16 $
-  $Name $
+  $Revision: 2.17 $
 
 =cut

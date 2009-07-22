@@ -6,7 +6,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -19,7 +19,6 @@ sub new {
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
   return $self;
 }
-
 
 sub apply {
     my $self = shift;
@@ -34,82 +33,41 @@ __END__
 
 =head1 NAME
 
-POE::Component::Algorithm::Evolutionary::Island::POEtic - Island that
-uses L<POE> mechanisms for interchanging information, and act only as
-POE sessions 
+ Algorithm::Evolutionary::Op::Population_Output - Flexible population printing class
 
 
 =head1 SYNOPSIS
 
-  use POE;
-  use POE::Component::Algorithm::Evolutionary::Island::POEtic;
+  my $pp = new Algorithm::Evolutionary::Op::Population_Output; 
 
-  use Algorithm::Evolutionary qw( Individual::BitString Op::Creator 
-				  Op::CanonicalGA Op::Bitflip 
-				  Op::Crossover Op::GenerationalTerm
-				  Fitness::Royal_Road);
-
-  my $bits = shift || 64;
-  my $block_size = shift || 4;
-  my $pop_size = shift || 256; #Population size
-  my $numGens = shift || 200; #Max number of generations
-  my $selection_rate = shift || 0.2;
-
-  #Initial population
-  my $creator = new Algorithm::Evolutionary::Op::Creator( $pop_size, 'BitString', { length => $bits });
-
-  # Variation operators
-  my $m = Algorithm::Evolutionary::Op::Bitflip->new( 1 );
-  my $c = Algorithm::Evolutionary::Op::Crossover->new(2, 4);
-
-  # Fitness function: create it and evaluate
-  my $rr = new  Algorithm::Evolutionary::Fitness::Royal_Road( $block_size );
-
-  my $generation = Algorithm::Evolutionary::Op::CanonicalGA->new( $rr , $selection_rate , [$m, $c] ) ;
-  my $gterm = new Algorithm::Evolutionary::Op::GenerationalTerm 10;
-
-  my @nodes = qw( node_1 node_2 );
-  my %sessions;
-  for my $n ( @nodes ){
-    my @nodes_here = grep( $_ ne $n, @nodes );
-    $sessions{$n} = POE::Component::Algorithm::Evolutionary::Island::POEtic->new( Fitness => $rr,
-										Creator => $creator,
-										Single_Step => $generation,
-										Terminator => $gterm,
-										Alias => $n,
-										Peers => \@nodes_here );
+  my @pop;
+  for ( 1..10 ) {
+    my $indi= new Algorithm::Evolutionary::Individual::String [0,1], 8;
+    push @pop, $indi;
   }
 
-  $poe_kernel->run();
+  $pp->apply( \@pop );
 
+  $pp = new Algorithm::Evolutionary::Op::Population_Output sub { my $member = shift; 
+							      print $member->as_yaml, "\n"; } ; 
+
+  $pp->apply( \@pop );
 
 =head1 DESCRIPTION
 
-Using C<post>, this type of island moves individuals from one island
-to another
+Configurable population printing class
 
 =head1 INTERFACE 
 
-=head2 new
+=head2 new( [$printer] )
 
-POE::Component::Algorithm::Evolutionary::Island::POEtic->new( Fitness => $rr,
-					      Creator => $creator,
-					      Single_Step => $generation,
-					      Terminator => $gterm,
-					      Alias => 'this_peer',
-                                              Peers => \@peers);
+C<$printer> is a closure or reference to function that receives as
+input a single population member. By default, calls C<as_string> on
+each one followed by a carriage return
 
-Basically like PoCoAE, but with peers
+=head2 apply( $population_hashref )
 
-=head2 after_step
-
-Not to be called from outside, is the one that does the actual
-interchange between islands.
-
-
-=head1 CONFIGURATION AND ENVIRONMENT
-
-POE::Component::Algorithm::Evolutionary requires no configuration files or environment variables.
+Applies the single-member printing function to every population member
 
 
 =head1 DEPENDENCIES
@@ -136,15 +94,6 @@ L<http://rt.cpan.org>.
 
 JJ Merelo  C<< <jj@merelo.net> >>
 
-=begin html 
-
-Boilerplate taken from <a
-href='http://perl.com/pub/a/2004/07/22/poe.html?page=2'>article in
-perl.com</a> 
-
-=end html
-
-
 =head1 LICENCE AND COPYRIGHT
 
 Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
@@ -152,8 +101,8 @@ Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-  CVS Info: $Date: 2009/04/27 18:09:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 1.1 2009/04/27 18:09:49 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 10:45:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 1.2 2009/07/22 10:45:36 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY

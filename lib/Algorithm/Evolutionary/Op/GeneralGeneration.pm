@@ -53,7 +53,7 @@ package Algorithm::Evolutionary::Op::GeneralGeneration;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -157,8 +157,7 @@ sub apply ($) {
   #Eliminate and substitute
   splice( @$pop, -$pringaos );
   for ( @newpop ) {
-      my $fitness = $self->{_eval};
-      $_->evaluate( $fitness );
+      $_->evaluate( $eval );
   }
   push @$pop, @newpop;
   my @sortPop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop;
@@ -171,11 +170,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/09 10:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 2.3 2009/02/09 10:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 10:45:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 2.4 2009/07/22 10:45:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
-  $Name $
+  $Revision: 2.4 $
 
 =cut
 
