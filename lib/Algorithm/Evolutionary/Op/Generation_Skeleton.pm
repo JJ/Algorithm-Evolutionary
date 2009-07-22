@@ -60,7 +60,7 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -162,7 +162,7 @@ sub apply ($) {
     }
     
     #Eliminate and substitute
-    map( $_->evaluate( $self->{'_eval'}), @newpop );
+    map( $_->evaluate( $eval), @newpop );
     my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
     @$pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop_hash ;
     
@@ -185,11 +185,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/29 18:55:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.3 2009/03/29 18:55:16 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 10:45:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 2.4 2009/07/22 10:45:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.3 $
-  $Name $
+  $Revision: 2.4 $
 
 =cut
 
