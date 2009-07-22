@@ -32,8 +32,9 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.6 $ ' =~ /(\d+\.\d+)/ ) ;
-our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average parse_xml);
+our ($VERSION) = ( '$Revision: 2.7 $ ' =~ /(\d+\.\d+)/ ) ;
+our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average 
+		     parse_xml decode_string);
 
 use Carp;
 use String::Random;
@@ -157,17 +158,36 @@ sub parse_xml {
   return $xml_dom;
 }
 
+=head2 string_decode( $gene_size, $min, $range )
+
+Decodes to a vector, each one of whose components ranges between $min
+and $max. Returns that vector.
+
+It does not work for $gene_size too big. Certainly not for 64, maybe for 32
+
+=cut
+
+sub decode_string {
+  my ( $chromosome, $gene_size, $min, $range ) = @_;
+
+  my @output_vector;
+  my $max_range = eval "0b"."1"x$gene_size;
+  for (my $i = 0; $i < length($chromosome)/$gene_size; $i ++ ) {
+    my $substr = substr( $chromosome, $i*$gene_size, $gene_size );
+    push @output_vector, $range*eval("0b$substr")/$max_range - $min;
+  }
+  return @output_vector;
+}
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/29 09:42:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.6 2009/03/29 09:42:41 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 12:07:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.7 2009/07/22 12:07:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.6 $
-  $Name $
+  $Revision: 2.7 $
 
 =cut
 

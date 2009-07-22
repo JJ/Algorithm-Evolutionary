@@ -53,15 +53,17 @@ Bitstring Individual for a Genetic Algorithm. Used, for instance, in a canonical
 =cut
 
 package Algorithm::Evolutionary::Individual::BitString;
+
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 2.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 2.3 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
 use constant MY_OPERATORS => (Algorithm::Evolutionary::Individual::String::MY_OPERATORS, 
 			      qw(Algorithm::Evolutionary::Op::BitFlip Algorithm::Evolutionary::Op::Mutation )); 
- 
+
+use Algorithm::Evolutionary::Utils qw(decode_string); 
 
 =head1 METHODS
 
@@ -104,15 +106,8 @@ and $max. Returns that vector
 sub decode {
   my $self = shift;
   my ( $gene_size, $min, $range ) = @_;
-
-  my @output_vector;
   my $chromosome = $self->{'_str'};
-  my $max_range = eval "0b"."1"x$gene_size;
-  for (my $i = 0; $i < length($chromosome)/$gene_size; $i ++ ) {
-    my $substr = substr( $chromosome, $i*$gene_size, $gene_size );
-    push @output_vector, $range*eval("0b$substr")/$max_range - $min;
-  }
-  return @output_vector;
+  return decode_chromosome( $chromosome, $gene_size, $min, $range );
 }
 
 =head2 Copyright
@@ -120,10 +115,10 @@ sub decode {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/06/22 17:18:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 2.2 2009/06/22 17:18:16 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/22 12:07:03 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 2.3 2009/07/22 12:07:03 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.2 $
+  $Revision: 2.3 $
   $Name $
 
 =cut
