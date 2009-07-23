@@ -103,8 +103,8 @@ sub apply ($) {
 	my $result = 
 	  vector_compare( $fitness_vector_of{ $pop->[$i]->as_string },
 			  $fitness_vector_of{ $pop->[$j]->as_string } );
-	$wins[$i]++ if $result == 1;
-	$wins[$j]++ if $result == -1;
+	$wins[$i]++ if $result == -1;
+	$wins[$j]++ if $result == 1;
       }
       
     }
@@ -131,10 +131,10 @@ L<Algorithm::Evolutionary::Fitness::Base>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 17:17:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 1.1 2009/07/23 17:17:27 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/23 18:03:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 1.2 2009/07/23 18:03:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
 
 =cut
 
