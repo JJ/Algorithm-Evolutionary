@@ -32,7 +32,7 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.8 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.9 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average 
 		     parse_xml decode_string vector_compare);
 
@@ -158,7 +158,7 @@ sub parse_xml {
   return $xml_dom;
 }
 
-=head2 decode_string( $gene_size, $min, $range )
+=head2 decode_string( $chromosome, $gene_size, $min, $range )
 
 Decodes to a vector, each one of whose components ranges between $min
 and $max. Returns that vector.
@@ -215,10 +215,10 @@ sub vector_compare {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/22 17:14:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.8 2009/07/22 17:14:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/23 16:35:43 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.9 2009/07/23 16:35:43 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.8 $
+  $Revision: 2.9 $
 
 =cut
 
