@@ -27,7 +27,7 @@ Algorithms: Empirical Results" by Zitzler, Deb and Thiele
 
 package Algorithm::Evolutionary::Fitness::ZDT1;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp qw(croak);
 
@@ -63,8 +63,7 @@ Applies the instantiated problem to a chromosome
 
 sub _really_apply {
   my $self = shift;
-  my $individual = shift || croak "No chromosome!!!\n";
-  my $chromosome_string = $individual->Chrom();
+  my $chromosome_string = shift || croak "No chromosome!!!\n";
   return $self->zdt1( $chromosome_string );
 }
 
@@ -102,10 +101,10 @@ sub g {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 16:35:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 1.1 2009/07/23 16:35:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/23 17:17:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 1.2 2009/07/23 17:17:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

@@ -32,7 +32,7 @@ package Algorithm::Evolutionary::Utils;
 
 use Exporter;
 our @ISA = qw(Exporter);
-our ($VERSION) = ( '$Revision: 2.9 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 2.10 $ ' =~ /(\d+\.\d+)/ ) ;
 our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average 
 		     parse_xml decode_string vector_compare);
 
@@ -205,7 +205,7 @@ sub vector_compare {
   if ( !$comparisons{1} && $comparisons{-1} ) {
     return -1;
   }
-  if ( $comparisons{0} == $length ) {
+  if ( defined $comparisons{0} && $comparisons{0} == $length ) {
     return 0;
   }
 }
@@ -215,10 +215,10 @@ sub vector_compare {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 16:35:43 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.9 2009/07/23 16:35:43 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/23 17:17:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 2.10 2009/07/23 17:17:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.9 $
+  $Revision: 2.10 $
 
 =cut
 
