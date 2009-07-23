@@ -27,7 +27,7 @@ Algorithms: Empirical Results" by Zitzler, Deb and Thiele
 
 package Algorithm::Evolutionary::Fitness::ZDT1;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp qw(croak);
 
@@ -76,10 +76,6 @@ Computes ZDT1, returning an array hash with the values of f1 and f2.
 sub zdt1 {
     my $self = shift;
     my $string = shift;
-    my $cache = $self->{'_cache'};
-    if ( $cache->{$string} ) {
-	return $cache->{$string};
-    }
     my @vector = decode_string( $string, 
 				$self->{'_number_of_bits'},
 				0, 1 );
@@ -101,10 +97,10 @@ sub g {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 17:17:26 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 1.2 2009/07/23 17:17:26 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/23 18:03:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 1.3 2009/07/23 18:03:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
   $Name $
 
 =cut
