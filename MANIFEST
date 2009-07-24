@@ -22,6 +22,7 @@ lib/Algorithm/Evolutionary/Op/CX.pm
 lib/Algorithm/Evolutionary/Op/DeltaTerm.pm	
 lib/Algorithm/Evolutionary/Op/Easy.pm
 lib/Algorithm/Evolutionary/Op/Eval/General.pm
+lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm
 lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm
 lib/Algorithm/Evolutionary/Op/GaussianMutation.pm
 lib/Algorithm/Evolutionary/Op/Gene_Boundary_Crossover.pm
@@ -53,6 +54,7 @@ lib/Algorithm/Evolutionary/Individual/BitString.pm
 lib/Algorithm/Evolutionary/Individual/Tree.pm
 lib/Algorithm/Evolutionary/Individual/Vector.pm
 lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm
+lib/Algorithm/Evolutionary/Fitness/Any.pm
 lib/Algorithm/Evolutionary/Fitness/Base.pm
 lib/Algorithm/Evolutionary/Fitness/String.pm
 lib/Algorithm/Evolutionary/Fitness/MMDP.pm
@@ -62,6 +64,8 @@ lib/Algorithm/Evolutionary/Fitness/Knapsack.pm
 lib/Algorithm/Evolutionary/Fitness/ONEMAX.pm
 lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm
 lib/Algorithm/Evolutionary/Fitness/ECC.pm
+lib/Algorithm/Evolutionary/Fitness/Trap.pm
+lib/Algorithm/Evolutionary/Fitness/ZDT1.pm
 t/00-load.t
 t/0100-bitvector.t
 t/0101-string.t
@@ -73,7 +77,10 @@ t/0301-wppeaks.t
 t/0302-knapsack.t
 t/0303-onemax.t
 t/0304-royalroad.t
+t/0304-trap.t
 t/0305-ecc.t
+t/0306-any.t
+t/0307-zdt1.t
 t/0333-mmdp.t
 t/0400-noveltym.t
 t/0401-genebx.t
@@ -85,6 +92,8 @@ t/0500-replace.t
 t/0501-convergence-term.t
 t/0501-eval-general.t
 t/0502-pop_printer.t
+t/0503-eval-mo.t
+t/0600-ez-moga.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t
@@ -114,3 +123,4 @@ examples/wp_peaks.pl
 examples/run_easy_ga.pl
 examples/p_peaks.yaml
 examples/simulated-annealing.pl
+examples/ez_moga.pl

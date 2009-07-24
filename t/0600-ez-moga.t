@@ -34,10 +34,10 @@ $e->apply( \@pop);
 
 my $best_fitness = $pop[0]->Fitness();
 
-is ( $best_fitness > 1, 1, "First generation" );
+is ( $best_fitness == 1, 1, "First generation" );
 
 $e->apply( \@pop);
 
-is(  $pop[0]->Fitness() > 2, 1, "Improving fitness" );
+is(  $pop[0]->Fitness() == 1, 1, "Improving fitness" );
 
 =cut

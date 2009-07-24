@@ -27,7 +27,7 @@ Algorithms: Empirical Results" by Zitzler, Deb and Thiele
 
 package Algorithm::Evolutionary::Fitness::ZDT1;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.0 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp qw(croak);
 
@@ -84,6 +84,11 @@ sub zdt1 {
     return [ $vector[0], $g*$h ];
 }
 
+=head2 g
+
+G function in ZDT
+
+=cut
 
 sub g {
   my @x = @_;
@@ -97,10 +102,10 @@ sub g {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 18:03:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 1.3 2009/07/23 18:03:20 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ZDT1.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 3.0 $
   $Name $
 
 =cut
