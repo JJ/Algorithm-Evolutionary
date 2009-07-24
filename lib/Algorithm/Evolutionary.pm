@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.68'; #ugly number special
+our $VERSION = '0.69'; #sexy number special
 
 # Preloaded methods go here.
 
@@ -42,7 +42,9 @@ Algorithm::Evolutionary - Perl module for performing paradigm-free evolutionary 
   use Algorithm::Evolutionary qw( Op::This_Operator
                                   Individual::That_Individual
                                   Fitness::Some_Fitness); 
-  
+
+  # other modules with explicit importation
+  use Algorihtm::Evolutionary::Utils (this_util that_util);   
 
 =head1 DESCRIPTION
 
@@ -76,7 +78,7 @@ reports, news, updates, whatever.</p>
     href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
     tarballs in the file download area of that repository</p>
 
-<p>You can also get help from the <a href='https://sourceforge.net/forum/forum.php?forum_id=107255'>project forum</a> (where I usually hang around</a> or from <a href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing list</a> (information at <a href='https://lists.sourceforge.net/lists/listinfo/opeal-help'>its web site</a></p>
+<p>You can also get help from the <a href='https://sourceforge.net/forum/forum.php?forum_id=107255'>project forum</a> (where I usually hang around) or from <a href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing list</a> (information at <a href='https://lists.sourceforge.net/lists/listinfo/opeal-help'>its web site</a>)</p>
 
 <p>I have used this continously for my research all these year, and
 any search will return a number of papers; a journal article is
@@ -188,9 +190,9 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 09:10:09 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.1 2009/07/24 09:10:09 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
 
 =cut

@@ -59,15 +59,13 @@ This is a no-fuss class to have everything needed to run an algorithm
 
 package Algorithm::Evolutionary::Run;
 
-use Algorithm::Evolutionary::Individual::BitString;
-use Algorithm::Evolutionary::Op::Easy;
-use Algorithm::Evolutionary::Op::CanonicalGA;
-use Algorithm::Evolutionary::Op::Bitflip;
-use Algorithm::Evolutionary::Op::Crossover;
-use Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
+use Algorithm::Evolutionary qw(Individual::BitString Op::Easy Op::CanonicalGA 
+			       Op::Bitflip Op::Crossover 
+			       Op::Gene_Boundary_Crossover);
+ 
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -293,10 +291,10 @@ sub compute_min_distance {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 09:10:09 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 3.1 2009/07/24 09:10:09 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
