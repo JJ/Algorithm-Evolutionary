@@ -5,12 +5,12 @@ use lib qw( ../../../../lib );
 
 =head1 NAME
 
-Algorithm::Evolutionary::Fitness::Trap - Error Correcting codes problem generator
+Algorithm::Evolutionary::Fitness::Trap - 'Trap' fitness function for evolutionary algorithms
 
 =head1 SYNOPSIS
 
     my $number_of_bits = 5;
-    my $a = $number_of_bits -1;
+    my $a = $number_of_bits -1; # Usual default values follow
     my $b = $number_of_bits;
     my $z = $number_of_bits -1;
     my $trap = Algorithm::Evolutionary::Fitness::Trap->new( $number_of_bits, $a, $b, $z );
@@ -26,7 +26,7 @@ they "trap" population into going to easier, but local optima.
 
 package Algorithm::Evolutionary::Fitness::Trap;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use String::Random;
 use Carp qw(croak);
@@ -38,7 +38,9 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 =head2 new
 
-    Creates a new instance of the problem, with the said number of bits and peaks
+Creates a new instance of the problem, with the said number of bits
+and peaks. Depending on the parameter value, might produce some errors
+and bail out, not all values are admissible.
 
 =cut 
 
@@ -116,10 +118,10 @@ sub trap {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 10:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 3.1 2009/07/24 10:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
