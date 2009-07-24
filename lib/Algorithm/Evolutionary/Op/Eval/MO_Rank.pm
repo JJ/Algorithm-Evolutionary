@@ -96,22 +96,22 @@ sub apply ($) {
     }
 
     #Compute rank
-    my @wins;
+    my @dominated_by;
     my $i;
     for ( $i = 0; $i < @$pop; $i++ ) {
       for ( my $j = $i+1; $j < @$pop; $j++ ) {
 	my $result = 
 	  vector_compare( $fitness_vector_of{ $pop->[$i]->as_string },
 			  $fitness_vector_of{ $pop->[$j]->as_string } );
-	$wins[$i]++ if $result == -1;
-	$wins[$j]++ if $result == 1;
+	$dominated_by[$j]++ if $result == -1;
+	$dominated_by[$i]++ if $result == 1;
       }
       
     }
     
     for ( $i = 0; $i < @$pop; $i++ ) {
-      $wins[$i]++;
-      $pop->[$i]->Fitness( $wins[$i] );
+      $dominated_by[$i]++; # To avoid uninitialized
+      $pop->[$i]->Fitness( 1/$dominated_by[$i] );
     }
     
 }
@@ -131,10 +131,10 @@ L<Algorithm::Evolutionary::Fitness::Base>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/23 18:03:21 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 1.2 2009/07/23 18:03:21 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:07:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 1.3 2009/07/24 08:07:38 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
 
 =cut
 
