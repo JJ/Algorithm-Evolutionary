@@ -9,9 +9,9 @@ Algorithm::Evolutionary::Fitness::ECC - Error Correcting codes problem generator
 
 =head1 SYNOPSIS
 
-    my $number_of_peaks = 100;
-    my $number_of_bits = 32;
-    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_peaks, $number_of_bits );
+    my $number_of_codewords = 10;
+    my $min_distance = 1;
+    my $p_peaks = Algorithm::Evolutionary::Fitness::ECC->new( $number_of_codewords, $min_distance );
 
 =head1 DESCRIPTION
 
@@ -38,7 +38,7 @@ computed by the algorithm"
 
 package Algorithm::Evolutionary::Fitness::ECC;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp qw(croak);
 
@@ -108,10 +108,10 @@ sub ecc {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 10:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 3.1 2009/07/24 10:20:46 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 10:25:49 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 3.2 2009/07/24 10:25:49 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
