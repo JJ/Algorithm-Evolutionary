@@ -15,18 +15,20 @@ Algorithm::Evolutionary::Fitness::ECC - Error Correcting codes problem generator
 
 =head1 DESCRIPTION
 
-Extracted from article "Effects of scale-free and small-world topologies on binary coded self-adaptive CEA", by Giacobini et al. Quoting:
+Extracted from article "Effects of scale-free and small-world topologies on binary coded self-adaptive CEA", by Giacobini et al [Ga]. Quoting:
 "                                                    The ECC problem was presented in
-[13]. We will consider a three-tuple (n, M, d), where n is the length of each codeword
+[MW]. We will consider a three-tuple (n, M, d), where n is the length of each codeword
 (number of bits), M is the number of codewords, and d is the minimum Hamming
 distance between any pair of codewords. Our objective will be to find a code which
 has a value for d as large as possible (reflecting greater tolerance to noise and errors),
 given previously fixed values for n and M . The problem we have studied is a simplified
-version of that in [13]. In our case we search half of the codewords (M/2) that will
+version of that in [MW]. In our case we search half of the codewords (M/2) that will
 compose the code, and the other half is made up by the complement of the codewords
 computed by the algorithm"
 
-[13] F. J. MacWilliams and N. J. A. Sloane. The Theory of Error-Correcting Codes. North-
+[Ga] Mario Giacobini, Mike Preuss, Marco Tomassini: Effects of Scale-Free and Small-World Topologies on Binary Coded Self-adaptive CEA. EvoCOP 2006: 86-98.
+
+[MW] F. J. MacWilliams and N. J. A. Sloane. The Theory of Error-Correcting Codes. North-
     Holland, Amsterdam, 1977.
 
 
@@ -36,9 +38,8 @@ computed by the algorithm"
 
 package Algorithm::Evolutionary::Fitness::ECC;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
-use String::Random;
 use Carp qw(croak);
 
 use lib qw(../../.. ../.. ..);
@@ -48,7 +49,7 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 =head2 new
 
-    Creates a new instance of the problem, with the said number of bits and peaks
+Creates a new instance of the problem, with the said number of bits and peaks
 
 =cut 
 
@@ -107,10 +108,10 @@ sub ecc {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 10:20:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/ECC.pm,v 3.1 2009/07/24 10:20:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
