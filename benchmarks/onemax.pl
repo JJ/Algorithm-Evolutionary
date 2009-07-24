@@ -105,10 +105,10 @@ J. J. Merelo C<jj [at] merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/06/08 18:41:50 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 2.4 2009/06/08 18:41:50 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/benchmarks/onemax.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

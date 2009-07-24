@@ -155,10 +155,10 @@ J. J. Merelo C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/04/30 07:52:01 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/async/async.pl,v 1.1 2009/04/30 07:52:01 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/async/async.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

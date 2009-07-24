@@ -26,7 +26,7 @@ Checks for termination after if population has converged
 
 package Algorithm::Evolutionary::Op::Convergence_Terminator;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -84,10 +84,10 @@ L<Algorithm::Evolutionary::Op::DeltaTerm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/04/03 16:00:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Convergence_Terminator.pm,v 1.2 2009/04/03 16:00:49 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Convergence_Terminator.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

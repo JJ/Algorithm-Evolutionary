@@ -53,7 +53,7 @@ package Algorithm::Evolutionary::Op::GeneralGeneration;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -170,10 +170,10 @@ sub apply ($) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/22 10:45:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 2.4 2009/07/22 10:45:36 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 3.0 $
 
 =cut
 

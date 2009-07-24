@@ -45,7 +45,7 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 2.7 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
 our %parameters;
 
 =head2 AUTOLOAD
@@ -359,10 +359,10 @@ L<XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/22 11:29:33 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 2.7 2009/03/22 11:29:33 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.7 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

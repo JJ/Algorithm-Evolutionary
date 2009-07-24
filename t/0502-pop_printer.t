@@ -35,10 +35,10 @@ stdout_like( \&writer, qr/_length: 8/, 'Writing YAML OK' ); #Should return 0
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/04/27 18:09:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0502-pop_printer.t,v 1.1 2009/04/27 18:09:49 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0502-pop_printer.t,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

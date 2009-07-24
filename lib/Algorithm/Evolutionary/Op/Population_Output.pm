@@ -6,7 +6,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.0 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -101,8 +101,8 @@ Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-  CVS Info: $Date: 2009/07/22 10:45:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 1.2 2009/07/22 10:45:36 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY

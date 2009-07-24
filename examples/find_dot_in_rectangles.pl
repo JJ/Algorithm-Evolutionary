@@ -107,10 +107,10 @@ Contributed by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/06/23 11:55:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find_dot_in_rectangles.pl,v 1.3 2009/06/23 11:55:00 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find_dot_in_rectangles.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

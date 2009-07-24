@@ -34,7 +34,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Novelty_Mutation;
 
-our ($VERSION) = ( '$Revision: 2.4 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -99,10 +99,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/03/20 11:31:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 2.4 2009/03/20 11:31:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.4 $
+  $Revision: 3.0 $
   $Name $
 
 =cut

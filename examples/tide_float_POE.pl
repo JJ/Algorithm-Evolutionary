@@ -145,10 +145,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/02/04 20:43:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/tide_float_POE.pl,v 2.1 2009/02/04 20:43:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 08:46:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/tide_float_POE.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 2.1 $
+  $Revision: 3.0 $
   $Name $
 
 =cut
