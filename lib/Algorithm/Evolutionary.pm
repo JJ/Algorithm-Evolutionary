@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.69'; #sexy number special
+our $VERSION = '0.69_1'; #sexy number special
 
 # Preloaded methods go here.
 
@@ -171,15 +171,18 @@ which you can run and play with to get a taste of what EA programming is like, a
 
 =item L<Algorithm::Evolutionary::Experiment>.
 
-=item L<Algorithm::Evolutionary::CanonicalGA>.
+=item L<Algorithm::Evolutionary::Run>.
+
+=item L<Algorithm::Evolutionary::Op::CanonicalGA>.
 
 =item L<XML> for an explanation of the XML format used
 
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
 evolutionary algorithms with anything else easily
 
-You might be interested in one of the other GA modules out there, such
-as L<AI::Genetic::Pro> 
+You might also be interested in one of the other perl GA and
+evolutionary computation modules out there, such as
+L<AI::Genetic::Pro>
 
 =back 
 
@@ -190,9 +193,9 @@ as L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 09:10:09 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.1 2009/07/24 09:10:09 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/24 12:58:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.2 2009/07/24 12:58:45 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
