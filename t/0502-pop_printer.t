@@ -2,8 +2,8 @@
 
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 use Test::More tests => 4;
-use Test::Output;
-
+eval "use Test::Output";
+my $no_test_output=1 if $@;
 use Algorithm::Evolutionary::Individual::String;
 
 
@@ -14,6 +14,10 @@ BEGIN {
 
 my $pp = new Algorithm::Evolutionary::Op::Population_Output; 
 ok( ref $pp, "Algorithm::Evolutionary::Op::Population_Output" );
+
+if ( !$no_test_output ) {
+
+
 
 my @pop;
 for ( 1..10 ) {
@@ -30,15 +34,16 @@ $pp = new Algorithm::Evolutionary::Op::Population_Output sub { my $member = shif
 
 stdout_like( \&writer, qr/_length: 8/, 'Writing YAML OK' ); #Should return 0
   
+}
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0502-pop_printer.t,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/25 09:49:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0502-pop_printer.t,v 3.1 2009/07/25 09:49:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
