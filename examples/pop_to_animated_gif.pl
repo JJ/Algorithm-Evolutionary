@@ -31,7 +31,6 @@ for (1..$generations) {
 	}
       }
     }
-#    add_frame_data($frame);              # add the data for this frame
   }
   $gifdata   .= $frame->gifanimadd;     # add frame
 }

@@ -26,7 +26,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Replace_Worst;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -63,7 +63,7 @@ sub apply ($;$){
   my @sorted_population = sort { $b->{_fitness} <=> $a->{_fitness}; }
     @$population ;
   my $to_eliminate = scalar @$chromosome_list;
-  splice ( @sorted_population, - $to_eliminate, $to_eliminate );
+  splice ( @sorted_population, -$to_eliminate );
   push @sorted_population, @$chromosome_list;
 
   return \@sorted_population;
@@ -84,10 +84,10 @@ insertion of new individuals asynchronously.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/27 16:20:24 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 3.1 2009/07/27 16:20:24 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

@@ -6,28 +6,61 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
+
+use GD::Image;
 
 sub new {
   my $class = shift;
   my $hash = shift || croak "No default values for length ";
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
+  $self->{'_image'} = GD::Image->new($hash->{'length'}*$hash->{'pixels_per_bit'},
+				     $hash->{'number_of_strings'}*$hash->{'pixels_per_bit'});
+  $self->{'_length'} = $hash->{'length'};
+  $self->{'_pixels_per_bit'} = $hash->{'pixels_per_bit'};
+  $self->{'_white'} = $self->{'_image'}->colorAllocate(0,0,0); #background color
+  $self->{'_black'} = $self->{'_image'}->colorAllocate(255,255,255);
+  $self->{'_gifdata'} = $self->{'_image'}->gifanimbegin;
+  $self->{'_gifdata'}   .= $self->{'_image'}->gifanimadd;    # first frame
   return $self;
 }
+
 
 sub apply {
     my $self = shift;
     my $population_hashref=shift;
+    my $frame  = GD::Image->new($self->{'_image'}->getBounds);
+    my $ppb = $self->{'_pixels_per_bit'};
+    my $l=0;
     for my $p (@$population_hashref) {
-	$self->{'_printer'}->($p);
+      my $bit_string = $p->{'_str'};
+      for my $c ( 0..($self->{'_length'}-1) ) {
+	my $bit = substr( $bit_string, $c, 1 );
+	if ( $bit ) {
+	  for my $p ( 1..$ppb ) {
+	    for my $q (1..$ppb ) {
+
+	      $frame->setPixel($c*$ppb+$p,
+			       $l*$ppb+$q,$self->{'_black'})
+	    }
+	  }
+	}
+      }
+      $l++;
     }
+    $self->{'_gifdata'}   .= $frame->gifanimadd;     # add frame
+}
+
+sub terminate {
+  my $self= shift;
+  $self->{'_gifdata'}   .= $self->{'_image'}->gifanimend;
 }
 
 sub output {
   my $self = shift;
-  
+  return $self->{'_gifdata'};
 }
 
 "No man's land" ; # Magic true value required at end of module
@@ -111,8 +144,8 @@ Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-  CVS Info: $Date: 2009/07/27 11:57:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.1 2009/07/27 11:57:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/27 16:20:24 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.2 2009/07/27 16:20:24 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY
