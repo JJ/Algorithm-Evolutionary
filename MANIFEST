@@ -10,6 +10,7 @@ lib/Algorithm/Evolutionary/Run.pm
 lib/Algorithm/Evolutionary/Utils.pm
 lib/Algorithm/Evolutionary/XML.pod
 lib/Algorithm/Evolutionary/Wheel.pm
+lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm
 lib/Algorithm/Evolutionary/Op/ArithCrossover.pm
 lib/Algorithm/Evolutionary/Op/Base.pm
 lib/Algorithm/Evolutionary/Op/Bitflip.pm
@@ -44,6 +45,7 @@ lib/Algorithm/Evolutionary/Op/RouletteWheel.pm
 lib/Algorithm/Evolutionary/Op/Selector.pm
 lib/Algorithm/Evolutionary/Op/SimulatedAnnealing.pm
 lib/Algorithm/Evolutionary/Op/Storing.pm
+lib/Algorithm/Evolutionary/Op/StringRand.pm
 lib/Algorithm/Evolutionary/Op/TournamentSelect.pm
 lib/Algorithm/Evolutionary/Op/TreeMutation.pm
 lib/Algorithm/Evolutionary/Op/VectorCrossover.pm
@@ -95,6 +97,7 @@ t/0501-eval-general.t
 t/0502-pop_printer.t
 t/0503-eval-mo.t
 t/0600-ez-moga.t
+t/0601-cga-gif-output.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t
@@ -125,3 +128,6 @@ examples/run_easy_ga.pl
 examples/p_peaks.yaml
 examples/simulated-annealing.pl
 examples/ez_moga.pl
+examples/ez-ga-gif-output.pl
+examples/fake-parallel-ga.pl
+
