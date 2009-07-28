@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 
-use Tk;
 use strict;
 use warnings;
 
@@ -12,17 +11,48 @@ use lib qw(lib ../lib);
 use Algorithm::Evolutionary qw( Individual::BitString Op::Easy 
 				Op::Bitflip Op::Crossover );
 
+use SDL::App;
+use SDL::Rect;
+use SDL::Color;
 
-my $size = 600;
+my ($side, $depth) = (640, 16);
 
-# Create MainWindow and configure:
-my $mw = MainWindow->new;
-$mw->configure( -width=>$size, -height=>$size );
-$mw->resizable( 0, 0 ); # not resizable in any direction
+# change these values as necessary
+my $title                                = 'EC as SDL Animation';
+my ($bg_r,       $bg_g,        $bg_b)    = ( 0x00, 0x00, 0x00 );
+my ($rect_r,     $rect_g,      $rect_b)  = ( 0x00, 0x00, 0xff ); 
 
-# Create and configure the canvas:
-my $canvas = $mw->Canvas( -cursor=>"crosshair", -background=>"white",
-              -width=>$size, -height=>$size )->pack;
+
+my $app = SDL::App->new(
+	-width  => $side,
+	-height => $side,
+	-depth  => $depth,
+);
+
+my $color = SDL::Color->new(
+	-r => $rect_r,
+	-g => $rect_g,
+	-b => $rect_b,
+);
+
+my $bg_color = SDL::Color->new(
+	-r => $bg_r,
+	-g => $bg_g,
+	-b => $bg_b,
+);
+
+my $dot_color = SDL::Color->new( -r => 255,
+				 -g => 255,
+				 -b => 0 );
+
+my $background = SDL::Rect->new(
+	-width  => $side,
+	-height => $side,
+);
+
+#my $rect = create_rect();
+
+# your code here, perhaps
 my $alg = Algorithm::RectanglesContainingDot->new;
 
 my $num_rects = shift || 50;
@@ -35,10 +65,11 @@ my $popSize = shift || 64; #Population size
 my $numGens = shift || 200; #Max number of generations
 my $selection_rate = shift || 0.2;
 
-my $scale = $arena_side/$size;
+my $scale = $arena_side/$side;
 #Generate random rectangles
+$app->fill(   $background,   $bg_color   );
 for my $i (0 .. $num_rects) {
-
+  $app->update( $background );
   my $x_0 = rand( $arena_side );
   my $y_0 = rand( $arena_side);
   my $side_x = rand( $arena_side - $x_0 );
@@ -46,10 +77,17 @@ for my $i (0 .. $num_rects) {
   $alg->add_rectangle("rectangle_$i", $x_0, $y_0, 
 		      $x_0+$side_x, $x_0+$side_y );
   my $val = 255*$i/$num_rects;
-  my $color = sprintf( "#%02x%02x%02x", $val, $val, $val );
-  $canvas->createRectangle( $x_0/$scale, $y_0/$scale, 
-			    $side_x/$scale, $side_y/$scale, 
-			    -outline =>$color );
+  my $this_rect = SDL::Rect->new( -height => $side_y/$scale,
+				  -width  => $side_x/$scale,
+				  -x      => $x_0/$scale,
+				  -y      => $y_0/$scale );
+
+  my $inner_rect = SDL::Rect->new( -height => $side_y/$scale-2,
+				   -width  => $side_x/$scale-2,
+				   -x      => 1+$x_0/$scale,
+				   -y      => 1+$y_0/$scale );
+  $app->fill($this_rect, $color);
+  $app->fill($inner_rect, $bg_color);
 }
 
 #Declare fitness function
@@ -96,6 +134,7 @@ for ( @pop ) {
 # Start Evolutionary Algorithm
 my $contador=0;
 do {
+  $app->update( $background );
   $generation->apply( \@pop );
   
   my $val = 255*$contador/$numGens;
@@ -103,11 +142,13 @@ do {
   print "$contador : ", $pop[0]->asString(), ", Color $color\n" ;
   $contador++;
   my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
-
-
-  $canvas->createOval($point[0]-2, $point[1]-2, 
-		      $point[0]+2, $point[1]+2, 
-		      -fill => $color );
+  
+  my $this_rect = SDL::Rect->new( -height => 2,
+				  -width  => 2,
+				  -x      => $point[0]-1,
+				  -y      => $point[1]+1 );
+  $app->fill($this_rect, $dot_color);
+  
 } while( ($contador < $numGens) 
 	 && ($pop[0]->Fitness() < $num_rects));
 
@@ -118,29 +159,26 @@ do {
 print "Best is:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
-my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
 
-$canvas->createOval($point[0]-3, $point[1]-3, 
-		    $point[0]+3, $point[1]+3, 
-		    -fill => 'black' );
-MainLoop;
+sub draw_frame
+{
+	my ($app, %args) = @_;
 
-=head1 AUTHOR
+	$app->fill(   $args{bg},   $args{bg_color}   );
+	$app->fill(   $args{rect}, $args{rect_color} );
+	$app->update( $args{bg} );
+}
 
-Contributed by J. J. Merelo
+sub draw_undraw_rect
+{
+	my ($app, %args) = @_;
 
-=cut
+	$app->fill(   $args{old_rect}, $args{bg_color}   );
+	$app->fill(   $args{rect},     $args{rect_color} );
+	$app->update( $args{old_rect} );
+	$app->update( $args{rect} );
+}
 
-=head1 Copyright
-  
-  This file is released under the GPL. See the LICENSE file included in this distribution,
-  or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 19:32:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find-dot-gui.pl,v 3.1 2009/07/28 19:32:12 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
-  $Name $
 
-=cut
 
