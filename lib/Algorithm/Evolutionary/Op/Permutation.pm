@@ -36,7 +36,7 @@ Class independent permutation operator; any individual that has the
 
 package  Algorithm::Evolutionary::Op::Permutation;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -85,7 +85,7 @@ sub create {
   return $self;
 }
 
-=head2 apply
+=head2 apply( $chromosome )
 
 Applies mutation operator to a "Chromosome" that includes the C<_str>
     instance variable, swapping positions for two of its components.
@@ -108,11 +108,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
+  $Revision: 3.1 $
 
 =cut
 

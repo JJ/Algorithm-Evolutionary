@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Tree - A Direct Acyclic Graph, or tree, useful for Genetic Programming-Style stuff
+Tree - A Direct Acyclic Graph, or tree, useful for Genetic Programming-Style stuff
 
 =head1 SYNOPSIS
 
@@ -31,7 +31,7 @@ L<Algorithm::Evolutionary::Individual::Base|Algorithm::Evolutionary::Individual:
 
 =head1 DESCRIPTION
 
-Array individual for a genetic programming. Uses direct acyclic graphs
+Tree-like individual for genetic programming. Uses direct acyclic graphs
 as representation for trees, which is very convenient. This class has
 not been tested extensively, so it might not work.
 
@@ -42,7 +42,7 @@ package Algorithm::Evolutionary::Individual::Tree;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use Tree::DAG_Node;
 
@@ -324,10 +324,10 @@ sub size {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Tree.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

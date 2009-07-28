@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; Builds offspreing in such a way
+Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; Builds offspring in such a way
     that each gene comes from one of the parents. Preserves the absolute position of the elements 
     in the parent sequence
 
@@ -30,7 +30,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Cycle Crossover operator for a GA. It applies to chromosomes that are
+Cycle Crossover operator for a GA. It is applied to chromosomes that are
 a permutation of each other; even as the class it applies to is
 L<Algorithm::Evolutionary::Individual::Vector>, it will issue lots of
 "La jodimos!" messages if the parents do not fulfill this condition. 
@@ -45,7 +45,7 @@ evolutionary computation tutorial>
 
 package Algorithm::Evolutionary::Op::CX;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 
@@ -88,7 +88,7 @@ sub create {
 Applies Algorithm::Evolutionary::Op::CX operator to a "Chromosome", a bitstring, really. Can be
 applied only to I<victims> with the C<_bitstring> instance variable; but
 it checks before application that both operands are of type
-L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Individual::Vector>.
+L<Individual::Vector|Algorithm::Evolutionary::Individual::Vector>.
 
 =cut
 
@@ -118,38 +118,35 @@ sub  apply ($$;$){
 #  print "CX \$leng = $leng\n";
   $changed=$i=0;
   while ($changed <  $leng ) {   
-	my $found=0;
-	#Looking for the next element in cycle
-	for ($j=0; $j < $leng ; $j++) { 
-	  if ( $p1->Atom($j) == $p2->Atom($i)) {  
-		$found=$j;
-		last;
-	  }
-	}
+    my $found=0;
+    #Looking for the next element in cycle
+    for ($j=0; $j < $leng ; $j++) { 
+      if ( $p1->Atom($j) == $p2->Atom($i)) {  
+	$found=$j;
+	last;
+      }
+    }
     #Look if the next element in cycle  was found
     if ($found) { 
-	  $child->Atom($found, $p1->Atom($found));
-#	  print "Found $found valor ", $child->Atom($found),  "\n";
-	  $i=$found;
+      $child->Atom($found, $p1->Atom($found));
+      #	  print "Found $found valor ", $child->Atom($found),  "\n";
+      $i=$found;
+      $changed++;
+    }
+    else { #End of the cycle, get the genes from the second parent
+      $child->Atom(0, $p1->Atom(0) ); $changed++;
+      for ($i=1;( $i < $leng ) && ( $changed < $leng )  ; $i++) { 
+	if ($child->Atom($i) eq $no ) { 
+	  #		  print "Cambiando $i valor ", $p2->Atom($i),  "\n";
+	  $child->Atom($i,$p2->Atom($i));
 	  $changed++;
 	}
-    else { #End of the cycle, get the genes from the second parent
-	  $child->Atom(0, $p1->Atom(0) ); $changed++;
-	  for ($i=1;( $i < $leng ) && ( $changed < $leng )  ; $i++) { 
-		if ($child->Atom($i) eq $no ) { 
-#		  print "Cambiando $i valor ", $p2->Atom($i),  "\n";
-		  $child->Atom($i,$p2->Atom($i));
-		  $changed++;
-		}
-	  }
-	}
+      }
+    }
   }#End-while
   map( $visto{$_}++,@{$child->{_array}} ); 
   for (keys %visto) { 
-	if ($visto{$_} > 2 ) {
-	  print "La jodimos!\n";
-	}
-	if ($visto{$_} < 2 ) {
+	if ($visto{$_} ne 2 ) {
 	  print "La jodimos!\n";
 	}
 	#print "$_ visto $visto{$_}\n";
@@ -167,10 +164,9 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
+  $Revision: 3.1 $
 
 =cut

@@ -6,7 +6,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -69,7 +69,7 @@ __END__
 
 =head1 NAME
 
- Algorithm::Evolutionary::Op::Animated_GIF_Output - Flexible population printing class
+Algorithm::Evolutionary::Op::Animated_GIF_Output - Flexible population printing class
 
 
 =head1 SYNOPSIS
@@ -87,6 +87,7 @@ __END__
   $pp = new Algorithm::Evolutionary::Op::Animated_GIF_Output;
 
   $pp->apply( \@pop );
+  $pp->terminate();
   $pp->output(); # Prints final results
 
 =head1 DESCRIPTION
@@ -113,13 +114,6 @@ Finish the setup of the animated gif
 
 Returns the animaged GIF
 
-=head1 DEPENDENCIES
-
-Main dependence is L<Algorithm::Evolutionary>; however, it's not
-included by default, since you must pick and choose the modules you
-are going to actually use.
-
-
 =head1 INCOMPATIBILITIES
 
 None reported.
@@ -129,7 +123,7 @@ None reported.
 No bugs have been reported.
 
 Please report any bugs or feature requests to
-C<bug-poe-component-algorithm-evolutionary@rt.cpan.org>, or through the web interface at
+C<bug-algorithm-evolutionary@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>.
 
 
@@ -144,8 +138,8 @@ Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-  CVS Info: $Date: 2009/07/27 16:20:24 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.2 2009/07/27 16:20:24 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.3 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY

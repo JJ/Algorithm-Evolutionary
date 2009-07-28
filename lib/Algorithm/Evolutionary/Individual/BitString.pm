@@ -3,8 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Individual::BitString - Classic bitstring individual for evolutionary computation; 
-                 usually called I<chromosome>
+Algorithm::Evolutionary::Individual::BitString - Classic bitstring individual for evolutionary computation; usually called I<chromosome>
 
 
 =head1 SYNOPSIS
@@ -56,12 +55,12 @@ package Algorithm::Evolutionary::Individual::BitString;
 
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
-use constant MY_OPERATORS => (Algorithm::Evolutionary::Individual::String::MY_OPERATORS, 
-			      qw(Algorithm::Evolutionary::Op::BitFlip Algorithm::Evolutionary::Op::Mutation )); 
+use constant MY_OPERATORS => ( Algorithm::Evolutionary::Individual::String::MY_OPERATORS, 
+			       qw(Algorithm::Evolutionary::Op::BitFlip Algorithm::Evolutionary::Op::Mutation )); 
 
 use Algorithm::Evolutionary::Utils qw(decode_string); 
 
@@ -115,10 +114,10 @@ sub decode {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

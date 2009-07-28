@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Individual::Vector - Array as an individual for evolutionary computation
+Algorithm::Evolutionary::Individual::Vector - Array as an individual for evolutionary computation
 
 =head1 SYNOPSIS
 
@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Individual::Vector;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -273,13 +273,13 @@ sub asString {
 
 =head2 as_string()
 
-Prints just the chromosome, not the fitness
+Returns just the chromosome, not the fitness
 
 =cut
 
 sub as_string {
   my $self = shift;
-  my $str = join( ", ", @{$self->{_array}}) . " -> ";
+  my $str = join( ", ", @{$self->{_array}});
   return $str;
 }
 
@@ -317,10 +317,9 @@ sub Chrom {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
+  $Revision: 3.1 $
 
 =cut
