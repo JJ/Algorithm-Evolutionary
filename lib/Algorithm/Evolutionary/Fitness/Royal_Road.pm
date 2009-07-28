@@ -5,7 +5,7 @@ use lib qw( ../../../../lib );
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Fitness::Royal_Road - Mitchell's Royal Road function
+Algorithm::Evolutionary::Fitness::Royal_Road - Mitchell's Royal Road function
 
 =head1 SYNOPSIS
 
@@ -22,13 +22,13 @@ Royal Road function, adds block_size to fitness only when the block is complete
 
 package Algorithm::Evolutionary::Fitness::Royal_Road;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base qw(Algorithm::Evolutionary::Fitness::String);
 
 =head2 new( $block_size )
 
-Creates a new instance of the problem, with the said number of bits and peaks
+Creates a new instance of the problem, with the said block size. 
 
 =cut 
 
@@ -48,7 +48,8 @@ sub _really_apply {
 
 =head2 royal_road( $string )
 
-Computes the royal road function with given block size
+Computes the royal road function with given block size. Results are
+cached by default.
 
 =cut
 
@@ -84,10 +85,10 @@ sub royal_road {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Royal_Road.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.70'; #First round number since 2008
+our $VERSION = '0.70_1'; #First round number since 2008
 
 # Preloaded methods go here.
 
@@ -128,7 +128,7 @@ Head to the CPAN forum for this module: L<http://www.cpanforum.com/dist/Algorith
 
 =head1 BUGS?
 
-Have you found any bugs? Use the CPAN tracker to inform about them (L<http://rt.cpan.org/Public/Dist/Display.html?Name=Algorithm-Evolutionary>) or email the author (below).
+Have you found any bugs? Use the CPAN tracker to inform about them (L<http://rt.cpan.org/Public/Dist/Display.html?Name=Algorithm-Evolutionary>) or email the author (below) or C<bug-algorithm-evolutionary@rt.cpan.org>.
 
 =head1 AUTHOR
 
@@ -137,7 +137,7 @@ Have you found any bugs? Use the CPAN tracker to inform about them (L<http://rt.
 Main author and developer is J. J. Merelo, jmerelo (at) geneura.ugr.es
 who blogs at <a href='http://blojj.blogalia.com'>BloJJ</a> and
 twitters at <a
-href='http://twitter.com/jmerelo'>twitter.com/jmerelo</a>. There have
+href='http://twitter.com/jmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
 submitted bugs include <a
@@ -195,9 +195,9 @@ L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 07:44:00 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.4 2009/07/28 07:44:00 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.5 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
 
 =cut

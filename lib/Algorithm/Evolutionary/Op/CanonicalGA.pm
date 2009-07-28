@@ -39,7 +39,7 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -139,7 +139,7 @@ sub apply ($) {
 =back
 
 Probably you will also be able to find a
-    L<script/canonical-genetic-algorithm.pl> example within this
+    L<canonical-genetic-algorithm.pl> example within this
     bundle. Check it out for usage examples
 
 =head1 Copyright
@@ -147,10 +147,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/28 11:30:56 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
