@@ -28,6 +28,7 @@ WriteMakefile(
 	'Memoize' => 0, 
 	'Time::HiRes' => 0,
 	'Clone::Fast' => 0,
+	'GD' => 2.17,   
 	YAML => 0,
 	'Object::Array' => 0,
 	'Statistics::Basic' => 1.6,
@@ -63,4 +64,4 @@ examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 MAKE_FRAG
 }
 
-#$Revision: 3.1 $
+#$Revision: 3.2 $
