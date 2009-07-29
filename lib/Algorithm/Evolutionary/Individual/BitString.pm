@@ -55,7 +55,7 @@ package Algorithm::Evolutionary::Individual::BitString;
 
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -106,7 +106,7 @@ sub decode {
   my $self = shift;
   my ( $gene_size, $min, $range ) = @_;
   my $chromosome = $self->{'_str'};
-  return decode_chromosome( $chromosome, $gene_size, $min, $range );
+  return decode_string( $chromosome, $gene_size, $min, $range );
 }
 
 =head2 Copyright
@@ -114,10 +114,10 @@ sub decode {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/29 10:23:13 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.2 2009/07/29 10:23:13 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
