@@ -43,7 +43,7 @@ Algorithm::Evolutionary::Individual::BitString - Classic bitstring individual fo
 
 =head1 Base Class
 
-L<Algorithm::Evolutionary::Individual::String|Algorithm::Evolutionary::Individual::String>
+L<Algorithm::Evolutionary::Individual::String>
 
 =head1 DESCRIPTION
 
@@ -55,7 +55,7 @@ package Algorithm::Evolutionary::Individual::BitString;
 
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 3.3 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -114,10 +114,10 @@ sub decode {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/29 10:23:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.2 2009/07/29 10:23:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/29 21:58:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.3 2009/07/29 21:58:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
