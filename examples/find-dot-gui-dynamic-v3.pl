@@ -23,19 +23,21 @@ $mw->resizable( 0, 0 ); # not resizable in any direction
 # Create and configure the canvas:
 my $canvas = $mw->Canvas( -cursor=>"crosshair", -background=>"white",
               -width=>$size, -height=>$size )->pack;
-my $button = $mw->Button( -text    => 'Start',
+$mw->Button( -text    => 'Start',
 			  -command => \&generation,
 			)->pack;
-my $new_button = $mw->Button( -text    => 'Finish',
+$mw->Button( -text    => 'End',
 			      -command => \&finished,
 			    )->pack;
+
+$mw->Button( -text    => 'Exit',
+	     -command => sub { exit(0);},
+    )->pack;
 
 my $alg = Algorithm::RectanglesContainingDot->new;
 
 my $num_rects = shift || 300;
 my $arena_side = shift || 10;
-my $dot_x = shift || 5;
-my $dot_y = shift || 5;
 
 my $bits = shift || 32;
 my $popSize = shift || 64; #Population size
@@ -147,8 +149,6 @@ sub finished {
     
     print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
     my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
-    
-    exit(0);
 }
 
 $mw->eventAdd('<<Gen>>' => '<KeyPress>');
@@ -169,10 +169,10 @@ Contributed by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/29 10:23:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find-dot-gui-dynamic-v3.pl,v 1.1 2009/07/29 10:23:02 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/29 12:04:08 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/find-dot-gui-dynamic-v3.pl,v 1.2 2009/07/29 12:04:08 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
