@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl 
 
 =head1 NAME
 
@@ -79,11 +79,12 @@ use Algorithm::Evolutionary qw( Individual::BitString Op::Easy
 				Op::Bitflip Op::Crossover );
 
 
-my $size = 600;
+my $width = 600;
+my $height = 500;
 
 # Create MainWindow and configure:
 my $mw = MainWindow->new;
-$mw->configure( -width=>$size, -height=>$size );
+$mw->configure( -width=>$width, -height=>$width );
 $mw->resizable( 0, 0 ); # not resizable in any direction
 
 my $num_rects = shift || 300;
@@ -93,7 +94,8 @@ my $bits = shift || 32;
 my $pop_size = shift || 64; #Population size
 my $number_of_generations = shift || 200; #Max number of generations
 my $selection_rate = shift || 0.2;
-my $scale = $arena_side/$size;
+my $scale_x = $arena_side/$width;
+my $scale_y = $arena_side/$height;
 
 my $alg = Algorithm::RectanglesContainingDot->new;
 my $fitness;
@@ -115,7 +117,7 @@ for my $v ( qw( num_rects arena_side bits pop_size number_of_generations selecti
 }
 
 my $canvas = $mw->Canvas( -cursor=>"crosshair", -background=>"white",
-              -width=>$size, -height=>$size )->pack;
+              -width=>$width, -height=>$height )->pack;
 $mw->Button( -text    => 'Start',
 	     -command => \&start,
 	   )->pack( -side => 'left',
@@ -156,8 +158,8 @@ sub start {
 			$x_0+$side_x, $x_0+$side_y );
     my $val = 255*$i/$num_rects;
     my $color = sprintf( "#%02x%02x%02x", $val, $val, $val );
-    $canvas->createRectangle( $x_0/$scale, $y_0/$scale, 
-			      $side_x/$scale, $side_y/$scale, 
+    $canvas->createRectangle( $x_0/$scale_x, $y_0/$scale_y, 
+			      $side_x/$scale_x, $side_y/$scale_y, 
 			    -outline =>$color );
   }
 
@@ -204,6 +206,12 @@ sub start {
   $mw->eventGenerate( '<<Gen>>', -when => 'tail' );
 }
 
+sub as_point {
+    my $individual = shift || die "Nobody here!n";
+    my @point = $individual->decode($bits/2,0, $arena_side);
+    return ($point[0]/$scale_x, $point[1]/$scale_y);
+}
+
 sub generation {
     while (@dot_population) {
 	$canvas->delete( shift @dot_population );
@@ -213,16 +221,16 @@ sub generation {
     
     my $val = 255*$contador/$number_of_generations;
     my $color = sprintf( "#%02x%02x00", 255-$val, 255-$val );
-    my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
-    print "$contador : ", $pop[0]->asString(), ", Color $color\n\tDecodes to $point[0], $point[1]\n" ;
+    my ($point_x, $point_y) = as_point( $pop[0] );
+    print "$contador : ", $pop[0]->asString(), ", Color $color\n\tDecodes to $point_x, $point_y\n" ;
     $contador++;
     
-    $canvas->createOval($point[0]-$dot_size, $point[1]-$dot_size, 
-			$point[0]+$dot_size, $point[1]+$dot_size, 
+    $canvas->createOval($point_x-$dot_size, $point_y-$dot_size, 
+			$point_x+$dot_size, $point_y+$dot_size, 
 			-fill => $color );
 
     for my $p ( @pop ) {
-	my @point = map( $_/$scale, $p->decode($bits/2,0, $arena_side));
+	my @point = as_point( $p );
 	push @dot_population,$canvas->createOval($point[0]-$mini_dot_size, $point[1]-$mini_dot_size, 
 						 $point[0]+$mini_dot_size, $point[1]+$mini_dot_size, 
 						 -fill => "#00ff00" ); 
@@ -243,7 +251,6 @@ sub finished {
     
 #Mostramos los resultados obtenidos
     print "Best is:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
-    my @point = map( $_/$scale, $pop[0]->decode($bits/2,0, $arena_side));
 }
 
 MainLoop;
@@ -285,10 +292,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/30 07:48:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.1 2009/07/30 07:48:48 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/30 08:23:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.2 2009/07/30 08:23:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 
