@@ -128,11 +128,16 @@ sub generation {
   
   for my $p ( @pop ) {
     my @point =  @{$fitness->apply($p)};
-    push @dot_population,$canvas->createOval($point[1]*200-$mini_dot_size, 
-					     $size  - $point[0]*400-2*$mini_dot_size, 
-					     $point[1]*200+$mini_dot_size, 
-					     $size - $point[0]*400, 
-					     -fill => "#00ff00" ); 
+    if ($p->Fitness()) {
+	my $fitness = 1/$p->Fitness() - 1;
+	my $color = sprintf( "#%02x%02x00", $fitness*30 % 255, 255-$fitness*30 % 255 );
+	print "Fitness $fitness Color $color\n";
+	push @dot_population,$canvas->createOval($point[1]*200-$mini_dot_size, 
+						 $size  - $point[0]*400-2*$mini_dot_size, 
+						 $point[1]*200+$mini_dot_size, 
+						 $size - $point[0]*400, 
+						 -fill => $color ); 
+    }
   }
   $canvas->update();
   if  ( $counter < $numGens ) {
@@ -168,10 +173,10 @@ JJ Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/29 21:58:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/ez_moga_gui.pl,v 1.1 2009/07/29 21:58:51 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/30 11:25:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/ez_moga_gui.pl,v 1.2 2009/07/30 11:25:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut

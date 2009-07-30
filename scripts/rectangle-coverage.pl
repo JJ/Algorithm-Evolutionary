@@ -131,7 +131,7 @@ $mw->Button( -text    => 'Exit',
 	   )->pack( -side => 'left',
 		    -expand => 1 );
 
-$mw->eventAdd('<<Gen>>' => '<KeyPress>');
+$mw->eventAdd('<<Gen>>' => '<Control-Shift-G>'); # Improbable combination
 $mw->eventAdd('<<Fin>>' => '<Control-C>');
 $mw->bind('<<Gen>>' => \&generation);
 $mw->bind('<<Fin>>' => \&finished );
@@ -292,10 +292,10 @@ J. J. Merelo, C<jj (at) merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/30 08:23:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.2 2009/07/30 08:23:15 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/30 11:25:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.3 2009/07/30 11:25:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
 
 =cut
 
