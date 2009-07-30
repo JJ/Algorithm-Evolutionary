@@ -158,8 +158,12 @@ C<cd examples; run_easy_ga.pl p_peaks.yaml>, which should run an
 simple GA on the P_Peaks deceptive function.
 
 Some other examples are installed: check out L<tide_bitstring.pl>,
-    L<tide_float.pl> and L<canonical-genetic-algorithm.pl>,
-which you can run and play with to get a taste of what EA programming is like, and then ammend, add and modify at leisure to create your own evolutionary algorithms. 
+    L<tide_float.pl> and L<canonical-genetic-algorithm.pl>, which you
+    can run and play with to get a taste of what EA programming is
+    like, and then ammend, add and modify at leisure to create your
+    own evolutionary algorithms. For a GUI example, check
+    L<rectangle-coverage.pl>, which uses L<Tk> to show the population
+    and its evolution.
 
 =head1 SEE ALSO
 
@@ -195,9 +199,9 @@ L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.5 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2009/07/30 07:48:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.6 2009/07/30 07:48:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.5 $
+  $Revision: 3.6 $
 
 =cut
