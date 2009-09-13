@@ -9,6 +9,7 @@ lib/Algorithm/Evolutionary/Experiment.pm
 lib/Algorithm/Evolutionary/Run.pm
 lib/Algorithm/Evolutionary/Utils.pm
 lib/Algorithm/Evolutionary/XML.pod
+lib/Algorithm/Evolutionary/Hash_Wheel.pm
 lib/Algorithm/Evolutionary/Wheel.pm
 lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm
 lib/Algorithm/Evolutionary/Op/ArithCrossover.pm
@@ -23,6 +24,7 @@ lib/Algorithm/Evolutionary/Op/CX.pm
 lib/Algorithm/Evolutionary/Op/DeltaTerm.pm	
 lib/Algorithm/Evolutionary/Op/Easy.pm
 lib/Algorithm/Evolutionary/Op/Easy_MO.pm
+lib/Algorithm/Evolutionary/Op/EDA_step.pm
 lib/Algorithm/Evolutionary/Op/Eval/General.pm
 lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm
 lib/Algorithm/Evolutionary/Op/FullAlgorithm.pm
@@ -70,6 +72,7 @@ lib/Algorithm/Evolutionary/Fitness/ECC.pm
 lib/Algorithm/Evolutionary/Fitness/Trap.pm
 lib/Algorithm/Evolutionary/Fitness/ZDT1.pm
 t/00-load.t
+t/0001-wheel.t
 t/0100-bitvector.t
 t/0101-string.t
 t/0102-any.t
@@ -98,6 +101,7 @@ t/0502-pop_printer.t
 t/0503-eval-mo.t
 t/0600-ez-moga.t
 t/0601-cga-gif-output.t
+t/0603-eda.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t
@@ -131,4 +135,6 @@ examples/simulated-annealing.pl
 examples/ez_moga.pl
 examples/ez-ga-gif-output.pl
 examples/fake-parallel-ga.pl
-
+examples/ga.yaml
+examples/run_EDA.pl
+examples/eda.yaml
