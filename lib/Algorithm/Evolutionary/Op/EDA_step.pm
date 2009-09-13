@@ -27,9 +27,6 @@ Algorithm::Evolutionary::Op::EDA_step - Single step for a Estimation of Distribu
       push( @pop, $indi );
     }
 
-    my $m =  new Algorithm::Evolutionary::Op::Mutation 0.5;
-    my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
-
     my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $population_size; #One of the possible selectors
 
     my $generation = 
@@ -58,7 +55,7 @@ package Algorithm::Evolutionary::Op::EDA_step;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -189,10 +186,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/10 18:29:24 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.1 2009/09/10 18:29:24 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/13 09:04:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.2 2009/09/13 09:04:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
 
 =cut
 
