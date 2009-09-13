@@ -154,7 +154,7 @@ C<bug-algorithm-evolutionary@rt.cpan.org>.
 Main author and developer is J. J. Merelo, jmerelo (at) geneura.ugr.es
 who blogs at <a href='http://blojj.blogalia.com'>BloJJ</a> and
 twitters at <a
-href='http://twitter.com/jmerelo'>twitter.com/jjmerelo</a>. There have
+href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
 submitted bugs include <a
@@ -198,14 +198,14 @@ Some other examples are installed: check out L<tide_bitstring.pl>,
 
 =item L<Algorithm::Evolutionary::Op::CanonicalGA>.
 
-=item L<XML> for an explanation of the XML format used
+=item L<XML> for an explanation of the XML format used.
 
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
-evolutionary algorithms with anything else easily
+evolutionary algorithms with anything else easily.
 
 You might also be interested in one of the other perl GA and
 evolutionary computation modules out there, such as
-L<AI::Genetic::Pro>
+L<AI::Genetic::Pro>.
 
 =back 
 
@@ -216,9 +216,9 @@ L<AI::Genetic::Pro>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/13 12:31:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.7 2009/09/13 12:31:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/13 12:49:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.8 2009/09/13 12:49:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.7 $
+  $Revision: 3.8 $
 
 =cut

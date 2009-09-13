@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::ChangeLengthMutation - Increases/decreases by one the length of the string
+Algorithm::Evolutionary::Op::ChangeLengthMutation - Increases/decreases by one atom the length of the string
 
 =head1 SYNOPSIS
 
@@ -32,8 +32,7 @@ eliminating it.
 
 package Algorithm::Evolutionary::Op::ChangeLengthMutation;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
-
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -47,7 +46,7 @@ our $ARITY = 1;
 
 Creates a new operator. It is called with 3 arguments: the rate it's
 going to be applied, and the probability of adding and substracting an
-element from the string each time it's applied. Rates default to one.
+element from the string each time it's applied.
 
 =cut
 
@@ -57,8 +56,9 @@ sub new {
   my $probplus = shift || 1;
   my $probminus = shift || 1;
   my $self = { rate => $rate, 
-			   _probplus => $probplus,
-			   _probminus => $probminus };
+	       _probplus => $probplus,
+	       _probminus => $probminus };
+
   bless $self, $class;
   return $self;
 }
@@ -86,9 +86,9 @@ sub create {
 =head2 apply
 
 This is the function that does the stuff. The probability of adding
-and subsctracting are normalized. Depending on a random draw, a random
+and substracting are normalized. Depending on a random draw, a random
 char is added to the string (at the end) or eliminated from a random
-position within the string.
+position within the string..
 
 =cut
 
@@ -118,10 +118,10 @@ sub apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/13 12:49:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm,v 3.1 2009/09/13 12:49:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

@@ -6,7 +6,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.0 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -33,7 +33,7 @@ __END__
 
 =head1 NAME
 
- Algorithm::Evolutionary::Op::Population_Output - Flexible population printing class
+Algorithm::Evolutionary::Op::Population_Output - Flexible population printing class
 
 
 =head1 SYNOPSIS
@@ -63,19 +63,17 @@ Configurable population printing class
 
 C<$printer> is a closure or reference to function that receives as
 input a single population member. By default, calls C<as_string> on
-each one followed by a carriage return
+each member of the array hash followed by a carriage return.
 
 =head2 apply( $population_hashref )
 
 Applies the single-member printing function to every population member
-
 
 =head1 DEPENDENCIES
 
 Main dependence is L<Algorithm::Evolutionary>; however, it's not
 included by default, since you must pick and choose the modules you
 are going to actually use.
-
 
 =head1 INCOMPATIBILITIES
 
@@ -101,8 +99,8 @@ Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/13 12:49:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Population_Output.pm,v 3.1 2009/09/13 12:49:04 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY

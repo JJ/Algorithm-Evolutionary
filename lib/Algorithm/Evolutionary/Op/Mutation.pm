@@ -19,7 +19,12 @@ Algorithm::Evolutionary::Op::Mutation - BitFlip mutation, changes several bits i
   my $op = Algorithm::Evolutionary::Op::->fromXML( $ref );
   print $op->asXML(), "\n*Arity ->", $op->arity(), "\n";
 
-  my $op = new Algorithm::Evolutionary::Op::Mutation (0.5 ); #Create from scratch
+  #Create from scratch
+  my $op = new Algorithm::Evolutionary::Op::Mutation (0.5 ); 
+
+  #All options
+  my $priority = 1;
+  my $mutation = new Algorithm::Evolutionary::Op::Mutation 1/$length, $priority;
 
 =head1 Base Class
 
@@ -33,7 +38,7 @@ Mutation operator for a GA
 
 package  Algorithm::Evolutionary::Op::Mutation;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -47,8 +52,14 @@ our $ARITY = 1;
 
 =head2 new( [$mutation_rate] [, $operator_probability] )
 
-Creates a new mutation operator with a bitflip application rate, which defaults to 0.5,
-and an operator application rate (general for all ops), which defaults to 1.
+Creates a new mutation operator with a bitflip application rate, which
+defaults to 0.5, and an operator application rate (general for all
+ops), which defaults to 1. Application rate will be converted in
+runtime to application probability, which will eventually depend on
+the rates of all the other operators. For instance, if this operator's
+rate is one and there's another with rate=4, probability will be 20%
+for this one and 80% for the other; 1 in 5 new individuals will be
+generated using this and the rest using the other one.
 
 =cut
 
@@ -65,9 +76,10 @@ sub new {
 
 =head2 create( [$operator_probability] )
 
-Creates a new mutation operator with an application rate. Rate defaults to 0.5 (which is rather bit, you should not rely on it).
+Creates a new mutation operator with an application rate. Rate
+defaults to 0.5 (which is rather high, you should not rely on it).
 
-Called create to distinguish from the classwide ctor, new. It just
+Called C<create> to distinguish from the classwide ctor, new. It just
 makes simpler to create a Mutation Operator
 
 =cut
@@ -112,10 +124,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/13 12:49:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Mutation.pm,v 3.1 2009/09/13 12:49:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
