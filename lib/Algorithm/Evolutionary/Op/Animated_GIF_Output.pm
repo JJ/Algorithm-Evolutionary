@@ -6,7 +6,7 @@ use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -16,6 +16,7 @@ sub new {
   my $class = shift;
   my $hash = shift || croak "No default values for length ";
   my $self = Algorithm::Evolutionary::Op::Base::new( __PACKAGE__, 1, $hash );
+  $hash->{'pixels_per_bit'} = $hash->{'pixels_per_bit'} || 1;
   $self->{'_image'} = GD::Image->new($hash->{'length'}*$hash->{'pixels_per_bit'},
 				     $hash->{'number_of_strings'}*$hash->{'pixels_per_bit'});
   $self->{'_length'} = $hash->{'length'};
@@ -41,7 +42,6 @@ sub apply {
 	if ( $bit ) {
 	  for my $p ( 1..$ppb ) {
 	    for my $q (1..$ppb ) {
-
 	      $frame->setPixel($c*$ppb+$p,
 			       $l*$ppb+$q,$self->{'_black'})
 	    }
@@ -69,7 +69,7 @@ __END__
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Animated_GIF_Output - Flexible population printing class
+Algorithm::Evolutionary::Op::Animated_GIF_Output - Creates an animated GIF, a frame per generation. Useful for binary strings.
 
 
 =head1 SYNOPSIS
@@ -77,30 +77,39 @@ Algorithm::Evolutionary::Op::Animated_GIF_Output - Flexible population printing 
   my $pp = new Algorithm::Evolutionary::Op::Animated_GIF_Output; 
 
   my @pop;
-  for ( 1..10 ) {
-    my $indi= new Algorithm::Evolutionary::Individual::String [0,1], 8;
+  my $length = 8;
+  my $number_of_strings = 10;
+  for ( 1..$number_of_strings ) {
+    my $indi= new Algorithm::Evolutionary::Individual::String [0,1], $length;
     push @pop, $indi;
   }
 
   $pp->apply( \@pop );
+  my $options = { pixels_per_bit => 2,
+                  length => $length,
+                  number_of_strings => $number_of_strings };
 
-  $pp = new Algorithm::Evolutionary::Op::Animated_GIF_Output;
+  $pp = new Algorithm::Evolutionary::Op::Animated_GIF_Output $options
 
   $pp->apply( \@pop );
   $pp->terminate();
-  $pp->output(); # Prints final results
+  my $output_gif = $pp->output(); # Prints final results
 
 =head1 DESCRIPTION
 
-Saves each generation as a frame in an animated GIF
+Saves each generation as a frame in an animated GIF. Every individual
+gets a line of the number of pixels specified, and bits set to "1" are
+represented via black pixels or fat pixels. By default, a bit takes a
+single pixel. 
 
 =head1 INTERFACE 
 
-=head2 new( [$printer] )
+=head2 new( [$hash_ref] )
 
-C<$printer> is a closure or reference to function that receives as
-input a single population member. By default, calls C<as_string> on
-each one followed by a carriage return
+C<$hash_ref> is a hashref with 3 options: C<pixels_per_bit>, which
+defaults to 1, and C<length> and C<number_of_strings> which have no
+default and need to be set in advance to set up the GIF before any
+population individual is seen.
 
 =head2 apply( $population_hashref )
 
@@ -108,11 +117,11 @@ Applies the single-member printing function to every population member
 
 =head2 terminate()
 
-Finish the setup of the animated gif
+Finish the setup of the animated GIF.
 
 =head2 output()
 
-Returns the animaged GIF
+Returns the animaged GIF; must be assigned to a variable.
 
 =head1 INCOMPATIBILITIES
 
@@ -133,13 +142,14 @@ JJ Merelo  C<< <jj@merelo.net> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights reserved.
+Copyright (c) 2009, JJ Merelo C<< <jj@merelo.net> >>. All rights
+reserved. 
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
+This file is released under the GPL. See the LICENSE file included in this distribution,
+  or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.3 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/14 16:36:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.4 2009/09/14 16:36:38 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY
