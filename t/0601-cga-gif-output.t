@@ -43,7 +43,7 @@ for ( 1..40 ) {
   $gif_output->apply( \@pop );
 }
 $gif_output->terminate();
-is( $gif_output->output() ne '', 1, "Salida OK" );
+is( $gif_output->output() ne '', 1, "Output OK" );
 
 
 =cut

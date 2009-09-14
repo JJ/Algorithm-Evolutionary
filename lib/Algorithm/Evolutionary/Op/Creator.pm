@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Op::Creator - Operator that generates groups of individuals, of the intended class
+Algorithm::Evolutionary::Op::Creator - Operator that generates groups of individuals, of the intended class
 
 =head1 SYNOPSIS
 
@@ -41,11 +41,11 @@ package Algorithm::Evolutionary::Op::Creator;
 
 use lib qw( ../.. ../../.. );
 
-use Algorithm::Evolutionary::Individual::Base;
+use base 'Algorithm::Evolutionary::Individual::Base';
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( $number_of_individuals, $class_to_generate, $options_hash )
 
@@ -122,11 +122,6 @@ sub set {
     $self->{_hash}->{$k} = $hash->{'options'}->{$k};
   }
   
- # } else {
-#     for ( keys %{$hash->{options}->{param}} ) {
-#	   $self->{_hash}->{$_} =  defined $hash->{options}->{param}->{$_}->{value} ? $hash->{options}->{param}->{$_}->{value} : $hash->{options}->{param}->{$_};
-#	 }
-#  }
 }
 
 
@@ -135,10 +130,10 @@ sub set {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Creator.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/14 16:36:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Creator.pm,v 3.1 2009/09/14 16:36:38 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

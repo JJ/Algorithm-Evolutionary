@@ -44,7 +44,7 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 our %parameters;
 
 =head2 AUTOLOAD
@@ -280,7 +280,10 @@ sub set {
   }
 }
 
-=head1 Known subclasses
+=head2 Known subclasses
+
+This is quite incomplete. Should be either generated automatically or
+suppressed altogether 
 
 =over 4
 
@@ -310,7 +313,7 @@ L<Algorithm::Evolutionary::Op::Novelty_Mutation>
 
 =item * 
 
-L<Algorithm::Evolutionary::Op::Crossover|Algorithm::Evolutionary::Op:Crossover>
+L<Algorithm::Evolutionary::Op:Crossover>
 
 =item * 
 
@@ -342,7 +345,8 @@ L<Algorithm::Evolutionary::Op::DeltaTerm|Algorithm::Evolutionary::Op::DeltaTerm>
 L<Algorithm::Evolutionary::Op::Easy|Algorithm::Evolutionary::Op::Easy>
 
 =item * 
-L<Algorithm::Evolutionary::Op::FullAlgorithm|Algorithm::Evolutionary::Op::FullAlgorithm>
+
+L<Algorithm::Evolutionary::Op::FullAlgorithm>
 
 
 
@@ -358,10 +362,10 @@ L<XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/13 12:49:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.1 2009/09/13 12:49:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/14 16:36:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.2 2009/09/14 16:36:38 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
