@@ -55,7 +55,7 @@ package Algorithm::Evolutionary::Op::EDA_step;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -80,6 +80,7 @@ sub new {
   $self->{_eval} = shift || croak "No eval function found";
   $self->{_replacementRate} = shift || 0.5; #Default to half  replaced
   $self->{_population_size} = shift || 100; #Default
+  $self->{_alphabet} = shift || [ 0, 1]; #Default
   bless $self, $class;
   return $self;
 }
@@ -125,7 +126,9 @@ sub apply ($) {
 
     #Evaluate only the new ones
     my $eval = $self->{_eval};
-    map( $_->evaluate( $eval), @{$pop} );
+    for my $p ( @{$pop} ) {
+      $p->evaluate( $eval) if !$p->Fitness();
+    }
     my @ranked_pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop;
 
     #Eliminate
@@ -135,7 +138,6 @@ sub apply ($) {
     #Check distribution of remaining pop
     my $how_many = @ranked_pop;
     my @occurrences;
-    my %alphabet;
     my $length = $pop->[0]->size;
     for my $p ( @ranked_pop ) {
       for ( my $i = 0; $i < $length; $i++ ) {
@@ -144,18 +146,19 @@ sub apply ($) {
 	}
 	my $this_value = $p->Atom($i);
 	$occurrences[$i]->{$this_value}++;
-	$alphabet{$this_value} = 1;
       }
     }
     my @wheel;
     for ( my $i = 0; $i < $length; $i++ ) {
-      for my $k ( keys %{$occurrences[$i]} ) {
-	$occurrences[$i]->{$k} /= $how_many;
+      for my $k (  @{$self->{'_alphabet'}} ) {
+	if ( $occurrences[$i]->{$k} ) {
+	  $occurrences[$i]->{$k} /= $how_many;
+	} else {
+	  $occurrences[$i]->{$k} = 0.05; #Minimum to avoid stagnation
+	}
       }
       $wheel[$i] = new Algorithm::Evolutionary::Hash_Wheel $occurrences[$i];
     }
-
-    my @alphabet = keys %alphabet;
 
     #Generate new population
     for ( my $p= 0; $p < $self->{'_population_size'} - $pringaos; $p++ ) {
@@ -186,10 +189,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/13 09:04:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.2 2009/09/13 09:04:54 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/29 17:05:06 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.3 2009/09/29 17:05:06 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
 
 =cut
 
