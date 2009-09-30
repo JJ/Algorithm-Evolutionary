@@ -55,7 +55,7 @@ package Algorithm::Evolutionary::Op::EDA_step;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -108,6 +108,27 @@ sub set {
     push @{$self->{_ops}}, 
       Algorithm::Evolutionary::Op::Base::fromXML( $_, $opshash->{$_}->[1], $opshash->{$_}->[0] ) ;
   }
+}
+
+=head2 reset( $population )
+
+Start all over again by resetting the population
+
+=cut
+
+sub reset {
+  my $self = shift;
+  my $population = shift;
+  @$population = ();
+  my @alphabet = @{$self->{'_alphabet'}};
+  for ( my $p= 0; $p < $self->{'_population_size'}; $p++ ) {
+    my $string = '';
+    for ( my $i = 0; $i < $self->{'_length'}; $i++ ) {
+      $string .= $alphabet[rand( @alphabet )];
+    }
+    my $new_one =  Algorithm::Evolutionary::Individual::String->fromString( $string );
+    push @$population, $new_one;
+  } 
 }
 
 =head2 apply( $population )
@@ -189,10 +210,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/29 17:05:06 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.3 2009/09/29 17:05:06 jmerelo Exp $ 
+  CVS Info: $Date: 2009/09/30 11:27:37 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/EDA_step.pm,v 1.4 2009/09/30 11:27:37 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
 
 =cut
 
