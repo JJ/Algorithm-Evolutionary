@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.71'; # Moved out of developer's release
+our $VERSION = '0.72'; # Closer to 1.0!!!
 
 # Preloaded methods go here.
 
@@ -158,7 +158,7 @@ href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
 submitted bugs include <a
-href='http://barbacana.net'>jamarier</a>. Bugs, requests and any kind
+href='http://barbacana.net'>jamarier</a> and Mike Gajewski. Bugs, requests and any kind
 of comment are welcome. <a href='http://alexm.org'>Alex Muntada</a>,
 from the <a href='http://barcelona.pm.org/'>Barcelona Perl
 Mongers</a>, helped me to solve a problem with the Makefile.PL.
@@ -216,9 +216,9 @@ L<AI::Genetic::Pro>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/13 12:49:04 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.8 2009/09/13 12:49:04 jmerelo Exp $ 
+  CVS Info: $Date: 2009/10/14 18:33:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.9 2009/10/14 18:33:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.8 $
+  $Revision: 3.9 $
 
 =cut
