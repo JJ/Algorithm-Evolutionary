@@ -68,7 +68,9 @@ my $fitness = new  Algorithm::Evolutionary::Fitness::ZDT1 $bits_x_var;
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-my $generation = Algorithm::Evolutionary::Op::Easy_MO->new( $fitness , $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::Easy_MO->new( $fitness, 
+							    $selection_rate, 
+							    [$m, $c] ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
@@ -107,10 +109,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/ez_moga.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/17 19:19:41 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/ez_moga.pl,v 3.1 2009/11/17 19:19:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

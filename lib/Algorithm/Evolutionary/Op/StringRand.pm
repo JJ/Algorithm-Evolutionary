@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-  Algorithm::Evolutionary::Op::StringRand - randomly change random  chars in a string
+  Algorithm::Evolutionary::Op::StringRand - randomly change chars in a string
 
 =cut
 
@@ -36,7 +36,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 package Algorithm::Evolutionary::Op::StringRand;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 
@@ -99,10 +99,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/StringRand.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/17 19:19:41 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/StringRand.pm,v 3.1 2009/11/17 19:19:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
