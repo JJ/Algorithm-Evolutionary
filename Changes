@@ -1,3 +1,9 @@
+2009-11-17    <jmerelo@localhost.localdomain>
+
+	* lib/Algorithm/Evolutionary/Individual/Base.pm (AUTOLOAD): Added
+	AUTOLOAD method for authomatic definition of methods for instance
+	variables. 
+
 2009-10-14    <jmerelo@localhost.localdomain>
 
 	* lib/Algorithm/Evolutionary/Utils.pm (decode_string): Fixed bug
@@ -20,7 +26,7 @@
 
 	* lib/Algorithm/Evolutionary.pm: Moved a GUI example to the
 	scripts dir so that it's installed automatically. Expanded
-	documentation to reflec that. Fixed also error (population
+	documentation to reflect that. Fixed also error (population
 	explosion) in Easy_MO.
 
 2009-07-28  Juan Julian Merelo Guervos  <jmerelo@geneura.ugr.es>

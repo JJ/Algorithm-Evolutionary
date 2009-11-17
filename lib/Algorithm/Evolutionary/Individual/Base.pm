@@ -38,11 +38,28 @@ use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g;
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g;
 
 use constant MY_OPERATORS => qw(None);
 
 =head1 METHODS 
+
+
+=head2 AUTOLOAD
+
+Creates methods for instance variables automatically
+
+=cut
+
+sub AUTOLOAD {
+    my $self = shift;
+    my $attr = our $AUTOLOAD;
+    $attr =~ s/.*:://;
+    return unless $attr =~ /[^A-Z]/;  # skip DESTROY and all-cap methods
+    my $instance_variable = "_$attr";
+    $self->{$instance_variable} = shift if @_;
+    return $self->{$instance_variable};
+}
 
 =head2 new( $options )
 
@@ -344,10 +361,10 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:53:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 3.1 2009/07/24 08:53:13 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/17 19:19:41 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 3.2 2009/11/17 19:19:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

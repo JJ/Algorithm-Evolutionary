@@ -5,12 +5,12 @@ use lib qw( ../../lib ../../../lib ../../../../lib);
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Bitflip - Bit-flip mutation
+Algorithm::Evolutionary::Op::String_Mutation - Bit-flip mutation
 
 =head1 SYNOPSIS
 
   my $xmlStr2=<<EOC; #howMany should be integer
-  <op name='Bitflip' type='unary' rate='0.5' >
+  <op name='String_Mutation' type='unary' rate='0.5' >
     <param name='howMany' value='2' /> 
   </op>
   EOC
@@ -19,7 +19,7 @@ Algorithm::Evolutionary::Op::Bitflip - Bit-flip mutation
   my $op2 = Algorithm::Evolutionary::Op::Base->fromXML( $ref2 );
   print $op2->asXML(), "\n*Arity ", $op->arity(), "\n";
 
-  my $op = new Algorithm::Evolutionary::Op::Bitflip 2; #Create from scratch with default rate
+  my $op = new Algorithm::Evolutionary::Op::String_Mutation 2; #Create from scratch with default rate
 
 =head1 Base Class
 
@@ -27,16 +27,16 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Mutation operator for a GA; changes a single bit in the bitstring; 
+Mutation operator for a GA; changes a single bit in the string; 
 does not need a rate
 
 =head1 METHODS 
 
 =cut
 
-package Algorithm::Evolutionary::Op::Bitflip;
+package Algorithm::Evolutionary::Op::String_Mutation;
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -59,7 +59,8 @@ sub new {
   my $rate = shift || 1;
 
   my $hash = { howMany => $howMany || 1};
-  my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::Bitflip', $rate, $hash );
+  my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::String_Mutation', 
+						     $rate, $hash );
   return $self;
 }
 
@@ -78,31 +79,31 @@ sub create {
 
 =head2 apply( $chromosome )
 
-Applies mutation operator to a "Chromosome", a bitstring, really. Can be
-applied only to I<victims> composed of [0,1] atoms, independently of representation; but 
-it checks before application that the operand is of type
-L<BitString|Algorithm::Evolutionary::Individual::BitString>.
+Applies mutation operator to a "Chromosome", a string, really.
 
 =cut
 
 sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-#  my $victim = $arg->clone();
-  my $victim; 
-  if ( (ref $arg ) =~ /BitString/ ) {
-    $victim = clone( $arg );
-  } else {
-    $victim = $arg->clone();
-  }
+  my $victim = $arg->clone();
   my $size =  $victim->size();
-#  croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
+
   croak "Too many changes" if $self->{_howMany} >= $size;
-  my @bits = 0..($size-1); # Hash with all bits
-  for ( my $i = 0; $i < $self->{_howMany}; $i++ ) {
-      my $rnd = int (rand( @bits ));
-      my $who = splice(@bits, $rnd, 1 );
-      $victim->Atom( $who, $victim->Atom( $who )?0:1 );
+  my @char_array = 0..($size-1); # Hash with all bits
+  my @chars =@{ $victim->{'_chars'}};
+  for ( my $i = 0; $i < $self->{'_howMany'}; $i++ ) {
+      my $rnd = int (rand( @char_array ));
+      my $who = splice(@char_array, $rnd, 1 );
+      my $what = $victim->Atom( $who );
+      my @these_chars = @chars;
+      for ( my $c = 0; $c <= $#chars; $c++ ) {
+	if ( $chars[$c] eq $what ) {
+	  splice( @these_chars, $c, 1 );
+	  last;
+	}
+      }
+      $victim->Atom( $who, $these_chars[rand(@these_chars)] );
   }
   $victim->{'_fitness'} = undef ;
   return $victim;
@@ -114,9 +115,9 @@ sub apply ($;$){
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 3.2 2009/11/17 19:19:41 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.1 2009/11/17 19:19:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
