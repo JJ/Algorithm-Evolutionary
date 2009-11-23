@@ -25,7 +25,7 @@ package Algorithm::Evolutionary::Op::Eval::MO_Rank;
 
 use lib qw(../../../..);
 
-
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 
@@ -133,10 +133,10 @@ L<Algorithm::Evolutionary::Fitness::Base>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/23 12:04:47 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 3.1 2009/11/23 12:04:47 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/23 12:31:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 3.2 2009/11/23 12:31:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 
