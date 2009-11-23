@@ -79,7 +79,8 @@ sub set {
 
 =head2 apply( $population )
 
-Evaluates the population, setting its fitness value
+Evaluates the population, setting its fitness value. Fitness should be
+univocal, that is, have a single value per string. 
 
 =cut
 
@@ -92,7 +93,8 @@ sub apply ($) {
     #Compute vector fitness
     my %fitness_vector_of;
     for my $p (@$pop ) {
-      $fitness_vector_of{$p->as_string} = $eval->apply($p);
+      $p->evaluate( $eval );
+      $fitness_vector_of{$p->as_string} = $p->Fitness(); #Provisional fitness
     }
 
     #Compute rank
@@ -131,10 +133,10 @@ L<Algorithm::Evolutionary::Fitness::Base>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/23 12:04:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Eval/MO_Rank.pm,v 3.1 2009/11/23 12:04:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
 
 =cut
 
