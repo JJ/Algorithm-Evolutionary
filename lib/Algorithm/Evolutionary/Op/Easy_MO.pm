@@ -38,7 +38,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy_MO;
 
-our ($VERSION) = ( '$Revision: 3.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -131,7 +131,9 @@ sub apply ($) {
 
   #Cull
   my $pringaos = int(($#popsort+1)*$self->{_selrate}); #+1 gives you size
+#  print "Pringaos $pringaos\n";
   splice @popsort, - $pringaos;
+#  print "Población ", scalar @popsort, "\n";
  
   #Reproduce
   my @rates = map( $_->{'rate'}, @ops );
@@ -170,10 +172,10 @@ L<Algorithm::Evolutionary::Op::Easy> for the scalar version of this code.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy_MO.pm,v 3.4 2009/11/17 19:19:41 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/23 12:31:16 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy_MO.pm,v 3.5 2009/11/23 12:31:16 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut
