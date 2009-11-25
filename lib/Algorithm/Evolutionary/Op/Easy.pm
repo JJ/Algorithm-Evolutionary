@@ -50,7 +50,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -160,10 +160,15 @@ sub apply ($) {
       my @offspring;
       my $selectedOp = $ops[ $opWheel->spin()];
       for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
-	  my $chosen = $popsort[ int ( rand( $originalSize ) )];
-	  push( @offspring, $chosen ); #No need to clone, it's not changed in ops
+	my $chosen = $popsort[ int ( rand( $originalSize ) )];
+	push( @offspring, $chosen ); #No need to clone, it's not changed in ops
       }
+#     p rint "Op ", ref $selectedOp, "\n";
+#      if ( (ref $selectedOp ) =~ /ssover/ ) {
+#	print map( $_->{'_str'}."\n", @offspring );
+#      }
       my $mutante = $selectedOp->apply( @offspring );
+ #     print "Mutante ", $mutante->{'_str'}, "\n";
       push( @popsort, $mutante );
   }
 
@@ -187,10 +192,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/27 16:20:24 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.1 2009/07/27 16:20:24 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/25 10:11:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.2 2009/11/25 10:11:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

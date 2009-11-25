@@ -9,7 +9,7 @@ use strict;
 
 use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
-use Test::More tests => 5;
+use Test::More tests => 104;
 
 BEGIN { 
   use_ok( 'Algorithm::Evolutionary::Op::String_Mutation' );
@@ -24,11 +24,29 @@ my $indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
 my $sm = new Algorithm::Evolutionary::Op::String_Mutation;
 isa_ok( $sm, 'Algorithm::Evolutionary::Op::String_Mutation' );
 
-my $result = $sm->apply( $indi );
-isnt( $result, $indi, "Differs from 1");
+my $result;
+for ( 1..100 ) {
+  $result = $sm->apply( $indi );
+  isnt( $result->{'_str'}, $indi->{'_str'}, 
+	$result->{'_str'}." differs from ". $indi->{'_str'});
+
+}
 
 $sm = new Algorithm::Evolutionary::Op::String_Mutation $number_of_chars / 4;
 isa_ok( $sm, 'Algorithm::Evolutionary::Op::String_Mutation' );
 
-$result = $sm->apply( $indi );
-isnt( $result, $indi, "Differs from 1");
+for ( 1..100 ) {
+  $result = $sm->apply( $indi );
+  isnt( $result->{'_str'}, $indi->{'_str'}, 
+	$result->{'_str'}." differs from ". $indi->{'_str'});
+
+}
+
+$indi->{'_str'} = 'BBBB';
+$sm = new Algorithm::Evolutionary::Op::String_Mutation;
+for ( 1..100 ) {
+  $result = $sm->apply( $indi );
+  isnt( $result->{'_str'}, $indi->{'_str'}, 
+	$result->{'_str'}." differs from ". $indi->{'_str'});
+
+}
