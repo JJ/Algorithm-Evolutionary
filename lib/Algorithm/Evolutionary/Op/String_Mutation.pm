@@ -36,7 +36,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::String_Mutation;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -89,7 +89,7 @@ sub apply ($;$){
   my $victim = $arg->clone();
   my $size =  $victim->size();
 
-  croak "Too many changes" if $self->{_howMany} >= $size;
+  croak "Too many changes" if $self->{'_howMany'} >= $size;
   my @char_array = 0..($size-1); # Hash with all bits
   my @chars =@{ $victim->{'_chars'}};
   for ( my $i = 0; $i < $self->{'_howMany'}; $i++ ) {
@@ -97,7 +97,7 @@ sub apply ($;$){
       my $who = splice(@char_array, $rnd, 1 );
       my $what = $victim->Atom( $who );
       my @these_chars = @chars;
-      for ( my $c = 0; $c <= $#chars; $c++ ) {
+      for ( my $c = 0; $c <= $#chars; $c++ ) { #Exclude this character
 	if ( $chars[$c] eq $what ) {
 	  splice( @these_chars, $c, 1 );
 	  last;
@@ -114,10 +114,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.1 2009/11/17 19:19:41 jmerelo Exp $ 
+  CVS Info: $Date: 2009/11/25 10:11:33 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.2 2009/11/25 10:11:33 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
