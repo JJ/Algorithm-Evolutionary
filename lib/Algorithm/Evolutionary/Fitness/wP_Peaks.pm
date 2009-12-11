@@ -14,12 +14,12 @@ use lib qw( ../../../../lib );
     for (my $i = 0; $i < 99; $i ++ ) {
        push @weights, 0.99;
     }
-    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_bits, @weights ); #Number of peaks = scalar  @weights
+    my $wp_peaks = Algorithm::Evolutionary::Fitness::wP_Peaks->new( $number_of_bits, @weights ); #Number of peaks = scalar  @weights
 
     # Or use an alternative ctor
     my $descriptor = { number_of_peaks => 100,
                        weight => 0.99 };
-    my $p_peaks = Algorithm::Evolutionary::Fitness::P_Peaks->new( $number_of_bits, $descriptor)
+    my $wp_peaks = Algorithm::Evolutionary::Fitness::wP_Peaks->new( $number_of_bits, $descriptor)
 
 =head1 DESCRIPTION
 
@@ -31,7 +31,7 @@ use lib qw( ../../../../lib );
 
 package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
 
 use String::Random;
 use Algorithm::Evolutionary::Utils qw(hamming);
@@ -122,10 +122,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2009/12/11 12:34:37 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 3.1 2009/12/11 12:34:37 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
