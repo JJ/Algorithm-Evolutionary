@@ -39,7 +39,7 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
@@ -108,12 +108,15 @@ sub apply ($) {
   my $popSize = scalar @$pop;
   my @ops = @{$self->{_ops}};
   for ( my $i = 0; $i < $popSize*(1-$self->{'_selrate'})/2; $i ++ ) {
-    my @clones = @{$pop}[$popWheel->spin(2)];
+    my @selected = $popWheel->spin(2);
+    my @clones;
+    # This should be a mutation-like op which does not modify arg
+    for my $c (0..1) {
+      $clones[$c] = $ops[0]->apply( $pop->[$selected[$c]] ); 
+    }
+
     $ops[1]->apply( @clones ); #This should be a
     #crossover-like op
-    $clones[0] = $ops[0]->apply( $clones[0] ); # This should be a mutation-like op
-    $clones[1] = $ops[0]->apply( $clones[1] );
-    
     push @newPop, @clones;
   }
   #Re-sort
@@ -142,10 +145,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 17:49:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.1 2010/01/17 17:49:54 jmerelo Exp $ 
+  CVS Info: $Date: 2010/01/17 19:08:29 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.2 2010/01/17 19:08:29 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
