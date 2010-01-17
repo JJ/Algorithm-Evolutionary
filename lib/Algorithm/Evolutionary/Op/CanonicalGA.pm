@@ -39,7 +39,7 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -103,7 +103,7 @@ sub apply ($) {
     }
   }
 
-  my @newPop;
+#  my @newPop;
   my @rates = map( $_->Fitness(), @$pop );
 
   #Creates a roulette wheel from the op priorities. Theoretically,
@@ -118,10 +118,13 @@ sub apply ($) {
                                           #crossover-like op
       $clone1->evaluate( $eval );
       $clone2->evaluate( $eval );
-      push @newPop, $clone1, $clone2;
+      pop @$pop;
+      pop @$pop;
+      push @$pop, $clone1, $clone2;
+      
   }
   #Re-sort
-  @{$pop}[$popSize*$self->{_selrate}..$popSize-1] =  @newPop;
+#  @{$pop}[$popSize*$self->{_selrate}..$popSize-1] =  @newPop;
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
 }
 
@@ -147,10 +150,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2010/01/17 09:54:30 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.2 2010/01/17 09:54:30 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
