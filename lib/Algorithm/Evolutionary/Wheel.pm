@@ -25,7 +25,7 @@ work at all
 package Algorithm::Evolutionary::Wheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( @probabilites )
 
@@ -39,7 +39,7 @@ sub new {
   my @probs = @_;
   
   my $self;
-  $self->{_accProbs} = ();
+  $self->{'_accProbs'} = [ 0 ];
   
   my $acc = 0;
   for ( @probs ) { $acc += $_;}
@@ -49,15 +49,14 @@ sub new {
   #Now creates the accumulated array
   my $aux = 0;  
   for ( @probs ) {
-	push @{$self->{_accProbs}}, $_ + $aux;
+	push @{$self->{'_accProbs'}}, $_ + $aux;
 	$aux += $_;
   }
-
   bless $self, $class;
   return $self;
 }
 
-=head2 spin()
+=head2 spin( [$number_of_individuals = 1])
 
 Returns an individual whose probability is related to its fitness
 
@@ -65,10 +64,25 @@ Returns an individual whose probability is related to its fitness
 
 sub spin {
   my $self = shift;
+  my $number_of_individuals = shift || 1;
   my $i = 0;
-  my $rand = rand();
-  while ( $self->{_accProbs}[$i] < $rand ) { $i++ };
-  return $i;
+  my @rand;
+  for my $n ( 1..$number_of_individuals ) {
+    push @rand, rand();
+  }
+  my @individuals;
+  for ( my $i = 0; $i < @{$self->{'_accProbs'}}-1; $i ++ ) {
+    for my  $r ( @rand ) {
+#      print $self->{'_accProbs'}[$i], " ", $r, " ", $self->{'_accProbs'}[$i+1], "\n";
+      push(@individuals, $i) if (( $self->{'_accProbs'}[$i] < $r ) &&
+				 ( $self->{_accProbs}[$i+1] > $r ) )
+    }
+  }
+  if ( $number_of_individuals > 1 ) {
+    return @individuals;
+  } else {
+    return $individuals[0];
+  }
   
 }
 =head1 Copyright
@@ -76,8 +90,8 @@ sub spin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 09:54:30 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.1 2010/01/17 09:54:30 jmerelo Exp $ 
+  CVS Info: $Date: 2010/01/17 17:49:50 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.2 2010/01/17 17:49:50 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

@@ -22,6 +22,12 @@ for (1..10) {
   cmp_ok( $result, '<', @probabilities, "Spinning = $result" );
 }
 
+
+for (2..5) {
+  my @result = $wheel->spin( $_);  
+  is( scalar @result, $_, "Spinning = ".join( " - ", @result ) );
+}
+
 my $probabilities = { a => 1,
 		      b => 2,
 		      c => 3,
@@ -42,10 +48,10 @@ for (1..10) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/09 09:02:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0001-wheel.t,v 1.1 2009/09/09 09:02:40 jmerelo Exp $ 
+  CVS Info: $Date: 2010/01/17 17:49:54 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0001-wheel.t,v 1.2 2010/01/17 17:49:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
