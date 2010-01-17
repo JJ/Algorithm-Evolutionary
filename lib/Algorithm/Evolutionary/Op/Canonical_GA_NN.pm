@@ -3,18 +3,18 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::CanonicalGA - Canonical Genetic Algorithm, with any representation
-                 
+Algorithm::Evolutionary::Op::Canonical_GA_NN - Canonical Genetic
+                 Algorithm that does not compute or order population
 
 =head1 SYNOPSIS
 
   # Straightforward instance, with all defaults (except for fitness function)
-  my $algo = new Algorithm::Evolutionary::Op::CanonicalGA( $eval ); 
+  my $algo = new Algorithm::Evolutionary::Op::Canonical_GA_NN( $eval ); 
 
   #Define an easy single-generation algorithm with predefined mutation and crossover
   my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
   my $c = new Algorithm::Evolutionary::Op::QuadXOver; #Classical 2-point crossover
-  my $generation = new Algorithm::Evolutionary::Op::CanonicalGA( $rr, 0.2, [$m, $c] );
+  my $generation = new Algorithm::Evolutionary::Op::Canonical_GA_NN( $rr, 0.2, [$m, $c] );
 
 =head1 Base Class
 
@@ -35,11 +35,11 @@ population.
 
 =cut
 
-package Algorithm::Evolutionary::Op::CanonicalGA;
+package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
@@ -55,7 +55,7 @@ use base 'Algorithm::Evolutionary::Op::Easy';
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new( $fitness[, $selection_rate][,$operators_ref_to_array] )
+=head2 new( [ $selection_rate][,$operators_ref_to_array] )
 
 Creates an algorithm, with the usual operators. Includes a default mutation
 and crossover, in case they are not passed as parameters. The first
@@ -67,15 +67,14 @@ and crossover, in case they are not passed as parameters. The first
 sub new {
   my $class = shift;
   my $self = {};
-  $self->{_eval} = shift || croak "No eval function found";
-  $self->{_selrate} = shift || 0.4;
+  $self->{'_selrate'} = shift || 0.4;
   if ( @_ ) {
       $self->{_ops} = shift;
   } else {
       #Create mutation and crossover
       my $mutation = new Algorithm::Evolutionary::Op::Bitflip;
       push( @{$self->{_ops}}, $mutation );
-      my $xover = new Algorithm::Evolutionary::Op::QuadXOver;
+      my $xover = new Algorithm::Evolutionary::Op::QuadXOver 2;
       push( @{$self->{_ops}}, $xover );
   }
   bless $self, $class;
@@ -86,9 +85,9 @@ sub new {
 =head2 apply( $population) 
 
 Applies a single generation of the algorithm to the population; checks
-that it receives a ref-to-array as input, croaks if it does
-not. Returns a sorted, culled, evaluated population for next
-generation.
+that it receives a ref-to-array as input, croaks if it does not. This
+population whould be already evaluated. Returns a new population for
+next generation, unsorted.
 
 =cut
 
@@ -98,11 +97,6 @@ sub apply ($) {
   croak "Incorrect type ".(ref $pop) if  ref( $pop ) ne $APPLIESTO;
 
   my $eval = $self->{_eval};
-  for ( @$pop ) {
-    if ( !defined ($_->Fitness() ) ) {
-	$_->evaluate( $eval );
-    }
-  }
 
   my @newPop;
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
@@ -113,18 +107,17 @@ sub apply ($) {
   my $popWheel= new Algorithm::Evolutionary::Wheel @rates;
   my $popSize = scalar @$pop;
   my @ops = @{$self->{_ops}};
-  for ( my $i = 0; $i < $popSize*(1-$self->{_selrate})/2; $i ++ ) {
-      my $clone1 = $ops[0]->apply( $pop->[$popWheel->spin()] ); # This should be a mutation-like op
-      my $clone2 = $ops[0]->apply( $pop->[$popWheel->spin()] );
-      $ops[1]->apply( $clone1, $clone2 ); #This should be a
-                                          #crossover-like op
-      $clone1->evaluate( $eval );
-      $clone2->evaluate( $eval );
-      push @newPop, $clone1, $clone2;
+  for ( my $i = 0; $i < $popSize*(1-$self->{'_selrate'})/2; $i ++ ) {
+    my @clones = @{$pop}[$popWheel->spin(2)];
+    $ops[1]->apply( @clones ); #This should be a
+    #crossover-like op
+    $clones[0] = $ops[0]->apply( $clones[0] ); # This should be a mutation-like op
+    $clones[1] = $ops[0]->apply( $clones[1] );
+    
+    push @newPop, @clones;
   }
   #Re-sort
   @{$pop}[$popSize*$self->{_selrate}..$popSize-1] =  @newPop;
-  @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
 }
 
 
@@ -150,9 +143,9 @@ Probably you will also be able to find a
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2010/01/17 17:49:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.4 2010/01/17 17:49:54 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.1 2010/01/17 17:49:54 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
