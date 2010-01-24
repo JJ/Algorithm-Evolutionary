@@ -33,9 +33,10 @@ package Algorithm::Evolutionary::Utils;
 use Exporter;
 our @ISA = qw(Exporter);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
-our @EXPORT_OK = qw( entropy consensus hamming random_bitstring average 
+our @EXPORT_OK = qw( entropy genotypic_entropy consensus hamming 
+		     random_bitstring average 
 		     parse_xml decode_string vector_compare);
 
 use Carp;
@@ -63,6 +64,27 @@ sub entropy {
   return $entropy;
 }
 
+=head2 genotypic_entropy( $population)
+
+Computes the entropy using the well known Shannon's formula:
+L<http://en.wikipedia.org/wiki/Information_entropy> 'to avoid botching
+highlighting; in this case we use chromosome frequencies instead of
+fitness. 
+
+=cut
+
+sub genotypic_entropy {
+  my $population = shift;
+  my %frequencies;
+  map( $frequencies{$_->{'_str'}}++, @$population );
+  my $entropy = 0;
+  my $gente = scalar(@$population); # Population size
+  for my $f ( keys %frequencies ) {
+    my $this_freq = $frequencies{$f}/$gente;
+    $entropy -= $this_freq*log( $this_freq );
+  }
+  return $entropy;
+}
 
 =head2 hamming( $string_a, $string_b )
 
@@ -217,10 +239,10 @@ sub vector_compare {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/10/14 18:33:13 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 3.1 2009/10/14 18:33:13 jmerelo Exp $ 
+  CVS Info: $Date: 2010/01/24 19:38:39 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 3.2 2010/01/24 19:38:39 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 
