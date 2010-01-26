@@ -16,6 +16,7 @@ lib/Algorithm/Evolutionary/Op/ArithCrossover.pm
 lib/Algorithm/Evolutionary/Op/Base.pm
 lib/Algorithm/Evolutionary/Op/Bitflip.pm
 lib/Algorithm/Evolutionary/Op/CanonicalGA.pm
+lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm
 lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm
 lib/Algorithm/Evolutionary/Op/Convergence_Terminator.pm
 lib/Algorithm/Evolutionary/Op/Creator.pm
@@ -78,6 +79,8 @@ t/0100-bitvector.t
 t/0101-string.t
 t/0102-any.t
 t/0200-run-ga.t
+t/0200-run-cga.t
+t/0200-run-cga_nn.t
 t/p_peaks.yaml
 t/0300-ppeaks.t
 t/0301-wppeaks.t
@@ -93,6 +96,7 @@ t/0400-noveltym.t
 t/0401-genebx.t
 t/0402-bitflip.t
 t/0403-uxover.t
+t/0404-quadxover.t
 t/0404-string-mutation.t
 t/0444-stored.t
 t/0500-generation-skel.t
