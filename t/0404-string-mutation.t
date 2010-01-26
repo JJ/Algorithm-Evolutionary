@@ -9,7 +9,7 @@ use strict;
 
 use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
-use Test::More tests => 104;
+use Test::More tests => 303;
 
 BEGIN { 
   use_ok( 'Algorithm::Evolutionary::Op::String_Mutation' );

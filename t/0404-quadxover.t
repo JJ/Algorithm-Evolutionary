@@ -5,7 +5,7 @@ use strict;
 
 use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
-use Test::More tests => 104;
+use Test::More tests => 402;
 
 BEGIN { 
   use_ok( 'Algorithm::Evolutionary::Op::QuadXOver' );
