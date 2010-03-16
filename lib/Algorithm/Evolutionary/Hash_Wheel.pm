@@ -25,12 +25,13 @@ array. Probably should unify both..
 package Algorithm::Evolutionary::Hash_Wheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
-=head2 new( @probabilites )
+=head2 new( $probabilities_hashref )
 
-Creates a new roulette wheel. Takes an array of numbers, which need not be
-normalized
+Creates a new roulette wheel. Takes a hashref, which uses as keys the
+objects to be returned by the roulette wheel, and as values the ones
+that are going to be used
 
 =cut
 
@@ -45,7 +46,9 @@ sub new {
   for ( sort keys %probs ) { $acc += $probs{$_};}
   for ( sort keys %probs ) { $probs{$_} /= $acc;} #Normalizes array
 
-  #Now creates the accumulated array
+  #Now creates the accumulated array, putting the accumulated
+  #probability in the first element arrayref element, and the object
+  #in the second
   my $aux = 0;  
   for ( sort keys %probs ) {
 	push @{$self->{_accProbs}}, [$probs{$_} + $aux,$_ ];
@@ -58,7 +61,8 @@ sub new {
 
 =head2 spin()
 
-Returns an individual whose probability is related to its fitness
+Returns a single individual whose probability is related to its fitness
+TODO: should return many, probably
 
 =cut
 
@@ -75,8 +79,8 @@ sub spin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/09 09:02:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Hash_Wheel.pm,v 1.1 2009/09/09 09:02:38 jmerelo Exp $ 
+  CVS Info: $Date: 2010/03/16 18:39:40 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Hash_Wheel.pm,v 1.2 2010/03/16 18:39:40 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut

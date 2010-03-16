@@ -4,7 +4,6 @@ use warnings;
 =head1 NAME
 
 Algorithm::Evolutionary::Op::CanonicalGA - Canonical Genetic Algorithm, with any representation
-                 
 
 =head1 SYNOPSIS
 
@@ -39,7 +38,7 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 
 use Carp;
@@ -149,10 +148,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 17:49:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.4 2010/01/17 17:49:54 jmerelo Exp $ 
+  CVS Info: $Date: 2010/03/16 18:39:40 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.5 2010/03/16 18:39:40 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut

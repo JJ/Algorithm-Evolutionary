@@ -3,8 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::QuadXOver - n-point crossover operator; puts a part of the second operand
-                into the first operand; can be 1 or 2 points.
+Algorithm::Evolutionary::Op::QuadXOver - N-point crossover operator that changes operands
 
                  
 
@@ -44,7 +43,7 @@ package Algorithm::Evolutionary::Op::QuadXOver;
 
 use lib qw( ../../.. );
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -58,7 +57,7 @@ our $ARITY = 2;
 
 Same as L<Algorithm::Evolutionary::Op::Crossover>, but changes
 parents, does not return anything; that is, $parent_1 and $parent_2
-interchange genetic material
+interchange genetic material.
 
 =cut
 
@@ -91,10 +90,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 17:49:54 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.1 2010/01/17 17:49:54 jmerelo Exp $ 
+  CVS Info: $Date: 2010/03/16 18:39:40 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.2 2010/03/16 18:39:40 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
