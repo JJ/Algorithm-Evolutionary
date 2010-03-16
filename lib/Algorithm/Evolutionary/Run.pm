@@ -5,7 +5,7 @@ use lib qw(../../.. ../.. ); #Emacs does not allow me to save!!!
 
 =head1 NAME
 
-    Algorithm::Evolutionary::Run - Class for setting up an experiment with algorithms and population
+Algorithm::Evolutionary::Run - Class for setting up an experiment with algorithms and population
                  
 =head1 SYNOPSIS
   
@@ -65,7 +65,7 @@ use Algorithm::Evolutionary qw(Individual::BitString Op::Easy Op::CanonicalGA
  
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ ) ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -73,7 +73,7 @@ use Time::HiRes qw( gettimeofday tv_interval);
 
 =head2 new( $algorithm_description )
 
-   Creates the whole stuff needed to run an algorithm. Can be called from a hash with t 
+Creates the whole stuff needed to run an algorithm. Can be called from a hash with t 
    options, as per the example. All of them are compulsory. See also the C<examples> subdir for examples of the YAML conf file. 
 
 =cut
@@ -291,10 +291,10 @@ sub compute_min_distance {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 09:10:09 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 3.1 2009/07/24 09:10:09 jmerelo Exp $ 
+  CVS Info: $Date: 2010/03/16 18:39:40 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 3.2 2010/03/16 18:39:40 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
