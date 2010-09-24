@@ -16,8 +16,8 @@ WriteMakefile(
 	'version'    => 0,
 	constant => 0,
 	'Test::Simple' => 0.44,
-	'XML::Parser' => 0,
-	'XML::Parser::Style::EasyTree' => 0.01,
+	'XML::Parser' => 2.40,
+	'XML::Parser::Style::EasyTree' => 0,
 	'Math::Random' => 0.63,
 	'Tree::DAG_Node' => 1.04,
 	'B::Deparse' => 0.56,
@@ -64,4 +64,4 @@ examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 MAKE_FRAG
 }
 
-#$Revision: 3.2 $
+#$Revision: 3.3 $

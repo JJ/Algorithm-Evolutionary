@@ -55,7 +55,7 @@ package Algorithm::Evolutionary::Individual::BitString;
 
 use Carp;
 
-our ($VERSION) =  ( '$Revision: 3.3 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 3.4 $ ' =~ /(\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::String';
 
@@ -78,6 +78,20 @@ sub new {
   my $chars = [ '0', '1' ];
   my $self = 
       Algorithm::Evolutionary::Individual::String::new( 'Algorithm::Evolutionary::Individual::BitString', $chars, @_ );
+  return $self;
+}
+
+=head2 from_string
+
+Similar to a copy ctor; creates a bitstring individual from a string. Will be deprecated soon
+
+=cut
+
+sub from_string  {
+  my $class = shift; 
+  my $chars = [ '0', '1' ];
+  my $self = 
+      Algorithm::Evolutionary::Individual::String::from_string( 'Algorithm::Evolutionary::Individual::BitString', $chars, @_ );
   return $self;
 }
 
@@ -114,10 +128,10 @@ sub decode {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/29 21:58:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.3 2009/07/29 21:58:51 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/24 08:39:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/BitString.pm,v 3.4 2010/09/24 08:39:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut

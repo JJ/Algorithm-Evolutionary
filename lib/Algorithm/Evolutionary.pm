@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.73'; # Closer to 1.0!!!
+our $VERSION = '0.74'; # Will we ever get to 1.0!!!
 
 # Preloaded methods go here.
 
@@ -69,7 +69,7 @@ web.
 <a href='http://opeal.sourceforge.net'>Sourceforge </a>. Latest aditions, and
 nightly updates, can be downloaded from there before they are uploaded
 to CPAN. That page also hosts the mailing list, as well as bug
-reports, news, updates, whatever.</p>
+reports, news, updates, work in progress, lots of stuff.</p>
 
 <p>In case the examples are hidden somewhere in the <code>.cpan</code> directory,
     you can also download them from <a
@@ -94,10 +94,27 @@ algorithms in general and doing them using this module in particular.</p>
 <p>I have used this continously for my research all these year, and
 any search will return a number of papers; a journal article is
 already submitted, but meanwhile if you use it for any of your
-research, I would be very grateful if you quoted papers such as this
-one:</p>
+research, I would be very grateful if you quoted papers such as these
+(which are, of course, available under request of from your friendly
+ university librarian):</p>
 
 =end html
+
+@article {springerlink:10.1007/s00500-009-0504-3,
+   author = {Merelo Guervós, Juan and Castillo, Pedro and Alba, Enrique},
+   affiliation = {Universidad de Granada Depto. Arquitectura y Tecnología de Computadores, ETS Ingenierías Informática y Telecomunicaciones Granada Spain},
+   title = {Algorithm::Evolutionary, a flexible Perl module for evolutionary computation},
+   journal = {Soft Computing - A Fusion of Foundations, Methodologies and Applications},
+   publisher = {Springer Berlin / Heidelberg},
+   issn = {1432-7643},
+   keyword = {Computer Science},
+   pages = {1091-1109},
+   volume = {14},
+   issue = {10},
+   url = {http://dx.doi.org/10.1007/s00500-009-0504-3},
+   note = {10.1007/s00500-009-0504-3},
+   year = {2010}
+}
 
  @InProceedings{jj:2008:PPSN,
    author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo
@@ -126,7 +143,7 @@ one:</p>
 
 =begin html
 
-<p>or the one linked above.</p>
+<p>or the ArXiV one linked above.</p>
 
 <p>Some information on this paper and instructions for downloading the code used in it can
 be found in <a
@@ -216,9 +233,9 @@ L<AI::Genetic::Pro>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/03/16 18:39:35 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.10 2010/03/16 18:39:35 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/24 08:39:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.11 2010/09/24 08:39:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.10 $
+  $Revision: 3.11 $
 
 =cut
