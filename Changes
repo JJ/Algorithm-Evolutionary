@@ -1,3 +1,21 @@
+2010-09-24  Juan Julian Merelo Guervos  <jmerelo@usuario-desktop>
+
+	* lib/Algorithm/Evolutionary/Fitness/Rastrigin.pm (Rastrigin): Added first floating-point fitness func.
+
+	* lib/Algorithm/Evolutionary/Utils.pm (random_number_array): Added this function
+
+	* lib/Algorithm/Evolutionary/Individual/BitString.pm (from_string): Added from_string ctor
+
+	* lib/Algorithm/Evolutionary/Individual/String.pm (from_string): Changed name and slightly modified
+
+	* t/0002-utils.t: Added this file to test utility functions in the Utils module. 
+
+	* t/ops.t (createAndTest): Added a missing operator
+
+	* Makefile.PL: Updated versions
+
+	* t/general.t: Eliminated some repeated tests.
+
 2010-01-26    <jmerelo@localhost.localdomain>
 
 	* TODO: Updated TODO and version number in A::E. Start 0.73

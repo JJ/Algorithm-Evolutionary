@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -123,7 +123,7 @@ sub addAtom{
 
 =head2 fromString
 
-Similar to a copy ctor; creates a bitstring individual from a string
+Similar to a copy ctor; creates a bitstring individual from a string. Will be deprecated soon
 
 =cut
 
@@ -133,6 +133,23 @@ sub fromString  {
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
   $self->{_str} =  $str;
   $self->{_length} = length( $str  );
+  return $self;
+}
+
+=head2 from_string
+
+Similar to a copy ctor; creates a bitstring individual from a string. Will be deprecated soon
+
+=cut
+
+sub from_string  {
+  my $class = shift; 
+  my $chars = shift;
+  my $str = shift;
+  my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
+  $self->{'_chars'} = $chars;
+  $self->{'_str'} =  $str;
+  $self->{'_length'} = length( $str  );
   return $self;
 }
 
@@ -310,9 +327,9 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.1 2009/11/17 19:19:41 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/24 08:39:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.2 2010/09/24 08:39:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut

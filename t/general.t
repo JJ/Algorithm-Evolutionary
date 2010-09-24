@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use Test;
-BEGIN { plan tests => 49 };
+BEGIN { plan tests => 19 };
 use lib qw( lib ../lib ../../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary qw( Individual::String Individual::BitString 
@@ -48,8 +48,8 @@ ok( ref Algorithm::Evolutionary::Individual::Tree->new( $primitives, 3 ), "Algor
 print "Individual XML tests\n"; # 8..10
 use XML::Parser;
 
-my $p=new XML::Parser(Style=>'EasyTree');
-$XML::Parser::EasyTree::Noempty=1;
+my $p=new XML::Parser(Style=>'ETree');
+# $XML::Parser::EasyTree::Noempty=1;
 
 my $xml =<<EOC;
 <indi type='String'>
@@ -86,81 +86,7 @@ ok( $bs->evaluate( $fitness ) > 0, 1, "Evaluation correct");
 my $fitness_obj = new Algorithm::Evolutionary::Fitness::ONEMAX;
 ok( $bs->evaluate( $fitness_obj ) > 0, 1,  "Evaluation object correct" );
 
-#Test operators - 11 and following
-
-print "Op tests\n";
-use Algorithm::Evolutionary::Op::Mutation;
-my $m =  new Algorithm::Evolutionary::Op::Mutation 0.5;
-ok( ref $m, "Algorithm::Evolutionary::Op::Mutation" );
-ok( $bs->{_str} ne $m->apply($bs)->{_str}, 1); 
-
-use Algorithm::Evolutionary::Op::Bitflip;
-my $bf =  new Algorithm::Evolutionary::Op::Bitflip 10;
-ok( ref $bf, "Algorithm::Evolutionary::Op::Bitflip" );
-
-ok( $bs->{_str} ne $bf->apply($bs)->{_str}, 1); 
-
-use Algorithm::Evolutionary::Op::Crossover;
-my $x =  new Algorithm::Evolutionary::Op::Crossover 2;
-ok( ref $x, "Algorithm::Evolutionary::Op::Crossover" );
-
 my $bprime = new Algorithm::Evolutionary::Individual::String ['a'..'z'], 64;
-skip( $x->apply( $bs, $bprime )->{_str} ne $bs->{_str}, 1 );
-
-use Algorithm::Evolutionary::Op::GaussianMutation;
-my $g =  new Algorithm::Evolutionary::Op::GaussianMutation;
-ok( ref $g, "Algorithm::Evolutionary::Op::GaussianMutation" );
-
-my $v = new Algorithm::Evolutionary::Individual::Vector 10, -5, 5;;
-ok( $v->Atom(3) != $g->apply( $v )->Atom(3), 1);
-
-use Algorithm::Evolutionary::Op::TreeMutation;
-my $t =  new Algorithm::Evolutionary::Op::TreeMutation 0.5;
-ok( ref $t, "Algorithm::Evolutionary::Op::TreeMutation" );
-
-my $tv = Algorithm::Evolutionary::Individual::Tree->new($primitives, 4);
-skip( $tv->asString() ne $t->apply( $tv )->asString(), 1);
-
-use Algorithm::Evolutionary::Op::VectorCrossover;
-my $vx =  new Algorithm::Evolutionary::Op::VectorCrossover 2;
-ok( ref $vx, "Algorithm::Evolutionary::Op::VectorCrossover" );
-
-my $v2 = new Algorithm::Evolutionary::Individual::Vector 10, -5, 5;
-my $ok = 1;
-for ( my $i = 0; $i < 10; $i++ ) {
-  my $vclone = $v->clone();
-  $ok &&= ( $v2->asString()  ne $vx->apply( $vclone, $v2 )->asString() );
-}
-skip( $ok, 1); #might happen, if the two points span the whole chrom
-
-use Algorithm::Evolutionary::Op::CX;
-my $cx =  new Algorithm::Evolutionary::Op::CX;
-ok( ref $cx, "Algorithm::Evolutionary::Op::CX" );
-
-my $i1 = Algorithm::Evolutionary::Individual::Vector->fromString( "1,2,3,4,5");
-my $i2 = Algorithm::Evolutionary::Individual::Vector->fromString( "5,4,3,2,1");
-ok( $i2->asString()  ne $cx->apply( $i1, $i2 )->asString(), 1);
-
-use Algorithm::Evolutionary::Op::ChangeLengthMutation;
-my $clm =  new Algorithm::Evolutionary::Op::ChangeLengthMutation;
-ok( ref $clm, "Algorithm::Evolutionary::Op::ChangeLengthMutation" );
-ok( $bs->asString()  ne $clm->apply( $bs )->asString(), 1);
-
-use Algorithm::Evolutionary::Op::ArithCrossover;
-my $ax =  new Algorithm::Evolutionary::Op::ArithCrossover;
-ok( ref $ax, "Algorithm::Evolutionary::Op::ArithCrossover" );
-
-ok( $v2->asString()  ne $ax->apply( $v, $v2 )->asString(), 1);
-
-use Algorithm::Evolutionary::Op::Inverover;
-my $ix =  new Algorithm::Evolutionary::Op::Inverover;
-ok( ref $ix, "Algorithm::Evolutionary::Op::Inverover" );
-ok( $i2->asString()  ne $ix->apply( $i1, $i2 )->asString(), 1);
-
-use Algorithm::Evolutionary::Op::IncMutation;
-my $im =  new Algorithm::Evolutionary::Op::IncMutation;
-ok( ref $im, "Algorithm::Evolutionary::Op::IncMutation" );
-skip( $bs->asString()  ne $im->apply( $bs )->asString(), 1); # Might fail
 
 print "Testing algorithms\n";
 
@@ -168,7 +94,7 @@ print "Testing algorithms\n";
 use Algorithm::Evolutionary::Op::LinearFreezer;
 use Algorithm::Evolutionary::Op::SimulatedAnnealing;
 
-$m  = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
+my $m  = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
 my $initTemp = 2;
 my $minTemp = 0.1;
 my $freezer = new Algorithm::Evolutionary::Op::LinearFreezer( $initTemp );
@@ -209,24 +135,6 @@ for ( 0..$popSize ) {
   $indi->Fitness( $fitness );
   push( @pop, $indi );
 }
-
-#test utils
-use Algorithm::Evolutionary::Utils qw(entropy consensus average decode_string vector_compare);
-ok( entropy( \@pop ) > 0, 1 );
-ok( length(consensus( \@pop )) > 1, 1 );
-ok( average( \@pop ) > 1, 1);
-ok( scalar( decode_string( $pop[0]->Chrom(), 10, -1, 1 ) ), 2 );
-my @vector_1 = qw( 1 1 1);
-my @vector_2 = qw( 0 0 0);
-ok( vector_compare( \@vector_1, \@vector_2 ), 1 );
-@vector_2 = qw( 0 0 1);
-ok( vector_compare( \@vector_1, \@vector_2 ), 1 );
-@vector_2 = qw( 1 1 1);
-ok( vector_compare( \@vector_1, \@vector_2 ), 0 );
-@vector_2 = qw( 2 2 1);
-ok( vector_compare( \@vector_1, \@vector_2 ), -1 );
-#@vector_2 = qw( 2 0 1);
-#skip( vector_compare( \@vector_1, \@vector_2 ), undef ); #Sometimes "", sometimes undef
 
 #fitness
 my $generation = 
@@ -276,10 +184,10 @@ ok( $sortPop[0]->Fitness() >= $oldBestFitness, 1);
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/24 08:39:07 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/general.t,v 3.1 2010/09/24 08:39:07 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
