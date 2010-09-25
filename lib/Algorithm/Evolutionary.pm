@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.74'; # Will we ever get to 1.0!!!
+our $VERSION = '0.74_1'; # Will we ever get to 1.0!!!
 
 # Preloaded methods go here.
 
@@ -100,7 +100,7 @@ research, I would be very grateful if you quoted papers such as these
 
 =end html
 
-@article {springerlink:10.1007/s00500-009-0504-3,
+ @article {springerlink:10.1007/s00500-009-0504-3,
    author = {Merelo Guervós, Juan and Castillo, Pedro and Alba, Enrique},
    affiliation = {Universidad de Granada Depto. Arquitectura y Tecnología de Computadores, ETS Ingenierías Informática y Telecomunicaciones Granada Spain},
    title = {Algorithm::Evolutionary, a flexible Perl module for evolutionary computation},
@@ -114,7 +114,7 @@ research, I would be very grateful if you quoted papers such as these
    url = {http://dx.doi.org/10.1007/s00500-009-0504-3},
    note = {10.1007/s00500-009-0504-3},
    year = {2010}
-}
+ }
 
  @InProceedings{jj:2008:PPSN,
    author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo
@@ -220,6 +220,9 @@ Some other examples are installed: check out L<tide_bitstring.pl>,
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
 evolutionary algorithms with anything else easily.
 
+=item L<Algorithm::MasterMind::Evolutionary> uses this library to find
+the solution to the MasterMind Puzzle.
+
 You might also be interested in one of the other perl GA and
 evolutionary computation modules out there, such as
 L<AI::Genetic::Pro>.
@@ -233,9 +236,9 @@ L<AI::Genetic::Pro>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/24 08:39:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.11 2010/09/24 08:39:07 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/25 10:27:44 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.12 2010/09/25 10:27:44 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.11 $
+  $Revision: 3.12 $
 
 =cut
