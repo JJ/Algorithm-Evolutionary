@@ -6,8 +6,8 @@ use strict;
 
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
-BEGIN { plan tests => 18;
-    use_ok('Algorithm::Evolutionary::Individual::String');
+BEGIN { 
+  use_ok('Algorithm::Evolutionary::Individual::String');
 };
 
 #Object methods
@@ -64,15 +64,17 @@ EOC
 $indi4=  Algorithm::Evolutionary::Individual::String->fromXML( $xml );
 is( $indi4->Atom(4), 'h', 'from XML' );
 
+done_testing;
+
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/25 08:12:37 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.1 2010/09/25 08:12:37 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/25 08:16:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.2 2010/09/25 08:16:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

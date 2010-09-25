@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -192,7 +192,7 @@ starts at 0, as usual in Perl arrays.
 
 =cut
 
-sub Atom: lvalue {
+sub Atom {
   my $self = shift;
   my $index = shift;
   if ( @_ ) {
@@ -327,9 +327,9 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/24 08:39:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.2 2010/09/24 08:39:07 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/25 08:16:59 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.3 2010/09/25 08:16:59 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
 
 =cut
