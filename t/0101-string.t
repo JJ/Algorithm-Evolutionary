@@ -50,6 +50,9 @@ unshift( @vector, 'u' );
 is( shift( @vector ), 'u', 'Unshift + shift '. join("", @vector) );
 push( @vector, qw( a b c ) );
 $vector[2] = 'k';
+is( tied( @vector )->Atom(2), 'k', 'Storing + Tieing '. join("", @vector));
+$vector[$#vector] = 'z';
+is( tied( @vector )->Atom(4), 'z', 'Storing last + Tieing '. join("", @vector));
 is( $vector[2], 'k', 'Store + fetch '. join("", @vector) );
 
 my @mini_vector = splice( @vector, 1, 2 );
@@ -71,10 +74,10 @@ done_testing;
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/25 08:16:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.2 2010/09/25 08:16:59 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/28 19:41:27 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.3 2010/09/28 19:41:27 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
