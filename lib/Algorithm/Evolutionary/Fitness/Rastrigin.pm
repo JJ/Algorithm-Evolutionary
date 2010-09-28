@@ -23,7 +23,7 @@ Check it at L<http://www-optima.amp.i.kyoto-u.ac.jp/member/student/hedar/Hedar_f
 
 package Algorithm::Evolutionary::Fitness::Rastrigin;
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp qw( croak );
 use base qw(Algorithm::Evolutionary::Fitness::Base);
@@ -66,7 +66,7 @@ sub Rastrigin {
     my @array = @_;
     my $fitness = $self->{'_base_fitness'};
     for ( my $i = 0; $i < $self->{'n_dimensions'}; $i ++ ) {
-      $fitness += $array[$i]*$array[$i]-RASTRIGIN_A*cos(PI2*$array[$i]);
+      $fitness += $array[$i]*$array[$i]- RASTRIGIN_A *cos(PI2*$array[$i]);
     }
     return $fitness;
 }
@@ -77,10 +77,10 @@ sub Rastrigin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/25 10:27:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Rastrigin.pm,v 3.2 2010/09/25 10:27:44 jmerelo Exp $ 
+  CVS Info: $Date: 2010/09/28 19:41:26 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Rastrigin.pm,v 3.3 2010/09/28 19:41:26 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
