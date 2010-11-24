@@ -25,7 +25,7 @@ work at all
 package Algorithm::Evolutionary::Wheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( @probabilites )
 
@@ -71,12 +71,13 @@ sub spin {
     push @rand, rand();
   }
   my @individuals;
-  for ( my $i = 0; $i < @{$self->{'_accProbs'}}-1; $i ++ ) {
-    for my  $r ( @rand ) {
-#      print $self->{'_accProbs'}[$i], " ", $r, " ", $self->{'_accProbs'}[$i+1], "\n";
-      push(@individuals, $i) if (( $self->{'_accProbs'}[$i] < $r ) &&
-				 ( $self->{_accProbs}[$i+1] > $r ) )
-    }
+  my @acc_probs = @{$self->{'_accProbs'}};
+  for ( my $r=0; $r<= $#rand; $r++ ) {
+      my $i = -1; # First iteration must be 0
+      do {
+	  $i++;
+      } until (( $acc_probs[$i+1] > $rand[$r] ) || ($i >= $#acc_probs ));
+      $individuals[$r] = $i;
   }
   if ( $number_of_individuals > 1 ) {
     return @individuals;
@@ -90,8 +91,8 @@ sub spin {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 17:49:50 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.2 2010/01/17 17:49:50 jmerelo Exp $ 
+  CVS Info: $Date: 2010/11/24 09:43:38 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.3 2010/11/24 09:43:38 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
