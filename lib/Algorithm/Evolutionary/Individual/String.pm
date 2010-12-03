@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -80,8 +80,8 @@ enforced unless the client class does it
 sub new {
   my $class = shift; 
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
-  $self->{_chars} = shift || ['a'..'z'];
-  $self->{_length} = shift || 10;
+  $self->{'_chars'} = shift || ['a'..'z'];
+  $self->{'_length'} = shift || 10;
   $self->randomize();
   return $self;
 }
@@ -103,9 +103,9 @@ Assigns random values to the elements
 
 sub randomize {
   my $self = shift; 
-  $self->{_str} = ''; # Reset string
-  for ( my $i = 0; $i <  $self->{_length}; $i ++ ) {
-	$self->{_str} .= $self->{_chars}[ rand( @{$self->{_chars}} ) ];
+  $self->{'_str'} = ''; # Reset string
+  for ( my $i = 0; $i <  $self->{'_length'}; $i ++ ) {
+	$self->{'_str'} .= $self->{'_chars'}[ rand( @{$self->{'_chars'}} ) ];
   }
 }
 
@@ -327,9 +327,9 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/25 08:16:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.3 2010/09/25 08:16:59 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/03 11:34:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.4 2010/12/03 11:34:45 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
 
 =cut
