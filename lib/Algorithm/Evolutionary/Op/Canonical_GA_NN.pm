@@ -4,7 +4,7 @@ use warnings;
 =head1 NAME
 
 Algorithm::Evolutionary::Op::Canonical_GA_NN - Canonical Genetic
-                 Algorithm that does not compute or order population
+                 Algorithm that does not ranks population
 
 =head1 SYNOPSIS
 
@@ -31,6 +31,10 @@ The first operator should be unary (a la mutation) and the second
 binary (a la crossover) they will be applied in turn to couples of the
 population.
 
+This is a fast version of the canonical GA, useful for large
+population, since it avoids the expensive rank operation. Roulette
+wheel selection, still, is kind of slow.
+
 =head1 METHODS
 
 =cut
@@ -39,7 +43,7 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
@@ -57,10 +61,12 @@ our $ARITY = 1;
 
 =head2 new( [ $selection_rate][,$operators_ref_to_array] )
 
-Creates an algorithm, with the usual operators. Includes a default mutation
-and crossover, in case they are not passed as parameters. The first
-    element in the array ref should be an unary, and the second a
-    binary operator.
+Creates an algorithm, with the usual operators. Includes a default
+mutation and crossover, in case they are not passed as parameters. The
+first element in the array ref should be an unary, and the second a
+binary operator. This binary operator must accept parameters by
+reference, not value; it will modify them. For the time being, just
+L<Algorithm::Evolutionary::Op::QuadXOver> works that way. 
 
 =cut
 
@@ -145,10 +151,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/17 19:08:29 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.2 2010/01/17 19:08:29 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/07 18:15:08 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.3 2010/12/07 18:15:08 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
