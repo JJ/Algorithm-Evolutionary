@@ -11,7 +11,7 @@ Algorithm::Evolutionary::Op::QuadXOver - N-point crossover operator that changes
 
   my $xmlStr3=<<EOC;
   <op name='QuadXOver' type='binary' rate='1'>
-    <param name='numPoints' value='3' /> #Max is 2, anyways
+    <param name='numPoints' value='2' /> #Max is 2, anyways
   </op>
   EOC
   my $ref3 = XMLin($xmlStr3);
@@ -21,10 +21,10 @@ Algorithm::Evolutionary::Op::QuadXOver - N-point crossover operator that changes
 
   my $indi = new Algorithm::Evolutionary::Individual::BitString 10;
   my $indi2 = $indi->clone();
-  my $indi3 = $indi->clone();
+  my $indi3 = $indi->clone(); #Operands are modified, so better to clone them
   $op3->apply( $indi2, $indi3 );
 
-  my $op4 = new Algorithm::Evolutionary::Op::QuadXOver 3; #QuadXOver with 3 crossover points
+  my $op4 = new Algorithm::Evolutionary::Op::QuadXOver 1; #QuadXOver with 1 crossover points
 
 =head1 Base Class
 
@@ -43,7 +43,7 @@ package Algorithm::Evolutionary::Op::QuadXOver;
 
 use lib qw( ../../.. );
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -69,14 +69,14 @@ sub  apply ($$){
   croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
   my $minlen = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
 	 length( $victim2->{_str} ): length( $victim->{_str} );
-  my $pt1 = int( rand( $minlen ) );
+  my $pt1 = 1+int( rand( $minlen - 1 ) ); # first crossover point shouldn't be 0
   my $range;
-#  print "Puntos: $pt1, $range \n";
   if ( $self->{_numPoints} > 1 ) {
     $range= 1 + int( rand( $minlen  - $pt1 ) );
   } else {
-    $range = $minlen - $pt1 +1;
+    $range = $minlen - $pt1;
   }
+#  print "Puntos: $pt1, $range \n";
   my $str = $victim->{_str};
   substr( $victim->{_str}, $pt1, $range ) = substr( $victim2->{_str}, $pt1, $range );
   substr( $victim2->{_str}, $pt1, $range ) = substr( $str, $pt1, $range );
@@ -90,10 +90,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/03/16 18:39:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.2 2010/03/16 18:39:40 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/07 18:15:08 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.3 2010/12/07 18:15:08 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut

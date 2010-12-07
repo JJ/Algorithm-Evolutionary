@@ -1,5 +1,8 @@
 2010-12-07  Juan J. Merelo Guervós  <jmerelo@localhost.localdomain>
 
+	* lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm (apply): Fixed
+	QuadXOver to avoid total interchange (initial point = 0 )
+
 	* lib/Algorithm/Evolutionary.pm:  Mainly a maintenance release,
 	with the spin fix below. 
 
