@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.74_1'; # Will we ever get to 1.0!!!
+our $VERSION = '0.74_2'; # Will we ever get to 1.0!!!
 
 # Preloaded methods go here.
 
@@ -79,7 +79,7 @@ reports, news, updates, work in progress, lots of stuff.</p>
     tarballs in the file download area of that repository</p>
 
 <p>You can also get help from the <a
-href='https://sourceforge.net/forum/forum.php?forum_id=107255'>project
+href='https://sourceforge.net/projects/opeal/forums/forum/107255'>project
 forum</a> (where I usually hang around) or from <a
 href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing
 list</a> (information at <a
@@ -175,10 +175,10 @@ href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
 submitted bugs include <a
-href='http://barbacana.net'>jamarier</a> and Mike Gajewski. Bugs, requests and any kind
-of comment are welcome. <a href='http://alexm.org'>Alex Muntada</a>,
+href='http://barbacana.net'>jamarier</a> and Mike Gajewski. <a href='http://alexm.org'>Alex Muntada</a>,
 from the <a href='http://barcelona.pm.org/'>Barcelona Perl
-Mongers</a>, helped me solve a problem with the Makefile.PL.
+Mongers</a>, helped me solve a problem with the Makefile.PL. Bug reports (and patches), requests and any kind 
+of comment are welcome.
 
 =end html
 
@@ -233,12 +233,12 @@ L<AI::Genetic::Pro>.
 
 =head1 Copyright
   
-  This file is released under the GPL. See the LICENSE file included in this distribution,
-  or go to http://www.fsf.org/licenses/gpl.txt
+This file is released under the GPL. See the LICENSE file included in this distribution,
+or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/25 10:27:44 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.12 2010/09/25 10:27:44 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/07 12:04:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.13 2010/12/07 12:04:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.12 $
+  $Revision: 3.13 $
 
 =cut
