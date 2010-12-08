@@ -25,7 +25,7 @@ use warnings;
 
     my $indi5 = $indi4->clone(); #Creates a copy of the individual
 
-    my @array = qw( a x q W z ñ); #Tie a String individual
+    my @array = qw( a x q W z Ã±); #Tie a String individual
     tie my @vector, 'Algorithm::Evolutionary::Individual::String', @array;
     print tied( @vector )->asXML();
     
@@ -56,7 +56,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -132,13 +132,17 @@ sub fromString  {
   my $str = shift;
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
   $self->{_str} =  $str;
+  my %chars;
+  map ( $chars{$_} => 1, split(//,$str) );
+  my @chars = keys %chars; 
   $self->{_length} = length( $str  );
+  $self->{'_chars'} = \@chars;
   return $self;
 }
 
 =head2 from_string
 
-Similar to a copy ctor; creates a bitstring individual from a string. Will be deprecated soon
+Similar to a copy ctor; creates a bitstring individual from a string. 
 
 =cut
 
@@ -161,11 +165,11 @@ Similar to a copy ctor: creates a new individual from another one
 
 sub clone {
   my $indi = shift || croak "Indi to clone missing ";
-  my $self = Algorithm::Evolutionary::Individual::Base::new( ref $indi );
-  for ( keys %$indi ) {
+  my $self = { '_fitness' => undef };
+  bless $self, ref $indi;
+  for ( qw( _chars _str _length)  ) {
 	$self->{ $_ } = $indi->{$_};
   }
-  $self->{_fitness} = undef;
   return $self;
 }
 
@@ -327,9 +331,9 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/03 11:34:45 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.4 2010/12/03 11:34:45 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/08 17:34:22 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.5 2010/12/08 17:34:22 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
 
 =cut

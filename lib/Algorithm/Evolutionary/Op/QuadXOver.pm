@@ -43,7 +43,7 @@ package Algorithm::Evolutionary::Op::QuadXOver;
 
 use lib qw( ../../.. );
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -65,8 +65,8 @@ sub  apply ($$){
   my $self = shift;
   my $victim = shift || croak "No victim here!";
   my $victim2 = shift || croak "No victim here!";
-  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
-  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
+#  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
+#  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
   my $minlen = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
 	 length( $victim2->{_str} ): length( $victim->{_str} );
   my $pt1 = 1+int( rand( $minlen - 1 ) ); # first crossover point shouldn't be 0
@@ -90,10 +90,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/07 18:15:08 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.3 2010/12/07 18:15:08 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/08 17:34:22 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/QuadXOver.pm,v 3.4 2010/12/08 17:34:22 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut
