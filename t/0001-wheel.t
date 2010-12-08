@@ -28,6 +28,12 @@ for (2..5) {
   is( scalar @result, $_, "Spinning = ".join( " - ", @result ) );
 }
 
+# my @list = ( 1..20 );
+# my $uno = 3.5;
+
+# my $first = Algorithm::Evolutionary::Wheel->first( $uno, \@list );
+# is ( $list[$first], 4, "first OK");
+
 my $probabilities = { a => 1,
 		      b => 2,
 		      c => 3,
@@ -48,10 +54,10 @@ for (1..10) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/11/24 09:43:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0001-wheel.t,v 1.4 2010/11/24 09:43:38 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/08 08:43:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0001-wheel.t,v 1.5 2010/12/08 08:43:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
   $Name $
 
 =cut
