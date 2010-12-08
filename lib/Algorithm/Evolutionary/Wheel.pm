@@ -25,7 +25,7 @@ work at all
 package Algorithm::Evolutionary::Wheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 =head2 new( @probabilites )
 
@@ -97,13 +97,12 @@ Returns the index of the first individual smaller than the item
 
 sub first {
   my $item = shift;
-  croak "No list" if !@_;
-  my @list = @{$_[0]};
+  my $list = shift || croak "No list";
   my $first=0; 
-  my $last=$#list;
-  my $mid=int($#list/2);
+  my $last= scalar @$list -1;
+  my $mid=int($last/2);
   while ($first <= $last ) {
-    if ( $item > $list[$mid] ) {
+    if ( $item > $list->[$mid] ) {
       $first = $mid + 1;
     } else {
       $last = $mid -1;
@@ -118,8 +117,8 @@ sub first {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/08 08:43:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.4 2010/12/08 08:43:12 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/08 09:18:45 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Wheel.pm,v 3.5 2010/12/08 09:18:45 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
