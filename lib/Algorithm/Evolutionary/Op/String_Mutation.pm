@@ -36,7 +36,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::String_Mutation;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -88,18 +88,17 @@ sub apply ($;$){
   my $arg = shift || croak "No victim here!";
 #  my $victim = clone($arg);
   my $victim = $arg->clone();
-  my $size =  $victim->size();
+  my $size =  length($victim->{'_str'});
 
   croak "Too many changes" if $self->{'_howMany'} >= $size;
-  my @char_array = 0..($size-1); # Hash with all bits
-  my @chars =@{ $victim->{'_chars'}};
+  my @char_array = 0..($size-1); # Avoids double mutation in a single place
   for ( my $i = 0; $i < $self->{'_howMany'}; $i++ ) {
       my $rnd = int (rand( @char_array ));
       my $who = splice(@char_array, $rnd, 1 );
       my $what = $victim->Atom( $who );
-      my @these_chars = @chars;
-      for ( my $c = 0; $c <= $#chars; $c++ ) { #Exclude this character
-	if ( $chars[$c] eq $what ) {
+      my @these_chars = @{ $victim->{'_chars'}};
+      for ( my $c = 0; $c < @{ $victim->{'_chars'}}; $c++ ) { #Exclude this character
+	if ( $victim->{'_chars'}[$c] eq $what ) {
 	  splice( @these_chars, $c, 1 );
 	  last;
 	}
@@ -115,10 +114,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/08 17:34:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.3 2010/12/08 17:34:22 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/09 06:53:02 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.4 2010/12/09 06:53:02 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut
