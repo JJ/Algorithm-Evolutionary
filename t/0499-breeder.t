@@ -40,16 +40,19 @@ ok( ref $generation eq "Algorithm::Evolutionary::Op::Breeder", 1);
 my $new_pop = $generation->apply( \@pop );
 ok( scalar( @$new_pop) == scalar( @pop ), 1 ); #At least size is the same
 
+map( $_->evaluate( $onemax ), @$new_pop );
+$new_pop = $generation->apply( $new_pop, @$new_pop/10 );
+ok( scalar( @$new_pop) == scalar( @pop )/10, 1 ); #At least size is the same
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/16 11:34:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0499-breeder.t,v 1.1 2010/12/16 11:34:58 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/16 11:41:50 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0499-breeder.t,v 1.2 2010/12/16 11:41:50 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
