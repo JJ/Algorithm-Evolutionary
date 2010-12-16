@@ -53,30 +53,31 @@ package Algorithm::Evolutionary::Op::Breeder;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
-use Algorithm::Evolutionary qw(Wheel);
+use Algorithm::Evolutionary qw(Wheel
+			       Op::Tournament_Selection);
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
 our $ARITY = 1;
 
-=head2 new( $evaluation_function, $selector, $ref_to_operator_array, $replacement_operator )
+=head2 new( $ref_to_operator_array[, $selector = new Algorithm::Evolutionary::Op::Tournament_Selection 2 ] )
 
-Creates an algorithm, with no defaults except for the default
-replacement operator (defaults to L<Algorithm::Evolutionary::Op::ReplaceWorst>)
+Creates a breeder, with a selector and array of operators
 
 =cut
 
 sub new {
   my $class = shift;
   my $self = {};
-  $self->{_selector} = shift || croak "No selector found";
   $self->{_ops} = shift || croak "No operators found";
+  $self->{_selector} = shift 
+    || new Algorithm::Evolutionary::Op::Tournament_Selection 2;
   bless $self, $class;
   return $self;
 }
@@ -98,7 +99,7 @@ sub apply ($) {
 
     #Select for breeding
     my $selector = $self->{_selector};
-    my @genitors = $selector->apply( @$pop );
+    my @genitors = $selector->apply( $pop );
 
     #Reproduce
     my $totRate = 0;
@@ -142,10 +143,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/16 11:34:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.1 2010/12/16 11:34:58 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/16 18:57:41 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.2 2010/12/16 18:57:41 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
 
 =cut
 
