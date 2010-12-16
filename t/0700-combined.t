@@ -26,7 +26,7 @@ my $sm = new Algorithm::Evolutionary::Op::String_Mutation;
 my $pm = new Algorithm::Evolutionary::Op::Permutation;
 
 my $c =  new Algorithm::Evolutionary::Op::Combined [ $sm, $pm ];
-isa_ok( $sm, 'Algorithm::Evolutionary::Op::Combined' );
+isa_ok( $c, 'Algorithm::Evolutionary::Op::Combined' );
 
 my $result;
 for ( 1..100 ) {
