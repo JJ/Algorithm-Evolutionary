@@ -43,7 +43,7 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
@@ -92,7 +92,7 @@ sub new {
 
 Applies a single generation of the algorithm to the population; checks
 that it receives a ref-to-array as input, croaks if it does not. This
-population whould be already evaluated. Returns a new population for
+population should be already evaluated. Returns a new population for
 next generation, unsorted.
 
 =cut
@@ -101,8 +101,6 @@ sub apply ($) {
   my $self = shift;
   my $pop = shift || croak "No population here";
   croak "Incorrect type ".(ref $pop) if  ref( $pop ) ne $APPLIESTO;
-
-  my $eval = $self->{_eval};
 
   my @newPop;
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
@@ -151,10 +149,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/07 18:15:08 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.3 2010/12/07 18:15:08 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/16 10:58:42 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.4 2010/12/16 10:58:42 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut
