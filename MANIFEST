@@ -19,6 +19,7 @@ lib/Algorithm/Evolutionary/Op/Bitflip.pm
 lib/Algorithm/Evolutionary/Op/CanonicalGA.pm
 lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm
 lib/Algorithm/Evolutionary/Op/ChangeLengthMutation.pm
+lib/Algorithm/Evolutionary/Op/Combined.pm
 lib/Algorithm/Evolutionary/Op/Convergence_Terminator.pm
 lib/Algorithm/Evolutionary/Op/Creator.pm
 lib/Algorithm/Evolutionary/Op/Crossover.pm
@@ -44,6 +45,7 @@ lib/Algorithm/Evolutionary/Op/Novelty_Mutation.pm
 lib/Algorithm/Evolutionary/Op/Permutation.pm
 lib/Algorithm/Evolutionary/Op/Population_Output.pm
 lib/Algorithm/Evolutionary/Op/QuadXOver.pm
+lib/Algorithm/Evolutionary/Op/Quad_Crossover_Diff.pm
 lib/Algorithm/Evolutionary/Op/Replace_Worst.pm
 lib/Algorithm/Evolutionary/Op/RouletteWheel.pm
 lib/Algorithm/Evolutionary/Op/Selector.pm
@@ -102,6 +104,7 @@ t/0402-bitflip.t
 t/0403-uxover.t
 t/0404-quadxover.t
 t/0404-string-mutation.t
+t/0406-quadxover-diff.t
 t/0444-stored.t
 t/0499-breeder.t
 t/0500-generation-skel.t
@@ -113,6 +116,7 @@ t/0503-eval-mo.t
 t/0600-ez-moga.t
 t/0601-cga-gif-output.t
 t/0603-eda.t
+t/0700-combined.t
 t/DeltaTerm.t
 t/experiment.t
 t/general.t
