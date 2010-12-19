@@ -36,7 +36,9 @@ Class independent permutation operator; any individual that has the
 
 package  Algorithm::Evolutionary::Op::Permutation;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
+use lib qw( ../../.. );
+
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone::Fast qw(clone);
@@ -62,6 +64,7 @@ sub new {
   my $rate = shift || 1;
 
   my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::Permutation', $rate );
+  $self->{'_max_iterations'} = shift || 10;
   return $self;
 }
 
@@ -79,7 +82,8 @@ sub create {
   my $class = shift;
   my $rate = shift || 1; 
 
-  my $self =  { rate => $rate };
+  my $self =  { rate => $rate,
+	        max_iterations => shift || 10 };
 
   bless $self, $class;
   return $self;
@@ -99,7 +103,11 @@ sub apply ($;$) {
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   my @arr = split("",$victim->{_str});
   my $p = new Algorithm::Permute( \@arr );
-  $victim->{_str} = join( "",$p->next );
+  my $iterations = rand($self->{'_max_iterations'});
+  for (1..$iterations) {
+    $p->next;
+  }
+  $victim->{'_str'} = join( "",$p->next );
   return $victim;
 }
 
@@ -108,10 +116,10 @@ sub apply ($;$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/19 21:39:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.2 2010/12/19 21:39:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 

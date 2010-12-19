@@ -1,10 +1,12 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw(../../../../lib);
+
 =head1 NAME
 
     Algorithm::Evolutionary::Individual::Bit_Vector - Classic bitstring individual for evolutionary computation; 
-                 usually called I<chromosome>, and using a different implementation from L<Algorithm::Evolutionary::Individual::BitString>
+                 usually called chromosome, and using a different implementation from Algorithm::Evolutionary::Individual::BitString
 
 
 =head1 SYNOPSIS
@@ -33,7 +35,7 @@ use warnings;
     print tied( @vector )->asXML();
 
     print $indi3->asString(); #Prints the individual
-    print $indi3->asXML() #Prints it as XML. See 
+    print $indi3->asXML() #Prints it as XML. See L<Algorithm::Evolutionary::XML>
     print $indi3->as_yaml() #Change of convention, I know...
 
 =head1 Base Class
@@ -52,7 +54,7 @@ use Carp;
 use Bit::Vector;
 use String::Random; # For initial string generation
 
-our ($VERSION) =  ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) =  ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -248,10 +250,10 @@ sub FETCHSIZE {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/19 21:39:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Bit_Vector.pm,v 3.1 2010/12/19 21:39:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut

@@ -1,12 +1,14 @@
 package Algorithm::Evolutionary::Op::Animated_GIF_Output;
 
-use lib qw( ../../../../../../Algorithm-Evolutionary/lib ../Algorithm-Evolutionary/lib ); #For development and perl syntax mode
+use lib qw( ../../../../lib 
+	    ../../../lib
+	    ../../../../../../Algorithm-Evolutionary/lib ../Algorithm-Evolutionary/lib ); #For development and perl syntax mode
 
 use warnings;
 use strict;
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 1.5 $ =~ /(\d+)\.(\d+)/g; 
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -35,15 +37,15 @@ sub apply {
     my $frame  = GD::Image->new($self->{'_image'}->getBounds);
     my $ppb = $self->{'_pixels_per_bit'};
     my $l=0;
-    for my $p (@$population_hashref) {
-      my $bit_string = $p->{'_str'};
+    for my $i (@$population_hashref) {
+      my $bit_string = $i->{'_str'};
       for my $c ( 0..($self->{'_length'}-1) ) {
 	my $bit = substr( $bit_string, $c, 1 );
 	if ( $bit ) {
 	  for my $p ( 1..$ppb ) {
 	    for my $q (1..$ppb ) {
-	      $frame->setPixel($c*$ppb+$p,
-			       $l*$ppb+$q,$self->{'_black'})
+	      $frame->setPixel($l*$ppb+$q, $c*$ppb+$p,
+			       $self->{'_black'})
 	    }
 	  }
 	}
@@ -148,8 +150,8 @@ reserved.
 This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/14 16:36:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.4 2009/09/14 16:36:38 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/19 21:39:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm,v 1.5 2010/12/19 21:39:12 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =head1 DISCLAIMER OF WARRANTY

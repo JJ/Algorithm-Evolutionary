@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.75'; # Closer now... 
+our $VERSION = '0.76'; # But I need a GP module!
 
 # Preloaded methods go here.
 
@@ -66,7 +66,7 @@ web.
 =begin html
 
 <p>The project is hosted at
-<a href='http://opeal.sourceforge.net'>Sourceforge </a>. Latest aditions, and
+<a href='http://opeal.sourceforge.net'>Sourceforge</a>. Latest aditions, and
 nightly updates, can be downloaded from there before they are uploaded
 to CPAN. That page also hosts the mailing list, as well as bug
 reports, news, updates, work in progress, lots of stuff.</p>
@@ -84,7 +84,7 @@ forum</a> (where I usually hang around) or from <a
 href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing
 list</a> (information at <a
 href='https://lists.sourceforge.net/lists/listinfo/opeal-help'>its web
-site</a>)</p> 
+site</a>).</p> 
 
 <p>It might be also helpful for you to check out <a
 href='http://arxiv.org/abs/0908.0516'>Still doing evolutionary
@@ -148,7 +148,7 @@ research, I would be very grateful if you quoted papers such as these
 <p>Some information on this paper and instructions for downloading the code used in it can
 be found in <a
 href='http://nohnes.wordpress.com/2008/09/21/paper-on-performance-of-asynchronous-distributed-evolutionary-algorithms-available-online/'>our
-group blog</a></p> 
+group blog</a>.</p> 
 
 =end html
 
@@ -236,9 +236,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/17 07:16:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.14 2010/12/17 07:16:18 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/19 21:39:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.15 2010/12/19 21:39:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.14 $
+  $Revision: 3.15 $
 
 =cut
