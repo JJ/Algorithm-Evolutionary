@@ -9,12 +9,14 @@ Algorithm::Evolutionary::Op::Canonical_GA_NN - Canonical Genetic
 =head1 SYNOPSIS
 
   # Straightforward instance, with all defaults (except for fitness function)
-  my $algo = new Algorithm::Evolutionary::Op::Canonical_GA_NN( $eval ); 
+  my $algo = new Algorithm::Evolutionary::Op::Canonical_GA_NN; 
 
   #Define an easy single-generation algorithm with predefined mutation and crossover
   my $m = new Algorithm::Evolutionary::Op::Bitflip; #Changes a single bit
   my $c = new Algorithm::Evolutionary::Op::QuadXOver; #Classical 2-point crossover
-  my $generation = new Algorithm::Evolutionary::Op::Canonical_GA_NN( $rr, 0.2, [$m, $c] );
+  my $generation = new Algorithm::Evolutionary::Op::Canonical_GA_NN( 0.2, [$m, $c] );
+
+   my $generation = new Algorithm::Evolutionary::Op::Canonical_GA_NN( undef , [$m, $c] ); # Defaults to 0.4
 
 =head1 Base Class
 
@@ -43,7 +45,7 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
@@ -149,10 +151,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/16 10:58:42 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.4 2010/12/16 10:58:42 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/19 21:39:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.5 2010/12/19 21:39:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut
