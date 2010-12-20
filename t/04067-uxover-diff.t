@@ -5,7 +5,7 @@ use strict;
 
 use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
-use Test::More tests => 302;
+use Test::More qw( no_plan );
 
 BEGIN { 
   use_ok( 'Algorithm::Evolutionary::Op::Uniform_Crossover_Diff' );
@@ -35,9 +35,22 @@ for ( 1..100 ) {
 
 $q = new Algorithm::Evolutionary::Op::Uniform_Crossover_Diff  $number_of_chars/4;
 for ( my $i =0; $i <= $#pop; $i+= 2 ) { 
+  next if  $pop[$i]->{'_str'} eq $pop[$i+1]->{'_str'};
   my $result = $q->apply( $pop[$i], $pop[$i+1] );
   isnt( $pop[$i]->{'_str'}, $result->{'_str'}, $result->{'_str'}." differs from ". $pop[$i]->{'_str'});
-  isnt( $pop[$i+1]->{'_str'}, $result->{'_str'}, $result->{'_str'}." differs from ". $pop[$i+1]->{'_str'});
-
 
 }
+
+
+=head1 Copyright
+  
+  This file is released under the GPL. See the LICENSE file included in this distribution,
+  or go to http://www.fsf.org/licenses/gpl.txt
+
+  CVS Info: $Date: 2010/12/20 16:56:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/04067-uxover-diff.t,v 1.2 2010/12/20 16:56:46 jmerelo Exp $ 
+  $Author: jmerelo $ 
+  $Revision: 1.2 $
+  $Name $
+
+=cut

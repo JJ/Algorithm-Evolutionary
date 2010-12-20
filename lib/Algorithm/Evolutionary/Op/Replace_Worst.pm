@@ -1,9 +1,11 @@
 use strict; #-*-cperl-*-
 use warnings;
 
+use lib qw( ../../.. );
+
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Replace_Worst - Incorporate an individual into the population replacing the worst one
+Algorithm::Evolutionary::Op::Replace_Worst - Incorporate individuals into the population replacing the worst ones
 
 =head1 SYNOPSIS
 
@@ -26,7 +28,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Replace_Worst;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 
@@ -60,7 +62,7 @@ sub apply ($;$){
   my $chromosome_list = shift || croak "No new population here!";
   
   #Sort
-  my @sorted_population = sort { $b->{_fitness} <=> $a->{_fitness}; }
+  my @sorted_population = sort { $b->Fitness() <=> $a->Fitness(); }
     @$population ;
   my $to_eliminate = scalar @$chromosome_list;
   splice ( @sorted_population, -$to_eliminate );
@@ -84,10 +86,10 @@ insertion of new individuals asynchronously.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/27 16:20:24 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 3.1 2009/07/27 16:20:24 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/20 16:56:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Worst.pm,v 3.2 2010/12/20 16:56:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
