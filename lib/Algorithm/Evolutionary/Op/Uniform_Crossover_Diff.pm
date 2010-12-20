@@ -43,7 +43,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover_Diff;
 
 use lib qw( ../../.. );
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -86,11 +86,11 @@ sub  apply ($$){
   my $victim = $arg->clone();
 #  croak "Incorrect type ".(ref $victim) if !$self->check($victim);
 #  croak "Incorrect type ".(ref $victim2) if !$self->check($victim2);
-  my $minlen = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
+  my $min_length = (  length( $victim->{_str} ) >  length( $victim2->{_str} ) )?
 	 length( $victim2->{_str} ): length( $victim->{_str} );
 
   my @diffs;
-  for ( my $i = 0; $i < $minlen; $i ++ ) {
+  for ( my $i = 0; $i < $min_length; $i ++ ) {
     if  ( substr(  $victim2->{_str}, $i, 1 ) ne substr(  $victim->{_str}, $i, 1 ) ) {
       push @diffs, $i;
     }
@@ -113,10 +113,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/19 21:39:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.1 2010/12/19 21:39:12 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/20 16:56:46 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.2 2010/12/20 16:56:46 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
