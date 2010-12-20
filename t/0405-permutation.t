@@ -17,7 +17,7 @@ BEGIN {
 
 use Algorithm::Evolutionary::Individual::String;
 
-my $number_of_chars = 32;
+my $number_of_chars = 8;
 my $indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
   $number_of_chars;
 
@@ -32,8 +32,8 @@ for ( 1..100 ) {
 
 }
 
-$sm = new Algorithm::Evolutionary::Op::String_Mutation $number_of_chars / 4;
-isa_ok( $sm, 'Algorithm::Evolutionary::Op::String_Mutation' );
+$sm = new Algorithm::Evolutionary::Op::Permutation $number_of_chars * $number_of_chars;
+isa_ok( $sm, 'Algorithm::Evolutionary::Op::Permutation' );
 
 for ( 1..100 ) {
   $result = $sm->apply( $indi );
@@ -42,11 +42,4 @@ for ( 1..100 ) {
 
 }
 
-$indi->{'_str'} = 'BBBB';
-$sm = new Algorithm::Evolutionary::Op::String_Mutation;
-for ( 1..100 ) {
-  $result = $sm->apply( $indi );
-  isnt( $result->{'_str'}, $indi->{'_str'}, 
-	$result->{'_str'}." differs from ". $indi->{'_str'});
 
-}
