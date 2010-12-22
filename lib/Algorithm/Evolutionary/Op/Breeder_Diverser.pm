@@ -3,14 +3,14 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Breeder - Even more customizable single generation for an evolutionary algorithm.
+Algorithm::Evolutionary::Op::Breeder_Diverser - Even more customizable single generation for an evolutionary algorithm.
                  
 =head1 SYNOPSIS
 
     use Algorithm::Evolutionary qw( Individual::BitString 
     Op::Mutation Op::Crossover
     Op::RouletteWheel
-    Op::Breeder);
+    Op::Breeder_Diverser);
 
     use Algorithm::Evolutionary::Utils qw(average);
 
@@ -30,7 +30,7 @@ Algorithm::Evolutionary::Op::Breeder - Even more customizable single generation 
     my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $population_size; #One of the possible selectors
 
     my $generation = 
-      new Algorithm::Evolutionary::Op::Breeder( $selector, [$m, $c] );
+      new Algorithm::Evolutionary::Op::Breeder_Diverser( $selector, [$m, $c] );
 
     my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
     my $bestIndi = $sortPop[0];
@@ -43,13 +43,16 @@ L<Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Breeder part of the evolutionary algorithm; takes a population and returns another created from the first
+Breeder part of the evolutionary algorithm; takes a population and
+returns another created from the first. Different from
+L<Algorithm::Evolutionary::Op::Breeder>: tries to avoid crossover
+among the same individuals. 
 
 =head1 METHODS
 
 =cut
 
-package Algorithm::Evolutionary::Op::Breeder;
+package Algorithm::Evolutionary::Op::Breeder_Diverser;
 
 use lib qw(../../..);
 
@@ -114,15 +117,27 @@ sub apply ($) {
 	my @offspring;
 	my $selectedOp = $ops[ $opWheel->spin()];
 #	  print $selectedOp->asXML;
-	for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
+	if ( $selectedOp->arity() == 1 ) {
+	  my $chosen = $genitors[ rand( @genitors )];
+	  push( @offspring, $chosen->clone() );
+	} elsif( $selectedOp->arity() == 2 ) {
+	  my $chosen = $genitors[ rand( @genitors )];
+	  push( @offspring, $chosen->clone() );
+	  my $another_one;
+	  do {
+	    $another_one = $genitors[ rand( @genitors )];
+	  } until ( $another_one->{'_str'} ne  $chosen->{'_str'} );
+	  push( @offspring, $another_one );
+	} else {
+	  for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
 	    my $chosen = $genitors[ rand( @genitors )];
-#		print "Elegido ", $chosen->asString(), "\n";
 	    push( @offspring, $chosen->clone() );
+	  }
 	}
 	my $mutante = $selectedOp->apply( @offspring );
+#	print join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutante->{'_str'}, "\n";
 	push( @new_population, $mutante );
-    }
-    
+      }
     return \@new_population;
 }
 
@@ -143,8 +158,8 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/20 16:01:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Attic/Breeder-Diverser.pm,v 1.1 2010/12/20 16:01:38 jmerelo Exp $ 
+  CVS Info: $Date: 2010/12/22 14:23:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.1 2010/12/22 14:23:18 jmerelo Exp $ 
   $Author: jmerelo $ 
   $Revision: 1.1 $
 
