@@ -175,7 +175,7 @@ href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
 submitted bugs include <a
-href='http://barbacana.net'>jamarier</a> and Mike Gajewski. <a href='http://alexm.org'>Alex Muntada</a>,
+href='http://barbacana.net'>jamarier</a>, <a href='http://leandrohermida.com'>Leandro Hermida</a>, Jérôme Quélin  and Mike Gajewski. <a href='http://alexm.org'>Alex Muntada</a>,
 from the <a href='http://barcelona.pm.org/'>Barcelona Perl
 Mongers</a>, helped me solve a problem with the Makefile.PL. Bug reports (and patches), requests and any kind 
 of comment are welcome.
@@ -236,9 +236,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/19 21:39:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.15 2010/12/19 21:39:12 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/13 18:01:04 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.16 2011/02/13 18:01:04 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.15 $
+  $Revision: 3.16 $
 
 =cut
