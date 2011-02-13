@@ -27,7 +27,7 @@ WriteMakefile(
 	'Bit::Vector' => 0,
 	'Memoize' => 0, 
 	'Time::HiRes' => 0,
-	'Clone' => 0,
+	'Clone' => 0.31,
 	'GD' => 2.17,   
 	YAML => 0,
 	'Object::Array' => 0,
@@ -64,4 +64,4 @@ examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 MAKE_FRAG
 }
 
-#$Revision: 3.4 $
+#$Revision: 3.5 $
