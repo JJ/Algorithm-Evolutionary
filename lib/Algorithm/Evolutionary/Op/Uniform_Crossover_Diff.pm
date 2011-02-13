@@ -43,7 +43,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover_Diff;
 
 use lib qw( ../../.. );
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -52,6 +52,7 @@ use base 'Algorithm::Evolutionary::Op::Crossover';
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
 our $ARITY = 2;
+
 =head2 new( [$options_hash] [, $operation_priority] )
 
 Creates a new n-point crossover operator, with 2 as the default number
@@ -105,7 +106,7 @@ sub  apply ($$){
     }
   }
   $victim->Fitness( undef );
-  return $victim; #As a warning that you should not expect anything
+  return $victim; 
 }
 
 =head1 Copyright
@@ -113,10 +114,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/20 16:56:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.2 2010/12/20 16:56:46 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/13 11:02:11 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.3 2011/02/13 11:02:11 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut

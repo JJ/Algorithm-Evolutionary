@@ -9,7 +9,7 @@ use strict;
 
 use lib qw( ../../lib ../lib lib ); #Just in case we are testing it in-place
 
-use Test::More tests => 303;
+use Test::More;
 
 BEGIN { 
   use_ok( 'Algorithm::Evolutionary::Op::Permutation' );
@@ -42,4 +42,4 @@ for ( 1..100 ) {
 
 }
 
-
+done_testing();
