@@ -1,5 +1,14 @@
-2010-12-18  Juan J. Merelo Guervós  <jmerelo@localhost.localdomain>
+2011-02-13  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
 
+	* MANIFEST: Added Breeder_Diverser (with test) to the distro, with
+	Uniform_Crossover_Diff. 
+
+	* lib/Algorithm/Evolutionary.pm (import): Fixed upstream bug in
+	Clone::Fast for Perl 5.12 by changing it by Clone. Thanks to
+	Leandro Hermida and Jérôme Quelin for reports. 
+
+2010-12-18  Juan J. Merelo Guervós  <jmerelo@localhost.localdomain>
+ 
 	* lib/Algorithm/Evolutionary.pm (import): Starting 0.76 with pod
 	editions .
 

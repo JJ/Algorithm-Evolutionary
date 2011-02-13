@@ -14,6 +14,7 @@ lib/Algorithm/Evolutionary/Wheel.pm
 lib/Algorithm/Evolutionary/Op/Animated_GIF_Output.pm
 lib/Algorithm/Evolutionary/Op/ArithCrossover.pm
 lib/Algorithm/Evolutionary/Op/Base.pm
+lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm
 lib/Algorithm/Evolutionary/Op/Breeder.pm
 lib/Algorithm/Evolutionary/Op/Bitflip.pm
 lib/Algorithm/Evolutionary/Op/CanonicalGA.pm
@@ -54,8 +55,10 @@ lib/Algorithm/Evolutionary/Op/Storing.pm
 lib/Algorithm/Evolutionary/Op/StringRand.pm
 lib/Algorithm/Evolutionary/Op/String_Mutation.pm
 lib/Algorithm/Evolutionary/Op/TournamentSelect.pm
+lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm
 lib/Algorithm/Evolutionary/Op/TreeMutation.pm
 lib/Algorithm/Evolutionary/Op/VectorCrossover.pm
+lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm
 lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm
 lib/Algorithm/Evolutionary/Individual/Any.pm
 lib/Algorithm/Evolutionary/Individual/Base.pm
@@ -105,7 +108,10 @@ t/0403-uxover.t
 t/0404-quadxover.t
 t/0404-string-mutation.t
 t/0406-quadxover-diff.t
+t/04067-uxover-diff.t
+t/0407-tournament.t
 t/0444-stored.t
+t/0499-breeder-diverser.t
 t/0499-breeder.t
 t/0500-generation-skel.t
 t/0500-replace.t
