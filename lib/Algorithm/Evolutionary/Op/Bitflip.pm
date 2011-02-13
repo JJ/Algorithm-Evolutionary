@@ -36,10 +36,10 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::Bitflip;
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.3 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
-use Clone::Fast qw(clone);
+use Clone qw(clone);
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -113,10 +113,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 3.2 2009/11/17 19:19:41 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/13 17:45:53 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Bitflip.pm,v 3.3 2011/02/13 17:45:53 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
