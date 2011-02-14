@@ -50,10 +50,9 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our ($VERSION) = ( '$Revision: 3.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
-use Clone::Fast qw(clone);
 
 use Algorithm::Evolutionary::Wheel;
 use Algorithm::Evolutionary::Op::Bitflip;
@@ -190,10 +189,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/01/16 11:32:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.3 2010/01/16 11:32:15 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/14 06:55:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.4 2011/02/14 06:55:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut
