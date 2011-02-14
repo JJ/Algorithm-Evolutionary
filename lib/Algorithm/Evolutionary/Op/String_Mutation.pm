@@ -36,10 +36,9 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::String_Mutation;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
-use Clone::Fast qw(clone);
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -86,7 +85,6 @@ Applies mutation operator to a "Chromosome", a string, really.
 sub apply ($;$){
   my $self = shift;
   my $arg = shift || croak "No victim here!";
-#  my $victim = clone($arg);
   my $victim = $arg->clone();
   my $size =  length($victim->{'_str'});
 
@@ -114,10 +112,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/09 06:53:02 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.4 2010/12/09 06:53:02 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/14 06:55:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.5 2011/02/14 06:55:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut

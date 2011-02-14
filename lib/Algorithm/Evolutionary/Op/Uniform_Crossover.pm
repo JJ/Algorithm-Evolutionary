@@ -42,9 +42,9 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
 
-use Clone::Fast qw(clone);
+use Clone qw(clone);
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
@@ -107,10 +107,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/19 21:39:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 3.1 2010/12/19 21:39:12 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/14 06:55:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover.pm,v 3.2 2011/02/14 06:55:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

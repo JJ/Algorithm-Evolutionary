@@ -47,9 +47,11 @@ would be  L<Algorithm::Evolutionary::Op::VectorCrossover|Op::VectorCrossover>
 
 package Algorithm::Evolutionary::Op::Gene_Boundary_Crossover;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+use lib qw(../../..);
 
-use Clone::Fast qw(clone);
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+
+use Clone qw(clone);
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
@@ -139,10 +141,10 @@ sub  apply ($$$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/03/16 18:39:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Gene_Boundary_Crossover.pm,v 3.1 2010/03/16 18:39:40 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/14 06:55:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Gene_Boundary_Crossover.pm,v 3.2 2011/02/14 06:55:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

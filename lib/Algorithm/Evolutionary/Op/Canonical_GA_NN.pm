@@ -45,11 +45,10 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.6 $ =~ /(\d+)\.(\d+)/g; 
 
 
 use Carp;
-use Clone::Fast qw(clone);
 
 use Algorithm::Evolutionary qw(Wheel
 			       Op::Bitflip
@@ -151,10 +150,10 @@ Probably you will also be able to find a
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/19 21:39:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.5 2010/12/19 21:39:12 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/14 06:55:36 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Canonical_GA_NN.pm,v 3.6 2011/02/14 06:55:36 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.5 $
+  $Revision: 3.6 $
   $Name $
 
 =cut
