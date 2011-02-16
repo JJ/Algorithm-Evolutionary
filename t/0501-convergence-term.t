@@ -5,7 +5,7 @@ use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Op::Convergence_Terminator;
 use Algorithm::Evolutionary::Individual::String;
-use Clone::Fast qw( clone );
+use Clone qw( clone );
 
 #########################
 
@@ -37,10 +37,10 @@ ok( $xml, $newnct->asXML() );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/25 10:16:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0501-convergence-term.t,v 3.1 2009/07/25 10:16:49 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/16 10:11:39 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0501-convergence-term.t,v 3.2 2011/02/16 10:11:39 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
