@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.76_1'; # But I need a GP module!
+our $VERSION = '0.76_2'; # But I need a GP module!
 
 # Preloaded methods go here.
 
@@ -236,9 +236,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/14 06:55:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.17 2011/02/14 06:55:36 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/16 10:11:39 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.18 2011/02/16 10:11:39 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.17 $
+  $Revision: 3.18 $
 
 =cut
