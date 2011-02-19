@@ -42,4 +42,22 @@ for ( 1..100 ) {
 
 }
 
+$sm = new Algorithm::Evolutionary::Op::Permutation 23;
+my @strings = qw( AABA AAHA AABB AABC AABBA );
+
+for my $s (@strings ) {
+  $indi = Algorithm::Evolutionary::Individual::String->fromString( $s );
+
+  for ( 1..100 ) {
+    $result = $sm->apply( $indi );
+    isnt( $result->{'_str'}, $indi->{'_str'}, 
+	  $result->{'_str'}." differs from ". $indi->{'_str'});
+    
+  }
+}
+
+$indi = Algorithm::Evolutionary::Individual::String->fromString( "AAAA" );
+$result = $sm->apply( $indi );
+is( $result->{'_str'}, $indi->{'_str'}, 
+    "What else?");
 done_testing();
