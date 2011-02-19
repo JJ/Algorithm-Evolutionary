@@ -3,14 +3,15 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Breeder_Diverser - Even more customizable single generation for an evolutionary algorithm.
-                 
+Algorithm::Evolutionary::Op::Breeder_Diverser - Even more customizable
+single generation for an evolutionary algorithm. 
+
 =head1 SYNOPSIS
 
     use Algorithm::Evolutionary qw( Individual::BitString 
-    Op::Mutation Op::Crossover
-    Op::RouletteWheel
-    Op::Breeder_Diverser);
+      Op::Mutation Op::Crossover
+      Op::RouletteWheel
+      Op::Breeder_Diverser);
 
     use Algorithm::Evolutionary::Utils qw(average);
 
@@ -56,7 +57,7 @@ package Algorithm::Evolutionary::Op::Breeder_Diverser;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -116,26 +117,24 @@ sub apply ($) {
     for ( my $i = 0; $i < $output_size; $i++ ) {
 	my @offspring;
 	my $selectedOp = $ops[ $opWheel->spin()];
-#	  print $selectedOp->asXML;
-	if ( $selectedOp->arity() == 1 ) {
-	  my $chosen = $genitors[ rand( @genitors )];
-	  push( @offspring, $chosen->clone() );
-	} elsif( $selectedOp->arity() == 2 ) {
-	  my $chosen = $genitors[ rand( @genitors )];
-	  push( @offspring, $chosen->clone() );
+	my $chosen = $genitors[ $i % @genitors]; #Chosen in turn
+	push( @offspring, $chosen->clone() );
+	if( $selectedOp->arity() == 2 ) {
 	  my $another_one;
 	  do {
 	    $another_one = $genitors[ rand( @genitors )];
 	  } until ( $another_one->{'_str'} ne  $chosen->{'_str'} );
 	  push( @offspring, $another_one );
-	} else {
-	  for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
+	} elsif ( $selectedOp->arity() > 2 ) {
+	  for ( my $j = 1; $j < $selectedOp->arity(); $j ++ ) {
 	    my $chosen = $genitors[ rand( @genitors )];
 	    push( @offspring, $chosen->clone() );
 	  }
 	}
 	my $mutante = $selectedOp->apply( @offspring );
-#	print join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutante->{'_str'}, "\n";
+	if ( $mutante->{'_str'} eq $offspring[0]->{'_str'} ) {
+	  print ref $selectedOp, " : ", join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutante->{'_str'}, "\n";
+	}
 	push( @new_population, $mutante );
       }
     return \@new_population;
@@ -158,10 +157,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/22 14:23:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.1 2010/12/22 14:23:18 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/19 17:59:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.2 2011/02/19 17:59:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
 
 =cut
 

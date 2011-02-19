@@ -1,3 +1,9 @@
+2011-02-19  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
+
+	* lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm (apply):
+	Changed to make diversification higher: offspring is chosen in
+	turn, instead of chosing it randomly, which avoids repeating.
+
 2011-02-16  Juan J. Merelo  <jmerelo@sheldon>
 
 	* lib/Algorithm/Evolutionary.pm: Upgraded to 0.76_2 by eliminating a useless test and changing Clone::Fast to Clone in another test 
