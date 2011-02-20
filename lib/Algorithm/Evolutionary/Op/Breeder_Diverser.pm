@@ -2,7 +2,6 @@ use strict;
 use warnings;
 
 =head1 NAME
-
 Algorithm::Evolutionary::Op::Breeder_Diverser - Even more customizable
 single generation for an evolutionary algorithm. 
 
@@ -57,7 +56,7 @@ package Algorithm::Evolutionary::Op::Breeder_Diverser;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -132,9 +131,7 @@ sub apply ($) {
 	  }
 	}
 	my $mutante = $selectedOp->apply( @offspring );
-	if ( $mutante->{'_str'} eq $offspring[0]->{'_str'} ) {
-	  print ref $selectedOp, " : ", join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutante->{'_str'}, "\n";
-	}
+	print ref $selectedOp, " : ", join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutante->{'_str'}, "\n";
 	push( @new_population, $mutante );
       }
     return \@new_population;
@@ -157,10 +154,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/19 17:59:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.2 2011/02/19 17:59:32 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/20 08:32:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.3 2011/02/20 08:32:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
 
 =cut
 
