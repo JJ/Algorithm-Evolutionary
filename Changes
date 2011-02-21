@@ -1,5 +1,9 @@
 2011-02-20  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
 
+	* lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm (apply): Made
+	even more diverse by not inserting the new individual if it is the
+	same as the parent; refactored also to best practices.
+
 	* lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm (apply):
 	Changed to leave at least one difference without change
 
