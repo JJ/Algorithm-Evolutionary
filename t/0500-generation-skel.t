@@ -12,7 +12,8 @@ use Algorithm::Evolutionary qw( Individual::BitString
 				Op::Mutation Op::Crossover
 				Op::RouletteWheel
 				Fitness::ONEMAX Op::Generation_Skeleton
-				Op::Replace_Worst);
+				Op::Replace_Worst
+				Op::Replace_Different);
 
 use Algorithm::Evolutionary::Utils qw(average);
 
@@ -38,20 +39,20 @@ my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $population_size; 
 my $generation = 
   new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate );
 
-my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
-my $bestIndi = $sortPop[0];
-my $previous_average = average( \@sortPop );
-$generation->apply( \@sortPop );
-ok( $bestIndi->Fitness() <= $sortPop[0]->Fitness(), 1 ); #fitness
+my @sorted_pop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
+my $bestIndi = $sorted_pop[0];
+my $previous_average = average( \@sorted_pop );
+$generation->apply( \@sorted_pop );
+ok( $bestIndi->Fitness() <= $sorted_pop[0]->Fitness(), 1 ); #fitness
                                                          #improves,
                                                          #but not
                                                          #always 
 #This should have improved...
 do {
-  $generation->apply( \@sortPop );
-} until ( $previous_average < average( \@sortPop)); #It eventually improves
+  $generation->apply( \@sorted_pop );
+} until ( $previous_average < average( \@sorted_pop)); #It eventually improves
 
-my $this_average = average( \@sortPop );
+my $this_average = average( \@sorted_pop );
 ok( $previous_average < $this_average , 1 );
 
 my $replacer = new Algorithm::Evolutionary::Op::Replace_Worst; 
@@ -60,20 +61,31 @@ my $new_generation =
   new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
 
 do {
-  $new_generation->apply( \@sortPop );
-} until ( $this_average < average( \@sortPop)); #It eventually improves
+  $new_generation->apply( \@sorted_pop );
+} until ( $this_average < average( \@sorted_pop)); #It eventually improves
 
-ok( $this_average < average( \@sortPop), 1 );
+ok( $this_average < average( \@sorted_pop), 1 );
+
+$replacer = new Algorithm::Evolutionary::Op::Replace_Different; 
+
+$new_generation = 
+  new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
+
+do {
+  $new_generation->apply( \@sorted_pop );
+} until ( $this_average < average( \@sorted_pop)); #It eventually improves
+
+ok( $this_average < average( \@sorted_pop), 1 );
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/21 16:53:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 3.1 2011/02/21 16:53:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
