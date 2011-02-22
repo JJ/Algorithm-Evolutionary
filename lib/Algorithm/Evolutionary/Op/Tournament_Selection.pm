@@ -33,13 +33,9 @@ the best.
 package Algorithm::Evolutionary::Op::Tournament_Selection;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
-
-# Class-wide constants
-#our $APPLIESTO =  'ARRAY';
-#our $ARITY = 2; #Needs an array for input, a reference for output
 
 =head2 new( $output_population_size, $tournament_size )
 
@@ -90,8 +86,8 @@ selecting a pool of individuals
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/16 18:57:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm,v 1.1 2010/12/16 18:57:41 jmerelo Exp $ 
+  CVS Info: $Date: 2011/02/22 06:58:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm,v 1.2 2011/02/22 06:58:15 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
