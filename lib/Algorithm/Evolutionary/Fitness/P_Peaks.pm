@@ -15,7 +15,22 @@ Algorithm::Evolutionary::Fitness::P_Peaks - P Peaks problem generator
 
 =head1 DESCRIPTION
 
-P_Peaks fitness function; optimizes the distance to the closest in a series of peaks
+P_Peaks fitness function; optimizes the distance to the closest in a
+series of peaks. 
+The P-Peaks problem was proposed by Kennedy and Spears in 
+
+  @conference{kennedy1998matching,
+  title={{Matching algorithms to problems: an experimental test of the particle swarm and some genetic algorithms on the multimodal problem generator}},
+  author={Kennedy, J. and Spears, W.M.},
+  booktitle={Evolutionary Computation Proceedings, 1998. IEEE World Congress on Computational Intelligence., The 1998 IEEE International Conference on},
+  pages={78--83},
+  isbn={0780348699},
+  year={1998},
+  organization={IEEE}
+ }
+
+And the optimum is 1.0. By default, result is cached, so be careful
+when working with long strings and/or big populations
 
 =head1 METHODS
 
@@ -23,7 +38,7 @@ P_Peaks fitness function; optimizes the distance to the closest in a series of p
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) =  sprintf "%d.%d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g;
 
 use String::Random;
 use Carp;
@@ -35,7 +50,8 @@ use Algorithm::Evolutionary::Utils qw(hamming);
 
 =head2 new( $peaks, $bits )
 
-    Creates a new instance of the problem, with the said number of bits and peaks
+Creates a new instance of the problem, with the said number of bits
+and peaks. 
 
 =cut 
 
@@ -63,7 +79,7 @@ sub new {
 
 =head2 random_string()
 
-Returns random string in the same style than the peaks. Useful for testing
+Returns random string in the same style than the peaks. Useful for testing.
 
 =cut
 
@@ -85,7 +101,7 @@ sub _really_apply {
 
 =head2 p_peaks( $string )
 
-Applies the instantiated problem to a string
+Returns the distance to the closest bitstring
 
 =cut
 
@@ -109,10 +125,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2011/04/08 06:43:05 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 3.1 2011/04/08 06:43:05 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
