@@ -5,7 +5,7 @@ use strict;
 use warnings;
 
 use Test;
-BEGIN { plan tests => 3 };
+BEGIN { plan tests => 4 };
 use lib qw( lib ../lib ../../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary qw( Individual::BitString 
@@ -82,10 +82,10 @@ ok( $this_average < average( \@sorted_pop), 1 );
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/21 16:53:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 3.1 2011/02/21 16:53:20 jmerelo Exp $ 
+  CVS Info: $Date: 2011/08/12 09:08:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0500-generation-skel.t,v 3.2 2011/08/12 09:08:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
