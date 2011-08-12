@@ -3,14 +3,14 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Quad_Crossover_Diff - Uniform crossover, but interchanges only those atoms that are different
+Algorithm::Evolutionary::Op::Uniform_Crossover_Diff - Uniform crossover, but interchanges only those atoms that are different
 
                  
 
 =head1 SYNOPSIS
 
   my $xmlStr3=<<EOC;
-  <op name='Quad_Crossover_Diff' type='binary' rate='1'>
+  <op name='Uniform_Crossover_Diff' type='binary' rate='1'>
     <param name='numPoints' value='2' /> #Max is 2, anyways
   </op>
   EOC
@@ -24,7 +24,7 @@ Algorithm::Evolutionary::Op::Quad_Crossover_Diff - Uniform crossover, but interc
   my $indi3 = $indi->clone(); #Operands are modified, so better to clone them
   $op3->apply( $indi2, $indi3 );
 
-  my $op4 = new Algorithm::Evolutionary::Op::Quad_Crossover_Diff 1; #Quad_Crossover_Diff with 1 crossover points
+  my $op4 = new Algorithm::Evolutionary::Op::Uniform_Crossover_Diff 1; #Uniform_Crossover_Diff with 1 crossover points
 
 =head1 Base Class
 
@@ -32,8 +32,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Crossover operator for a GA, takes args by reference and issues two
-children from two parents
+Crossover operator for a GA acting only on those bits that are different.
 
 =head1 METHODS
 
@@ -43,7 +42,7 @@ package Algorithm::Evolutionary::Op::Uniform_Crossover_Diff;
 
 use lib qw( ../../.. );
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.4 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 
@@ -111,10 +110,10 @@ sub  apply ($$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/20 08:32:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.4 2011/02/20 08:32:15 jmerelo Exp $ 
+  CVS Info: $Date: 2011/08/12 09:08:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm,v 3.5 2011/08/12 09:08:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut
