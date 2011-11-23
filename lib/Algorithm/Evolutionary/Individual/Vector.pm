@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Individual::Vector;
 use Carp;
 use Exporter;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ );
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -258,7 +258,7 @@ sub clone {
 
 =head2 asString()
 
-Prints it, including fitness. OK, this is a bit confusing
+Returns a string with chromosome plus fitness. OK, this is a bit confusing
 
 =cut
 
@@ -266,7 +266,7 @@ sub asString {
   my $self = shift;
   my $str = $self->as_string();
   if ( defined $self->{_fitness} ) {
-	$str .=$self->{_fitness};
+	$str .=", " . $self->{_fitness};
   }
   return $str;
 }
@@ -317,9 +317,9 @@ sub Chrom {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
+  CVS Info: $Date: 2011/11/23 10:59:47 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Vector.pm,v 3.2 2011/11/23 10:59:47 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
