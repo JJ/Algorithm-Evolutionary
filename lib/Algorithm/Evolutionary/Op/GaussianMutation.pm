@@ -39,7 +39,7 @@ Mutation operator for a GA: applies gaussian mutation to a number
 
 package Algorithm::Evolutionary::Op::GaussianMutation;
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
 
 use Carp;
 use Math::Random;
@@ -104,8 +104,8 @@ sub apply ($$) {
   my $arg = shift || croak "No victim here!";
   croak "Incorrect type".(ref $arg) if !$arg->{_array};
   my $victim = clone($arg);
-#  croak "Incorrect type ".(ref $victim) if !$self->check($victim);  
-  my @deltas = random_normal( @{$victim->{_array}} + 1, $self->{_avg}, $self->{_stddev} );
+  my @deltas = random_normal( @{$victim->{_array}} + 1,  #+1 is needed, returns empty if not
+			      $self->{_avg}, $self->{_stddev} );
   for ( @{$victim->{_array}} ) {
       my $adjust = pop @deltas;
       $_ += $adjust;
@@ -129,10 +129,10 @@ This file has been improved with input from Christoph Meißner.
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/11/14 09:18:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 3.2 2011/11/14 09:18:27 jmerelo Exp $ 
+  CVS Info: $Date: 2011/11/23 11:10:10 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 3.3 2011/11/23 11:10:10 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
