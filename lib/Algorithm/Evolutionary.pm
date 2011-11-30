@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.76_2'; # But I need a GP module!
+our $VERSION = '0.77'; # But I still need a GP module!
 
 # Preloaded methods go here.
 
@@ -101,7 +101,7 @@ research, I would be very grateful if you quoted papers such as these
 =end html
 
  @article {springerlink:10.1007/s00500-009-0504-3,
-   author = {Merelo Guervós, Juan and Castillo, Pedro and Alba, Enrique},
+   author = {Merelo Guervós, Juan-Julián and Castillo, Pedro and Alba, Enrique},
    affiliation = {Universidad de Granada Depto. Arquitectura y Tecnología de Computadores, ETS Ingenierías Informática y Telecomunicaciones Granada Spain},
    title = {Algorithm::Evolutionary, a flexible Perl module for evolutionary computation},
    journal = {Soft Computing - A Fusion of Foundations, Methodologies and Applications},
@@ -215,7 +215,8 @@ Some other examples are installed: check out L<tide_bitstring.pl>,
 
 =item L<Algorithm::Evolutionary::Op::CanonicalGA>.
 
-=item L<XML> for an explanation of the XML format used.
+=item L<XML> for an explanation of the XML format used, although it's
+now rather obsolete. 
 
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
 evolutionary algorithms with anything else easily.
@@ -236,9 +237,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/16 10:11:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.18 2011/02/16 10:11:39 jmerelo Exp $ 
+  CVS Info: $Date: 2011/11/30 17:33:25 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.19 2011/11/30 17:33:25 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.18 $
+  $Revision: 3.19 $
 
 =cut

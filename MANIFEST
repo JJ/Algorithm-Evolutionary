@@ -47,6 +47,7 @@ lib/Algorithm/Evolutionary/Op/Permutation.pm
 lib/Algorithm/Evolutionary/Op/Population_Output.pm
 lib/Algorithm/Evolutionary/Op/QuadXOver.pm
 lib/Algorithm/Evolutionary/Op/Quad_Crossover_Diff.pm
+lib/Algorithm/Evolutionary/Op/Replace_Different.pm
 lib/Algorithm/Evolutionary/Op/Replace_Worst.pm
 lib/Algorithm/Evolutionary/Op/RouletteWheel.pm
 lib/Algorithm/Evolutionary/Op/Selector.pm
@@ -89,7 +90,6 @@ t/0102-any.t
 t/0200-run-ga.t
 t/0200-run-cga.t
 t/0200-run-cga_nn.t
-t/p_peaks.yaml
 t/0300-ppeaks.t
 t/0301-wppeaks.t
 t/0302-knapsack.t
@@ -107,6 +107,7 @@ t/0402-bitflip.t
 t/0403-uxover.t
 t/0404-quadxover.t
 t/0404-string-mutation.t
+t/0405-permutation.t
 t/0406-quadxover-diff.t
 t/04067-uxover-diff.t
 t/0407-tournament.t
@@ -129,6 +130,7 @@ t/GenerationalTerm.t
 t/individuals.t
 t/NoChangeTerm.t
 t/ops.t
+t/p_peaks.yaml
 t/pod-coverage.t
 t/pod.t
 t/run.t
