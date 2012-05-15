@@ -11,28 +11,28 @@ WriteMakefile(
     LICENSE => 'gpl',
     PL_FILES            => {},
     PREREQ_PM => {
-	'Test::More' => 0,
-	'Test::Pod' => 0,
-	'version'    => 0,
-	constant => 0,
-	'Test::Simple' => 0.44,
-	'XML::Parser' => 2.40,
-	'XML::Parser::Style::EasyTree' => 0,
-	'Math::Random' => 0.63,
-	'Tree::DAG_Node' => 1.04,
-	'B::Deparse' => 0.56,
-	'Algorithm::Permute' => 0.01,
-	'XML::LibXML' => 1.50,
-	'String::Random' => 0,
-	'Bit::Vector' => 0,
-	'Memoize' => 0, 
-	'Time::HiRes' => 0,
-	'Clone' => 0.31,
-	'GD' => 2.17,   
-	YAML => 0,
-	'Object::Array' => 0,
-	'Statistics::Basic' => 1.6,
-	'Pod::Escapes'	=> '0' #Dependence from Test::Pod, but produces failure in 1 platform
+		  'B::Deparse' => 0.56,
+		  'Bit::Vector' => 0,
+		  'Clone' => 0.31,
+		  constant => 0,
+		  'Test::More' => 0,
+		  'Test::Pod' => 0,
+		  'Test::Simple' => 0.44,
+		  'version'    => 0,
+		  'XML::Parser' => 2.40,
+		  'XML::Parser::Style::EasyTree' => 0,
+		  'Math::Random' => 0.63,
+		  'Tree::DAG_Node' => 1.04,
+		  'Algorithm::Permute' => 0.01,
+		  'XML::LibXML' => 1.50,
+		  'String::Random' => 0,
+		  'Memoize' => 0, 
+		  'Time::HiRes' => 0,
+		  'GD' => 2.17,   
+		  'Object::Array' => 0,
+		  'Statistics::Basic' => 1.6,
+		  'Pod::Escapes'	=> '0', #Dependence from Test::Pod, but produces failure in 1 platform
+		  YAML => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
     clean               => { FILES => 'Algorithm-Evolutionary-*' }
@@ -64,4 +64,4 @@ examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 MAKE_FRAG
 }
 
-#$Revision: 3.5 $
+#$Revision: 3.6 $

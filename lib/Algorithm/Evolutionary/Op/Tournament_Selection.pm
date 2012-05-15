@@ -22,8 +22,7 @@ L<Algorithm::Evolutionary::Op::Selector>
 
 One of the possible selectors used for selecting the pool of individuals
 that are going to be the parents of the following generation. Takes a
-set of individuals randomly out of the population, and select a few of 
-the best.
+set of individuals randomly out of the population, and select  the best. 
 
 =head1 METHODS
 
@@ -33,7 +32,7 @@ the best.
 package Algorithm::Evolutionary::Op::Tournament_Selection;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -65,13 +64,15 @@ sub apply ($$) {
   my @output;
   for ( my $i = 0; $i < $output_size; $i++ ) {
     #Randomly select a few guys
-    my @tournament;
-    for ( my $j = 0; $j < $self->{'_tournament_size'}; $j++ ) {
-      push( @tournament, $pop->[ rand( @$pop ) ]);
+    my $best = $pop->[ rand( @$pop ) ];
+    for ( my $j = 1; $j < $self->{'_tournament_size'}; $j++ ) {
+      my $this_one = $pop->[ rand( @$pop ) ];
+      if ( $this_one->Fitness() > $best->Fitness() ) {
+	$best = $this_one;
+      }
     }
     #Sort by fitness
-    my @sortedT = sort { $b->Fitness() <=> $a->Fitness(); } @tournament;
-    push @output, $sortedT[0];
+    push @output, $best;
   }
   return @output;
 }
@@ -86,8 +87,8 @@ selecting a pool of individuals
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/22 06:58:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm,v 1.2 2011/02/22 06:58:15 jmerelo Exp $ 
+  CVS Info: $Date: 2012/05/15 11:58:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm,v 1.3 2012/05/15 11:58:01 jmerelo Exp $ 
   $Author: jmerelo $ 
 
 =cut
