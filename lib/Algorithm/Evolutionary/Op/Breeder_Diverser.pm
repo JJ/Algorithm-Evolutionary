@@ -2,8 +2,7 @@ use strict;
 use warnings;
 
 =head1 NAME
-Algorithm::Evolutionary::Op::Breeder_Diverser - Even more customizable
-single generation for an evolutionary algorithm. 
+Algorithm::Evolutionary::Op::Breeder_Diverser - Like Breeder, only it tries to cross only individuals that are different 
 
 =head1 SYNOPSIS
 
@@ -46,7 +45,10 @@ L<Algorithm::Evolutionary::Op::Base>
 Breeder part of the evolutionary algorithm; takes a population and
 returns another created from the first. Different from
 L<Algorithm::Evolutionary::Op::Breeder>: tries to avoid crossover
-among the same individuals. 
+among the same individuals and also re-creating an individual already
+in the pool. In that sense it "diverses", tries to diversify the
+population. In general, it works better in environments where high
+diversity is needed (like, for instance, in L<Algorithm::MasterMind>.
 
 =head1 METHODS
 
@@ -56,7 +58,7 @@ package Algorithm::Evolutionary::Op::Breeder_Diverser;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -140,12 +142,9 @@ sub apply ($) {
       }
       if ( !$equal ) {
 	push( @new_population, $mutant );
-      } # else {
-      # 	print ref $selected_op, " : ", join(" - ", map( $_->{'_str'}, @offspring ) ), "=> ", $mutant->{'_str'}, " E $equal \n";
-      # }
+      } 
 
     }
-#    print "Generated $i\n";
     return \@new_population;
 }
 
@@ -159,6 +158,10 @@ More or less in the same ballpark, alternatives to this one
 
 L<Algorithm::Evolutionary::Op::GeneralGeneration>
 
+=item * 
+
+L<Algorithm::Evolutionary::Op::Breeder>
+
 =back
 
 =head1 Copyright
@@ -166,10 +169,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/21 07:02:16 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.4 2011/02/21 07:02:16 jmerelo Exp $ 
+  CVS Info: $Date: 2012/05/15 11:58:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.5 2012/05/15 11:58:01 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.4 $
+  $Revision: 1.5 $
 
 =cut
 

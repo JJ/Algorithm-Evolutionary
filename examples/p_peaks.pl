@@ -25,6 +25,9 @@ Tide , and outputs the x and y coordinates, along with fitness. Best
 fitness is close to 1. Around 50 generations should be enough, but
 default is population and number of generations equal to 100.
 
+This script includes also a test of the consensus function (shown as "C" in output),
+which is used in some types of algorithms. 
+
 =cut
 
 use warnings;
@@ -119,10 +122,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
+  CVS Info: $Date: 2012/05/15 11:58:01 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/p_peaks.pl,v 3.1 2012/05/15 11:58:01 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
