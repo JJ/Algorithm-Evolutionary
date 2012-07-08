@@ -31,7 +31,7 @@ use lib qw( ../../../../lib );
 
 package Algorithm::Evolutionary::Fitness::wP_Peaks;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use String::Random;
 use Algorithm::Evolutionary::Utils qw(hamming);
@@ -65,7 +65,7 @@ sub new {
   my $generator = new String::Random;
   my @peaks;
   my $regex = "\[01\]{$bits}";
-  for my $s qw( bits generator regex ) {
+  for my $s ( qw( bits generator regex ) ) {
       eval "\$self->{'$s'} = \$$s";
   }
   while ( @weights ) {
@@ -122,10 +122,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/12/11 12:34:37 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 3.1 2009/12/11 12:34:37 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/08 16:37:25 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/wP_Peaks.pm,v 3.2 2012/07/08 16:37:25 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut

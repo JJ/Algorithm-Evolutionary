@@ -38,7 +38,7 @@ when working with long strings and/or big populations
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-our ($VERSION) =  sprintf "%d.%d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g;
+our ($VERSION) =  sprintf "%d.%d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g;
 
 use String::Random;
 use Carp;
@@ -65,7 +65,7 @@ sub new {
   my $generator = new String::Random;
   my @peaks;
   my $regex = "\[01\]{$bits}";
-  for my $s qw( bits generator regex ) {
+  for my $s ( qw( bits generator regex ) ) {
       eval "\$self->{'$s'} = \$$s";
   }
   for my $p ( 1..$peaks ) {
@@ -125,10 +125,10 @@ sub p_peaks {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/04/08 06:43:05 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 3.1 2011/04/08 06:43:05 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/08 16:37:25 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 3.2 2012/07/08 16:37:25 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
   $Name $
 
 =cut
