@@ -1,3 +1,18 @@
+2012-07-08  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
+
+	* MANIFEST: Adding missint test files
+
+	* lib/Algorithm/Evolutionary.pm: Starting a maintenance version,
+	which will include the bugs fixed since last summer. 
+	Since there's a bug fix, I think I'm going for full 0.78...
+
+2012-05-21  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
+
+	* lib/Algorithm/Evolutionary/Op/Uniform_Crossover_Diff.pm (apply):
+	Fixing potentially evil bug: this operator shouldn't, but it
+	modified one of the two individuals under crossover, making
+	mutation and crossover rate higher... 
+
 2012-04-18  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
 
 	* lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm (apply):

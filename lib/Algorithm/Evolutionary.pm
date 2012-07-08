@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.77'; # But I still need a GP module!
+our $VERSION = '0.78'; # Another year in paradise
 
 # Preloaded methods go here.
 
@@ -53,13 +53,13 @@ evolutionary computation in Perl. Why would anyone want to do that
 escapes my knowledge, but, in fact, we have found it quite useful for
 our own purposes. Same as Perl itself.
 
-The design principle of Algorithm::Evolutionary is I<flexibility>: it
-should be very easy to extend using this library, and it should be
+The design principle of L<Algorithm::Evolutionary> is I<flexibility>: it
+should be very easy to create your own evolutionary algorithms using this library, and it should be
 also quite easy to program what's already there in the evolutionary
 computation community. Besides, the library classes should have
 persistence provided by XML modules, and, in some cases, YAML.
 
-The algorithm allows to create simple evolutionary algorithms, as well
+The module allows to create simple evolutionary algorithms, as well
 as more complex ones, that interface with databases or with the
 web. 
 
@@ -95,7 +95,7 @@ algorithms in general and doing them using this module in particular.</p>
 any search will return a number of papers; a journal article is
 already submitted, but meanwhile if you use it for any of your
 research, I would be very grateful if you quoted papers such as these
-(which are, of course, available under request of from your friendly
+(which are, of course, available under request or from your friendly
  university librarian):</p>
 
 =end html
@@ -143,7 +143,7 @@ research, I would be very grateful if you quoted papers such as these
 
 =begin html
 
-<p>or the ArXiV one linked above.</p>
+<p>or the ArXiV paper linked above.</p>
 
 <p>Some information on this paper and instructions for downloading the code used in it can
 be found in <a
@@ -151,6 +151,24 @@ href='http://nohnes.wordpress.com/2008/09/21/paper-on-performance-of-asynchronou
 group blog</a>.</p> 
 
 =end html
+
+=head1 Examples
+
+There are a few examples in the C<examples> subdirectory, which should
+have been included with your CPAN bundle. For instance, check out
+C<tide_float.pl>, an example of floating point vector optimization, or
+C<cd examples; run_easy_ga.pl p_peaks.yaml>, which should run an
+    example of a
+simple GA on the P_Peaks deceptive function.
+
+Some other examples are installed: check out L<tide_bitstring.pl>,
+    L<tide_float.pl> and L<canonical-genetic-algorithm.pl>, which you
+    can run and play with to get a taste of what EA programming is
+    like, and then ammend, add and modify at leisure to create your
+    own evolutionary algorithms. For a GUI example, check
+    L<rectangle-coverage.pl>, which uses L<Tk> to show the population
+    and its evolution.
+
 
 =head1 DISCUSSION, FEATURE REQUESTS
 
@@ -181,23 +199,6 @@ Mongers</a>, helped me solve a problem with the Makefile.PL. Bug reports (and pa
 of comment are welcome.
 
 =end html
-
-=head1 Examples
-
-There are a few examples in the C<examples> subdirectory, which should
-have been included with your CPAN bundle. For instance, check out
-C<tide_float.pl>, an example of floating point vector optimization, or
-C<cd examples; run_easy_ga.pl p_peaks.yaml>, which should run an
-    example of a
-simple GA on the P_Peaks deceptive function.
-
-Some other examples are installed: check out L<tide_bitstring.pl>,
-    L<tide_float.pl> and L<canonical-genetic-algorithm.pl>, which you
-    can run and play with to get a taste of what EA programming is
-    like, and then ammend, add and modify at leisure to create your
-    own evolutionary algorithms. For a GUI example, check
-    L<rectangle-coverage.pl>, which uses L<Tk> to show the population
-    and its evolution.
 
 =head1 SEE ALSO
 
@@ -237,9 +238,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/11/30 17:33:25 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.19 2011/11/30 17:33:25 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/08 10:38:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.20 2012/07/08 10:38:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.19 $
+  $Revision: 3.20 $
 
 =cut
