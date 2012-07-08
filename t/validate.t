@@ -1,12 +1,12 @@
 #!/usr/bin/perl
 
-use Test;
-BEGIN { plan tests => 5 };
+use Test::More;
 
-SKIP: {
-    eval { require XML::LibXML };
+eval { require XML::LibXML };
 
-    skip "XML::LibXML not installed", 5 if $@;
+if ($@ ) {
+  skip "XML::LibXML not installed";
+} else {
 
     my $parser = XML::LibXML->new();    
     
@@ -16,12 +16,13 @@ SKIP: {
     my @filesBad = qw( marea-fails.xml );
     
     for ( @filesGood ) {
-	skip ( !$parser, validate ( "xml/$_", $parser ) =~ /Validated/, 1 );
+	ok ( validate ( "xml/$_", $parser ) =~ /Validated/, "Checks" );
     }
     
     for ( @filesBad ) {
-	skip ( !$parser,  validate ( "xml/$_", $parser ) =~ /error/, 1 );
+	ok ( validate ( "xml/$_", $parser ) =~ /error/, "Fails" );
     }
+    done_testing();
 }
 
 ########################################################################
@@ -45,10 +46,10 @@ sub validate {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/08 16:27:21 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/validate.t,v 3.1 2012/07/08 16:27:21 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
