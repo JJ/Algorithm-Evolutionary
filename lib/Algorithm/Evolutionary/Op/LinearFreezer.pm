@@ -1,9 +1,13 @@
+package  Algorithm::Evolutionary::Op::LinearFreezer;
+
+use lib qw(../../..);
+
 use strict;
 use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::LinearFreezer - used by Simulated Annealing algorithms, reduces temperature lineally. 
+Algorithm::Evolutionary::Op::LinearFreezer - Used by Simulated Annealing algorithms, reduces temperature lineally. 
 
 =head1 SYNOPSIS
 
@@ -17,24 +21,24 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =cut
 
-package  Algorithm::Evolutionary::Op::LinearFreezer;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
 use base 'Algorithm::Evolutionary::Op::Base';
 
-=head2 new ($initial_temperature)
+=head2 new ([ $initial_temperature = 0.2] )
 
-Creates a new linear freezer
+Creates a new linear freezer. 
 
 =cut
 
 sub new {
   my $class = shift;
   my $self  = {};
-  $self->{_initTemp} = shift || 0.2 ;
-  $self->{_n} = 0 ;
+  $self->{'_initTemp'} = shift || 0.2 ;
+  $self->{'_n'} = 0 ;
 
   bless $self, $class;
   return $self;
@@ -50,8 +54,8 @@ sub apply ($$) {
   my $self = shift;
   my $t = shift;
 
-  $t = ($self->{_initTemp}) / ( 1 + $self->{_n} ) ;
-  $self->{_n}++ ;
+  $t = ($self->{'_initTemp'}) / ( 1 + $self->{_n} ) ;
+  $self->{'_n'}++ ;
 
   return $t;
 }
@@ -61,10 +65,10 @@ sub apply ($$) {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/LinearFreezer.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/08 10:38:52 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/LinearFreezer.pm,v 3.1 2012/07/08 10:38:52 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
