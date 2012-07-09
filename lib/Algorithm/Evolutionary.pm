@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.78'; # Another year in paradise
+our $VERSION = '0.78_1'; # Another year in paradise
 
 # Preloaded methods go here.
 
@@ -191,16 +191,26 @@ who blogs at <a href='http://blojj.blogalia.com'>BloJJ</a> and
 twitters at <a
 href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
 also been some contributions from Javi García, fjgc (at) decsai.ugr.es
-and Pedro Castillo, pedro (at) geneura.ugr.es. Patient users that have
-submitted bugs include <a
-href='http://barbacana.net'>jamarier</a>, <a href='http://leandrohermida.com'>Leandro Hermida</a>, Jérôme Quélin  and Mike Gajewski. <a href='http://alexm.org'>Alex Muntada</a>,
-from the <a href='http://barcelona.pm.org/'>Barcelona Perl
-Mongers</a>, helped me solve a problem with the Makefile.PL. Bug reports (and patches), requests and any kind 
+and Pedro Castillo, pedro (at) geneura.ugr.es. 
+
+Patient users that have submitted bugs include <a
+href='http://barbacana.net'>jamarier</a>, <a
+href='http://leandrohermida.com'>Leandro Hermida</a>, Jérôme Quélin
+Mike Gajewski and Cristoph Meissner. <a href='http://alexm.org'>Alex
+Muntada</a>, from the <a href='http://barcelona.pm.org/'>Barcelona
+Perl Mongers</a>, helped me solve a problem with the Makefile.PL.
+
+Bug reports (and patches), requests and any kind 
 of comment are welcome.
 
 =end html
 
 =head1 SEE ALSO
+
+If you are just looking for a plain vanilla genetic algorithm for
+didactic purposes, check also L<Algorithm::Evolutionary::Simple>,
+which does the job in a straight fashion and can be used easily for
+demos or adapting it to external fitness functions. 
 
 =over
 
@@ -238,9 +248,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/07/08 10:38:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.20 2012/07/08 10:38:52 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/09 15:12:35 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.21 2012/07/09 15:12:35 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.20 $
+  $Revision: 3.21 $
 
 =cut
