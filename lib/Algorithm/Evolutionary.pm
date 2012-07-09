@@ -167,7 +167,9 @@ Some other examples are installed: check out L<tide_bitstring.pl>,
     like, and then ammend, add and modify at leisure to create your
     own evolutionary algorithms. For a GUI example, check
     L<rectangle-coverage.pl>, which uses L<Tk> to show the population
-    and its evolution.
+    and its evolution. You will need to install the required modules,
+    however, since it needs additional ones to those required by this
+    module. 
 
 
 =head1 DISCUSSION, FEATURE REQUESTS
@@ -248,9 +250,9 @@ L<AI::Genetic::Pro>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/07/09 15:12:35 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.21 2012/07/09 15:12:35 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/09 15:46:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.22 2012/07/09 15:46:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.21 $
+  $Revision: 3.22 $
 
 =cut

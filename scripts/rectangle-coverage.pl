@@ -6,6 +6,13 @@ rectangle-coverage.pl - Find the dot maximally covered by (random) rectangles
 
 =head1 SYNOPSIS
 
+You might have to do 
+
+  prompt% sudo cpan Tk 
+  prompt% sudo cpan Algorithm::RectanglesContainingDot 
+
+specially this last one, first, since that module is not installed by default with L<Algorithm::Evolutionary>.
+
   prompt% ./rectangle-coverage.pl <number-of-rectangles> <arena-side> <bits-per-coordinate> <population> <number of generations> <selection rate>
 
 Or
@@ -16,7 +23,7 @@ And change variable values from the user interface
 
 =head1 DESCRIPTION  
 
-A demo that combines the L<Algorithm::Evolutionary::Op::Easy> module
+A script that combines the L<Algorithm::Evolutionary::Op::Easy> module
     with L<Tk> to create a visual demo of the evolutionary
     algorithm. It generates randomly a number of rectangles, and shows
     how the population evolves to find the solution. The best point is
@@ -289,13 +296,13 @@ J. J. Merelo, C<jj (at) merelo.net>
 
 =head1 Copyright
   
-  This file is released under the GPL. See the LICENSE file included in this distribution,
-  or go to http://www.fsf.org/licenses/gpl.txt
+This file is released under the GPL. See the LICENSE file included in this distribution,
+or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/30 11:25:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.3 2009/07/30 11:25:18 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/09 15:46:15 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.4 2012/07/09 15:46:15 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
 
 =cut
 
