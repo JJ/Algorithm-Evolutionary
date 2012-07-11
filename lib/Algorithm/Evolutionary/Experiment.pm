@@ -21,8 +21,8 @@ experiment with algorithms and population
 
 =head1 DESCRIPTION
 
-Experiment contains an algorithm and a population, and applies one to
-the other. Contains both as instance variables. Can be serialized
+This class contains (as instance variables) an algorithm and a population, and applies one to
+the other.  Can be serialized
 using XML, and can read an XML description of the experiment. 
 
 =head1 METHODS
@@ -36,7 +36,7 @@ use Algorithm::Evolutionary qw(Individual::Base
 			       Op::Base
 			       Op::Creator );
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g;
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g;
 
 use Carp;
 
@@ -76,7 +76,7 @@ sub new ($$$$;$) {
 
 =head2 fromXML
 
-Creates a new experiment, same as before, but with an XML specification. An 
+Creates a new experiment, same as before, but with an L<XML> specification. An 
 example of it follows:
 
  <ea xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -196,7 +196,7 @@ sub asXML {
   my $str=<<'EOC';
 <ea version='0.4'>
 <!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 3.2 $ -->
+     Experiment $Revision: 3.3 $ -->
     <initial>
 EOC
 
@@ -214,17 +214,19 @@ EOC
 
 =head2 SEE ALSO
 
-L<Algorithm::Evolutionary::Run> , another option for setting up experiments
+L<Algorithm::Evolutionary::Run> , another option for setting up
+experiments, which is the one you should rather use, as XML support is
+going to be deprecated (some day).
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 09:10:09 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 3.2 2009/07/24 09:10:09 jmerelo Exp $ 
+  CVS Info: $Date: 2012/07/11 06:14:51 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 3.3 2012/07/11 06:14:51 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
 
 =cut
 
