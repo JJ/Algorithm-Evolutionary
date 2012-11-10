@@ -60,7 +60,7 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -182,13 +182,13 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
 
 =head1 Copyright
   
-  This file is released under the GPL. See the LICENSE file included in this distribution,
-  or go to http://www.fsf.org/licenses/gpl.txt
+This file is released under the GPL. See the LICENSE file included in this distribution,
+or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2012/11/10 10:21:08 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.1 2012/11/10 10:21:08 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
 
 =cut
 
