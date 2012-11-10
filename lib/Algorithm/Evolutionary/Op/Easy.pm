@@ -50,7 +50,7 @@ iteration of the algorithm to the population it takes as input
 
 package Algorithm::Evolutionary::Op::Easy;
 
-our ($VERSION) = ( '$Revision: 3.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.5 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -186,13 +186,13 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
 
 =head1 Copyright
   
-  This file is released under the GPL. See the LICENSE file included in this distribution,
-  or go to http://www.fsf.org/licenses/gpl.txt
+This file is released under the GPL. See the LICENSE file included in this distribution,
+or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/14 06:55:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.4 2011/02/14 06:55:36 jmerelo Exp $ 
+  CVS Info: $Date: 2012/11/10 10:21:08 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.5 2012/11/10 10:21:08 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
   $Name $
 
 =cut
