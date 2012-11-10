@@ -60,7 +60,7 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -131,23 +131,23 @@ sub apply ($) {
     croak "Incorrect type ".(ref $pop) if  ref( $pop ) ne $APPLIESTO;
 
     #Evaluate only the new ones
-    my $eval = $self->{_eval};
-    my @ops = @{$self->{_ops}};
+    my $eval = $self->{'_eval'};
+    my @ops = @{$self->{'_ops'}};
 
     #Breed
-    my $selector = $self->{_selector};
+    my $selector = $self->{'_selector'};
     my @genitors = $selector->apply( @$pop );
 
     #Reproduce
     my $totRate = 0;
     my @rates;
     for ( @ops ) {
-	push( @rates, $_->{rate});
+	push( @rates, $_->{'rate'});
     }
     my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
 
     my @newpop;
-    my $pringaos =  @$pop  * $self->{_replacementRate} ;
+    my $pringaos =  @$pop  * $self->{'_replacementRate'} ;
     for ( my $i = 0; $i < $pringaos; $i++ ) {
 	my @offspring;
 	my $selectedOp = $ops[ $opWheel->spin()];
@@ -164,7 +164,7 @@ sub apply ($) {
     #Eliminate and substitute
     map( $_->evaluate( $eval), @newpop );
     my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
-    @$pop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop_hash ;
+    @$pop = sort { $b->{'_fitness'} <=> $a->{'_fitness'}; } @$pop_hash ;
     
 }
 
@@ -185,10 +185,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/11/10 10:21:08 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.1 2012/11/10 10:21:08 jmerelo Exp $ 
+  CVS Info: $Date: 2012/11/10 18:38:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.2 2012/11/10 18:38:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 
