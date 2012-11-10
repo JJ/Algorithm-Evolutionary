@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Op::GeneralGeneration;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -76,10 +76,10 @@ and crossover, in case they are not passed as parameters
 sub new {
   my $class = shift;
   my $self = {};
-  $self->{_eval} = shift || croak "No eval function found";
-  $self->{_selector} = shift || croak "No selector found";
-  $self->{_ops} = shift || croak "No operator found";
-  $self->{_replacementRate} = shift || 1; #Default to all  replaced
+  $self->{'_eval'} = shift || croak "No eval function found";
+  $self->{'_selector'} = shift || croak "No selector found";
+  $self->{'_ops'} = shift || croak "No operator found";
+  $self->{'_replacementRate'} = shift || 1; #Default to all  replaced
   bless $self, $class;
   return $self;
 }
@@ -191,10 +191,10 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/11/10 10:21:08 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 3.1 2012/11/10 10:21:08 jmerelo Exp $ 
+  CVS Info: $Date: 2012/11/10 18:38:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 3.2 2012/11/10 18:38:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.1 $
+  $Revision: 3.2 $
 
 =cut
 

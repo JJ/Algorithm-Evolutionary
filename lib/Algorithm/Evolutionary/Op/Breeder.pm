@@ -53,7 +53,7 @@ package Algorithm::Evolutionary::Op::Breeder;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -75,8 +75,8 @@ Creates a breeder, with a selector and array of operators
 sub new {
   my $class = shift;
   my $self = {};
-  $self->{_ops} = shift || croak "No operators found";
-  $self->{_selector} = shift 
+  $self->{'_ops'} = shift || croak "No operators found";
+  $self->{'_selector'} = shift 
     || new Algorithm::Evolutionary::Op::Tournament_Selection 2;
   bless $self, $class;
   return $self;
@@ -95,17 +95,17 @@ sub apply ($) {
     my $self = shift;
     my $pop = shift || croak "No population here";
     my $output_size = shift || @$pop; # Defaults to pop size
-    my @ops = @{$self->{_ops}};
+    my @ops = @{$self->{'_ops'}};
 
     #Select for breeding
-    my $selector = $self->{_selector};
+    my $selector = $self->{'_selector'};
     my @genitors = $selector->apply( $pop );
 
     #Reproduce
     my $totRate = 0;
     my @rates;
     for ( @ops ) {
-	push( @rates, $_->{rate});
+	push( @rates, $_->{'rate'});
     }
     my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
 
@@ -136,6 +136,10 @@ More or less in the same ballpark, alternatives to this one
 
 L<Algorithm::Evolutionary::Op::GeneralGeneration>
 
+=item 4
+
+L<Algorithm::Evolutionary::Op::Breeder_Diverser>
+
 =back
 
 =head1 Copyright
@@ -143,10 +147,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/12/16 18:57:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.2 2010/12/16 18:57:41 jmerelo Exp $ 
+  CVS Info: $Date: 2012/11/10 18:38:18 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.3 2012/11/10 18:38:18 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.2 $
+  $Revision: 1.3 $
 
 =cut
 
