@@ -1,3 +1,11 @@
+2012-12-08  Juan J. Merelo  <jmerelo@sheldon>
+
+	* scripts/tide_float.pl: Changed script to make it end when
+	solution is found.
+
+	* lib/Algorithm/Evolutionary/Op/VectorCrossover.pm (apply): Fixed
+	bug: the incoming parent was modified along with the offspring. 
+
 2012-07-10  Juan J. Merelo Guervós  <jjmerelo@gmail.com>
 
 	* MANIFEST: Eliminating pod.t also in production code.
