@@ -35,9 +35,10 @@ Crossover operator for a  individual with vector (array) representation
 
 package Algorithm::Evolutionary::Op::VectorCrossover;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
 
 use Carp;
+use Clone qw(clone);
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -80,35 +81,36 @@ sub create {
 Applies xover operator to a "Chromosome",  a vector of stuff,
 really. Can be applied only to I<victims> with the C<_array> instance
 variable; but it checks before application that both operands are of
-type L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Individual::Vector>.
+type L<Algorithm::Evolutionary::Individual::Vector|Algorithm::Evolutionary::Individual::Vector>. 
 
 =cut
 
 sub  apply ($$;$){
   my $self = shift;
-  my $victim = shift || croak "No victim here!";
+  my $arg = shift || croak "No victim here!";
+  my $victim = clone($arg);
   my $victim2 = shift || croak "No victim here!";
   croak "Incorrect type ".(ref $victim) if !$victim->{'_array'};
   croak "Incorrect type ".(ref $victim2) if !$victim2->{'_array'};
-  if ( (scalar @{$victim->{_array}} == 2) || (scalar @{$victim2->{_array}} == 2 ) ) {
+  if ( (scalar @{$victim->{'_array'}} == 2) || (scalar @{$victim2->{'_array'}} == 2 ) ) {
     #Too small, don't pay attention to number of cutting points
     my $i = (rand() > 0.5 )? 0:1;
-    $victim->{_array}[$i] =  $victim2->{_array}[$i];
+    $victim->{'_array'}[$i] =  $victim2->{'_array'}[$i];
   } else {
-    my $pt1 = int( rand( @{$victim->{_array}} - 1 ) ) ; #in int env; contains $# +1
+    my $pt1 = int( rand( @{$victim->{'_array'}} - 1 ) ) ; #in int env; contains $# +1
     
-    my $possibleRange = @{$victim->{_array}} - $pt1 - 1;
+    my $possibleRange = @{$victim->{'_array'}} - $pt1 - 1;
     my $range;
-    if ( $self->{_numPoints} > 1 ) {
+    if ( $self->{'_numPoints'} > 1 ) {
       $range = 1+ int ( rand( $possibleRange ) );
     } else {
       $range = $possibleRange + 1;
     }
     #Check length to avoid unwanted lengthening
-    return $victim if ( ( $pt1+$range >= @{$victim->{_array}} ) || ( $pt1+$range >= @{$victim2->{_array}} ));
+    return $victim if ( ( $pt1+$range >= @{$victim->{'_array'}} ) || ( $pt1+$range >= @{$victim2->{'_array'}} ));
     
-    @{$victim->{_array}}[$pt1..($pt1+$range)] =  
-      @{$victim2->{_array}}[$pt1..($pt1+$range)];
+    @{$victim->{'_array'}}[$pt1..($pt1+$range)] =  
+      @{$victim2->{'_array'}}[$pt1..($pt1+$range)];
     $victim->Fitness( undef ); #It's been changed, so fitness is invalid
   }
   return $victim;
@@ -119,10 +121,10 @@ sub  apply ($$;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2012/12/08 10:06:23 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/VectorCrossover.pm,v 3.1 2012/12/08 10:06:23 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
