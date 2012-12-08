@@ -39,6 +39,7 @@ use Algorithm::Evolutionary qw( Individual::Vector Op::Easy
 #----------------------------------------------------------#
 my $popSize = shift || 100; #Population size
 my $numGens = shift || 100; #Max number of generations
+my $dimension = shift || 2; #Vector dimension
 
 #----------------------------------------------------------#
 #Fitness function will be Tide
@@ -56,16 +57,14 @@ my $funcionMarea = sub {
 my @pop;
 #Creamos $popSize individuos
 for ( 0..$popSize ) {
-  my $indi = Algorithm::Evolutionary::Individual::Vector->new( 2 );
+  my $indi = Algorithm::Evolutionary::Individual::Vector->new( $dimension );
   push( @pop, $indi );
 }
-
 
 #----------------------------------------------------------#
 # Variation operators
 my $m = Algorithm::Evolutionary::Op::GaussianMutation->new( 0, 0.1 );
-my $c = Algorithm::Evolutionary::Op::VectorCrossover->new(2);
-
+my $c = Algorithm::Evolutionary::Op::VectorCrossover->new( $dimension );
 
 #----------------------------------------------------------#
 #Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -92,12 +91,12 @@ do {
   print "$contador : ", $pop[0]->asString(), "\n" ;
 
   $contador++;
-} while( $contador < $numGens );
+} while( ( $contador < $numGens ) && ( $pop[0]->Fitness() < 1 ) );
 
 
 #----------------------------------------------------------#
 #leemos el mejor resultado
-my ( $x, $y ) = @{$pop[0]->{_array}};
+my ( $x, $y ) = @{$pop[0]->{'_array'}};
 
 #Mostramos los resultados obtenidos
 print "El mejor es:\n\t ",$pop[0]->asString(),"\n\t x=$x \n\t y=$y \n\t Fitness: ",$pop[0]->Fitness(),"\n";
@@ -115,10 +114,10 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_float.pl,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
+  CVS Info: $Date: 2012/12/08 10:12:37 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/tide_float.pl,v 3.1 2012/12/08 10:12:37 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.0 $
+  $Revision: 3.1 $
   $Name $
 
 =cut
