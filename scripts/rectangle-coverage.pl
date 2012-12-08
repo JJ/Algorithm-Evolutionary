@@ -23,7 +23,7 @@ And change variable values from the user interface
 
 =head1 DESCRIPTION  
 
-A script that combines the L<Algorithm::Evolutionary::Op::Easy> module
+A demo that combines the L<Algorithm::Evolutionary::Op::Easy> module
     with L<Tk> to create a visual demo of the evolutionary
     algorithm. It generates randomly a number of rectangles, and shows
     how the population evolves to find the solution. The best point is
@@ -299,10 +299,10 @@ J. J. Merelo, C<jj (at) merelo.net>
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/07/09 15:46:15 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.4 2012/07/09 15:46:15 jmerelo Exp $ 
+  CVS Info: $Date: 2012/12/08 10:12:37 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/scripts/rectangle-coverage.pl,v 3.5 2012/12/08 10:12:37 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.4 $
+  $Revision: 3.5 $
 
 =cut
 
