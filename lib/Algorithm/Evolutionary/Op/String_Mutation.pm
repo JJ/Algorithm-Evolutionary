@@ -18,8 +18,7 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Mutation operator for a GA; changes a single bit in the string; 
-does not need a rate
+Mutation operator for a GA; changes a single character in the string.
 
 =head1 METHODS 
 
@@ -27,7 +26,7 @@ does not need a rate
 
 package Algorithm::Evolutionary::Op::String_Mutation;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.6 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%03d", q$Revision: 3.7 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 
@@ -38,7 +37,7 @@ our $ARITY = 1;
 
 =head2 new( [$how_many] [,$priority] )
 
-Creates a new mutation operator with a bitflip application rate, which defaults to 0.5,
+Creates a new mutation operator with an application rate that defaults to 0.5,
 and an operator application rate (general for all ops), which defaults to 1.
 
 =cut
@@ -103,10 +102,10 @@ sub apply ($;$){
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/07/08 10:38:52 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.6 2012/07/08 10:38:52 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/05 12:01:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Mutation.pm,v 3.7 2013/01/05 12:01:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.6 $
+  $Revision: 3.7 $
   $Name $
 
 =cut

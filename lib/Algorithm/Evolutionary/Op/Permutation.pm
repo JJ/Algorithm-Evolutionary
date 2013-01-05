@@ -26,7 +26,6 @@ Algorithm::Evolutionary::Op::Permutation - Per-mutation. Got it?
   my $op = Algorithm::Evolutionary::Op::->fromXML( $ref );
   print $op->asXML(), "\n*Arity ->", $op->arity(), "\n";
 
-
 =head1 Base Class
 
 L<Algorithm::Evolutionary::Op::Base>
@@ -65,7 +64,7 @@ package  Algorithm::Evolutionary::Op::Permutation;
 
 use lib qw( ../../.. );
 
-our ($VERSION) = ( '$Revision: 3.5 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.6 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone qw(clone);
@@ -173,10 +172,10 @@ Uses L<Algorithm::Permute>, which is purported to be the fastest
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/19 17:59:32 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.5 2011/02/19 17:59:32 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/05 12:01:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.6 2013/01/05 12:01:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.5 $
+  $Revision: 3.6 $
 
 =cut
 
