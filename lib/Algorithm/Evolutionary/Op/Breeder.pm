@@ -53,7 +53,7 @@ package Algorithm::Evolutionary::Op::Breeder;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.3 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -136,7 +136,7 @@ More or less in the same ballpark, alternatives to this one
 
 L<Algorithm::Evolutionary::Op::GeneralGeneration>
 
-=item 4
+=item *
 
 L<Algorithm::Evolutionary::Op::Breeder_Diverser>
 
@@ -147,10 +147,10 @@ L<Algorithm::Evolutionary::Op::Breeder_Diverser>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/11/10 18:38:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.3 2012/11/10 18:38:18 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/05 12:54:48 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.4 2013/01/05 12:54:48 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.3 $
+  $Revision: 1.4 $
 
 =cut
 
