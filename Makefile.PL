@@ -32,6 +32,7 @@ WriteMakefile(
 		  'Object::Array' => 0,
 		  'Statistics::Basic' => 1.6,
 		  'Pod::Escapes'	=> '0', #Dependence from Test::Pod, but produces failure in 1 platform
+		  'Sort::Key' => 0,
 		  YAML => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
@@ -64,4 +65,4 @@ examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 MAKE_FRAG
 }
 
-#$Revision: 3.6 $
+#$Revision: 3.7 $

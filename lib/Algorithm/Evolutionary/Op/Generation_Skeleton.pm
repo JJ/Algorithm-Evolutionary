@@ -60,13 +60,14 @@ package Algorithm::Evolutionary::Op::Generation_Skeleton;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.3 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
 use Algorithm::Evolutionary qw(Wheel Op::Replace_Worst);
+use Sort::Key qw( rnkeysort);
 
 # Class-wide constants
 our $APPLIESTO =  'ARRAY';
@@ -164,8 +165,7 @@ sub apply ($) {
     #Eliminate and substitute
     map( $_->evaluate( $eval), @newpop );
     my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
-    @$pop = sort { $b->{'_fitness'} <=> $a->{'_fitness'}; } @$pop_hash ;
-    
+    @$pop = rnkeysort { $_->{'_fitness'} } @$pop_hash ;    
 }
 
 =head1 SEE ALSO
@@ -185,10 +185,10 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/11/10 18:38:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.2 2012/11/10 18:38:18 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/05 12:43:32 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Generation_Skeleton.pm,v 3.3 2013/01/05 12:43:32 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
 
 =cut
 
