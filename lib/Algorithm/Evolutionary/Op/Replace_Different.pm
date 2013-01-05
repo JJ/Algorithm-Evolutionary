@@ -20,9 +20,8 @@ L<Algorithm::Evolutionary::Op::Base|Algorithm::Evolutionary::Op::Base>
 
 =head1 DESCRIPTION
 
-Attempts all possible mutations in order, until a "novelty" individual
-is found. Generated individuals are checked against the population
-hash, and discarded if they are already in the population.
+Replaces only unique individuals, avoiding to introduce copies of them
+into the new population .
 
 =head1 METHODS 
 
@@ -30,7 +29,7 @@ hash, and discarded if they are already in the population.
 
 package Algorithm::Evolutionary::Op::Replace_Different;
 
-our $VERSION =   sprintf "%d.%d", q$Revision: 1.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "%d.%d", q$Revision: 1.2 $ =~ /(\d+)\.(\d+)/g; 
 
 use Carp;
 
@@ -41,7 +40,10 @@ our $ARITY = 1;
 
 =head2 apply( $population, $chromosome_list )
 
-    Eliminates the worst individuals in the population, replacing them by the list of new chromosomes. The population must be evaluated, but there's no need to have it sorted in advance. 
+    Eliminates the worst individuals in the population, replacing them
+    by the list of new chromosomes, but only if they are different to the ones already present. The population must be evaluated,
+    but there's no need to have it sorted in advance.  It returns a
+    sorted population.
 
 =cut
 
@@ -60,7 +62,7 @@ sub apply ($;$){
   my @non_repeated = grep( !$population_hash{$_->{'_str'}}, @$chromosome_list );
   my $to_eliminate = scalar @non_repeated;
   if ( $to_eliminate > 0 ) {
-    #  print "Eliminating $to_eliminate\n";
+    # print "Eliminating $to_eliminate\n";
     splice ( @sorted_population, -$to_eliminate );
     push @sorted_population, @non_repeated;
   }
@@ -71,20 +73,22 @@ sub apply ($;$){
 =head1 SEE ALSO
 
 L<Algorithm::Evolutionary::Op::Generation_Skeleton>, where the
-replacement policy is one of the parameters 
+replacement policy is one of the parameters. 
 
 It can also be used in L<POE::Component::Algorithm::Evolutionary> for
 insertion of new individuals asynchronously.
+
+Another breeder is L<Algorithm::Evolutionary::Op::Replace_Worst>.
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2011/02/21 16:53:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Different.pm,v 1.1 2011/02/21 16:53:20 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/05 12:01:58 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Replace_Different.pm,v 1.2 2013/01/05 12:01:58 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.1 $
+  $Revision: 1.2 $
   $Name $
 
 =cut
