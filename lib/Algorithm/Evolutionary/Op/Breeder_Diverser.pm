@@ -58,7 +58,7 @@ package Algorithm::Evolutionary::Op::Breeder_Diverser;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.6 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 1.7 $ ' =~ / (\d+\.\d+)/ ) ;
 
 use Carp;
 
@@ -124,13 +124,13 @@ sub apply ($) {
       my $selected_op = $ops[ $op_wheel->spin()];
       my $chosen = $genitors[ $i++ % @genitors]; #Chosen in turn
       push( @offspring, $chosen->clone() );
-      if( $selected_op->arity() == 2 ) {
+      if( $selected_op->{'_arity'} == 2 ) {
 	my $another_one;
 	do {
 	  $another_one = $genitors[ rand( @genitors )];
 	} until ( $another_one->{'_str'} ne  $chosen->{'_str'} );
 	push( @offspring, $another_one );
-      } elsif ( $selected_op->arity() > 2 ) {
+      } elsif ( $selected_op->{'_arity'} > 2 ) {
 	for ( my $j = 1; $j < $selected_op->arity(); $j ++ ) {
 	  my $chosen = $genitors[ rand( @genitors )];
 	  push( @offspring, $chosen->clone() );
@@ -170,10 +170,10 @@ L<Algorithm::Evolutionary::Op::Breeder>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2013/01/05 12:01:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.6 2013/01/05 12:01:58 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/07 13:54:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder_Diverser.pm,v 1.7 2013/01/07 13:54:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 1.6 $
+  $Revision: 1.7 $
 
 =cut
 

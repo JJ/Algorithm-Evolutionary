@@ -3,13 +3,13 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::String_Swap - Swaps two positions of the string.
+Algorithm::Evolutionary::Op::String_Shift - Shifts with carry the string right or left
 
 =head1 SYNOPSIS
 
-  use Algorithm::Evolutionary::Op::String_Swap;
+  use Algorithm::Evolutionary::Op::String_Shift;
 
-  my $op = new Algorithm::Evolutionary::Op::String_Swap ; #Create from scratch
+  my $op = new Algorithm::Evolutionary::Op::String_Shift ; #Create from scratch
   my $string_chromosome =  new Algorithm::Evolutionary::Individual::String 10;
   $op->apply( $chromosome );
 
@@ -44,11 +44,11 @@ And, of course, L<Algorithm::MasterMind>, where it is used in the
 
 =cut
 
-package  Algorithm::Evolutionary::Op::String_Swap;
+package  Algorithm::Evolutionary::Op::String_Shift;
 
 use lib qw( ../../.. );
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.1 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone qw(clone);
@@ -74,13 +74,13 @@ sub new {
   my $class = shift;
   my $rate = shift || 1;
 
-  my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::String_Swap', $rate );
+  my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::String_Shift', $rate );
   return $self;
 }
 
 =head2 apply( $chromosome )
 
-Swaps two (different) positions in a chromosome.
+Shifts randomly right or left
 
 =cut
 
@@ -89,18 +89,13 @@ sub apply ($;$) {
   my $arg = shift || croak "No victim here!";
   my $victim = clone($arg);
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
-  my $first = rand( length( $victim->{'_str'} ) );
-  my $first_char = substr( $victim->{'_str'}, $first, 1 );
-  my @different;
-  for ( my $i = 0; $i < length( $victim->{'_str'} ); $i++ ) {
-    if ( substr( $victim->{'_str'}, $i, 1 ) ne  $first_char ) {
-      push @different, $i;
-    }
-  }
-  if ( @different ) {
-    my $second = rand(  @different );
-    substr($victim->{'_str'},$first,1) = substr($victim->{'_str'},$different[$second],1);
-    substr($victim->{'_str'},$different[$second],1) = $first_char;
+  my $direction = rand();
+  if ( $direction < 0.5 ) { #left
+    my $carry = substr( $arg->{'_str'}, 0, 1);
+    $victim->{'_str'} = substr(  $arg->{'_str'}, 1, length( $arg->{'_str'} ) -1 ).$carry;
+  } else {
+    my $carry = chop( $victim->{'_str'});
+    $victim->{'_str'} = $carry. $victim->{'_str'};
   }
   return $victim
 }
@@ -108,7 +103,7 @@ sub apply ($;$) {
 =head2 SEE ALSO
 
 Uses L<Algorithm::Evolutionary::Op::Permutation>, which performs a
-much more extensive permutation.
+much more extensive permutation, and L<Algorithm::Evolutionary::Op::String_Swap>
 
 =head1 Copyright
   
@@ -116,9 +111,9 @@ much more extensive permutation.
   or go to http://www.fsf.org/licenses/gpl.txt
 
   CVS Info: $Date: 2013/01/07 13:54:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Swap.pm,v 3.2 2013/01/07 13:54:20 jmerelo Exp $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/String_Shift.pm,v 3.1 2013/01/07 13:54:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.1 $
 
 =cut
 

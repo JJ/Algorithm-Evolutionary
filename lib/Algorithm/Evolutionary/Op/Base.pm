@@ -44,7 +44,7 @@ use B::Deparse; #For serializing code
 use Algorithm::Evolutionary::Utils qw(parse_xml);
 
 use Carp;
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = ( '$Revision: 3.3 $ ' =~ / (\d+\.\d+)/ ) ;
 our %parameters;
 
 =head2 AUTOLOAD
@@ -81,7 +81,8 @@ sub new {
   carp "Should be called from subclasses" if ( $class eq  __PACKAGE__ );
   my $rate = shift || 1;
   my $hash = shift; #No carp here, some operators do not need specific stuff
-  my $self = { rate => $rate }; # Create a reference
+  my $self = { rate => $rate,
+	       _arity => eval( "\$"."$class"."::ARITY" )}; # Create a reference
   bless $self, $class; # And bless it
   $self->set( $hash ) if $hash ;
   return $self;
@@ -362,10 +363,10 @@ L<XML>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/09/14 16:36:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.2 2009/09/14 16:36:38 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/07 13:54:20 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.3 2013/01/07 13:54:20 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.2 $
+  $Revision: 3.3 $
   $Name $
 
 =cut
