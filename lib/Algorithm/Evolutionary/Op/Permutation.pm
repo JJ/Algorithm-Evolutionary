@@ -64,13 +64,13 @@ package  Algorithm::Evolutionary::Op::Permutation;
 
 use lib qw( ../../.. );
 
-our ($VERSION) = ( '$Revision: 3.6 $ ' =~ /(\d+\.\d+)/ );
+our ($VERSION) = ( '$Revision: 3.7 $ ' =~ /(\d+\.\d+)/ );
 
 use Carp;
 use Clone qw(clone);
+use List::Util qw(shuffle); 
 
 use base 'Algorithm::Evolutionary::Op::Base';
-use Algorithm::Permute;
 
 #Class-wide constants
 our $APPLIESTO =  'Algorithm::Evolutionary::Individual::String';
@@ -92,7 +92,6 @@ sub new {
   my $rate = shift || 1;
 
   my $self = Algorithm::Evolutionary::Op::Base::new( 'Algorithm::Evolutionary::Op::Permutation', $rate );
-  $self->{'_max_iterations'} = shift || 10;
   return $self;
 }
 
@@ -133,31 +132,48 @@ sub apply ($;$) {
   my $victim = clone($arg);
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   my @arr = split("",$victim->{_str});
-  my $p = new Algorithm::Permute( \@arr );
-  my $iterations = 1+rand($self->{'_max_iterations'}-1);
-  for (1..$iterations) {
-    @arr = $p->next;
+  my $how_many = 2+rand(@arr -1 );
+  my @points;
+  my @indices = 0..$#arr;
+  for (1..$how_many) {
+    my $this_point = rand(@indices);
+    push @points, $indices[$this_point];
+    splice( @indices, $this_point, 1 );
   }
-  if ( !@arr) {
-    croak "I broke \@arr $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
+  my @copy_points;
+  do {
+    @copy_points = shuffle(@points );
+  } while ( $copy_points[0] == $points[0] );
+  while ( @points ) {
+    my $this_point = shift @points;
+    my $other_point = shift @copy_points ;
+    substr( $victim->{'_str'}, $this_point, 1, $arr[$other_point]);
   }
-  if ( join( "", @arr ) eq $arg->{'_str'} ) {
-    # Check for all equal
-    my %letters;
-    map( $letters{$_}=1, @arr );
-    if ( scalar keys %letters  > 1) {
-      $p->reset; # We are looking for anything different, after all
-      do {
-	@arr = $p->next;
-      } until ( join( "", @arr ) ne $arg->{'_str'} );
-#      print "Vaya tela $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
- #     print $victim->{'_str'}, "\n";
-    }
-  }
-  if ( !@arr) {
-    croak "Gosh $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
-  }
-  $victim->{'_str'} = join( "", @arr );
+
+#   my $p = new Algorithm::Permute( \@arr );
+#   my $iterations = 1+rand($self->{'_max_iterations'}-1);
+#   for (1..$iterations) {
+#     @arr = $p->next;
+#   }
+#   if ( !@arr) {
+#     croak "I broke \@arr $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
+#   }
+#   if ( join( "", @arr ) eq $arg->{'_str'} ) {
+#     # Check for all equal
+#     my %letters;
+#     map( $letters{$_}=1, @arr );
+#     if ( scalar keys %letters  > 1) {
+#       $p->reset; # We are looking for anything different, after all
+#       do {
+# 	@arr = $p->next;
+#       } until ( join( "", @arr ) ne $arg->{'_str'} );
+# #      print "Vaya tela $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
+#  #     print $victim->{'_str'}, "\n";
+#     }
+#   }
+#   if ( !@arr) {
+#     croak "Gosh $iterations ", $self->{'_max_iterations'}, " ", $victim->{'_str'},  "\n";
+#   }
   return $victim;
 }
 
@@ -172,10 +188,10 @@ Uses L<Algorithm::Permute>, which is purported to be the fastest
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2013/01/05 12:01:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.6 2013/01/05 12:01:58 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/09 07:22:50 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Permutation.pm,v 3.7 2013/01/09 07:22:50 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.6 $
+  $Revision: 3.7 $
 
 =cut
 
