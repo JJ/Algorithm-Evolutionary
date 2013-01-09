@@ -18,33 +18,13 @@ BEGIN {
 use Algorithm::Evolutionary::Individual::String;
 
 my $number_of_chars = 8;
-my $indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
-  $number_of_chars;
-
 my $sm = new Algorithm::Evolutionary::Op::Permutation;
+
 isa_ok( $sm, 'Algorithm::Evolutionary::Op::Permutation' );
 
-my $result;
-for ( 1..100 ) {
-  $result = $sm->apply( $indi );
-  isnt( $result->{'_str'}, $indi->{'_str'}, 
-	$result->{'_str'}." differs from ". $indi->{'_str'});
-
-}
-
-$sm = new Algorithm::Evolutionary::Op::Permutation $number_of_chars * $number_of_chars;
-isa_ok( $sm, 'Algorithm::Evolutionary::Op::Permutation' );
-
-for ( 1..100 ) {
-  $result = $sm->apply( $indi );
-  isnt( $result->{'_str'}, $indi->{'_str'}, 
-	$result->{'_str'}." differs from ". $indi->{'_str'});
-
-}
-
-$sm = new Algorithm::Evolutionary::Op::Permutation 23;
-my @strings = qw( AABA AAHA AABB AABC AABBA );
-
+my @strings = qw( ABCD EFGHIJ BCDAEFGH ACEF ABCDEF FEDCBA ABCDEFGHIJKLM );
+my  $indi;
+my  $result;
 for my $s (@strings ) {
   $indi = Algorithm::Evolutionary::Individual::String->fromString( $s );
 
