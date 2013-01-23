@@ -8,6 +8,7 @@ use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 BEGIN { 
   use_ok('Algorithm::Evolutionary::Individual::String');
+  use_ok('Algorithm::Evolutionary::Individual::BitString');
 };
 
 #Object methods
@@ -67,6 +68,14 @@ EOC
 $indi4=  Algorithm::Evolutionary::Individual::String->fromXML( $xml );
 is( $indi4->Atom(4), 'h', 'from XML' );
 
+#Testing BitString
+$indi = new Algorithm::Evolutionary::Individual::BitString;
+isa_ok( $indi, "Algorithm::Evolutionary::Individual::BitString" );
+$indi = new Algorithm::Evolutionary::Individual::BitString 10;
+isa_ok( $indi, "Algorithm::Evolutionary::Individual::BitString" );
+$indi->Atom(3,'0');
+is( $indi->Atom(3), '0');
+
 done_testing;
 
 =head1 Copyright
@@ -74,10 +83,10 @@ done_testing;
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2010/09/28 19:41:27 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.3 2010/09/28 19:41:27 jmerelo Exp $ 
+  CVS Info: $Date: 2013/01/23 13:07:12 $ 
+  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.4 2013/01/23 13:07:12 jmerelo Exp $ 
   $Author: jmerelo $ 
-  $Revision: 3.3 $
+  $Revision: 3.4 $
   $Name $
 
 =cut
