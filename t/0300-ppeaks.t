@@ -6,7 +6,7 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 6;
+use Test::More;
 
 use warnings;
 use strict;
@@ -29,4 +29,9 @@ my $result = $p_peaks->p_peaks( $string );
 ok( $result > 0, "Seems to work" );
 is( $p_peaks->p_peaks( $string ), $result, "Caching" );
 is( $p_peaks->cached_evals(), 1, "Cached evals" );
-
+$bits = 192;
+$p_peaks = new Algorithm::Evolutionary::Fitness::P_Peaks( $peaks, $bits );
+for ( my $i = 0; $i < $peaks; $i ++ ) {
+  cmp_ok($p_peaks->p_peaks( $p_peaks->random_string() ), ">=", 0, "Distance OK" );
+}
+done_testing();
