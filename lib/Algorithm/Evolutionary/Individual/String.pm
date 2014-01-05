@@ -1,6 +1,10 @@
 use strict;
 use warnings;
 
+use lib qw(../../..);
+
+=encoding utf8
+
 =head1 NAME
 
     Algorithm::Evolutionary::Individual::String - A character string to be evolved. Useful mainly in word games
@@ -30,14 +34,6 @@ use warnings;
     print tied( @vector )->asXML();
     
     print $indi3->as_string(); #Prints the individual
-    print $indi3->asXML(); #Prints it as XML. See 
-
-    my $xml=<<EOC;
-<indi type='String'>
-    <atom>a</atom><atom>z</atom><atom>q</atom><atom>i</atom><atom>h</atom>
-</indi>
-EOC
-    $indi4=  Algorithm::Evolutionary::Individual::String->fromXML( $xml );
 
 =head1 Base Class
 
@@ -56,7 +52,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.5 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   '3.6';
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -66,7 +62,7 @@ use constant MY_OPERATORS => qw(Algorithm::Evolutionary::Op::Crossover
 				Algorithm::Evolutionary::Op::Permutation	
 				Algorithm::Evolutionary::Op::IncMutation
 				Algorithm::Evolutionary::Op::ChangeLengthMutation );
- 
+
 =head2 new
 
 Creates a new random string, with fixed initial length, and uniform
@@ -330,10 +326,5 @@ L<Algorithm::Evolutionary::Individual::BitString|Algorithm::Evolutionary::Indivi
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/12/08 17:34:22 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/String.pm,v 3.5 2010/12/08 17:34:22 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.5 $
 
 =cut
