@@ -25,7 +25,6 @@ my %modulesToTest = (
 		     IncMutation => [],
 		     LinearFreezer=>[],
 		     RouletteWheel=>[100],
-		     TournamentSelect=>[100,7],
 		     NoChangeTerm => [10],
 		     GenerationalTerm => [10],
 		     DeltaTerm => [1, 0.1],
@@ -66,11 +65,5 @@ sub createAndTest ($$;$) {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/09/24 08:39:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/ops.t,v 3.1 2010/09/24 08:39:07 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
-  $Name $
 
 =cut
