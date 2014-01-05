@@ -22,11 +22,6 @@ my $indi= new Algorithm::Evolutionary::Individual::String [0,1], 2;
 ok( $nct->apply([$indi]), 1 ); #Runs once, possible
 ok( $nct->apply([$indi]), '' ); #Runs twice, returns fail
 
-my $xml = $nct->asXML();
-my $newnct =  Algorithm::Evolutionary::Op::Base->fromXML( $xml );
-
-ok( $xml, $newnct->asXML() );
-  
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
