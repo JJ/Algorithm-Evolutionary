@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 
+use lib qw( ../../../../lib ); # mainly to avoid syntax errors when saving
+
 =head1 NAME
 
 Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; Builds offspring in such a way
@@ -8,14 +10,6 @@ Algorithm::Evolutionary::Op::CX (Cycle crossover) - 2-point crossover operator; 
     in the parent sequence
 
 =head1 SYNOPSIS
-
-  my $xmlStr3=<<EOC;
-  <op name='CX' type='binary' rate='1' />
-  EOC
-  my $ref3 = XMLin($xmlStr3);
-
-  my $op3 = Algorithm::Evolutionary::Op::Base->fromXML( $ref3 );
-  print $op3->asXML(), "\n";
 
   my $op4 = new Algorithm::Evolutionary::Op::CX 3;
 
@@ -36,8 +30,8 @@ L<Algorithm::Evolutionary::Individual::Vector>, it will issue lots of
 "La jodimos!" messages if the parents do not fulfill this condition. 
 
 Some information on this operator can be obtained from
-L<http://www.cs.bham.ac.uk/~rmp/slide_book/node4.html#SECTION00444300000000000000|this
-evolutionary computation tutorial>
+L<this
+evolutionary computation tutorial|http://www.cs.bham.ac.uk/~rmp/slide_book/node4.html#SECTION00444300000000000000>
 
 =head1 METHODS
 
@@ -45,7 +39,7 @@ evolutionary computation tutorial>
 
 package Algorithm::Evolutionary::Op::CX;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
+our $VERSION = '3.2';
 
 use Carp;
 
@@ -156,17 +150,12 @@ sub  apply ($$;$){
 	  print "Messed up!\n";
 	}
   }
-  return $child; #return Child
+  return $child; #return Child, explicative comment if I've ever seen one
 }
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/28 11:30:56 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CX.pm,v 3.1 2009/07/28 11:30:56 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
 
 =cut

@@ -3,10 +3,11 @@ use warnings;
 
 use lib qw( ../../../../lib );
 
+=encoding utf8
+
 =head1 NAME
 
-Algorithm::Evolutionary::Fitness::Any - Façade for any function to
-look like fitness
+Algorithm::Evolutionary::Fitness::Any - FaÃ§ade for any function so that it can be used as fitness
 
 =head1 SYNOPSIS
 
@@ -20,7 +21,6 @@ look like fitness
 
    my $any_eval = new Algorithm::Evolutionary::Fitness::Any \&squares;
 
-   
 
 =head1 DESCRIPTION
 
@@ -37,7 +37,7 @@ use Carp;
 
 use base 'Algorithm::Evolutionary::Fitness::Base';
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.1 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =  '3.2';
 
 =head2 new( $function )
 
@@ -55,8 +55,8 @@ sub new {
 
 =head2 apply( $individual )
 
-Applies the instantiated problem to a chromosome. Actually it is a
-wrapper around C<_apply>
+Applies the instantiated problem to a chromosome. It is actually a
+wrapper around C<_apply>.
 
 =cut
 
@@ -70,7 +70,7 @@ sub apply {
 =head2 _apply( $individual )
 
 This is the one that really does the stuff. It applies the defined
-function to each individual 
+function to each individual. Itis cached for efficiency.
 
 =cut
 
@@ -94,11 +94,6 @@ sub _apply {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/24 10:25:49 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Any.pm,v 3.1 2009/07/24 10:25:49 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
 
 =cut
 
