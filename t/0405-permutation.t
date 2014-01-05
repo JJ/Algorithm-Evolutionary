@@ -40,9 +40,8 @@ $indi = Algorithm::Evolutionary::Individual::String->fromString( "AAAA" );
 $result = $sm->apply( $indi );
 is( $result->{'_str'}, $indi->{'_str'},  "What else?");
 
-$number_of_chars = 32;
-$indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
-  $number_of_chars;
+my @chars = 'A'..'Z';
+$indi = Algorithm::Evolutionary::Individual::String->fromString( join('',@chars) );
 
 for ( 1..100 ) {
   $result =  $sm->apply( $indi );
