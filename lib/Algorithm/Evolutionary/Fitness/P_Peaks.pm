@@ -38,7 +38,7 @@ when working with long strings and/or big populations
 
 package Algorithm::Evolutionary::Fitness::P_Peaks;
 
-our ($VERSION) =  sprintf "%d.%d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g;
+our $VERSION =  '3.4';
 
 use String::Random;
 use Carp;
@@ -126,12 +126,6 @@ sub p_peaks {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2013/02/12 18:38:38 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/P_Peaks.pm,v 3.3 2013/02/12 18:38:38 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.3 $
-  $Name $
 
 =cut
 
