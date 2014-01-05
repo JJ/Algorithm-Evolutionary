@@ -3,8 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Base - Base class for Algorithm::Evolutionary operators, that is any object with the "apply" method, which does things to
-individuals or populations.
+Algorithm::Evolutionary::Op::Base - Base class for Algorithm::Evolutionary operators,
 
 =head1 SYNOPSIS
 
@@ -27,7 +26,10 @@ individuals or populations.
 
 =head1 DESCRIPTION
 
-Base class for operators applied to Individuals and Populations and all the rest
+Base class for operators applied to Individuals and Populations and
+all the rest.  An operator is any object with the "apply" method,
+which does things to individuals or populations. It is intendedly
+quite general so that any genetic or population operator can fit in. 
 
 =head1 METHODS
 
@@ -204,20 +206,21 @@ sub asXML {
   } else {
     $str .= " >";
     for ( keys %$self ) {
+      next if !$self->{$_};
       if (!/\brate\b/ ) {
-		my ($paramName) = /_(\w+)/;
-		if ( ! ref $self->{$_}  ) {
-		  $str .= "\n\t<param name='$paramName' value='$self->{$_}' />";
-		} elsif ( ref $self->{$_} eq 'ARRAY' ) {
-		  for my $i ( @{$self->{$_}} ) {
-			$str .= $i->asXML()."\n";
-		  }
-		} elsif ( ref $self->{$_} eq 'CODE' ) {
-		  my $deparse = B::Deparse->new;
-		  $str .="<code type='eval' language='perl'>\n<src><![CDATA[".$deparse->coderef2text($self->{$_})."]]>\n </src>\n</code>";
-		} elsif ( (ref $self->{$_} ) =~ 'Algorithm::Evolutionary' ) { #Composite object, I guess...
-		$str .= $self->{$_}->asXML( $_ );
-		}
+	my ($paramName) = /_(\w+)/;
+	if ( ! ref $self->{$_}  ) {
+	  $str .= "\n\t<param name='$paramName' value='$self->{$_}' />";
+	} elsif ( ref $self->{$_} eq 'ARRAY' ) {
+	  for my $i ( @{$self->{$_}} ) {
+	    $str .= $i->asXML()."\n";
+	  }
+	} elsif ( ref $self->{$_} eq 'CODE' ) {
+	  my $deparse = B::Deparse->new;
+	  $str .="<code type='eval' language='perl'>\n<src><![CDATA[".$deparse->coderef2text($self->{$_})."]]>\n </src>\n</code>";
+	} elsif ( (ref $self->{$_} ) =~ 'Algorithm::Evolutionary' ) { #Composite object, I guess...
+	  $str .= $self->{$_}->asXML( $_ );
+	}
       }
     }
     $str .= "\n</op>";
@@ -350,24 +353,16 @@ L<Algorithm::Evolutionary::Op::Easy|Algorithm::Evolutionary::Op::Easy>
 L<Algorithm::Evolutionary::Op::FullAlgorithm>
 
 
-
 =back
 
 =head1 See Also
 
-The introduction to the XML format used here,
-L<XML>
+The introduction to the XML format used here, L<XML>
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2013/01/07 13:54:20 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Base.pm,v 3.3 2013/01/07 13:54:20 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.3 $
-  $Name $
 
 =cut
 
