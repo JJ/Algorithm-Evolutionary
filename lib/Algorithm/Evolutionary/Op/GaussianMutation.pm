@@ -3,6 +3,8 @@ use warnings;
 
 use lib qw(../../..);
 
+=encoding utf8
+
 =head1 NAME
 
 Algorithm::Evolutionary::Op::GaussianMutation - Changes numeric chromosome components following the gaussian distribution.
