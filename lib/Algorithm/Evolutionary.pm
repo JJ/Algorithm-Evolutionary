@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.78_2'; # Another year in paradise
+our $VERSION = '0.79'; # Getting close to something
 
 # Preloaded methods go here.
 
@@ -31,6 +31,8 @@ sub import {
 
 1;
 __END__
+
+=encoding utf8
 
 =head1 NAME
 
@@ -101,8 +103,8 @@ research, I would be very grateful if you quoted papers such as these
 =end html
 
  @article {springerlink:10.1007/s00500-009-0504-3,
-   author = {Merelo GuervÛs, Juan-Juli·n and Castillo, Pedro and Alba, Enrique},
-   affiliation = {Universidad de Granada Depto. Arquitectura y TecnologÌa de Computadores, ETS IngenierÌas Inform·tica y Telecomunicaciones Granada Spain},
+   author = {Merelo Guerv√≥s, Juan-Juli√°n and Castillo, Pedro and Alba, Enrique},
+   affiliation = {Universidad de Granada Depto. Arquitectura y Tecnolog√≠a de Computadores, ETS Ingenier√≠as Inform√°tica y Telecomunicaciones Granada Spain},
    title = {Algorithm::Evolutionary, a flexible Perl module for evolutionary computation},
    journal = {Soft Computing - A Fusion of Foundations, Methodologies and Applications},
    publisher = {Springer Berlin / Heidelberg},
@@ -119,7 +121,7 @@ research, I would be very grateful if you quoted papers such as these
  @InProceedings{jj:2008:PPSN,
    author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo
                  and Juan L. J. Laredo and Lourdes Araujo and Ken C. Sharman
-                 and Anna I. Esparcia-Alc·zar and Eva Alfaro-Cid
+                 and Anna I. Esparcia-Alc√°zar and Eva Alfaro-Cid
                  and Carlos Cotta",
    title =	"Testing the Intermediate Disturbance Hypothesis: Effect of
                  Asynchronous Population Incorporation on Multi-Deme
@@ -192,12 +194,12 @@ Main author and developer is J. J. Merelo, jmerelo (at) geneura.ugr.es
 who blogs at <a href='http://blojj.blogalia.com'>BloJJ</a> and
 twitters at <a
 href='http://twitter.com/jjmerelo'>twitter.com/jjmerelo</a>. There have
-also been some contributions from Javi GarcÌa, fjgc (at) decsai.ugr.es
+also been some contributions from Javi Garc√≠a, fjgc (at) decsai.ugr.es
 and Pedro Castillo, pedro (at) geneura.ugr.es. 
 
 Patient users that have submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>, <a
-href='http://leandrohermida.com'>Leandro Hermida</a>, JÈrÙme QuÈlin
+href='http://leandrohermida.com'>Leandro Hermida</a>, J√©r√¥me Qu√©lin
 Mike Gajewski and Cristoph Meissner. <a href='http://alexm.org'>Alex
 Muntada</a>, from the <a href='http://barcelona.pm.org/'>Barcelona
 Perl Mongers</a>, helped me solve a problem with the Makefile.PL.
@@ -249,10 +251,5 @@ L<AI::Genetic::Pro>.
   
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2012/07/11 06:14:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary.pm,v 3.23 2012/07/11 06:14:51 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.23 $
 
 =cut
