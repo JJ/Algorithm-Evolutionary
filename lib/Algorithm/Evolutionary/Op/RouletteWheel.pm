@@ -5,7 +5,7 @@ use lib qw( ../../../../lib );
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::RouletteWheel - Fitness-proportional selection, using a roulette wheel
+Algorithm::Evolutionary::Op::RouletteWheel - Fitness-proportional selection, using a roulette wheel.
 
 =head1 SYNOPSIS
 
@@ -23,7 +23,7 @@ Roulette wheel selection tries to select as many copies of the
 individual as it corresponds to its fitness. It is used in the
 canonical GA. Some information on this method of selection can be
 found in
-L<http://www.geatbx.com/docu/algselct.html#nameselectionrws|this GA tutorial>
+L<this GA tutorial|http://www.geatbx.com/docu/algselct.html#nameselectionrws>
 
 =head1 METHODS
 
@@ -32,7 +32,7 @@ L<http://www.geatbx.com/docu/algselct.html#nameselectionrws|this GA tutorial>
 package  Algorithm::Evolutionary::Op::RouletteWheel;
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = '3.1';
 
 use base 'Algorithm::Evolutionary::Op::Selector';
 
@@ -92,12 +92,6 @@ selecting a pool of individuals
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/RouletteWheel.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
 
 =cut
 

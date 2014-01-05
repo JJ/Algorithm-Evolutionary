@@ -1,10 +1,11 @@
 use strict;
 use warnings;
 
+=encoding utf8
+
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Combined - Combinator of several operators of the same kind, unary or binary
-             
+Algorithm::Evolutionary::Op::Combined - Combinator of several operators of the same arity, unary or binary
 
 =head1 SYNOPSIS
 
@@ -35,7 +36,7 @@ package Algorithm::Evolutionary::Op::Combined;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 1.1 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   '1.2';
 
 use Algorithm::Evolutionary::Wheel;
 use Carp;
@@ -82,7 +83,9 @@ sub  apply ($$$){
 
 =over 4
 
-=item L<Algorithm::Evolutionary::Op::Uniform_Crossover> another more mutation-like xover
+=item L<Algorithm::Evolutionary::Op::Mutation> a mutation operator.
+
+=item L<Algorithm::Evolutionary::Op::Uniform_Crossover> another more mutation-like crossover. These two operators can be combined using this one, for instance.
 
 =back
 
@@ -90,11 +93,5 @@ sub  apply ($$$){
   
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/12/09 19:57:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Combined.pm,v 1.1 2010/12/09 19:57:36 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 1.1 $
-  $Name $
 
 =cut
