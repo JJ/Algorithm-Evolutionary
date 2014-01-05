@@ -129,7 +129,7 @@ sub fromString  {
   my $self = Algorithm::Evolutionary::Individual::Base::new( $class );
   $self->{_str} =  $str;
   my %chars;
-  map ( $chars{$_} => 1, split(//,$str) );
+  map ( $chars{$_} = 1, split(//,$str) );
   my @chars = keys %chars; 
   $self->{_length} = length( $str  );
   $self->{'_chars'} = \@chars;

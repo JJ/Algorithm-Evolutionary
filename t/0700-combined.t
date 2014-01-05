@@ -18,9 +18,8 @@ BEGIN {
 use Algorithm::Evolutionary qw( Individual::String 
 				Op::String_Mutation Op::Permutation );
 
-my $number_of_chars = 32;
-my $indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
-  $number_of_chars;
+my @chars = 'A'..'Z';
+my $indi = Algorithm::Evolutionary::Individual::String->fromString( join('',@chars) );
 
 my $sm = new Algorithm::Evolutionary::Op::String_Mutation;
 my $pm = new Algorithm::Evolutionary::Op::Permutation;
