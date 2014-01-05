@@ -5,21 +5,11 @@ use lib qw(../../..);
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::GaussianMutation - Changes numeric chromosome components following the gaussian distribution
+Algorithm::Evolutionary::Op::GaussianMutation - Changes numeric chromosome components following the gaussian distribution.
 
 =cut
 
 =head1 SYNOPSIS
-
-  my $xmlStr4=<<EOC; # From XML
-  <op name='GaussianMutation' type='unary' rate='1'>
-    <param name='avg' value='0' />
-    <param name='stddev' value='0.1' />
-  </op>
-  EOC
-  my $ref4 = XMLin($xmlStr4);
-  my $op4 = Algorithm::Evolutionary::Op::Base->fromXML( $ref4 );
-  print $op4->asXML(), "\n";
 
   my $op = new Algorithm::Evolutionary::Op::GaussianMutation( 0, 0.05) # With average 0, and 0.05 standard deviation
 
@@ -39,7 +29,7 @@ Mutation operator for a GA: applies gaussian mutation to a number
 
 package Algorithm::Evolutionary::Op::GaussianMutation;
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
+our $VERSION =   '3.4';
 
 use Carp;
 use Math::Random;
@@ -128,11 +118,5 @@ This file has been improved with input from Christoph Meißner.
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2011/11/23 11:10:10 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GaussianMutation.pm,v 3.3 2011/11/23 11:10:10 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.3 $
-  $Name $
 
 =cut
