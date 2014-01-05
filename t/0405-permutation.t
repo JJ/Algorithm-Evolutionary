@@ -38,6 +38,16 @@ for my $s (@strings ) {
 
 $indi = Algorithm::Evolutionary::Individual::String->fromString( "AAAA" );
 $result = $sm->apply( $indi );
-is( $result->{'_str'}, $indi->{'_str'}, 
-    "What else?");
+is( $result->{'_str'}, $indi->{'_str'},  "What else?");
+
+$number_of_chars = 32;
+$indi = new Algorithm::Evolutionary::Individual::String [ qw( A B C D E F) ],
+  $number_of_chars;
+
+for ( 1..100 ) {
+  $result =  $sm->apply( $indi );
+  isnt( $result->{'_str'}, $indi->{'_str'}, 
+	$result->{'_str'}." differs from ". $indi->{'_str'});
+
+}
 done_testing();

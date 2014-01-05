@@ -31,9 +31,10 @@ is( $indi3->Atom(3), 'Q', "Value setting" );
 $indi3->addAtom( 'K' ); #Adds a new character to the bitstring at the end
 is( $indi3->Atom(20), 'K', 'Adding stuff');
 my $indi4 = Algorithm::Evolutionary::Individual::String->fromString( 'esto es un string');   #Creates an individual from that string
-
+is(scalar @{$indi4->{'_chars'}}, 10, 'From String');
 my $indi5 = $indi4->clone(); #Creates a copy of the individual
 is_deeply($indi4,$indi5,'Cloning');
+
 
 #Tie tests
 my @array = qw( a x q W z ñ); #Tie a String individual
