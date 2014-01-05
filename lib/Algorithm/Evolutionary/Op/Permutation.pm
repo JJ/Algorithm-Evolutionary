@@ -133,7 +133,6 @@ sub apply ($;$) {
   croak "Incorrect type ".(ref $victim) if ! $self->check( $victim );
   my @arr = split("",$victim->{_str});
   my $how_many = 2+rand(@arr -1 ); # min two points
-  print "How_many $how_many\n";
   my @points;
   my @indices = 0..$#arr;
   for (1..$how_many) {
@@ -145,7 +144,6 @@ sub apply ($;$) {
   do {
     @copy_points = shuffle(@points );
   } while ( $copy_points[0] == $points[0] );
-  print join(" ", @copy_points), " - ", join(" ", @points );
   while ( @points ) {
     my $this_point = shift @points;
     my $other_point = shift @copy_points ;
