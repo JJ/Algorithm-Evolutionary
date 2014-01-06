@@ -17,24 +17,30 @@ BEGIN {
 
 #########################
 
+SKIP: {
+  
+
 my $number_of_bits = 32;
 my $pixels_per_bit = 3;
+my $population_size = 100;
+my $gif_output;
+eval { 
+  $gif_output = new Algorithm::Evolutionary::Op::Animated_GIF_Output 
+    { length => $number_of_bits, 
+	pixels_per_bit => $pixels_per_bit,
+	  number_of_strings => $population_size };
+};
+skip "Incorrect version of the upstream library present", 3 if $@;
 my $om = new Algorithm::Evolutionary::Fitness::ONEMAX $number_of_bits;
 
 my @pop;
 
-my $population_size = 100;
 for ( 1..$population_size ) {
   my $indi = new Algorithm::Evolutionary::Individual::BitString 30*$number_of_bits ; #Creates random individual
   push( @pop, $indi );
 }
 
 my $e =  new Algorithm::Evolutionary::Op::Easy $om;
-
-my $gif_output = new Algorithm::Evolutionary::Op::Animated_GIF_Output 
-  { length => $number_of_bits, 
-      pixels_per_bit => $pixels_per_bit,
-	number_of_strings => $population_size };
 	
 isa_ok( $gif_output, 'Algorithm::Evolutionary::Op::Animated_GIF_Output');
 
@@ -45,5 +51,6 @@ for ( 1..40 ) {
 $gif_output->terminate();
 is( $gif_output->output() ne '', 1, "Output OK" );
 
+}
 
-=cut
+
