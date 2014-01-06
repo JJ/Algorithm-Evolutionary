@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.79'; # Getting close to something
+our $VERSION = '0.79_1'; # Getting close to something
 
 # Preloaded methods go here.
 
@@ -55,7 +55,7 @@ evolutionary computation in Perl. Why would anyone want to do that
 escapes my knowledge, but, in fact, we have found it quite useful for
 our own purposes. Same as Perl itself.
 
-The design principle of L<Algorithm::Evolutionary> is I<flexibility>: it
+The main design principle of L<Algorithm::Evolutionary> is I<flexibility>: it
 should be very easy to create your own evolutionary algorithms using this library, and it should be
 also quite easy to program what's already there in the evolutionary
 computation community. Besides, the library classes should have
@@ -67,26 +67,18 @@ web.
 
 =begin html
 
-<p>The project is hosted at
-<a href='http://opeal.sourceforge.net'>Sourceforge</a>. Latest aditions, and
+<p>The project has been, from version 0.79, moved to
+<a href='http://github.com/JJ/Algorithm-Evolutionary'>GitHub</a>. Latest aditions, and
 nightly updates, can be downloaded from there before they are uploaded
 to CPAN. That page also hosts the mailing list, as well as bug
 reports, news, updates, work in progress, lots of stuff.</p>
 
 <p>In case the examples are hidden somewhere in the <code>.cpan</code> directory,
     you can also download them from <a
-    href='http://opeal.cvs.sourceforge.net/opeal/Algorithm-Evolutionary/'>the
-    CVS repository</a>, and the <a
-    href='https://sourceforge.net/project/showfiles.php?group_id=34080&package_id=54504'>-examples</a>
-    tarballs in the file download area of that repository</p>
-
-<p>You can also get help from the <a
-href='https://sourceforge.net/projects/opeal/forums/forum/107255'>project
-forum</a> (where I usually hang around) or from <a
-href='mailto:opeal-help-request@lists.sourceforge.net'>the mailing
-list</a> (information at <a
-href='https://lists.sourceforge.net/lists/listinfo/opeal-help'>its web
-site</a>).</p> 
+    href='https://github.com/JJ/Algorithm-Evolutionary/tree/master/examples'>the
+    git repository</a>. You can also get help from the <a
+href='https://github.com/JJ/Algorithm-Evolutionary/issues'>project
+issues</a>.</p> 
 
 <p>It might be also helpful for you to check out <a
 href='http://arxiv.org/abs/0908.0516'>Still doing evolutionary
@@ -199,7 +191,7 @@ and Pedro Castillo, pedro (at) geneura.ugr.es.
 
 Patient users that have submitted bugs include <a
 href='http://barbacana.net'>jamarier</a>, <a
-href='http://leandrohermida.com'>Leandro Hermida</a>, Jérôme Quélin
+href='http://leandrohermida.com'>Leandro Hermida</a>, Jérôme Quélin,
 Mike Gajewski and Cristoph Meissner. <a href='http://alexm.org'>Alex
 Muntada</a>, from the <a href='http://barcelona.pm.org/'>Barcelona
 Perl Mongers</a>, helped me solve a problem with the Makefile.PL.
