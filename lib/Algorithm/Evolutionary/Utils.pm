@@ -9,7 +9,7 @@ Algorithm::Evolutionary::Utils - Container module with a hodgepodge of functions
                  
 =head1 SYNOPSIS
   
-  use Algorithm::Evolutionary::Utils qw(entropy);
+  use Algorithm::Evolutionary::Utils qw(entropy genotypic_entropy hamming consensus average random_bitstring random_number_array decode_string vector_compare );
 
   my $this_entropy = entropy( $population );
 
@@ -33,7 +33,7 @@ package Algorithm::Evolutionary::Utils;
 use Exporter;
 our @ISA = qw(Exporter);
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g; 
+our $VERSION =   sprintf "3.4";
 
 our @EXPORT_OK = qw( entropy genotypic_entropy consensus hamming 
 		     random_bitstring random_number_array average 
@@ -88,7 +88,7 @@ sub genotypic_entropy {
 
 =head2 hamming( $string_a, $string_b )
 
-Computes the number of positions that are different among two strings
+Computes the number of positions that are different among two strings, the well known Hamming distance. 
 
 =cut
 
@@ -100,7 +100,8 @@ sub hamming {
 =head2 consensus( $population, $rough = 0 )
 
 Consensus sequence representing the majoritary value for each bit;
-returns the consensus string. If "rough", then the bit is set only if the difference is bigger than 0.4 (70/30 proportion)
+returns the consensus binary string. If "rough", then the bit is set only if the 
+difference is bigger than 0.4 (60/40 proportion).
 
 =cut
 
@@ -170,7 +171,7 @@ sub random_bitstring {
 
 =head2 random_number_array( $dimensions [, $min = -1] [, $range = 2] )
 
-Returns a random bitstring with the stated number of bits. Useful for testing,mainly
+Returns a random number array with the stated length. Useful for testing, mainly.
 
 =cut
 
@@ -205,7 +206,7 @@ sub parse_xml {
 Decodes to a vector, each one of whose components ranges between $min
 and $max. Returns that vector.
 
-It does not work for $gene_size too big. Certainly not for 64, maybe for 32
+It does not work for $gene_size too big. Certainly not for 64, maybe for 32.
 
 =cut
 
@@ -226,7 +227,7 @@ sub decode_string {
 Compares vectors, returns 1 if 1 dominates 2, -1 if it's the other way
 round, and 0 if neither dominates the other. Both vectors are supposed
 to be numeric. Returns C<undef> if neither is bigger, and they are not
-equal. 
+equal. Fails if the length is not the same. 
 
 =cut
 
@@ -256,11 +257,6 @@ sub vector_compare {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/09/24 08:39:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Utils.pm,v 3.3 2010/09/24 08:39:07 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.3 $
 
 =cut
 

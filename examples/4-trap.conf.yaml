@@ -1,0 +1,16 @@
+---
+length: 120
+pop_size: 512
+crossover:
+  points: 2
+  priority: 9
+fitness:
+  class: Trap
+  params:
+    - 4
+    - 1
+    - 2
+    - 3
+max_generations: 4000
+max_fitness: 60
+selection_rate: 0.1

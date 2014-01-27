@@ -4,7 +4,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More;
 use lib qw( lib ../lib ../../lib ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary qw(Fitness::ONEMAX 
@@ -18,7 +18,6 @@ BEGIN {
 #########################
 
 SKIP: {
-  
 
 my $number_of_bits = 32;
 my $pixels_per_bit = 3;
@@ -53,4 +52,4 @@ is( $gif_output->output() ne '', 1, "Output OK" );
 
 }
 
-
+done_testing;
