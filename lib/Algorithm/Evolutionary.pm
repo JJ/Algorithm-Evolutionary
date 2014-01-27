@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.79_1'; # Getting close to something
+our $VERSION = '0.79_2'; # Getting close to something
 
 # Preloaded methods go here.
 
@@ -109,6 +109,8 @@ research, I would be very grateful if you quoted papers such as these
    note = {10.1007/s00500-009-0504-3},
    year = {2010}
  }
+
+or
 
  @InProceedings{jj:2008:PPSN,
    author =	"Juan J. Merelo and  Antonio M. Mora and Pedro A. Castillo

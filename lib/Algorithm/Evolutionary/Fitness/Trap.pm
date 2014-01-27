@@ -18,7 +18,7 @@ Algorithm::Evolutionary::Fitness::Trap - 'Trap' fitness function for evolutionar
 =head1 DESCRIPTION
 
 Trap function act as "yucky" or deceptive for evolutionary algorithms;
-they "trap" population into going to easier, but local optima.
+they "trap" population into going to easier, but local, optima.
 
 =head1 METHODS
 
@@ -26,7 +26,7 @@ they "trap" population into going to easier, but local optima.
 
 package Algorithm::Evolutionary::Fitness::Trap;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our ($VERSION) = "3.1" ;
 
 use String::Random;
 use Carp qw(croak);
@@ -77,7 +77,7 @@ sub _really_apply {
 
 =head2 trap
 
-Computes the value of the trap function
+Computes the value of the trap function. Values are cached, so careful with bloated memory. 
 
 =cut
 
@@ -108,7 +108,6 @@ sub trap {
       $total += $cache->{$key};
     }
     $cache->{$string} = $total;
-	
     return $cache->{$string};
 
 }
@@ -118,12 +117,6 @@ sub trap {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 10:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 3.1 2009/07/24 10:20:46 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
-  $Name $
-
 =cut
 
-"What???";
+"Gotcha trapped!";
