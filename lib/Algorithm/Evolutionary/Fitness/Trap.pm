@@ -26,7 +26,7 @@ they "trap" population into going to easier, but local optima.
 
 package Algorithm::Evolutionary::Fitness::Trap;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = '3.2';
 
 use String::Random;
 use Carp qw(croak);
@@ -36,11 +36,10 @@ use lib qw(../../.. ../.. ..);
 use base qw(Algorithm::Evolutionary::Fitness::String);
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-=head2 new
+=head2 new( $number_of_bits, [$a = $number_of_bits -1, $b = $number_of_bits, $z=$number_of_bits-1])
 
 Creates a new instance of the problem, with the said number of bits
-and peaks. Depending on the parameter value, might produce some errors
-and bail out, not all values are admissible.
+and traps. Uses default values from C<$number_of_bits> if needed
 
 =cut 
 
@@ -75,9 +74,9 @@ sub _really_apply {
   return $self->trap( @_ );
 }
 
-=head2 trap
+=head2 trap( $string )
 
-Computes the value of the trap function
+Computes the value of the trap function on the C<$string>
 
 =cut
 
@@ -117,12 +116,6 @@ sub trap {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/24 10:20:46 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Trap.pm,v 3.1 2009/07/24 10:20:46 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
-  $Name $
 
 =cut
 

@@ -2,7 +2,7 @@ package Algorithm::Evolutionary;
 
 use Carp qw(croak);
 
-our $VERSION = '0.79_1'; # Getting close to something
+our $VERSION = '0.80'; # First GitHub version
 
 # Preloaded methods go here.
 
