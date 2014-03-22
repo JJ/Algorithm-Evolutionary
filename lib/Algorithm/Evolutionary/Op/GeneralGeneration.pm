@@ -54,7 +54,7 @@ package Algorithm::Evolutionary::Op::GeneralGeneration;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = '3.2';
 
 use Carp;
 
@@ -141,7 +141,7 @@ sub apply ($) {
   my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
 
   my @newpop;
-  my $pringaos =  @$pop  * $self->{_replacementRate} ;
+  my $pringaos =  @$pop  * $self->{'_replacementRate'} ;
   for ( my $i = 0; $i < $pringaos; $i++ ) {
 	  my @offspring;
 	  my $selectedOp = $ops[ $opWheel->spin()];
@@ -161,7 +161,7 @@ sub apply ($) {
       $_->evaluate( $eval );
   }
   push @$pop, @newpop;
-  my @sortPop = sort { $b->{_fitness} <=> $a->{_fitness}; } @$pop;
+  my @sortPop = sort { $b->{'_fitness'} <=> $a->{'_fitness'}; } @$pop;
   @$pop = @sortPop;
   
 }
@@ -190,11 +190,6 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
   
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2012/11/10 18:38:18 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/GeneralGeneration.pm,v 3.2 2012/11/10 18:38:18 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.2 $
 
 =cut
 
