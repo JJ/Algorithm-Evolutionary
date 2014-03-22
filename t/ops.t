@@ -53,11 +53,6 @@ sub createAndTest ($$;$) {
 	print "Testing $module\n";
 	isa_ok( $nct, $class );
 
-	my $xml = $nct->asXML();
-	my $newnct =  Algorithm::Evolutionary::Op::Base->fromXML( $xml );
-
-	ok( $xml, $newnct->asXML() );
-
 	return $nct;
   }
   
