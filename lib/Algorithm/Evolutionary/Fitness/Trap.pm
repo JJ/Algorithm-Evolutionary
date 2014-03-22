@@ -76,7 +76,8 @@ sub _really_apply {
 
 =head2 trap( $string )
 
-Computes the value of the trap function on the C<$string>
+Computes the value of the trap function on the C<$string>. Optimum is
+number_of_blocs * $b (by default, $b = $l or number of ones) 
 
 =cut
 
@@ -119,4 +120,4 @@ sub trap {
 
 =cut
 
-"What???";
+"This is a trap";
