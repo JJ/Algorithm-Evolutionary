@@ -31,7 +31,6 @@ use lib qw(../../..);
 
     my @array = qw( a x q W z ñ); #Tie a String individual
     tie my @vector, 'Algorithm::Evolutionary::Individual::String', @array;
-    print tied( @vector )->asXML();
     
     print $indi3->as_string(); #Prints the individual
 
@@ -52,7 +51,7 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION =   '3.6';
+our $VERSION = '3.6';
 
 use base 'Algorithm::Evolutionary::Individual::Base';
 
@@ -172,15 +171,15 @@ sub clone {
 
 =head2 asString
 
-Prints it
+Returns the individual as a string with the fitness as a suffix.
 
 =cut
 
 sub asString {
   my $self = shift;
-  my $str = $self->{_str} . " -> ";
-  if ( defined $self->{_fitness} ) {
-	$str .=$self->{_fitness};
+  my $str = $self->{'_str'} . " -> ";
+  if ( defined $self->{'_fitness'} ) {
+	$str .=$self->{'_fitness'};
   }
   return $str;
 }
