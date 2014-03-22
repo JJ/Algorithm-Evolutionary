@@ -17,7 +17,10 @@ Algorithm::Evolutionary::Fitness::String - Base class for string-based fitness f
 
 =head1 DESCRIPTION
 
-Base class for fitness functions applied to string-based chromosomes; extracts common code, and saves time. Provides a hash called C<%cache> to be used as a, well, cache for evaluations.
+Base class for fitness functions applied to string-based chromosomes;
+extracts common code, and saves time. Provides a hash called C<%cache>
+to be used as a, well, cache for evaluations. Assumes it's using the
+C<_str> instance variable of the chromosome 
 
 =head1 METHODS
 
@@ -25,7 +28,7 @@ Base class for fitness functions applied to string-based chromosomes; extracts c
 
 package Algorithm::Evolutionary::Fitness::String;
 
-our ($VERSION) = ( '$Revision: 3.0 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION =  '3.0' ;
 
 use Carp qw( croak );
 use base qw(Algorithm::Evolutionary::Fitness::Base);
@@ -53,7 +56,7 @@ Applies the instantiated problem to a chromosome, delegating to a specific funct
 sub _apply {
     my $self = shift;
     my $individual = shift;
-    return  $self->_really_apply( $individual->{_str});
+    return  $self->_really_apply( $individual->{'_str'});
 }
 
 =head2 _really_apply( $string )
@@ -84,12 +87,6 @@ sub cached_evals {
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:59 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/String.pm,v 3.0 2009/07/24 08:46:59 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
-
 =cut
 
-"Where???";
+"Theory";
