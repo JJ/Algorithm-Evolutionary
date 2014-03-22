@@ -18,9 +18,10 @@ Shows fitness and best individual
 =head1 DESCRIPTION  
 
 A simple example of how to run an Evolutionary algorithm based on
-Algorithm::Evolutionary. Optimizes trap function.
+Algorithm::Evolutionary. Optimizes trap function with a noisy fitness evaluation
 
 =cut
+
 
 use warnings;
 use strict;
@@ -33,7 +34,7 @@ use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Fitness::Trap;
-
+use Algorithm::Evolutionary::Fitness::Noisy;
 
 #----------------------------------------------------------#
 my $blocks = shift || 10;
@@ -41,7 +42,6 @@ my $length = shift || 4;
 my $popSize = shift || 1024; #Population size
 my $numGens = shift || 1000; #Max number of generations
 my $selection_rate = shift || 0.1;
-
 
 #----------------------------------------------------------#
 #Initial population
@@ -59,36 +59,37 @@ my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1 );
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
 
 # Fitness function
-my $mmdp = new  Algorithm::Evolutionary::Fitness::Trap( $length );
+my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
+my $noisy = new  Algorithm::Evolutionary::Fitness::Noisy( $trap );
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-#my $fitness = sub { $mmdp->apply(@_) };
+#my $fitness = sub { $trap->apply(@_) };
 
-my $generation = Algorithm::Evolutionary::Op::Easy->new( $mmdp, $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::Easy->new( $noisy, $selection_rate , [$m, $c] ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
 
 #----------------------------------------------------------#
-for ( @pop ) {
-    if ( !defined $_->Fitness() ) {
-	$_->evaluate( $mmdp );
-    }
-}
 
 my $contador=0;
+my $best = "1"x($length*$blocks);
 do {
-  $generation->apply( \@pop );
+    # Must re-evaluate each iteration
+    for ( @pop ) {
+      $_->evaluate( $noisy );
+    }
+    $generation->apply( \@pop );
+    
+    print "$contador : ", $pop[0]->asString(), "\n" ;
 
-  print "$contador : ", $pop[0]->asString(), "\n" ;
-
-  $contador++;
+    $contador++;
 } while( ($contador < $numGens) 
-	 && ($pop[0]->Fitness() < $length*$blocks));
+	 && ($pop[0]->{'_str'} ne $best ));
 
 
 #----------------------------------------------------------#
@@ -99,7 +100,7 @@ print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluaciones: ", $mmdp->evaluations(), "\n";
+print "\n\tEvaluaciones: ", $noisy->evaluations(), "\n";
 
 =head1 AUTHOR
 
