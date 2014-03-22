@@ -59,16 +59,16 @@ my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1 );
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
 
 # Fitness function
-my $mmdp = new  Algorithm::Evolutionary::Fitness::Trap( $length );
+my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-#my $fitness = sub { $mmdp->apply(@_) };
+#my $fitness = sub { $trap->apply(@_) };
 
-my $generation = Algorithm::Evolutionary::Op::Easy->new( $mmdp, $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::Easy->new( $trap, $selection_rate , [$m, $c] ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
@@ -76,7 +76,7 @@ my $inicioTiempo = [gettimeofday()];
 #----------------------------------------------------------#
 for ( @pop ) {
     if ( !defined $_->Fitness() ) {
-	$_->evaluate( $mmdp );
+	$_->evaluate( $trap );
     }
 }
 
@@ -99,7 +99,7 @@ print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluaciones: ", $mmdp->evaluations(), "\n";
+print "\n\tEvaluaciones: ", $trap->evaluations(), "\n";
 
 =head1 AUTHOR
 
@@ -111,11 +111,5 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/24 08:46:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/mmdp.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
 
 =cut
