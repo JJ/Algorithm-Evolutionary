@@ -26,11 +26,7 @@ they "trap" population into going to easier, but local, optima.
 
 package Algorithm::Evolutionary::Fitness::Trap;
 
-<<<<<<< HEAD
-our ($VERSION) = "3.1" ;
-=======
 our $VERSION = '3.2';
->>>>>>> 84363708202489e58a3f97fcb33b873f63e7f266
 
 use String::Random;
 use Carp qw(croak);
@@ -80,12 +76,8 @@ sub _really_apply {
 
 =head2 trap( $string )
 
-<<<<<<< HEAD
-Computes the value of the trap function. Values are cached, so careful with bloated memory. 
-=======
 Computes the value of the trap function on the C<$string>. Optimum is
 number_of_blocs * $b (by default, $b = $l or number of ones) 
->>>>>>> 84363708202489e58a3f97fcb33b873f63e7f266
 
 =cut
 
@@ -127,8 +119,5 @@ sub trap {
 
 =cut
 
-<<<<<<< HEAD
 "Gotcha trapped!";
-=======
-"This is a trap";
->>>>>>> 84363708202489e58a3f97fcb33b873f63e7f266
+
