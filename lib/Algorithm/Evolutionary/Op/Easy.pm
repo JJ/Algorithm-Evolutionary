@@ -11,12 +11,11 @@ Algorithm::Evolutionary::Op::Easy - evolutionary algorithm, single generation, w
 
 =head1 SYNOPSIS
 
-  my $easyEA = Algorithm::Evolutionary::Op::Base->fromXML( $ref->{initial}{section}{pop}{op} );
-  # Parsed XML fragment, see samples
+  my $easy_EA = new Algorithm::Evolutionary::Op::Easy $fitness_func;
 
-  for ( my $i = 0; $i < $ref->{initial}{section}{pop}{op}{param}{maxgen}{value}; $i++ ) {
+  for ( my $i = 0; $i < $max_generations; $i++ ) {
     print "<", "="x 20, "Generation $i", "="x 20, ">\n"; 
-    $easyEA->apply(\@pop ); 
+    $easy_EA->apply(\@pop ); 
     for ( @pop ) { 
       print $_->asString, "\n"; 
     } 
@@ -189,11 +188,6 @@ L<Algorithm::Evolutionary::Op::FullAlgorithm>.
 This file is released under the GPL. See the LICENSE file included in this distribution,
 or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2012/11/10 10:21:08 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Easy.pm,v 3.5 2012/11/10 10:21:08 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.5 $
-  $Name $
 
 =cut
 

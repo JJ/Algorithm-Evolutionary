@@ -115,9 +115,9 @@ print "Best is:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluations: ", $fitness->evaluations(), "\n";
+print "\n\tEvaluations: ", $fitness_object->evaluations(), "\n";
 
-print "\n\tCache size ratio: ", $fitness->cached_evals()/$fitness->evaluations(), "\n";
+print "\n\tCache size ratio: ", $fitness_object->cached_evals()/$fitness->evaluations(), "\n";
 
 =head1 SEE ALSO
 

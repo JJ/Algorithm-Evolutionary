@@ -2,30 +2,26 @@
 
 =head1 NAME
 
-  mmdp.pl - Massively multimodal deceptive problem
+  trap.pl - Massively multimodal deceptive problem
 
 =head1 SYNOPSIS
 
-  prompt% ./mmdp.pl <population> <number of generations>
+  prompt% ./trap.pl <population> <number of generations>
 
 or
 
-  prompt% perl mmdp.pl <population> <number of generations>
+  prompt% perl trap.pl <population> <number of generations>
 
-  Shows the values of the two floating-point components of the
-  chromosome and finally the best value and fitness reached, which
-  should be as close to 1 as possible.
+Shows fitness and best individual  
   
 
 =head1 DESCRIPTION  
 
 A simple example of how to run an Evolutionary algorithm based on
-Algorithm::Evolutionary. Tries to find the max of the bidimensional
-Tide , and outputs the x and y coordinates, along with fitness. Best
-fitness is close to 1. Around 50 generations should be enough, but
-default is population and number of generations equal to 100.
+Algorithm::Evolutionary. Optimizes trap function with a noisy fitness evaluation
 
 =cut
+
 
 use warnings;
 use strict;
@@ -37,21 +33,21 @@ use Algorithm::Evolutionary::Individual::BitString;
 use Algorithm::Evolutionary::Op::Easy;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
-use Algorithm::Evolutionary::Fitness::MMDP;
-
+use Algorithm::Evolutionary::Fitness::Trap;
+use Algorithm::Evolutionary::Fitness::Noisy;
 
 #----------------------------------------------------------#
-my $length = shift || 20;
+my $blocks = shift || 10;
+my $length = shift || 4;
 my $popSize = shift || 1024; #Population size
 my $numGens = shift || 1000; #Max number of generations
 my $selection_rate = shift || 0.1;
-
 
 #----------------------------------------------------------#
 #Initial population
 my @pop;
 #Creamos $popSize individuos
-my $bits = $length*6; # 6 is the block size
+my $bits = $length*$blocks; 
 for ( 0..$popSize ) {
   my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
   push( @pop, $indi );
@@ -63,36 +59,37 @@ my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1 );
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
 
 # Fitness function
-my $mmdp = new  Algorithm::Evolutionary::Fitness::MMDP;
+my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
+my $noisy = new  Algorithm::Evolutionary::Fitness::Noisy( $trap );
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
 # no es realmente necesario ya que este algoritmo define ambos operadores por
 # defecto. Los parámetros son la función de fitness, la tasa de selección y los
 # operadores de variación.
-#my $fitness = sub { $mmdp->apply(@_) };
+#my $fitness = sub { $trap->apply(@_) };
 
-my $generation = Algorithm::Evolutionary::Op::Easy->new( $mmdp , $selection_rate , [$m, $c] ) ;
+my $generation = Algorithm::Evolutionary::Op::Easy->new( $noisy, $selection_rate , [$m, $c] ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
 
 #----------------------------------------------------------#
-for ( @pop ) {
-    if ( !defined $_->Fitness() ) {
-	$_->evaluate( $mmdp );
-    }
-}
 
 my $contador=0;
+my $best = "1"x($length*$blocks);
 do {
-  $generation->apply( \@pop );
+    # Must re-evaluate each iteration
+    for ( @pop ) {
+      $_->evaluate( $noisy );
+    }
+    $generation->apply( \@pop );
+    
+    print "$contador : ", $pop[0]->asString(), "\n" ;
 
-  print "$contador : ", $pop[0]->asString(), "\n" ;
-
-  $contador++;
+    $contador++;
 } while( ($contador < $numGens) 
-	 && ($pop[0]->Fitness() < $length));
+	 && ($pop[0]->{'_str'} ne $best ));
 
 
 #----------------------------------------------------------#
@@ -103,7 +100,7 @@ print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluaciones: ", $mmdp->evaluations(), "\n";
+print "\n\tEvaluaciones: ", $noisy->evaluations(), "\n";
 
 =head1 AUTHOR
 

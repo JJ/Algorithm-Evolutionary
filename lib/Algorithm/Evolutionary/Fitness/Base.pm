@@ -5,17 +5,17 @@ use lib qw( ../../../../lib );
 
 =head1 NAME
 
-Algorithm::Evolutionary::Fitness::Base - Base class for Fitness functions
+Algorithm::Evolutionary::Fitness::Base - Base class for fitness functions
 
 =head1 SYNOPSIS
 
 Shouldn't be used directly, it's an abstract class whose siblings are
-used to implement fitness functions
+used to implement fitness functions.
 
 =head1 DESCRIPTION
 
 This module includes functionality that should be common to all fitness. Or at least it
-would be nice to have it in common.
+would be nice to have it in common. It counts the number of evaluations and includes a common API for caching evaluations.
 
 =head1 METHODS
 
@@ -25,7 +25,7 @@ package Algorithm::Evolutionary::Fitness::Base;
 
 use Carp;
 
-our ($VERSION) = ( '$Revision: 3.1 $ ' =~ / (\d+\.\d+)/ );
+our $VERSION = '3.1';
 
 
 =head2 new()
@@ -50,8 +50,8 @@ Called from new, initializes the evaluations counter.
 
 sub initialize {
   my $self = shift;
-  $self->{_counter} = 0; 
-  $self->{_cache} = {}; # This is optional; should be used from derived classes
+  $self->{'_counter'} = 0; 
+  $self->{'_cache'} = {}; # This is optional; should be used from derived classes
 }
 
 
@@ -147,18 +147,20 @@ L<Algorithm::Evolutionary::Fitness::Royal_Road>
 
 L<Algorithm::Evolutionary::Fitness::String>
 
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::Trap>
+
+=item * 
+
+L<Algorithm::Evolutionary::Fitness::Noisy>
+
 =back
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/09/24 08:39:07 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Fitness/Base.pm,v 3.1 2010/09/24 08:39:07 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.1 $
-  $Name $
 
 =cut
 

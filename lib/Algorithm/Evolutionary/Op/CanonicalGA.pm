@@ -38,8 +38,7 @@ package Algorithm::Evolutionary::Op::CanonicalGA;
 
 use lib qw(../../..);
 
-our $VERSION =   sprintf "%d.1%02d", q$Revision: 3.6 $ =~ /(\d+)\.(\d+)/g; # Hack for avoiding version mismatch
-
+our $VERSION =   '3.6';
 
 use Carp;
 
@@ -125,7 +124,6 @@ sub apply ($) {
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
 }
 
-
 =head1 SEE ALSO
 
 =over 4
@@ -146,12 +144,6 @@ Probably you will also be able to find a
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2011/02/14 06:55:36 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/CanonicalGA.pm,v 3.6 2011/02/14 06:55:36 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.6 $
-  $Name $
 
 =cut
 

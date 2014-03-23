@@ -27,20 +27,10 @@ for ( 1..$pop_size+1 ) { # Clones to ensure convergence
 }
 
 is( $nct->apply(\@pop ), 1, 'Now' ); #Should return 1
-my $xml = $nct->asXML();
-my $newnct =  Algorithm::Evolutionary::Op::Base->fromXML( $xml );
-
-ok( $xml, $newnct->asXML() );
   
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2011/02/16 10:11:39 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0501-convergence-term.t,v 3.2 2011/02/16 10:11:39 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.2 $
-  $Name $
 
 =cut

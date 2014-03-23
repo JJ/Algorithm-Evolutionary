@@ -10,13 +10,8 @@ Algorithm::Evolutionary::Individual::Base - Base class for chromosomes that know
 =head1 SYNOPSIS
 
   use  Algorithm::Evolutionary::Individual::Base;
-  my $xmlStr="<indi type='BitString'><atom>1</atom><atom>0</atom><atom>1</atom><atom>0</atom></indi>";
-  my $ref = XMLin($xmlStr);
 
-  my $binIndi2 = Algorithm::Evolutionary::Individual::Base->fromXML( $ref ); #From XML fragment
-  print $binIndi2->asXML();
-
-  my $indi = Algorithm::Evolutionary::Individual::Base->fromParam( $ref->{initial}{section}{indi}{param} ); #From parametric description
+  my $indi = Algorithm::Evolutionary::Individual::Base->fromParam( $param_hashref ); #From parametric description
 
   $binIndi2->Fitness( 3.5 ); #Sets or gets fitness
   print $binIndi2->Fitness();
@@ -38,7 +33,7 @@ use Algorithm::Evolutionary::Utils qw(parse_xml);
 use YAML qw(Dump Load LoadFile);
 use Carp;
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.2 $ =~ /(\d+)\.(\d+)/g;
+our $VERSION = '3.2';
 
 use constant MY_OPERATORS => qw(None);
 
@@ -336,6 +331,8 @@ sub size() {
 
 =head1 Known subclasses
 
+There are others, but I'm not so sure they work.
+
 =over 4
 
 =item * 
@@ -361,11 +358,6 @@ L<Algorithm::Evolutionary::Individual::Bit_Vector>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/11/17 19:19:41 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Individual/Base.pm,v 3.2 2009/11/17 19:19:41 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.2 $
-  $Name $
 
 =cut
 

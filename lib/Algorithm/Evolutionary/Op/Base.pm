@@ -9,17 +9,6 @@ Algorithm::Evolutionary::Op::Base - Base class for Algorithm::Evolutionary opera
 
     my $op = new Algorithm::Evolutionary::Op::Base; #Creates empty op, with rate
 
-    my $xmlStr=<<EOC;
-    <op name='Mutation' type='unary' rate='2'>
-      <param name='probability' value='0.5' />
-    </op>
-    EOC
-
-    my $ref = XMLin($xmlStr);
-    my $op = Algorithm::Evolutionary::Op::Base->fromXML( $ref ); #Takes a hash of parsed XML and turns it into an operator    
-
-    print $op->asXML(); #prints it back in XML shape
-
     print $op->rate();  #application rate; relative number of times it must be applied
     print "Yes" if $op->check( 'Algorithm::Evolutionary::Individual::Bit_Vector' ); #Prints Yes, it can be applied to Bit_Vector individual
     print $op->arity(); #Prints 1, number of operands it can be applied to
