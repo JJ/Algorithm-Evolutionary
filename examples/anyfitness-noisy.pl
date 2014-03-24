@@ -39,8 +39,9 @@ use Algorithm::Evolutionary::Op::Replace_Worst;
 use Algorithm::Evolutionary::Op::Generation_Skeleton_Ref;
 use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
-use Algorithm::Evolutionary::Fitness::Trap;
+use Algorithm::Evolutionary::Fitness::Noisy;
 
+use Math::Random qw(random_normal);
 
 #----------------------------------------------------------#
 my $conf_file = shift || die "Usage: $0 <yaml-conf-file.yaml>\n";
@@ -57,6 +58,7 @@ my $replacement_rate = $conf->{'replacement_rate'} || 0.5;
 my $tournament_size =  $conf->{'tournament_size'}|| 2;
 my $mutation_priority = $conf->{'mutation_priority'} || 1;
 my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
+my $noise_sigma = $conf->{'noise_sigma'}|| 1;
 
 # Open output stream
 #----------------------------
@@ -85,6 +87,8 @@ my $fitness_class = "Algorithm::Evolutionary::Fitness::".$conf->{'fitness'}->{'c
 eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
 my @params = $conf->{'fitness'}->{'params'}? @{$conf->{'fitness'}->{'params'}} : ();
 my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
+my $noisy = new  Algorithm::Evolutionary::Fitness::Noisy( $fitness_object,  
+							sub { return random_normal(1,0, $noise_sigma);});
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -96,7 +100,7 @@ my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't insta
 my $selector = new  Algorithm::Evolutionary::Op::Tournament_Selection $tournament_size;
 my $replacer = new  Algorithm::Evolutionary::Op::Replace_Worst;
 
-my $generation = Algorithm::Evolutionary::Op::Generation_Skeleton_Ref->new( $fitness_object, $selector, [$m, $c], $replacement_rate , $replacer ) ;
+my $generation = Algorithm::Evolutionary::Op::Generation_Skeleton_Ref->new( $noisy, $selector, [$m, $c], $replacement_rate , $replacer ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
@@ -104,15 +108,15 @@ my $inicioTiempo = [gettimeofday()];
 #----------------------------------------------------------#
 for ( @pop ) {
     if ( !defined $_->Fitness() ) {
-	$_->evaluate( $fitness_object );
+	$_->evaluate( $noisy );
     }
 }
 
 do {
   $generation->apply( \@pop );
-  $io->print( { evals => $fitness_object->evaluations(),
+  $io->print( { evals => $noisy->evaluations(),
 		best => $pop[0] } );
-} while( ($fitness_object->evaluations() < $max_evals) 
+} while( ($noisy->evaluations() < $max_evals) 
 	 && ($pop[0]->Fitness() < $best_fitness));
 
 #----------------------------------------------------------#
@@ -121,7 +125,7 @@ do {
 #Mostramos los resultados obtenidos
 $io->print( { end => { best => $pop[0],
 		     time =>tv_interval( $inicioTiempo ) , 
-		     evaluations => $fitness_object->evaluations()}} );
+		     evaluations => $noisy->evaluations()}} );
 
 =head1 AUTHOR
 
