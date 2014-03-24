@@ -27,6 +27,7 @@ use strict;
 use v5.14;
 
 use Time::HiRes qw( gettimeofday tv_interval);
+use YAML qw(LoadFile);
 
 use lib qw(lib ../lib);
 use Algorithm::Evolutionary::Individual::BitString;
@@ -39,22 +40,26 @@ use Algorithm::Evolutionary::Fitness::Trap;
 
 
 #----------------------------------------------------------#
-my $blocks = shift || 10;
-my $length = shift || 4;
-my $popSize = shift || 1024; #Population size
-my $max_evals = shift || 100000; #Max number of generations
-my $replacement_rate = shift || 0.5;
-my $tournament_size = shift || 2;
-my $mutation_priority = shift || 1;
-my $crossover_priority = shift || 4;
+my $conf_file = shift || die "Usage: $0 <yaml-conf-file.yaml>\n";
+
+my $conf = LoadFile( $conf_file ) || die "Can't open configuration file $conf_file\n";
+
+#----------------------------------------------------------#
+my $chromosome_length = $conf->{'chromosome_length'} || die "Chrom length must be explicit";
+my $best_fitness = $conf->{'best_fitness'} || die "Need to know the best fitness";
+my $population_size = $conf->{'population_size'} || 1024; #Population size
+my $max_evals = $conf->{'max_evals'}  || 100000; #Max number of generations
+my $replacement_rate = $conf->{'replacement_rate'} || 0.5;
+my $tournament_size =  $conf->{'tournament_size'}|| 2;
+my $mutation_priority = $conf->{'mutation_priority'} || 1;
+my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
 
 #----------------------------------------------------------#
 #Initial population
 my @pop;
-#Creamos $popSize individuos
-my $bits = $length*$blocks; 
-for ( 0..$popSize ) {
-  my $indi = Algorithm::Evolutionary::Individual::BitString->new( $bits );
+#Creamos $population_size individuos
+for ( 0..$population_size ) {
+  my $indi = Algorithm::Evolutionary::Individual::BitString->new( $chromosome_length );
   push( @pop, $indi );
 }
 
@@ -63,8 +68,12 @@ for ( 0..$popSize ) {
 my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1, $mutation_priority );
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2, $crossover_priority);
 
+#----------------------------------------------------------#
 # Fitness function
-my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
+my $fitness_class = "Algorithm::Evolutionary::Fitness::".$conf->{'fitness'}->{'class'};
+eval  "require $fitness_class" || die "Can't load $fitness_class: $@\n";
+my @params = $conf->{'fitness'}->{'params'}? @{$conf->{'fitness'}->{'params'}} : ();
+my $fitness_object = eval $fitness_class."->new( \@params )" || die "Can't instantiate $fitness_class: $@\n";
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -76,7 +85,7 @@ my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
 my $selector = new  Algorithm::Evolutionary::Op::Tournament_Selection $tournament_size;
 my $replacer = new  Algorithm::Evolutionary::Op::Replace_Worst;
 
-my $generation = Algorithm::Evolutionary::Op::Generation_Skeleton_Ref->new( $trap, $selector, [$m, $c], $replacement_rate , $replacer ) ;
+my $generation = Algorithm::Evolutionary::Op::Generation_Skeleton_Ref->new( $fitness_object, $selector, [$m, $c], $replacement_rate , $replacer ) ;
 
 #Time
 my $inicioTiempo = [gettimeofday()];
@@ -84,15 +93,15 @@ my $inicioTiempo = [gettimeofday()];
 #----------------------------------------------------------#
 for ( @pop ) {
     if ( !defined $_->Fitness() ) {
-	$_->evaluate( $trap );
+	$_->evaluate( $fitness_object );
     }
 }
 
 do {
   $generation->apply( \@pop );
-  say "Best ", $trap->evaluations(), " ",  $pop[0]->asString();
-} while( ($trap->evaluations() < $max_evals) 
-	 && ($pop[0]->Fitness() < $length*$blocks));
+  say "Best ", $fitness_object->evaluations(), " ",  $pop[0]->asString();
+} while( ($fitness_object->evaluations() < $max_evals) 
+	 && ($pop[0]->Fitness() < $best_fitness));
 
 
 #----------------------------------------------------------#
@@ -103,7 +112,7 @@ print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\
 
 print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
 
-print "\n\tEvaluaciones: ", $trap->evaluations(), "\n";
+print "\n\tEvaluaciones: ", $fitness_object->evaluations(), "\n";
 
 =head1 AUTHOR
 
