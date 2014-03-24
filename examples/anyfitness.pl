@@ -28,6 +28,9 @@ use v5.14;
 
 use Time::HiRes qw( gettimeofday tv_interval);
 use YAML qw(LoadFile);
+use IO::YAML;
+use DateTime;
+use Config;
 
 use lib qw(lib ../lib);
 use Algorithm::Evolutionary::Individual::BitString;
@@ -44,6 +47,7 @@ my $conf_file = shift || die "Usage: $0 <yaml-conf-file.yaml>\n";
 
 my $conf = LoadFile( $conf_file ) || die "Can't open configuration file $conf_file\n";
 
+
 #----------------------------------------------------------#
 my $chromosome_length = $conf->{'chromosome_length'} || die "Chrom length must be explicit";
 my $best_fitness = $conf->{'best_fitness'} || die "Need to know the best fitness";
@@ -54,10 +58,17 @@ my $tournament_size =  $conf->{'tournament_size'}|| 2;
 my $mutation_priority = $conf->{'mutation_priority'} || 1;
 my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
 
+# Open output stream
+#----------------------------
+my $io = IO::YAML->new($conf->{'ID'}."-".DateTime->now().".yaml", ">");
+$conf->{'uname'} = $Config{'myuname'}; # conf stuff
+$conf->{'arch'} = $Config{'myarchname'};
+$io->print( $conf );
+
 #----------------------------------------------------------#
 #Initial population
 my @pop;
-#Creamos $population_size individuos
+#Creating $population_size guys
 for ( 0..$population_size ) {
   my $indi = Algorithm::Evolutionary::Individual::BitString->new( $chromosome_length );
   push( @pop, $indi );
@@ -99,20 +110,18 @@ for ( @pop ) {
 
 do {
   $generation->apply( \@pop );
-  say "Best ", $fitness_object->evaluations(), " ",  $pop[0]->asString();
+  $io->print( { evals => $fitness_object->evaluations(),
+		best => $pop[0] } );
 } while( ($fitness_object->evaluations() < $max_evals) 
 	 && ($pop[0]->Fitness() < $best_fitness));
-
 
 #----------------------------------------------------------#
 #leemos el mejor resultado
 
 #Mostramos los resultados obtenidos
-print "El mejor es:\n\t ",$pop[0]->asString()," Fitness: ",$pop[0]->Fitness(),"\n";
-
-print "\n\n\tTime: ", tv_interval( $inicioTiempo ) , "\n";
-
-print "\n\tEvaluaciones: ", $fitness_object->evaluations(), "\n";
+$io->print( { end => { best => $pop[0],
+		     time =>tv_interval( $inicioTiempo ) , 
+		     evaluations => $fitness_object->evaluations()}} );
 
 =head1 AUTHOR
 
