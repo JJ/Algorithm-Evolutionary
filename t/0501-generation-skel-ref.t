@@ -38,7 +38,7 @@ my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
 my $selector = new Algorithm::Evolutionary::Op::Tournament_Selection $tournament_size; #One of the possible selectors
 
 my $generation = 
-  new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate );
+  new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref( $onemax, $selector, [$m, $c], $replacement_rate );
 
 my @sorted_pop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
 my $bestIndi = $sorted_pop[0];
@@ -59,7 +59,7 @@ ok( $previous_average < $this_average , 1 );
 my $replacer = new Algorithm::Evolutionary::Op::Replace_Worst; 
 
 my $new_generation = 
-  new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
+  new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
 
 do {
   $new_generation->apply( \@sorted_pop );
@@ -70,7 +70,7 @@ ok( $this_average < average( \@sorted_pop), 1 );
 $replacer = new Algorithm::Evolutionary::Op::Replace_Different; 
 
 $new_generation = 
-  new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
+  new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref( $onemax, $selector, [$m, $c], $replacement_rate, $replacer );
 
 do {
   $new_generation->apply( \@sorted_pop );

@@ -56,7 +56,7 @@ array of operators and a replacement operator
 
 =cut
 
-package Algorithm::Evolutionary::Op::Generation_Skeleton;
+package Algorithm::Evolutionary::Op::Generation_Skeleton_Ref;
 
 use lib qw(../../..);
 
