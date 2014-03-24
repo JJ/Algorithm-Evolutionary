@@ -30,9 +30,10 @@ set of individuals randomly out of the population, and select  the best.
 
 
 package Algorithm::Evolutionary::Op::Tournament_Selection;
+
 use Carp;
 
-our ($VERSION) = ( '$Revision: 1.5 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = '1.5';
 
 use base 'Algorithm::Evolutionary::Op::Base';
 
@@ -88,10 +89,6 @@ selecting a pool of individuals
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2013/01/05 12:54:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Tournament_Selection.pm,v 1.5 2013/01/05 12:54:48 jmerelo Exp $ 
-  $Author: jmerelo $ 
 
 =cut
 

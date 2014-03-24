@@ -120,10 +120,4 @@ J. J. Merelo, C<jj@merelo.net>
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
 
-  CVS Info: $Date: 2009/07/24 08:46:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/run_easy_ga.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
-
 =cut
