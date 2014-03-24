@@ -24,6 +24,7 @@ Algorithm::Evolutionary. Optimizes trap function.
 
 use warnings;
 use strict;
+use v5.14;
 
 use Time::HiRes qw( gettimeofday tv_interval);
 
@@ -41,7 +42,7 @@ use Algorithm::Evolutionary::Fitness::Trap;
 my $blocks = shift || 10;
 my $length = shift || 4;
 my $popSize = shift || 1024; #Population size
-my $numGens = shift || 1000; #Max number of generations
+my $max_evals = shift || 100000; #Max number of generations
 my $replacement_rate = shift || 0.5;
 my $tournament_size = shift || 2;
 
@@ -85,14 +86,10 @@ for ( @pop ) {
     }
 }
 
-my $contador=0;
 do {
   $generation->apply( \@pop );
-
-  print "$contador : ", $pop[0]->asString(), "\n" ;
-
-  $contador++;
-} while( ($contador < $numGens) 
+  say "Best ", $trap->evaluations(), " ",  $pop[0]->asString();
+} while( ($trap->evaluations() < $max_evals) 
 	 && ($pop[0]->Fitness() < $length*$blocks));
 
 
