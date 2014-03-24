@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single generation for an evolutionary algorithm.
+Algorithm::Evolutionary::Op::Generation_Skeleton_Ref - Even more customizable single generation for an evolutionary algorithm. Use it with ref-API genitors
                  
 =head1 SYNOPSIS
 
@@ -30,10 +30,10 @@ Algorithm::Evolutionary::Op::Generation_Skeleton - Even more customizable single
     my $m =  new Algorithm::Evolutionary::Op::Mutation 0.5;
     my $c = new Algorithm::Evolutionary::Op::Crossover; #Classical 2-point crossover
 
-    my $selector = new Algorithm::Evolutionary::Op::RouletteWheel $population_size; #One of the possible selectors
+    my $selector = new Algorithm::Evolutionary::Op::Tournament_Selection $tournament_size; #One of the possible selectors
 
     my $generation = 
-      new Algorithm::Evolutionary::Op::Generation_Skeleton( $onemax, $selector, [$m, $c], $replacement_rate );
+      new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref( $onemax, $selector, [$m, $c], $replacement_rate );
 
     my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
     my $bestIndi = $sortPop[0];
@@ -133,7 +133,7 @@ sub apply ($) {
 
     #Breed
     my $selector = $self->{'_selector'};
-    my @genitors = $selector->apply( @$pop );
+    my @genitors = $selector->apply( $pop );
 
     #Reproduce
     my $totRate = 0;
@@ -144,7 +144,7 @@ sub apply ($) {
     }
     my $opWheel = new Algorithm::Evolutionary::Wheel @rates;
 
-    my @newpop;
+    my @new_population;
     my $pringaos =  @$pop  * $self->{'_replacementRate'} ;
     for ( my $i = 0; $i < $pringaos; $i++ ) {
 	my @offspring;
@@ -156,14 +156,14 @@ sub apply ($) {
 	    push( @offspring, $chosen->clone() );
 	}
 	my $mutante = $selectedOp->apply( @offspring );
-	push( @newpop, $mutante );
+	push( @new_population, $mutante );
     }
     
     my $eval = $self->{'_eval'};
-    map( $_->evaluate( $eval), @newpop );
+    map( $_->evaluate( $eval), @new_population );
 
     #Eliminate and substitute
-    my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@newpop );
+    my $pop_hash = $self->{'_replacement_op'}->apply( $pop, \@new_population );
     @$pop = rnkeysort { $_->{'_fitness'} } @$pop_hash ;    
 }
 
@@ -176,6 +176,11 @@ More or less in the same ballpark, alternatives to this one
 =item * 
 
 L<Algorithm::Evolutionary::Op::GeneralGeneration>
+
+
+=item * 
+
+L<Algorithm::Evolutionary::Op::Generation_Skeleton_Ref> does not work with RouletteWheel
 
 =back
 

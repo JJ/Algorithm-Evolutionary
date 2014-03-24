@@ -53,7 +53,7 @@ package Algorithm::Evolutionary::Op::Breeder;
 
 use lib qw(../../..);
 
-our ($VERSION) = ( '$Revision: 1.4 $ ' =~ / (\d+\.\d+)/ ) ;
+our $VERSION = '1.4';
 
 use Carp;
 
@@ -86,12 +86,13 @@ sub new {
 
 Applies the algorithm to the population, which should have
 been evaluated first; checks that it receives a
-ref-to-array as input, croaks if it does not. Returns a sorted,
-culled, evaluated population for next generation.
+ref-to-array as input, croaks if it does not. 
+
+Returns a sorted, culled, evaluated population for next generation.
 
 =cut
 
-sub apply ($) {
+sub apply {
     my $self = shift;
     my $pop = shift || croak "No population here";
     my $output_size = shift || @$pop; # Defaults to pop size
@@ -113,7 +114,6 @@ sub apply ($) {
     for ( my $i = 0; $i < $output_size; $i++ ) {
 	my @offspring;
 	my $selectedOp = $ops[ $opWheel->spin()];
-#	  print $selectedOp->asXML;
 	for ( my $j = 0; $j < $selectedOp->arity(); $j ++ ) {
 	    my $chosen = $genitors[ rand( @genitors )];
 #		print "Elegido ", $chosen->asString(), "\n";
@@ -140,17 +140,16 @@ L<Algorithm::Evolutionary::Op::GeneralGeneration>
 
 L<Algorithm::Evolutionary::Op::Breeder_Diverser>
 
+=item *
+
+L<Algorithm::Evolutionary::Op::Generation_Skeleton> does have a incompatible interface
+
 =back
 
 =head1 Copyright
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2013/01/05 12:54:48 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Op/Breeder.pm,v 1.4 2013/01/05 12:54:48 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 1.4 $
 
 =cut
 

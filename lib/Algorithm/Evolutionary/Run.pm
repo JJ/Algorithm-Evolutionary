@@ -65,7 +65,7 @@ use Algorithm::Evolutionary qw(Individual::BitString Op::Easy Op::CanonicalGA
  
 use Algorithm::Evolutionary::Utils qw(hamming);
 
-our ($VERSION) = ( '$Revision: 3.2 $ ' =~ /(\d+\.\d+)/ ) ;
+our $VERSION =  '3.2' ;
 
 use Carp;
 use YAML qw(LoadFile);
@@ -290,12 +290,6 @@ sub compute_min_distance {
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2010/03/16 18:39:40 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Run.pm,v 3.2 2010/03/16 18:39:40 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.2 $
-  $Name $
 
 =cut
 
