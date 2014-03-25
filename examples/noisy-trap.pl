@@ -6,7 +6,7 @@
 
 =head1 SYNOPSIS
 
-  prompt% ./trap.pl <population> <number of generations>
+  prompt% ./noisy-trap.pl <population> <number of generations>
 
 or
 
@@ -40,7 +40,7 @@ use Algorithm::Evolutionary::Fitness::Noisy;
 my $blocks = shift || 10;
 my $length = shift || 4;
 my $popSize = shift || 1024; #Population size
-my $numGens = shift || 1000; #Max number of generations
+my $numGens = shift || 5000; #Max number of generations
 my $selection_rate = shift || 0.1;
 
 #----------------------------------------------------------#
