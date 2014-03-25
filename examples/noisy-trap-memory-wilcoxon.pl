@@ -46,6 +46,9 @@ my $popSize = shift || 1024; #Population size
 my $numGens = shift || 1000; #Max number of generations
 my $selection_rate = shift || 0.5;
 my $comparisons = shift || 10;
+my $mutation_priority = shift || 1;
+my $crossover_priority = shift || 1;
+
 
 #----------------------------------------------------------#
 #Initial population
@@ -59,7 +62,7 @@ for ( 1..$popSize ) {
 
 #----------------------------------------------------------#
 # Variation operators
-my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1 );
+my $m = Algorithm::Evolutionary::Op::Mutation->new( 0.1, $mutation_priority );
 my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
 
 # Fitness function
