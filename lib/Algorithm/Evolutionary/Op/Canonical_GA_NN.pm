@@ -4,7 +4,7 @@ use warnings;
 =head1 NAME
 
 Algorithm::Evolutionary::Op::Canonical_GA_NN - Canonical Genetic
-                 Algorithm that does not ranks population
+                 Algorithm that does not rank population
 
 =head1 SYNOPSIS
 
@@ -46,7 +46,6 @@ package Algorithm::Evolutionary::Op::Canonical_GA_NN;
 use lib qw(../../..);
 
 our $VERSION =   "3.6";
-
 
 use Carp;
 
