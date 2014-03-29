@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 =head1 NAME
 
@@ -62,7 +62,8 @@ my $noise_sigma = $conf->{'noise_sigma'}|| 1;
 
 # Open output stream
 #----------------------------
-my $io = IO::YAML->new($conf->{'ID'}."-".DateTime->now().".yaml", ">");
+my $ID="res-afn-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
 $io->print( $conf );

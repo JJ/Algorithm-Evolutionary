@@ -66,7 +66,8 @@ my $comparisons = $conf->{'comparisons'} || 10;
 
 # Open output stream
 #----------------------------
-my $io = IO::YAML->new($conf->{'ID'}."-".DateTime->now().".yaml", ">");
+my $ID="res-afnmw-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
 $io->print( $conf );

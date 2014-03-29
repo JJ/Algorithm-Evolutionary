@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 =head1 NAME
 
@@ -63,7 +63,8 @@ my $noise_sigma = $conf->{'noise_sigma'}|| 1;
 
 # Open output stream
 #----------------------------
-my $io = IO::YAML->new($conf->{'ID'}."-".DateTime->now().".yaml", ">");
+my $ID="res-afnm-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
 $io->print( $conf );
@@ -124,7 +125,7 @@ do {
   $io->print( { evals => $noisy->evaluations(),
 		best => $pop[0] } );
 } while( ($noisy->evaluations() < $max_evals) 
-	 && ($pop[0]->Fitness() < $best_fitness));
+	 && ($fitness_object->apply($pop[0]) < $best_fitness));
 
 #----------------------------------------------------------#
 #leemos el mejor resultado
