@@ -53,7 +53,7 @@ for my $f (@files ) {
     }
   } else {
     for my $b ( @{$res->{'end'}{'best'}} ) {
-       if ( $mmdp->apply($res->{'end'}{'best'}) eq $best ) {
+       if ( $mmdp->apply($b) eq $best ) {
 	 $successful++;
 	 push @times, $res->{'end'}{'time'};
 	 push @evaluations, $res->{'end'}{'evaluations'};
