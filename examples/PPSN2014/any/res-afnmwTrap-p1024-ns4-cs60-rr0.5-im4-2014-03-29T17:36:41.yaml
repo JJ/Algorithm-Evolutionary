@@ -1,0 +1,5055 @@
+---
+ID: 4trap-15-rr05-p1k-base
+arch: x86_64-linux
+best_fitness: 60
+chromosome_length: 60
+fitness:
+  class: Trap
+  params:
+    - 4
+initial_memory: 4
+max_evals: 200000
+noise_sigma: 4
+population_size: 1024
+replacement_rate: 0.5
+uname: 'linux penny 3.8.0-35-generic #50-ubuntu smp tue dec 3 01:24:59 utc 2013 x86_64 x86_64 x86_64 gnulinux '
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 30.6529333886102
+      - 28.1074015893935
+      - 32.292616631406
+      - 27.2692621886537
+      - 24.4149039599867
+    _length: 60
+    _str: 000100000001010001110101100001110010100010000000100001011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 39.8407832216925
+      - 34.7143635740607
+      - 37.5839410371584
+      - 30.5037261468606
+      - 32.4802137447927
+    _length: 60
+    _str: 001011110101011000000100111100110000111111110111101000011010
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 27.4722820977851
+      - 30.3486179070767
+      - 29.83100415232
+      - 31.2826464414882
+      - 37.1480706974165
+    _length: 60
+    _str: 010110111100010011111111010000110001111101101001000110111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 32.0096953294131
+      - 28.6277760192206
+      - 29.7532029602875
+      - 24.7547347980818
+      - 31.1869639957204
+    _length: 60
+    _str: 000100000000101111011000001101001111011011000011111110001101
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 25.3994067784469
+      - 33.0346773069538
+      - 35.1923013875737
+      - 23.0222775612897
+      - 35.7154649400513
+    _length: 60
+    _str: 010100101000110010111000001011110010100101011111111101100000
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 26.4212332895975
+      - 31.579866522396
+      - 32.2113765276262
+      - 28.7396045275358
+      - 33.9345286322941
+    _length: 60
+    _str: 110100001111100011101000100011111000100010100010010100011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 29.3993944895609
+      - 29.384152487895
+      - 26.1932228865901
+      - 31.6421553447691
+      - 32.9534641304835
+    _length: 60
+    _str: 000111101101111101010000001100001011111111111111001010010010
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 27.1484639426543
+      - 30.8349985920566
+      - 28.1087976411599
+      - 32.6298690454659
+      - 32.6020423821774
+    _length: 60
+    _str: 111100001111100000001000011100000111110100001100110111011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 34.4870603396226
+      - 30.1385761209614
+      - 23.3106052179703
+      - 30.0070497264968
+      - 27.9948059187548
+    _length: 60
+    _str: 000100000100001100110101111001010001111111000101111100100101
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 30.6354730551236
+      - 33.3998723513871
+      - 30.4170239190309
+      - 28.4730149209088
+      - 29.0603624468155
+    _length: 60
+    _str: 110001101100111110001110000000111011111101111001010011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 27.9902160779441
+      - 30.5959952459227
+      - 30.5944384759196
+      - 31.2095603230656
+      - 20.3407890813491
+    _length: 60
+    _str: 001000100110111111111010010000110000111010011010010001111111
+evals: 5120
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 39.8407832216925
+      - 34.7143635740607
+      - 37.5839410371584
+      - 30.5037261468606
+      - 32.4802137447927
+      - 31.4649993723395
+    _length: 60
+    _str: 001011110101011000000100111100110000111111110111101000011010
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 27.4722820977851
+      - 30.3486179070767
+      - 29.83100415232
+      - 31.2826464414882
+      - 37.1480706974165
+      - 27.3986652586636
+    _length: 60
+    _str: 010110111100010011111111010000110001111101101001000110111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 27.1484639426543
+      - 30.8349985920566
+      - 28.1087976411599
+      - 32.6298690454659
+      - 32.6020423821774
+      - 24.2343892483506
+    _length: 60
+    _str: 111100001111100000001000011100000111110100001100110111011111
+evals: 6144
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 39.8407832216925
+      - 34.7143635740607
+      - 37.5839410371584
+      - 30.5037261468606
+      - 32.4802137447927
+      - 31.4649993723395
+      - 33.2492048430485
+    _length: 60
+    _str: 001011110101011000000100111100110000111111110111101000011010
+evals: 7168
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 39.8407832216925
+      - 34.7143635740607
+      - 37.5839410371584
+      - 30.5037261468606
+      - 32.4802137447927
+      - 31.4649993723395
+      - 33.2492048430485
+      - 29.4112760369253
+    _length: 60
+    _str: 001011110101011000000100111100110000111111110111101000011010
+evals: 8192
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 30.2647659315468
+      - 28.3860393037497
+      - 27.8765433806124
+      - 31.1260975438598
+    _length: 60
+    _str: 001100000000011010111010111110011000100010000100001011111001
+evals: 9216
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 32.500765603326
+      - 34.6894601090741
+      - 30.3542287473452
+      - 32.7406158208834
+      - 31.9842571483449
+    _length: 60
+    _str: 000100000000101111011000001101001111011011000011111110001111
+evals: 10240
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 29.3993944895609
+      - 29.384152487895
+      - 26.1932228865901
+      - 31.6421553447691
+      - 32.9534641304835
+      - 27.0621138610118
+      - 30.1508345764295
+      - 26.759803823069
+      - 28.9231703010807
+      - 32.5255142548384
+      - 32.115812772524
+    _length: 60
+    _str: 000111101101111101010000001100001011111111111111001010010010
+evals: 11264
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 36.0968492719329
+      - 40.1478206992946
+      - 40.9604751034854
+      - 37.072587124476
+      - 37.9148597725933
+    _length: 60
+    _str: 111111111111011001000010111100010101000011001111101000101101
+evals: 12288
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 36.0968492719329
+      - 40.1478206992946
+      - 40.9604751034854
+      - 37.072587124476
+      - 37.9148597725933
+      - 37.1599981699803
+    _length: 60
+    _str: 111111111111011001000010111100010101000011001111101000101101
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 41.4995171212743
+      - 36.4950462491591
+      - 38.586847851774
+      - 36.8044956850387
+    _length: 60
+    _str: 000000100000111111110000010110010010011110001111000000001010
+evals: 13312
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 41.4995171212743
+      - 36.4950462491591
+      - 38.586847851774
+      - 36.8044956850387
+      - 36.6961753207105
+    _length: 60
+    _str: 000000100000111111110000010110010010011110001111000000001010
+evals: 14336
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 46.458032922548
+      - 35.0680731785266
+      - 38.370013181092
+      - 39.5059063186106
+    _length: 60
+    _str: 000000101111111111000100100001111001010011111111000010011100
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 37.0639515807736
+      - 34.4863292793356
+      - 43.3222820228865
+      - 39.3525685596145
+    _length: 60
+    _str: 010100001111100011101000100011111000111111111111001010010010
+evals: 15360
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 46.903019769073
+      - 35.6678471537591
+      - 38.0300787291934
+      - 42.0788015460852
+      - 41.9453926945864
+      - 42.7656212780958
+    _length: 60
+    _str: 111111111111011111110100111100110000101111110000001111111101
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 36.8017018100777
+      - 42.2047850055043
+      - 38.7968697037078
+      - 36.2061923356918
+    _length: 60
+    _str: 011000000000111101100101000010100000100100011111111101000010
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 41.4995171212743
+      - 36.4950462491591
+      - 38.586847851774
+      - 36.8044956850387
+      - 36.6961753207105
+      - 35.4471532996103
+      - 40.7291855254255
+    _length: 60
+    _str: 000000100000111111110000010110010010011110001111000000001010
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 43.544306141231
+      - 43.5306030888472
+      - 40.8179487238219
+      - 44.2432626727285
+    _length: 60
+    _str: 011000000000111111110000010110000001010011111111000110001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 41.922769149407
+      - 39.3822402077382
+      - 37.3314997783232
+      - 43.0637063863794
+    _length: 60
+    _str: 000111101101111101010000000011111111111111111111110000100010
+evals: 16384
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 43.544306141231
+      - 43.5306030888472
+      - 40.8179487238219
+      - 44.2432626727285
+      - 42.223898234751
+    _length: 60
+    _str: 011000000000111111110000010110000001010011111111000110001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 40.0239458194535
+      - 38.1812144228013
+      - 37.1177552201378
+      - 36.9613601976057
+    _length: 60
+    _str: 000111111010010001000010111100011111111111111111110000100010
+evals: 17408
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 44.280984074062
+      - 44.1603782802958
+      - 44.602971448199
+      - 40.4247720233144
+    _length: 60
+    _str: 111100001111100000000101000010100000100100011111111101001111
+evals: 18432
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 39.0280126572035
+      - 45.7462139079759
+      - 43.257485907044
+      - 43.4954802103171
+      - 39.0039607405778
+    _length: 60
+    _str: 011000000000111111110000111010000001010011111111000110001111
+evals: 19456
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 47.9290951811579
+      - 49.0868544486542
+      - 47.1197841653222
+      - 46.0828351002544
+    _length: 60
+    _str: 100100011101100000000100000011111111111111111111111100011111
+evals: 20480
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 46.3322018770504
+      - 46.6803806944178
+      - 49.895368628179
+      - 48.8694124364382
+      - 45.4651543877182
+    _length: 60
+    _str: 111100001101111100001111111101011111111111111111100000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 41.7440641460991
+      - 42.31184474371
+      - 45.2462753736975
+      - 46.2564278823203
+    _length: 60
+    _str: 111111111111111100001111111101001111111111101011000110011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 40.6325310349465
+      - 50.0938380754416
+      - 48.5183634882895
+      - 45.9705279015747
+    _length: 60
+    _str: 111111101111000000001111111111111111010011110000010001100100
+evals: 21504
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 47.3323010100956
+      - 43.780844463895
+      - 43.7762388452055
+      - 42.8867037514094
+    _length: 60
+    _str: 111111111111011111110111000101000110111111111111111100100001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 41.8652266843185
+      - 42.1931712539183
+      - 42.3736659298222
+      - 43.8897099051336
+      - 43.5437019172199
+      - 44.6945934981728
+    _length: 60
+    _str: 111100001101111100001111111100001111111110000101010000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 48.2321236855807
+      - 44.9359473845039
+      - 48.3489982377602
+      - 52.985223552919
+    _length: 60
+    _str: 000000101111000001001111111111110000111011110001000000000100
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 43.063162485198
+      - 50.9428445072362
+      - 48.6914666467338
+      - 44.7676736025941
+    _length: 60
+    _str: 111100001101111100001111111101011111111111111000110000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 45.7550974301337
+      - 37.1909690766817
+      - 42.6040833145138
+      - 44.712702241002
+    _length: 60
+    _str: 000100000000000001000001111111110100111111111111101000111100
+evals: 22528
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 48.2321236855807
+      - 44.9359473845039
+      - 48.3489982377602
+      - 52.985223552919
+      - 46.2479054239263
+    _length: 60
+    _str: 000000101111000001001111111111110000111011110001000000000100
+evals: 23552
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 48.2321236855807
+      - 44.9359473845039
+      - 48.3489982377602
+      - 52.985223552919
+      - 46.2479054239263
+      - 47.9214285290599
+    _length: 60
+    _str: 000000101111000001001111111111110000111011110001000000000100
+evals: 24576
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 51.399340733424
+      - 46.1777714285402
+      - 48.1260791539448
+      - 42.8388332167216
+      - 48.2850925972021
+    _length: 60
+    _str: 111100001101111100001111111111110000111111111111100000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 51.2647148118267
+      - 48.0920367649767
+      - 49.0653541528163
+      - 50.5128351032337
+    _length: 60
+    _str: 000111110000111100001111111111011111111111111111000001000100
+evals: 25600
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 51.399340733424
+      - 46.1777714285402
+      - 48.1260791539448
+      - 42.8388332167216
+      - 48.2850925972021
+      - 46.8588208078195
+    _length: 60
+    _str: 111100001101111100001111111111110000111111111111100000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 49.766859830565
+      - 50.3795872604103
+      - 47.1748088699514
+      - 51.1927427389407
+    _length: 60
+    _str: 000111110000111100001111111111111111000011111010001011111100
+evals: 26624
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 42.7592727425271
+      - 52.8134239051272
+      - 45.5178716328811
+      - 48.3760519003202
+      - 49.8326788844097
+      - 52.2411079314595
+      - 44.232556474609
+    _length: 60
+    _str: 111111111001111100001111111101011111111111011111000000000000
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 53.8489261319458
+      - 51.9882188527461
+      - 46.766484922498
+      - 54.7372779265877
+      - 47.9125027220889
+      - 46.9110945104843
+    _length: 60
+    _str: 111100001100111100001111111101001111111111111111100011110110
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 49.164779154576
+      - 52.7087581680833
+      - 58.0163280279878
+      - 48.8321819876801
+    _length: 60
+    _str: 111100001100111100001111111101011111111111111111100011110110
+evals: 27648
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 53.8489261319458
+      - 51.9882188527461
+      - 46.766484922498
+      - 54.7372779265877
+      - 47.9125027220889
+      - 46.9110945104843
+      - 51.6814582261596
+    _length: 60
+    _str: 111100001100111100001111111101001111111111111111100011110110
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 49.164779154576
+      - 52.7087581680833
+      - 58.0163280279878
+      - 48.8321819876801
+      - 49.6111889978284
+    _length: 60
+    _str: 111100001100111100001111111101011111111111111111100011110110
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 51.454897244232
+      - 51.9944194943732
+      - 50.477570172138
+      - 46.313305751821
+    _length: 60
+    _str: 111100001001000000001111111111110100111111111111100000000100
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 48.1553048076118
+      - 51.6497958784861
+      - 49.9506028298855
+      - 50.148644301833
+    _length: 60
+    _str: 000111110000111111110001111111111000000011111111001000100001
+evals: 28672
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 53.8489261319458
+      - 51.9882188527461
+      - 46.766484922498
+      - 54.7372779265877
+      - 47.9125027220889
+      - 46.9110945104843
+      - 51.6814582261596
+      - 53.1404031770177
+    _length: 60
+    _str: 111100001100111100001111111101001111111111111111100011110110
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 50.1793090906101
+      - 58.4163254524853
+      - 56.8580750236983
+      - 50.8531681972639
+    _length: 60
+    _str: 111111110000111100001111111101011111111111111111100010011111
+evals: 29696
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 50.1793090906101
+      - 58.4163254524853
+      - 56.8580750236983
+      - 50.8531681972639
+      - 51.1217614408157
+    _length: 60
+    _str: 111111110000111100001111111101011111111111111111100010011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 52.349888305554
+      - 49.1870180040736
+      - 47.6294586955978
+      - 55.2433728638548
+      - 53.0253579443062
+      - 51.1215991637858
+    _length: 60
+    _str: 111100001111000000001111111111111111111111111111000001000011
+evals: 30720
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 50.1793090906101
+      - 58.4163254524853
+      - 56.8580750236983
+      - 50.8531681972639
+      - 51.1217614408157
+      - 49.6069687979865
+    _length: 60
+    _str: 111111110000111100001111111101011111111111111111100010011111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 48.6936148214621
+      - 49.2197537828574
+      - 49.8222432343473
+      - 51.5160481020187
+    _length: 60
+    _str: 111111110000111111110001111111111001111111111111100100100001
+evals: 31744
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 54.5455392241391
+      - 50.5097196952705
+      - 50.9654224914815
+      - 46.3282268778228
+      - 53.0624964977132
+      - 50.9497384128386
+      - 58.8008878449659
+    _length: 60
+    _str: 000111110000111100001111111111111111000011111010001011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 53.8867934062943
+      - 48.6979572540885
+      - 49.7894872145572
+      - 53.4455223100611
+    _length: 60
+    _str: 000111110000111100001111111111011111111111111111000011111000
+evals: 32768
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 52.349888305554
+      - 49.1870180040736
+      - 47.6294586955978
+      - 55.2433728638548
+      - 53.0253579443062
+      - 51.1215991637858
+      - 52.19530390825
+      - 52.7180408296814
+      - 56.3930579771709
+    _length: 60
+    _str: 111100001111000000001111111111111111111111111111000001000011
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 48.5772312614796
+      - 54.4166974633394
+      - 55.2110555369347
+      - 55.4919280854015
+    _length: 60
+    _str: 111111111111111100001111111111110001111111111111000010000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 50.4547311204349
+      - 49.7959871093705
+      - 45.762242161776
+      - 49.3246971801775
+      - 52.8154517326979
+      - 47.93866231078
+    _length: 60
+    _str: 000011111111111101001111111100011111111111111111000000100100
+evals: 33792
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 57.704671317589
+      - 54.6729293936099
+      - 52.2743772141517
+      - 52.7139940822579
+    _length: 60
+    _str: 111111111000111100001111111111110000111111111111000000001111
+evals: 34816
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 51.1684432460268
+      - 51.8341002597328
+      - 53.1391203093732
+      - 55.456170557885
+    _length: 60
+    _str: 111111110000111100010000111111110100111100001111000000100001
+evals: 35840
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 59.1764879358109
+      - 56.2309047193662
+      - 52.9618195551099
+      - 56.2962370197257
+      - 54.5717107705497
+      - 53.4906516254278
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111100000000001
+evals: 36864
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 57.704671317589
+      - 54.6729293936099
+      - 52.2743772141517
+      - 52.7139940822579
+      - 53.0765238828528
+      - 51.9707580667985
+      - 55.6974170374467
+    _length: 60
+    _str: 111111111000111100001111111111110000111111111111000000001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 55.9917534740474
+      - 62.0487794501803
+      - 56.6992594427704
+      - 60.1431570382425
+    _length: 60
+    _str: 111100001111111100001111111111111111111111111111000000000001
+evals: 37888
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 55.9917534740474
+      - 62.0487794501803
+      - 56.6992594427704
+      - 60.1431570382425
+      - 53.1752038701118
+    _length: 60
+    _str: 111100001111111100001111111111111111111111111111000000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 53.8867934062943
+      - 48.6979572540885
+      - 49.7894872145572
+      - 53.4455223100611
+      - 56.1958977255551
+      - 48.308575431994
+      - 48.4027884063793
+      - 50.7252371649591
+      - 51.2899217541046
+      - 53.1952653157407
+    _length: 60
+    _str: 000111110000111100001111111111011111111111111111000011111000
+evals: 38912
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.2604234455478
+      - 49.3510694927911
+      - 56.680921744008
+      - 53.9524468991145
+    _length: 60
+    _str: 111111110000111100001111111101011111111111111111100010011111
+evals: 39936
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 49.7639010472646
+      - 53.6940565333782
+      - 57.2929488707465
+      - 59.8116813334716
+    _length: 60
+    _str: 111111111000111100001111111101001111111111111111111100100001
+evals: 40960
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 60.7098845557489
+      - 61.3797361264358
+      - 55.7965956218425
+      - 55.0213347154623
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111000000001111
+evals: 41984
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 53.7664408045291
+      - 55.2475228892063
+      - 55.9060122064455
+      - 61.290601327854
+      - 53.9071717700572
+      - 56.7721260467305
+    _length: 60
+    _str: 111100001111111100001111111111111111111111111111000000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 56.7449801991431
+      - 59.9271415104631
+      - 56.7002251432566
+      - 58.2574812308007
+    _length: 60
+    _str: 111111111000111100001111111111111111111111111111001110001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 54.0890331179668
+      - 59.6953881953765
+      - 58.7537456668499
+      - 57.5607098825008
+    _length: 60
+    _str: 111111111111111100001111111111110000111111111111000001011111
+evals: 43008
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.7372728198874
+      - 62.9154895710003
+      - 50.8879237338526
+      - 57.7085924701057
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 61.3647553772368
+      - 55.1833086965652
+      - 54.672727954196
+      - 57.0131926177355
+    _length: 60
+    _str: 111100001111111111001111111111111111111111111111111100001111
+evals: 44032
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.7372728198874
+      - 62.9154895710003
+      - 50.8879237338526
+      - 57.7085924701057
+      - 58.9844037727897
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000000000001
+evals: 45056
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 58.1197073099671
+      - 61.7340640700842
+      - 63.0749893227414
+      - 55.3218406052297
+    _length: 60
+    _str: 111111111111111100001111111111110000111111111111000011111111
+evals: 46080
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 59.7372728198874
+      - 62.9154895710003
+      - 50.8879237338526
+      - 57.7085924701057
+      - 58.9844037727897
+      - 60.4474139152936
+      - 50.6664637057042
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.648067153304
+      - 57.8767708031166
+      - 54.4945027671279
+      - 50.6433453464127
+      - 51.5833364199
+      - 59.4877524891277
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000000001001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 58.6943122710268
+      - 55.7754600019378
+      - 54.5162260273496
+      - 58.5810272445785
+      - 56.759887343017
+      - 53.0275253426912
+      - 59.784407218677
+      - 54.7626623623042
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 56.5408197702435
+      - 57.504769422463
+      - 55.8870874020534
+      - 52.7976115956345
+      - 60.1536125172493
+      - 61.999037315964
+      - 59.2684570265411
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111100011111111
+evals: 47104
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 53.8719476045551
+      - 58.5854048485261
+      - 57.1267555695224
+      - 58.5635446519251
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111100000010000
+evals: 48128
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 57.3096064423029
+      - 63.4988791514579
+      - 57.3288434756373
+      - 61.1504861212342
+    _length: 60
+    _str: 111110001111111100001111111111111111111111111111000000001111
+evals: 49152
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 58.1480690919425
+      - 57.069572703974
+      - 56.8532250032685
+      - 57.2606529553439
+      - 56.0470120679782
+    _length: 60
+    _str: 111111111111111100001111111100101111111111111111000011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 61.8205173399033
+      - 62.852666056571
+      - 61.4664822073132
+      - 55.5452498596101
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011110000
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 56.8251169793924
+      - 58.1642326874643
+      - 56.3956473903311
+      - 55.9995093071779
+      - 54.9009809684397
+    _length: 60
+    _str: 111111111111011100001111111111111111111111111111000000000001
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 63.4917119872994
+      - 58.010422119828
+      - 55.5491333867703
+      - 59.9449986724274
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111100000000000
+evals: 50176
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 58.6523350149997
+      - 62.4522309472777
+      - 58.4204286064989
+      - 57.6438545194602
+    _length: 60
+    _str: 111111111111111100001111111111110000111111111111000011111111
+evals: 51200
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 57.0065539328515
+      - 59.3789657287485
+      - 60.5401927734684
+      - 61.870422105784
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 52224
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 58.4508396786576
+      - 57.0183123647265
+      - 59.2010621193347
+      - 58.6122389383546
+    _length: 60
+    _str: 111100001111000000001111111111111111111111111111111100000000
+evals: 53248
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 60.8748104422752
+      - 61.3695760167148
+      - 64.878734150391
+      - 58.4160011305761
+    _length: 60
+    _str: 111110001111111100001111111111111111111111111111000000001111
+evals: 54272
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 59.8984353000703
+      - 64.5005511703967
+      - 65.1437081715539
+      - 59.448221575088
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111100000011111
+evals: 55296
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.206778984322
+      - 65.4307178189292
+      - 63.2443591856383
+      - 58.8203994854759
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.3270356211868
+      - 58.9475301806671
+      - 66.9826826258694
+      - 59.9689794449242
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111111111111
+evals: 56320
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 59.2353795313847
+      - 58.6646629743295
+      - 64.6021523397961
+      - 62.2426581644745
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 57344
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.206778984322
+      - 65.4307178189292
+      - 63.2443591856383
+      - 58.8203994854759
+      - 63.4610928352591
+      - 55.387916418037
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111111111111
+evals: 58368
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.3270356211868
+      - 58.9475301806671
+      - 66.9826826258694
+      - 59.9689794449242
+      - 59.7777879790387
+      - 64.641262661982
+      - 61.4176520394497
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111111111111
+evals: 59392
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 59.3270356211868
+      - 58.9475301806671
+      - 66.9826826258694
+      - 59.9689794449242
+      - 59.7777879790387
+      - 64.641262661982
+      - 61.4176520394497
+      - 60.929214221342
+    _length: 60
+    _str: 111111110000111100001111111111111111111111111111111111111111
+evals: 60416
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 58.8367982924433
+      - 70.3941075503687
+      - 59.5256841251549
+      - 59.6245506469288
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 61440
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.8328206776738
+      - 61.3233172423957
+      - 63.4448272435214
+      - 61.6397465677367
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.2885388086359
+      - 63.9285815141833
+      - 66.4614083991675
+      - 59.9720133769318
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.3671524667418
+      - 62.3360395143148
+      - 59.0678073929794
+      - 54.1311922358771
+      - 60.4819191238621
+      - 56.9904850089963
+      - 63.6021111975952
+      - 57.3113078152611
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 62464
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.0418213351807
+      - 60.8956210806062
+      - 62.5672733566872
+      - 59.4565236506103
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 63.3749586861558
+      - 63.9980895396284
+      - 58.4921495804085
+      - 61.3497155826423
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 63488
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 62.4041903151379
+      - 63.8901063017377
+      - 63.0297178457945
+      - 58.7649446051122
+      - 62.4686351731651
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 64512
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 60.5025859753924
+      - 64.9849510027247
+      - 57.0638453748611
+      - 59.7259884097498
+      - 59.9378490438736
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 65536
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 62.0741490330588
+      - 63.6571406135574
+      - 56.1746005965193
+      - 62.3769942259472
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 66560
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 61.3187384113143
+      - 62.5092774033702
+      - 59.2026483074092
+      - 59.4272525497573
+      - 64.2583667342695
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 67584
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.2336316710497
+      - 59.5376951016611
+      - 65.3243945991681
+      - 59.6480225637036
+      - 60.9238575405955
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 62.0197892422298
+      - 61.6991713761578
+      - 58.1695034205041
+      - 62.1439345937109
+    _length: 60
+    _str: 111100001111111100001111111111111111111111111111000011111111
+evals: 68608
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.1973812335742
+      - 59.5653711699172
+      - 63.1917240266978
+      - 63.5089130839856
+      - 67.7431821489674
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 69632
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.1544443604495
+      - 59.5884319022923
+      - 60.9767605352249
+      - 61.0734420372393
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 70656
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 63.7532196162527
+      - 63.7530082433295
+      - 62.5819971135386
+      - 60.6389658031933
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 71680
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.6068028304593
+      - 61.1449204478489
+      - 63.9934454290704
+      - 59.5283675893259
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 72704
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.3893227029301
+      - 66.2884702626929
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.48378391064
+      - 58.6487334033842
+      - 60.2157982659722
+      - 63.5023078267029
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 73728
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 68.4059633936683
+      - 65.3409754017778
+      - 63.1856851648195
+      - 63.0757032095326
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.5473469728221
+      - 61.3627531451623
+      - 67.7450516372673
+      - 59.0515799244503
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 74752
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.1518841674232
+      - 59.3874697641353
+      - 63.1999989959313
+      - 64.5130305349422
+      - 63.9514486124725
+      - 59.7123722091134
+      - 60.0846600345608
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+evals: 75776
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 60.2241927430965
+      - 64.3583720685419
+      - 57.979808188032
+      - 61.9480109582817
+      - 58.7486196468064
+      - 67.1745455220486
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 76800
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 68.8916869436343
+      - 60.7803691770881
+      - 64.8078668023294
+      - 65.9734306464239
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 77824
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.8761624389547
+      - 60.7873141286099
+      - 62.3945126132048
+      - 63.2041760311649
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 78848
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 61.2051116888663
+      - 72.3825510950878
+      - 59.2247517974737
+      - 66.8332111012909
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 79872
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.569251515938
+      - 59.9944111382131
+      - 64.3918732980577
+      - 65.0837291906473
+      - 66.6471111031704
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.8239743616459
+      - 60.1444917723363
+      - 62.4422306194021
+      - 61.9516524789275
+      - 60.8787956103451
+      - 57.267611521597
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 80896
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 64.569251515938
+      - 59.9944111382131
+      - 64.3918732980577
+      - 65.0837291906473
+      - 66.6471111031704
+      - 64.4395127116071
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 81920
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.7972166969791
+      - 64.9945194198155
+      - 59.9957748761348
+      - 64.4837798735256
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 82944
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.181368126741
+      - 65.070284375085
+      - 58.8050787680192
+      - 64.1192462842052
+      - 62.0729988579216
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 67.8786185398879
+      - 55.3317755744692
+      - 65.3235512723344
+      - 62.4931652504566
+      - 64.8577643359898
+      - 59.7702012500701
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 67.2540577664688
+      - 69.6079813398718
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 59.6359208227496
+      - 65.14196176006
+      - 65.0333121592021
+      - 58.1280031130588
+      - 57.6687274943363
+      - 64.9562845305976
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.9395626392949
+      - 68.5687136029146
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 61.7098909038534
+      - 60.2396956485687
+      - 63.6927625447737
+      - 62.2369774599722
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 83968
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.8502439122859
+      - 61.3172453612664
+      - 64.2030677804611
+      - 63.9278145716551
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 84992
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.8652054296315
+      - 61.0394576301971
+      - 67.3124654438822
+      - 60.1989730883716
+      - 62.462528706198
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.9395626392949
+      - 68.5687136029146
+      - 57.7309561908034
+      - 64.8457203985616
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 86016
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.8652054296315
+      - 61.0394576301971
+      - 67.3124654438822
+      - 60.1989730883716
+      - 62.462528706198
+      - 61.7337460866731
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 87040
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.313518604802
+      - 64.6186026714384
+      - 62.9888860244925
+      - 62.6890509067513
+      - 62.4692963531741
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.0219078576994
+      - 66.3749121882139
+      - 64.0040726149732
+      - 59.2843537166596
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 88064
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.6934345229979
+      - 61.4429744527883
+      - 63.9930114521634
+      - 61.3669165168715
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 89088
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.525224356897
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 90112
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.5340865097393
+      - 56.8195833594993
+      - 59.1897612222114
+      - 65.1743683978199
+      - 65.1753327621115
+      - 65.2758492546566
+      - 57.7303283906322
+      - 68.1807383966143
+      - 60.1364807252821
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.7803261124438
+      - 63.2566249930696
+      - 63.0662718003568
+      - 62.1960296395821
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.1576911826771
+      - 64.4227918462686
+      - 59.4116285559855
+      - 61.6955937546877
+      - 65.5181404311753
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.6348136564774
+      - 62.7625625892221
+      - 66.6119042902607
+      - 64.3663281768315
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 91136
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 63.6348136564774
+      - 62.7625625892221
+      - 66.6119042902607
+      - 64.3663281768315
+      - 62.5582417258627
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.4905068045901
+      - 59.609079127448
+      - 68.2155811907675
+      - 63.8482015276183
+      - 66.1852800453032
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+evals: 92160
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.4905068045901
+      - 59.609079127448
+      - 68.2155811907675
+      - 63.8482015276183
+      - 66.1852800453032
+      - 60.827214242868
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111000011111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.8240326671724
+      - 61.573462434713
+      - 63.096276946216
+      - 64.2976445052164
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 93184
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 68.4824686650301
+      - 64.4755424985262
+      - 63.6862616501677
+      - 58.9404423962104
+      - 64.3491674048185
+      - 63.3561703483547
+      - 66.1411131740643
+      - 60.971314511629
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 94208
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.6348136564774
+      - 62.7625625892221
+      - 66.6119042902607
+      - 64.3663281768315
+      - 62.5582417258627
+      - 60.1855221146338
+      - 65.5020597693389
+      - 59.9221352538253
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.6819078501654
+      - 63.2884428504332
+      - 62.6370151232442
+      - 68.5482967715483
+      - 65.2561258358715
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.5028254393289
+      - 64.6529292160868
+      - 63.6019282841677
+      - 62.1560321815573
+      - 61.4988237344505
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.1576911826771
+      - 64.4227918462686
+      - 59.4116285559855
+      - 61.6955937546877
+      - 65.5181404311753
+      - 65.8150039206839
+      - 54.6465120925664
+      - 63.705344912395
+      - 64.6460313466312
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 60.2146465759241
+      - 66.0885594451997
+      - 63.7932063569456
+      - 59.024949322854
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.6662494688269
+      - 64.8185531520208
+      - 59.5231545115529
+      - 66.7842992773013
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 95232
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.4571480831118
+      - 59.3404735675801
+      - 63.8153223632517
+      - 63.9740081916543
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 96256
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.6662494688269
+      - 64.8185531520208
+      - 59.5231545115529
+      - 66.7842992773013
+      - 60.7761784816438
+      - 60.4305367009406
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.6412980956617
+      - 63.5179768598481
+      - 63.8130574132717
+      - 65.2039320141577
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.0251410582141
+      - 60.2398149196304
+      - 65.8764335582848
+      - 62.638043203574
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 97280
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.6412980956617
+      - 63.5179768598481
+      - 63.8130574132717
+      - 65.2039320141577
+      - 62.8348821841994
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 98304
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.0155768843799
+      - 69.7396612574224
+      - 61.8741254572936
+      - 61.4273081404898
+      - 63.913966692236
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 99328
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.3581488669095
+      - 61.8318331972234
+      - 58.2789105432788
+      - 61.9281688600297
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 100352
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.7708945409395
+      - 66.4362175911356
+      - 64.5552476657279
+      - 60.2740298856462
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 101376
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.5111404465485
+      - 61.0952836561714
+      - 62.9289017931927
+      - 65.2592284061039
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 102400
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.0314121323659
+      - 61.5147738321389
+      - 64.3890738312082
+      - 63.8798853878951
+      - 63.3914576457242
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 69.6187642360208
+      - 67.390684147429
+      - 60.2794305794567
+      - 64.529180110339
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 103424
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 64.1131523758233
+      - 62.9962759955086
+      - 62.5478862254107
+      - 62.656443382415
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 104448
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.4291616866912
+      - 61.8380369576698
+      - 64.8027019740696
+      - 66.8162811647694
+      - 61.1349976755409
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.1839007724769
+      - 65.6462726152454
+      - 62.9196945066415
+      - 59.7728142126618
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.2210288722944
+      - 64.6765989477224
+      - 66.6435557761895
+      - 59.9709528042695
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.6383193266191
+      - 64.3262848739035
+      - 62.0242925939173
+      - 64.8879777733867
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 105472
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.2210288722944
+      - 64.6765989477224
+      - 66.6435557761895
+      - 59.9709528042695
+      - 66.981145856549
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 106496
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.9899110371747
+      - 63.319431575287
+      - 64.8661241803071
+      - 58.5831065887026
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.2300101249022
+      - 64.4948934053594
+      - 58.2153018561744
+      - 58.7897325033458
+      - 64.3133751956752
+      - 63.7236469814761
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.3128952296673
+      - 57.833561193459
+      - 59.5580234528749
+      - 62.550733911915
+      - 58.5873353685156
+      - 65.616860773886
+      - 59.6776032226806
+      - 59.0496187062805
+      - 65.6096934445885
+      - 59.3745893897145
+      - 61.1412497873873
+      - 62.726714836117
+      - 69.5078583642641
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 107520
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 62.6210059522008
+      - 64.7341066055457
+      - 60.4715361960917
+      - 65.2040901805831
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 108544
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 68.7854745482945
+      - 62.9209986267331
+      - 65.859311911397
+      - 64.9455057118969
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.802505132407
+      - 63.0346479246727
+      - 64.2418898113254
+      - 63.7432005418643
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 109568
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 64.6382825172795
+      - 63.0846258798545
+      - 66.5774285305596
+      - 62.9119543280862
+      - 60.8161176648738
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 110592
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.0196034561189
+      - 67.1310392703146
+      - 61.4978251857921
+      - 65.1739925282023
+      - 62.1406581449366
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.2430069238854
+      - 65.102620966945
+      - 60.9972857602161
+      - 65.3076701681095
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 111616
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.1878524994661
+      - 60.913037725822
+      - 57.9910679393811
+      - 57.2721533920269
+      - 55.0949841110962
+      - 72.1793219173524
+      - 56.8361357166651
+      - 66.3976433870898
+      - 62.1317788679353
+      - 57.0452026269547
+      - 60.6029424902968
+      - 56.5027244913323
+      - 59.9367361476142
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 112640
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.327453583252
+      - 64.8960948217665
+      - 67.4865619016979
+      - 66.3384325732395
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 113664
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.327453583252
+      - 64.8960948217665
+      - 67.4865619016979
+      - 66.3384325732395
+      - 62.4874038140266
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 114688
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.327453583252
+      - 64.8960948217665
+      - 67.4865619016979
+      - 66.3384325732395
+      - 62.4874038140266
+      - 68.0663960511158
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.4370124537135
+      - 63.794565666125
+      - 70.4067484881101
+      - 68.1656199560636
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 68.1128244218292
+      - 67.894294864361
+      - 62.0817589879081
+      - 63.9702715402874
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 115712
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.0196034561189
+      - 67.1310392703146
+      - 61.4978251857921
+      - 65.1739925282023
+      - 62.1406581449366
+      - 61.0576266361643
+      - 67.8758740074877
+      - 58.8129386903096
+      - 64.8857660920728
+      - 68.6535000079704
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 61.4258404064871
+      - 64.4447541352495
+      - 61.7313314845273
+      - 63.1046912121867
+      - 62.9281823107864
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 116736
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.4370124537135
+      - 63.794565666125
+      - 70.4067484881101
+      - 68.1656199560636
+      - 62.1676709304123
+      - 61.4426846086269
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 62.8128577946853
+      - 69.7133488980426
+      - 60.9248569087608
+      - 65.4886043526442
+      - 58.7589473971044
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 117760
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 69.3857218226144
+      - 68.8979284753177
+      - 59.229867823647
+      - 67.6502982264545
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.8810961418466
+      - 58.8938582569646
+      - 63.3980002442107
+      - 64.793799300112
+      - 59.7946418422399
+      - 66.0036053410865
+      - 62.7123706135471
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 118784
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.2245697339477
+      - 61.8021993267643
+      - 62.3204028076825
+      - 63.4649899407766
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 119808
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.5242818561256
+      - 63.1171080313703
+      - 63.6022346346411
+      - 63.7101923509261
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 120832
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.0707618978118
+      - 63.5648284749216
+      - 59.7887055110785
+      - 61.5418448631985
+      - 63.340559307287
+      - 59.5118205606951
+      - 58.3643035582844
+      - 62.4130636282379
+      - 72.0575067897372
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 121856
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.2245697339477
+      - 61.8021993267643
+      - 62.3204028076825
+      - 63.4649899407766
+      - 59.1916723933722
+      - 63.4854348909365
+      - 62.8679078529097
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 122880
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 60.6941440393458
+      - 63.6225824492049
+      - 64.0435596294043
+      - 65.2357829148792
+      - 64.4231108081396
+      - 60.024890253013
+      - 59.8178217207168
+      - 62.0868175716336
+      - 62.3576196998134
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.6823046031659
+      - 62.485424733164
+      - 58.0991982361788
+      - 66.4539961611372
+      - 64.9431377804453
+      - 62.2747140589074
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111100001111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.0933022501921
+      - 61.4616079008558
+      - 62.8869473026664
+      - 65.043212664271
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 123904
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.2795398003043
+      - 65.3732391695138
+      - 61.1907430476167
+      - 62.0011202861682
+      - 59.306539363727
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 124928
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.7677261995043
+      - 67.3536253001341
+      - 66.5054560114108
+      - 65.6624071666111
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 125952
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.0696501064512
+      - 59.5939437463541
+      - 63.0384185811284
+      - 67.9654005462522
+      - 59.3802583806695
+      - 62.7128059790543
+      - 66.9055729673349
+      - 61.9038565877557
+      - 61.4819924852096
+      - 60.5436594848493
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.0886583161364
+      - 61.8533797216679
+      - 63.8122206576199
+      - 57.8351043242833
+      - 59.2456224918049
+      - 69.1951837712402
+      - 57.9768709146086
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 126976
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.0453043166813
+      - 66.8032250041369
+      - 59.7459450861545
+      - 66.0600234081381
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 128000
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.9819557440113
+      - 67.5420593912823
+      - 63.8947297710916
+      - 57.677559917404
+      - 64.0409074622839
+      - 66.1973288710742
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 129024
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.1903889982047
+      - 61.6215362982322
+      - 63.0383916908951
+      - 61.1328216830789
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 130048
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 70.1002435793697
+      - 61.090151794252
+      - 62.4942893227433
+      - 61.8424009585638
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 131072
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 69.0665876285722
+      - 64.2750041945282
+      - 59.779072606013
+      - 60.3227375853235
+      - 57.1211932457907
+      - 66.743034535262
+      - 61.4848171390904
+      - 63.5454994623657
+      - 63.3286443347154
+      - 61.7433688943428
+      - 59.2100778586494
+      - 57.3747988917454
+      - 61.7372591756779
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 132096
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.0342606665241
+      - 63.6769417302937
+      - 65.3644793411462
+      - 63.3918373488681
+      - 61.6231375232775
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.7184088087424
+      - 63.6689021424615
+      - 67.6200446226664
+      - 61.2143206343077
+      - 62.5669887131363
+      - 65.6773013490594
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.030627570907
+      - 67.071936443212
+      - 63.3098563320145
+      - 59.2654860795075
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.3053529300907
+      - 61.7087197505923
+      - 62.9057662091389
+      - 65.0571777973664
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 133120
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.7184088087424
+      - 63.6689021424615
+      - 67.6200446226664
+      - 61.2143206343077
+      - 62.5669887131363
+      - 65.6773013490594
+      - 64.2328227998521
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 134144
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.1038067678272
+      - 59.325217672545
+      - 63.1376865473005
+      - 65.4371831673998
+      - 61.8908122129405
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 135168
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.1961573018253
+      - 66.0558645684562
+      - 61.27081958845
+      - 62.9261141723436
+      - 60.3089534452916
+      - 62.4979415251075
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 136192
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.3579445646435
+      - 60.1448737263598
+      - 62.1989958877989
+      - 62.8382596760335
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 137216
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.3579445646435
+      - 60.1448737263598
+      - 62.1989958877989
+      - 62.8382596760335
+      - 63.5123284013469
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 138240
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 61.6699542547931
+      - 61.1432152388974
+      - 60.4955567967958
+      - 68.055103453667
+      - 66.2378719762084
+      - 58.8403886233192
+      - 67.7869282667737
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 63.2755765180734
+      - 63.1943338276262
+      - 65.5877129299328
+      - 55.9486645598167
+      - 61.9162035206663
+      - 63.6726658364688
+      - 68.2822100260585
+      - 65.462697692603
+      - 60.9004983723182
+      - 64.6290011831588
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 70.9151995435244
+      - 60.9866868095003
+      - 61.8922555794012
+      - 63.559142541327
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 139264
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 70.9151995435244
+      - 60.9866868095003
+      - 61.8922555794012
+      - 63.559142541327
+      - 67.5083482496196
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 140288
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.7224535778892
+      - 61.8041158065634
+      - 58.4622100120956
+      - 65.8762291164361
+      - 61.1962331963476
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 141312
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 70.9151995435244
+      - 60.9866868095003
+      - 61.8922555794012
+      - 63.559142541327
+      - 67.5083482496196
+      - 59.2404891411994
+      - 60.4855872632291
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 142336
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 61.6699542547931
+      - 61.1432152388974
+      - 60.4955567967958
+      - 68.055103453667
+      - 66.2378719762084
+      - 58.8403886233192
+      - 67.7869282667737
+      - 62.0281574503178
+      - 65.2325867580412
+      - 61.5531046724757
+      - 69.6549220423421
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.2755765180734
+      - 63.1943338276262
+      - 65.5877129299328
+      - 55.9486645598167
+      - 61.9162035206663
+      - 63.6726658364688
+      - 68.2822100260585
+      - 65.462697692603
+      - 60.9004983723182
+      - 64.6290011831588
+      - 62.8350461405548
+      - 61.3100539884741
+      - 60.0263980700836
+      - 68.2134368358102
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 143360
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.0083753066224
+      - 63.531303687195
+      - 66.1121770910221
+      - 65.090607464807
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 144384
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.5163301353203
+      - 75.7015903961575
+      - 70.4873566053515
+      - 58.011899921144
+      - 59.2295402673063
+      - 60.2522184676052
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 145408
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 64.8026815164653
+      - 65.9163696990801
+      - 57.8666154521479
+      - 63.9199510927416
+      - 59.9818708773308
+      - 58.9815984490849
+      - 60.5370736471723
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 146432
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 68.1459827918878
+      - 58.6156180717676
+      - 58.4489040602925
+      - 63.260727690651
+      - 67.1290488510242
+      - 59.7903853512958
+      - 66.0373553000741
+      - 66.9872348638239
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 147456
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.6522828299686
+      - 57.4620161703415
+      - 63.9441580869932
+      - 60.9942791888895
+      - 61.2830731880766
+      - 66.4239163662286
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.1819360209682
+      - 57.6641369545377
+      - 61.9209180739796
+      - 63.8918662950116
+      - 63.3041043699581
+      - 60.1005302893369
+      - 59.0998566773512
+      - 59.2730118304778
+      - 58.1540675417125
+      - 64.1787699507662
+      - 59.0797364040253
+      - 63.6335167417492
+      - 57.800665626808
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 148480
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.0075862136651
+      - 63.7008582666741
+      - 60.6231971099347
+      - 63.1847894475262
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 64.0222627498396
+      - 58.4284496986658
+      - 60.6828540075392
+      - 61.6180443423175
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 149504
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.4066548867183
+      - 66.8332910722796
+      - 57.1286530170788
+      - 63.8817611367834
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 150528
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 68.7617643284133
+      - 62.3224988172251
+      - 59.165764871034
+      - 61.9452055381015
+      - 66.1187314757733
+      - 65.2620385633869
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.7224535778892
+      - 61.8041158065634
+      - 58.4622100120956
+      - 65.8762291164361
+      - 61.1962331963476
+      - 63.1597894936458
+      - 62.1866839613888
+      - 64.6293112492946
+      - 55.7748743645943
+      - 64.0155040335879
+      - 60.8951540588769
+      - 69.1450314062695
+      - 61.514662037041
+      - 66.0770905381596
+      - 60.6384424564109
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 151552
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 70.4077500803499
+      - 65.0891221456343
+      - 61.3388836893721
+      - 64.9723140463433
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 152576
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.0510597989582
+      - 65.6904700624314
+      - 60.8165941215466
+      - 63.6754637879064
+      - 60.3589947359918
+      - 59.7178058204514
+      - 63.1082604357639
+      - 62.1435026799012
+      - 65.4262930609825
+      - 64.6178903651614
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 153600
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 63.7537017604191
+      - 64.5288651262358
+      - 65.0227429450348
+      - 62.2836017448537
+      - 60.9148507233003
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 154624
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.5236600201912
+      - 62.3367999073337
+      - 64.8160693109086
+      - 61.9588197020649
+      - 70.1237852203741
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 155648
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 68.9009756049793
+      - 63.9647468245905
+      - 68.2987232392825
+      - 63.8807123446867
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 156672
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.564081781658
+      - 60.9135156920858
+      - 65.7853086604085
+      - 60.4965994978267
+      - 60.4395268192375
+      - 66.1036546254798
+      - 62.0974506494911
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.8983011513828
+      - 62.9637044213814
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 157696
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 66.4512551316132
+      - 68.0900859055112
+      - 63.4858971876957
+      - 59.9093329435632
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 158720
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.4556193955535
+      - 63.8957521134306
+      - 63.5721319133001
+      - 66.5113284043527
+      - 65.15458892679
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 159744
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.6837527829365
+      - 63.0382101015032
+      - 61.5112947651208
+      - 62.2995640239953
+      - 66.1458970632616
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.3161823907592
+      - 63.7164823920692
+      - 69.4202138093766
+      - 61.5899535729728
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 160768
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.2626926089195
+      - 64.319514375671
+      - 67.0007169914007
+      - 58.6156138751945
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 161792
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.3362098017161
+      - 63.0200796588944
+      - 70.0723694641354
+      - 57.0218566897822
+      - 64.7235247256362
+      - 64.2740486348379
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 67.4960547379957
+      - 59.010511032154
+      - 61.9706027372456
+      - 65.1407629792238
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 61.5512715366299
+      - 60.4882048484818
+      - 66.1152271790661
+      - 61.7580437812475
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 162816
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.0519509628608
+      - 71.7410800107027
+      - 62.7131666453702
+      - 64.5195299975416
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 163840
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.3968137058808
+      - 59.2297651531657
+      - 63.619527256752
+      - 61.3901297827201
+      - 68.5508781594316
+      - 63.039433101118
+      - 60.5061095754307
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.1061551940738
+      - 61.0773955913117
+      - 60.3243616610031
+      - 62.7078235888685
+      - 63.0105313450718
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 164864
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.1061551940738
+      - 61.0773955913117
+      - 60.3243616610031
+      - 62.7078235888685
+      - 63.0105313450718
+      - 62.5673311577527
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 64.769402040678
+      - 60.0442405119316
+      - 62.7078628223006
+      - 64.0781951469929
+      - 62.5951733053496
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.1760632038196
+      - 68.9599328058951
+      - 65.7612094307337
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 165888
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 64.688899535471
+      - 58.711367753567
+      - 63.2258381513079
+      - 65.882415567227
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 166912
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 64.769402040678
+      - 60.0442405119316
+      - 62.7078628223006
+      - 64.0781951469929
+      - 62.5951733053496
+      - 58.7656195344413
+      - 59.9691831328566
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.0697706682613
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 167936
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.7492834404981
+      - 64.6897393184546
+      - 61.3107557604676
+      - 62.3506250298917
+      - 66.7227556677017
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 168960
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 65.4961849132062
+      - 62.5743235224635
+      - 64.2043084979122
+      - 64.2556147987423
+      - 61.4909851562915
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 169984
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.93694291611
+      - 68.4815718637956
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 69.474543514296
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.9335307125269
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 171008
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.7224559907684
+      - 58.6381967954011
+      - 62.3460001559136
+      - 69.2366664799723
+      - 62.4466865355093
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 65.5938576037652
+      - 64.9013580343424
+      - 60.7551162955126
+      - 59.0408829907051
+      - 64.9562664787387
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 172032
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.93694291611
+      - 68.4815718637956
+      - 66.6999213215815
+      - 61.3172725092807
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 173056
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 65.93694291611
+      - 68.4815718637956
+      - 66.6999213215815
+      - 61.3172725092807
+      - 67.906047769876
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 174080
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 69.474543514296
+      - 64.2561524432698
+      - 64.1260962355973
+      - 65.8453451128439
+      - 60.9569341350966
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.4785792400835
+      - 64.9536569034554
+      - 63.470017896394
+      - 59.7996121096253
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 175104
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.5441855314751
+      - 63.2755680572426
+      - 65.281736368359
+      - 69.4609996892704
+      - 62.5962675999962
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 176128
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 64.5441855314751
+      - 63.2755680572426
+      - 65.281736368359
+      - 69.4609996892704
+      - 62.5962675999962
+      - 61.0130575839261
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 63.5563781815147
+      - 63.52859743929
+      - 64.5259508103826
+      - 62.5136524922883
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 177152
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.4466467668744
+      - 61.8444649402212
+      - 67.1252499825699
+      - 63.6485859752845
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 178176
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 66.4466467668744
+      - 61.8444649402212
+      - 67.1252499825699
+      - 63.6485859752845
+      - 65.6482384667538
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 67.705865577473
+      - 59.2434351651781
+      - 62.0757167702913
+      - 62.8076510648399
+      - 60.4170383320881
+      - 58.6318447363706
+      - 66.9604289673739
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 65.5938576037652
+      - 64.9013580343424
+      - 60.7551162955126
+      - 59.0408829907051
+      - 64.9562664787387
+      - 59.3575655080982
+      - 61.7410829770476
+      - 61.0294692609862
+      - 62.2729912963692
+      - 60.8623100797688
+      - 60.2460559712809
+      - 59.0803895031128
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 179200
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.5616275739178
+      - 68.1985331890568
+      - 60.0888856798521
+      - 66.3376142875968
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 180224
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.3183190037152
+      - 61.9447860723638
+      - 61.9774803515141
+      - 59.7800149354551
+      - 62.1452870908209
+      - 64.5325432837052
+      - 62.8470516739343
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 181248
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 69.2682586365357
+      - 67.3170616051923
+      - 68.6639355932565
+      - 60.0754404224251
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 182272
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 69.3677196785905
+      - 65.8548128204138
+      - 62.7257001288601
+      - 63.3853211331286
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 67.2388856981643
+      - 61.1545705918487
+      - 68.7282012540404
+      - 66.5308759864738
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 183296
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.2388856981643
+      - 61.1545705918487
+      - 68.7282012540404
+      - 66.5308759864738
+      - 60.8660682596124
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.0324132964911
+      - 64.6131179530553
+      - 64.0422660218304
+      - 64.139319045008
+      - 63.0610576163301
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 69.2682586365357
+      - 67.3170616051923
+      - 68.6639355932565
+      - 60.0754404224251
+      - 64.6920788179429
+      - 65.9640429458323
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 63.7464706308895
+      - 65.3639919276447
+      - 68.1975753761445
+      - 61.0663574758001
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.5679793929844
+      - 63.3161016968493
+      - 62.0815015896488
+      - 65.5038898244865
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 184320
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 69.2682586365357
+      - 67.3170616051923
+      - 68.6639355932565
+      - 60.0754404224251
+      - 64.6920788179429
+      - 65.9640429458323
+      - 61.878794806624
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.1221443418732
+      - 62.6556114787362
+      - 63.8047005454684
+      - 61.8634607037793
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 185344
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.1221443418732
+      - 62.6556114787362
+      - 63.8047005454684
+      - 61.8634607037793
+      - 64.6297252402095
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 69.7864276707846
+      - 66.3421763057205
+      - 62.1680005457539
+      - 58.6343538961675
+      - 63.7221407731463
+      - 57.1124965879622
+      - 58.7452793869319
+      - 58.9908432377744
+      - 65.3683504567473
+      - 62.6245184385778
+      - 69.8783339911707
+      - 60.8238686118064
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 186368
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.1221443418732
+      - 62.6556114787362
+      - 63.8047005454684
+      - 61.8634607037793
+      - 64.6297252402095
+      - 60.0913247340166
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 187392
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 67.0222809116887
+      - 65.7980136592868
+      - 61.7375997542492
+      - 64.2010196764873
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 188416
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 67.0222809116887
+      - 65.7980136592868
+      - 61.7375997542492
+      - 64.2010196764873
+      - 62.3457074673438
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 69.4927256378959
+      - 59.667490216538
+      - 66.8230692146495
+      - 62.1770292005614
+      - 65.0027370821086
+      - 60.6863849584567
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 17
+    _fitness_memory:
+      - 60.8516095409379
+      - 62.3639132101837
+      - 61.2011395265331
+      - 61.5802783739614
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 189440
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.9670084788256
+      - 63.1535127089363
+      - 66.7307116187332
+      - 64.2287401486557
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 190464
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.7532324170156
+      - 65.7503127632587
+      - 68.7773968380937
+      - 58.7706373221534
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 191488
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 20
+    _fitness_memory:
+      - 67.3919597900429
+      - 64.8073664948606
+      - 59.3315000837985
+      - 62.6198540595369
+      - 64.0027066567032
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 192512
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.3830777512107
+      - 58.7509535109325
+      - 66.0287848447518
+      - 62.4991499343959
+      - 60.6888224944849
+      - 62.7537844678851
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 193536
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 64.3216897565889
+      - 63.635857475862
+      - 59.5465455472656
+      - 61.9575404242816
+      - 61.2138989547863
+      - 59.6326033674058
+      - 67.3417303318091
+      - 62.4513618598194
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 194560
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 67.8155641401901
+      - 65.6391618321961
+      - 60.1093177224797
+      - 60.1028173092715
+      - 63.4728786274817
+      - 62.0842648688078
+      - 62.4855876730416
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 66.4732033871476
+      - 66.689570340093
+      - 60.9039334678041
+      - 64.2817972162248
+      - 63.8865931473254
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 68.3152410030145
+      - 58.8235653054713
+      - 62.7878918595981
+      - 62.8672064659919
+      - 68.0397831203652
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 66.5738335203526
+      - 60.355377420884
+      - 65.4506816381239
+      - 66.7680039907342
+      - 62.1095787374303
+      - 57.8457204420788
+      - 68.5607085350215
+      - 62.0540743329224
+      - 61.4848044512419
+      - 59.2794283933266
+      - 60.1644688375243
+      - 57.4046005085413
+      - 59.0990682174042
+      - 58.7156271392806
+      - 61.8409974075322
+      - 57.9742099083198
+      - 57.9940160455666
+      - 52.9078605167673
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 61.7801073377411
+      - 62.3632321910235
+      - 63.2097637764338
+      - 65.8049730785222
+      - 58.6534049157072
+      - 62.8328221785112
+      - 63.4884331724365
+      - 58.5432471792889
+      - 62.6232414531576
+      - 57.8110160668929
+      - 61.7409288073562
+      - 59.92019007618
+      - 62.0867139864922
+      - 63.4025882312699
+      - 59.6928456668777
+      - 55.3288656826255
+      - 63.3670846433299
+      - 63.1197702053843
+      - 63.4876502396847
+      - 63.1555424163593
+      - 69.2378574259075
+      - 57.017965260415
+      - 64.1736782675643
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 65.4142411339597
+      - 60.2468167610332
+      - 55.0062624208265
+      - 56.5920227848845
+      - 63.6316071574807
+      - 55.5206736148315
+      - 62.0135128176597
+      - 60.4700269232318
+      - 58.5528747915413
+      - 58.9797941003263
+      - 59.6922855074809
+      - 55.8334296422574
+      - 57.632921183928
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 16
+    _fitness_memory:
+      - 64.1962052737699
+      - 62.0185128353456
+      - 60.2097639986864
+      - 61.6877598010592
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 195584
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 62.1888201920948
+      - 62.1593650997096
+      - 61.2835106336706
+      - 64.1356160844689
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.7786529052591
+      - 63.4764344620237
+      - 61.9920684849421
+      - 63.8772932753328
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 196608
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 19
+    _fitness_memory:
+      - 66.7786529052591
+      - 63.4764344620237
+      - 61.9920684849421
+      - 63.8772932753328
+      - 58.6202643894109
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 197632
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.2935994331691
+      - 66.9842397260452
+      - 59.911438483995
+      - 59.8215835427163
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 198656
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.96899678446
+      - 68.0040564308618
+      - 65.1179198565437
+      - 59.3937430109924
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.3687549128347
+      - 62.1095350498147
+      - 63.240478480303
+      - 57.3171538710866
+      - 63.6225863436236
+      - 62.7747375572034
+      - 60.4263007266471
+      - 61.8899519697929
+      - 58.4418210685053
+      - 57.2547445577291
+      - 59.7300367236106
+      - 62.1535420346526
+      - 59.4489710294607
+      - 54.5674010647385
+      - 60.9692223206542
+      - 53.9373154365396
+      - 63.9692607094671
+      - 64.4169044159225
+      - 63.2293232515373
+      - 60.2680054689876
+      - 59.8392956250313
+      - 51.8340691943827
+      - 64.8375240476681
+      - 61.71532507649
+      - 63.1401750534519
+      - 62.9062065005659
+      - 59.2321165884773
+      - 60.3616542832025
+      - 60.5983557468029
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 199680
+---
+best:
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 68.96899678446
+      - 68.0040564308618
+      - 65.1179198565437
+      - 59.3937430109924
+      - 64.1374765260725
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.8155641401901
+      - 65.6391618321961
+      - 60.1093177224797
+      - 60.1028173092715
+      - 63.4728786274817
+      - 62.0842648688078
+      - 62.4855876730416
+      - 60.7048012164354
+      - 61.8792606836024
+      - 61.4158292388215
+      - 62.248391805074
+      - 61.8528148221171
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 67.2109015994221
+      - 62.9125661290835
+      - 61.9453405374587
+      - 59.9169544487937
+      - 62.8994462172107
+      - 62.7065968992493
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+  - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+    _chars:
+      - 0
+      - 1
+    _fitness: 18
+    _fitness_memory:
+      - 66.143151363709
+      - 59.7044316219607
+      - 63.5402243657827
+      - 61.3886585339183
+    _length: 60
+    _str: 111111111111111100001111111111111111111111111111111111111111
+evals: 200704
+---
+end:
+  best:
+    - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+      _chars:
+        - 0
+        - 1
+      _fitness: 18
+      _fitness_memory:
+        - 68.96899678446
+        - 68.0040564308618
+        - 65.1179198565437
+        - 59.3937430109924
+        - 64.1374765260725
+      _length: 60
+      _str: 111111111111111100001111111111111111111111111111111111111111
+    - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+      _chars:
+        - 0
+        - 1
+      _fitness: 18
+      _fitness_memory:
+        - 67.8155641401901
+        - 65.6391618321961
+        - 60.1093177224797
+        - 60.1028173092715
+        - 63.4728786274817
+        - 62.0842648688078
+        - 62.4855876730416
+        - 60.7048012164354
+        - 61.8792606836024
+        - 61.4158292388215
+        - 62.248391805074
+        - 61.8528148221171
+      _length: 60
+      _str: 111111111111111100001111111111111111111111111111111111111111
+    - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+      _chars:
+        - 0
+        - 1
+      _fitness: 18
+      _fitness_memory:
+        - 67.2109015994221
+        - 62.9125661290835
+        - 61.9453405374587
+        - 59.9169544487937
+        - 62.8994462172107
+        - 62.7065968992493
+      _length: 60
+      _str: 111111111111111100001111111111111111111111111111111111111111
+    - !!perl/hash:Algorithm::Evolutionary::Individual::BitString
+      _chars:
+        - 0
+        - 1
+      _fitness: 18
+      _fitness_memory:
+        - 66.143151363709
+        - 59.7044316219607
+        - 63.5402243657827
+        - 61.3886585339183
+      _length: 60
+      _str: 111111111111111100001111111111111111111111111111111111111111
+  evaluations: 200704
+  time: 238.318003

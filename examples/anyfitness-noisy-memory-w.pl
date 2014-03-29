@@ -67,7 +67,7 @@ my $initial_memory = $conf->{'initial_memory'} || 1;
 
 # Open output stream
 #----------------------------
-my $ID="res-afnmw".$conf->{'fitness'}->{'class'}."-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate."-im".$initial_memory;
+my $ID="res-afnmw-".$conf->{'fitness'}->{'class'}."-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate."-im".$initial_memory;
 my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
@@ -153,9 +153,7 @@ do {
 } while( ($noisy->evaluations() < $max_evals) && !$best_found);
 
 #----------------------------------------------------------#
-#leemos el mejor resultado
-
-#Mostramos los resultados obtenidos
+# Log the best results found
 $io->print( { end => { best => \@best_guys,
 		     time =>tv_interval( $inicioTiempo ) , 
 		     evaluations => $noisy->evaluations()}} );
