@@ -36,7 +36,7 @@ use lib qw(../../.. ../.. ..);
 
 use base qw(Algorithm::Evolutionary::Fitness::Base);
 
-=head2 new( $fitness_function [ $rng = random_normal( 1, 0, 1 ) ]
+=head2 new( $fitness_function, [ $rng = random_normal( 1, 0, 1 ) ]
 
 Creates a new fitness function with a RNG and an underlying function
 

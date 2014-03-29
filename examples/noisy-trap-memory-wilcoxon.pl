@@ -36,8 +36,8 @@ use Algorithm::Evolutionary::Op::Mutation;
 use Algorithm::Evolutionary::Op::Crossover;
 use Algorithm::Evolutionary::Fitness::Trap;
 use Algorithm::Evolutionary::Fitness::Noisy;
-
-use Statistics::ANOVA 0.08;
+use Math::Random qw(random_normal);
+use Statistics::ANOVA;
 
 #----------------------------------------------------------#
 my $blocks = shift || 10;
@@ -45,6 +45,7 @@ my $length = shift || 4;
 my $popSize = shift || 1024; #Population size
 my $numGens = shift || 1000; #Max number of generations
 my $selection_rate = shift || 0.5;
+my $noise_sigma = shift || 1;
 my $comparisons = shift || 10;
 my $mutation_priority = shift || 1;
 my $crossover_priority = shift || 1;
@@ -67,7 +68,8 @@ my $c = Algorithm::Evolutionary::Op::Crossover->new(2);
 
 # Fitness function
 my $trap = new  Algorithm::Evolutionary::Fitness::Trap( $length );
-my $noisy = new  Algorithm::Evolutionary::Fitness::Noisy( $trap );
+my $noisy = new  Algorithm::Evolutionary::Fitness::Noisy( $trap, 
+							  sub { return random_normal(1,0, $noise_sigma )} );
 
 #----------------------------------------------------------#
 # Usamos estos operadores para definir una generación del algoritmo. Lo cual
@@ -159,11 +161,5 @@ Contributed by Pedro Castillo Valdivieso, modified by J. J. Merelo
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2009/07/24 08:46:58 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/examples/mmdp.pl,v 3.0 2009/07/24 08:46:58 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.0 $
-  $Name $
 
 =cut
