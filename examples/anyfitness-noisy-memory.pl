@@ -60,10 +60,11 @@ my $tournament_size =  $conf->{'tournament_size'}|| 2;
 my $mutation_priority = $conf->{'mutation_priority'} || 1;
 my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
 my $noise_sigma = $conf->{'noise_sigma'}|| 1;
+my $initial_memory = $conf->{'initial_memory'} || 1;
 
 # Open output stream
 #----------------------------
-my $ID="res-afnm-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $ID="res-afnm-".$conf->{'fitness'}->{'class'}."-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate."-im".$initial_memory;
 my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
@@ -109,7 +110,9 @@ my $inicioTiempo = [gettimeofday()];
 
 #----------------------------------------------------------#
 for my $p ( @pop ) {
-  push(@{$p->{'_fitness_memory'}}, $noisy->apply( $p ));
+  for ( 1..$initial_memory ) {
+    push(@{$p->{'_fitness_memory'}}, $noisy->apply( $p ));
+  }
   $p->Fitness( average( $p->{'_fitness_memory'} ) );
 }
 

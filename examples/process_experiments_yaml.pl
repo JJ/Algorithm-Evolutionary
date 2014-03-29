@@ -41,10 +41,21 @@ for my $f (@files ) {
     last if !$yaml;
     $res = YAML::Load($yaml); #Don't use it now, but...
   } until ( $res->{'end'} );
-  if ( $res->{'end'}{'best'}->{'_str'} eq $best ) {
-    $successful++;
-    push @times, $res->{'end'}{'time'};
-    push @evaluations, $res->{'end'}{'evaluations'};
+  if ( ref $res->{'end'}{'best'} ne 'ARRAY' ) {
+    if ( $res->{'end'}{'best'}->{'_str'} eq $best ) {
+      $successful++;
+      push @times, $res->{'end'}{'time'};
+      push @evaluations, $res->{'end'}{'evaluations'};
+    }
+  } else {
+    for my $b ( @{$res->{'end'}{'best'}} ) {
+       if ( $b->{'_str'} eq $best ) {
+	 $successful++;
+	 push @times, $res->{'end'}{'time'};
+	 push @evaluations, $res->{'end'}{'evaluations'};
+	 last;
+       }
+    }
   }
 }
 print "Success rate ", $successful/ @files;
@@ -52,9 +63,10 @@ print "Success rate ", $successful/ @files;
 write_file( "$preffix.times.dat", map("$_\n", @times ));
 my $R_var = $preffix;
 $R_var  =~ s/-/./g;
-write_file( "$preffix.times.R", "$R_var.times <- c(".join(",",map("$_", @times )).")\n");
 write_file( "$preffix.evaluations.dat",map("$_\n", @evaluations ));
-write_file( "$preffix.evals.R", "$R_var.evals <- c(".join(",",map("$_", @evaluations )).")\n");
+write_file( "$preffix.R", "$R_var.evals <- c("
+	    .join(",",map("$_", @evaluations )).")\n$R_var.times <- c("
+	    .join(",",map("$_", @times )).")\n");
 
 =head1 Copyright
   

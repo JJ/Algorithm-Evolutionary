@@ -63,10 +63,11 @@ my $mutation_priority = $conf->{'mutation_priority'} || 1;
 my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
 my $noise_sigma = $conf->{'noise_sigma'}|| 1;
 my $comparisons = $conf->{'comparisons'} || 10;
+my $initial_memory = $conf->{'initial_memory'} || 1;
 
 # Open output stream
 #----------------------------
-my $ID="res-afnmw-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $ID="res-afnmw".$conf->{'fitness'}->{'class'}."-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate."-im".$initial_memory;
 my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
@@ -111,8 +112,10 @@ my $generation = Algorithm::Evolutionary::Op::Generation_Skeleton_Ref_No_Replace
 my $inicioTiempo = [gettimeofday()];
 
 #Initial memory assignment to feed the Wilcoxon test
-for my $p ( @pop ) {
-  push(@{$p->{'_fitness_memory'}},  $noisy->apply( $p ));
+for ( 1..$initial_memory ) {
+  for my $p ( @pop ) {
+    push(@{$p->{'_fitness_memory'}},  $noisy->apply( $p ));
+  }
 }
 #----------------------------------------------------------#
 my $best_found; #Found solution flag
