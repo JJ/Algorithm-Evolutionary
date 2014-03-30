@@ -47,7 +47,6 @@ my $conf_file = shift || die "Usage: $0 <yaml-conf-file.yaml>\n";
 
 my $conf = LoadFile( $conf_file ) || die "Can't open configuration file $conf_file\n";
 
-
 #----------------------------------------------------------#
 my $chromosome_length = $conf->{'chromosome_length'} || die "Chrom length must be explicit";
 my $best_fitness = $conf->{'best_fitness'} || die "Need to know the best fitness";
@@ -60,7 +59,8 @@ my $crossover_priority =  $conf->{'crossover_priority'}|| 4;
 
 # Open output stream
 #----------------------------
-my $io = IO::YAML->new($conf->{'ID'}."-".DateTime->now().".yaml", ">");
+my $ID="res-af-".$conf->{'fitness'}->{'class'}."-p". $population_size."-cs".$chromosome_length."-rr".$replacement_rate;
+my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
 $io->print( $conf );

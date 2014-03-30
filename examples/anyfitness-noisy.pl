@@ -62,7 +62,7 @@ my $noise_sigma = $conf->{'noise_sigma'}|| 1;
 
 # Open output stream
 #----------------------------
-my $ID="res-afn-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate;
+my $ID="res-afn-".$conf->{'fitness'}->{'class'}."-p". $population_size."-ns". $noise_sigma."-cs".$chromosome_length."-rr".$replacement_rate."-im".$initial_memory;
 my $io = IO::YAML->new("$ID-".DateTime->now().".yaml", ">");
 $conf->{'uname'} = $Config{'myuname'}; # conf stuff
 $conf->{'arch'} = $Config{'myarchname'};
