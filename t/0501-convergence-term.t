@@ -1,6 +1,6 @@
 #-*-CPerl-*-
 
-use Test::More tests => 4;
+use Test::More 'no_plan';
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 use Algorithm::Evolutionary::Op::Convergence_Terminator;
