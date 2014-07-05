@@ -5,7 +5,7 @@ use warnings;
 use strict;
 use YAML qw(Load);
 
-BEGIN { plan tests => 87 };
+BEGIN { plan 'no_plan' };
 use lib qw( lib ../lib ../../lib  ); #Just in case we are testing it in-place
 
 my $size = 16;
