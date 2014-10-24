@@ -140,7 +140,7 @@ sub apply ($) {
     push @popEval, $_;
   }
 
-  #Sort
+  #Sort by fitness
   my @popsort = sort { $b->{_fitness} <=> $a->{_fitness}; }
     @popEval ;
 
