@@ -29,7 +29,7 @@ use warnings;
 
 =head1 Base Class
 
-L<IndiBase|IndiBase>
+L<Algorithm::Evolutionary::Individual::Base>
 
 =cut
 
@@ -49,9 +49,9 @@ our ($VERSION) = ( '$Revision: 3.0 $ ' =~ /(\d+\.\d+)/ );
 
 use Tree::DAG_Node;
 
-use IndiBase;
+use Algorithm::Evolutionary::Individual::Base;
 
-our @ISA = qw (IndiBase);
+our @ISA = qw (Algorithm::Evolutionary::Individual::Base);
 
 =head2 new
 
