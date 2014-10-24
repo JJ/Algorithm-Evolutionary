@@ -123,12 +123,14 @@ my @best_guys; #Keeping them for printing
 do {
   for my $p ( @pop ) {
     push(@{$p->{'_fitness_memory'}},  $noisy->apply( $p ));
-    $p->Fitness($comparisons);
+    $p->Fitness($comparisons); #Initialize with number of comparisons = 10
   }
   
   wilcoxon_compare( $comparisons, \@pop );
   @pop = rnkeysort { $_->{'_fitness'} } @pop ; 
   my $best_guy = $pop[0]; # Provisional value
+
+  #gather the ones with the max fitness together
   @best_guys =();
   my $i = 0;
   while ( $pop[$i]->Fitness() == $pop[0]->Fitness() && !$best_found ) {
