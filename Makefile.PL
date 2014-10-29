@@ -31,7 +31,6 @@ WriteMakefile(
 		  'version'    => 0,
 		  'XML::Parser' => 2.40,
 		  'XML::Parser::Style::EasyTree' => 0,
-		  'XML::LibXML' => 1.50,
 		  YAML => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
