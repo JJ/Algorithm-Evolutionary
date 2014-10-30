@@ -8,5 +8,5 @@ perl:
   - "5.20"
 before_install: 
   - sudo apt-cache search libgd | grep perl
-  - sudo apt-get install libgd-perl
+  - sudo apt-get install libgd-gd2-perl
 script: "perl Makefile.PL && make disttest"
