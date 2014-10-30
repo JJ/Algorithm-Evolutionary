@@ -36,7 +36,7 @@ use Algorithm::Evolutionary qw(Individual::Base
 			       Op::Base
 			       Op::Creator );
 
-our $VERSION =   sprintf "%d.%03d", q$Revision: 3.3 $ =~ /(\d+)\.(\d+)/g;
+our $VERSION =   sprintf "3.4";
 
 use Carp;
 
@@ -74,99 +74,6 @@ sub new ($$$$;$) {
   
 }
 
-=head2 fromXML
-
-Creates a new experiment, same as before, but with an L<XML> specification. An 
-example of it follows:
-
- <ea xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation='ea-alpha.xsd'
-    version='0.2'>
-
-  <initial>
-    <pop size='20'>
-       <section name='indi'> 
-          <param name='type' value='BitString' /> 
-          <param name='length' value='64' />
-       </section>
-    </pop>
-
-    <op name='Easy'  type='unary'>
-        <param name='selrate' value='0.4' />
-        <param name='maxgen' value='100' />
-        <code type='eval' language='perl'>
-    	  <src><![CDATA[ #source goes here ]]>
-          </src>
-        </code>
-        <op name='GaussianMutation' type='unary' rate='1'>
-        	<param name='avg' value='0' />
-			<param name='stddev' value='0.1' />
-      	</op>
-      	<op name='VectorCrossover' type='binary' rate='1'>
-        	<param name='numpoints' value='1' />
-      	</op>
-    </op>
-    
-    
-  </initial>
-
- </ea>
- 
-This is an alternative constructor. Takes a well-formed string with the XML
-spec, which should have been done according to EvoSpec 0.3, or the same
-string processed with C<XML::Parser::EasyTree>, and returns a built experiment
-
-=cut
-
-sub fromXML ($;$) {
-  my $class = shift;
-  my $xml = shift || carp "XML fragment missing ";
-  if ( ref $xml eq ''  ) { #We are receiving a string, parse it
-    $xml = parse_xml( $xml );
-  }
-
-  my @pop;
-  my $self = { _pop => \@pop, #Just an empty reference
-	       _xml => $xml }; # Create a reference
-  #Process operators
-  for ( @{ ref $xml->{'ea'}->{'initial'}->{'op'} eq 'ARRAY' ?
-	 $xml->{'ea'}->{'initial'}->{'op'}:
-	   [ $xml->{'ea'}->{'initial'}->{'op'}]} ) { #Should process the <initial> tag
-    push( @{$self->{'_algo'}}, 
-	  Algorithm::Evolutionary::Op::Base::fromXML( $_->{'-name'},$_ ) );
-  }
-
-  #Process population
-  if ( $xml->{'ea'}->{'initial'}->{'pop'} ) {
-    my $pop_hash = $xml->{'ea'}->{'initial'}->{'pop'};
-    my $size = $pop_hash->{'-size'};
-    my $type;
-    my %params;
-    for my $p ( @{$pop_hash->{'param'}} ) {
-      if ( $p->{'-name'} eq 'type' ) {
- 	$type = $p->{'-value'};
-      } else {
- 	$params{ $p->{'-name'} } = $p->{'-value'};
-      }
-    }
-    my $creator = new Algorithm::Evolutionary::Op::Creator  $size, $type, \%params ;
-    
-     $creator->apply( \@pop );
-     push( @{$self->{_pop}}, @pop ) ;
-  }
-
-  #Process population, if it exists
-  if ( $xml->{'ea'}->{'pop'} ) { #Process runtime population
-    for my $i (  @{$xml->{'ea'}->{'pop'}->{'indi'}} ) { 
-      push( @{$self->{_pop}}, 
-	    Algorithm::Evolutionary::Individual::Base::fromXML( $i->{'-type'}, $i ) );
-    }
-  }
-  #Bless and return
-  bless $self, $class;
-
-  return $self;
-}
 
 
 =head2 go
@@ -184,33 +91,6 @@ sub go {
   return $self->{_pop}
 }
 
-=head2 asXML
- 
-Opposite of fromXML; serializes the object in XML. First the operators, and then
-the population
-
-=cut
-
-sub asXML {
-  my $self = shift;
-  my $str=<<'EOC';
-<ea version='0.4'>
-<!-- Serialization of an Experiment object. Generated automatically by
-     Experiment $Revision: 3.3 $ -->
-    <initial>
-EOC
-
-  for ( @{$self->{_algo}} ) {
-	$str.= $_->asXML()."\n";
-  }
-  
-  $str .="\t</initial>\n<!-- Population --><pop>\n";
-   for ( @{$self->{_pop}} ) {
-	$str .= $_->asXML()."\n";
-  }
-  $str .="\n\t</pop>\n</ea>\n";
-  return $str;
-}
 
 =head2 SEE ALSO
 
@@ -222,11 +102,6 @@ going to be deprecated (some day).
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2012/07/11 06:14:51 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/lib/Algorithm/Evolutionary/Experiment.pm,v 3.3 2012/07/11 06:14:51 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.3 $
 
 =cut
 
