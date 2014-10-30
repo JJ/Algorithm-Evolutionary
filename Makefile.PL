@@ -31,7 +31,6 @@ WriteMakefile(
 		  'version'    => 0,
 		  'XML::Parser' => 2.40,
 		  'XML::Parser::Style::EasyTree' => 0,
-		  'XML::LibXML' => 1.50,
 		  YAML => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
@@ -60,8 +59,7 @@ $(DISTVNAME)-examples.tar$(SUFFIX) : distdir
 examplesdist : $(DISTVNAME)-examples.tar$(SUFFIX)
 	$(NOECHO) $(NOOP)
 
-
 MAKE_FRAG
 }
 
-#$Revision: 3.7 $
+#Version 3.8
