@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use lib qw(../../..);
+use lib qw(../../../lib);
 
 =encoding utf8
 
@@ -51,9 +51,15 @@ package Algorithm::Evolutionary::Individual::String;
 
 use Carp;
 
-our $VERSION = '3.6';
+our $VERSION = '3.7';
 
 use base 'Algorithm::Evolutionary::Individual::Base';
+
+=head2 MY_OPERATORS
+
+Known operators that act on this subroutine. Probably will be deprecated, so don't rely on it
+
+=cut
 
 use constant MY_OPERATORS => qw(Algorithm::Evolutionary::Op::Crossover 
 				Algorithm::Evolutionary::Op::QuadXOver
@@ -278,21 +284,6 @@ sub size {
 sub as_string {
     my $self = shift;
     return $self->{_str};
-}
-
-
-=head2 asXML()
-
-Prints it as XML. See L<Algorithm::Evolutionary::XML> for more info on this
-
-=cut
-
-sub asXML {
-  my $self = shift;
-  my $str = $self->SUPER::asXML();
-  my $str2 = "> " .join( "", map( "<atom>$_</atom> ", split( "", $self->{_str} )));
-  $str =~ s/\/>/$str2/e ;
-  return $str."\n</indi>";
 }
 
 
