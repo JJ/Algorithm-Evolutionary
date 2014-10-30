@@ -7,5 +7,5 @@ perl:
   - "5.18"
   - "5.20"
 before_install: 
-  - sudo apt-get install libgd-gd2-perl libgd2 libgd2-dev libpng 
+  - sudo apt-get install libgd-gd2-perl libgd2 libgd2-dev libpng libgd2-xpm-dev
 script: "perl Makefile.PL && make disttest"
