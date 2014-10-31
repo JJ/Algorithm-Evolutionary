@@ -59,7 +59,7 @@ The main design principle of L<Algorithm::Evolutionary> is I<flexibility>: it
 should be very easy to create your own evolutionary algorithms using this library, and it should be
 also quite easy to program what's already there in the evolutionary
 computation community. Besides, the library classes should have
-persistence provided by XML modules, and, in some cases, YAML.
+persistence provided by YAML.
 
 The module allows to create simple evolutionary algorithms, as well
 as more complex ones, that interface with databases or with the
@@ -224,8 +224,6 @@ demos or adapting it to external fitness functions.
 
 =item L<Algorithm::Evolutionary::Op::CanonicalGA>.
 
-=item L<XML> for an explanation of the XML format used, although it's
-now rather obsolete. 
 
 =item L<POE::Component::Algorithm::Evolutionary> if you want to mix
 evolutionary algorithms with anything else easily.
