@@ -25,7 +25,6 @@ WriteMakefile(
 		  'String::Random' => 0,
 		  'Test::More' => 0,
 		  'Test::Pod' => 0,
-		  'Test::Simple' => 0.44,
 		  'Time::HiRes' => 0,
 		  'Tree::DAG_Node' => 1.04,
 		  'version'    => 0,
