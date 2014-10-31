@@ -26,8 +26,9 @@ Docs todo
 --
 
 * [ ] Improve documentation... always too.
-* [ ] Write an Algorithm::Evolutionary::Tutorial
+* [ ] Write an Algorithm::Evolutionary::Tutorial.
 * [ ] Write a tutorial on creating your own operators.
+* [ ] Scratch all useless CVS info from files.
 
 Research todo
 ---

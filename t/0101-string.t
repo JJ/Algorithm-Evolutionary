@@ -60,15 +60,6 @@ is( $vector[2], 'k', 'Store + fetch '. join("", @vector) );
 my @mini_vector = splice( @vector, 1, 2 );
 is( $mini_vector[1], 'k', 'Splice' );
 
-#Testing XML stuff
-my $xml=<<EOC;
-<indi type='String'>
-    <atom>a</atom><atom>z</atom><atom>q</atom><atom>i</atom><atom>h</atom>
-</indi>
-EOC
-$indi4=  Algorithm::Evolutionary::Individual::String->fromXML( $xml );
-is( $indi4->Atom(4), 'h', 'from XML' );
-
 #Testing BitString
 $indi = new Algorithm::Evolutionary::Individual::BitString;
 isa_ok( $indi, "Algorithm::Evolutionary::Individual::BitString" );
@@ -83,11 +74,5 @@ done_testing;
   
   This file is released under the GPL. See the LICENSE file included in this distribution,
   or go to http://www.fsf.org/licenses/gpl.txt
-
-  CVS Info: $Date: 2013/01/23 13:07:12 $ 
-  $Header: /media/Backup/Repos/opeal/opeal/Algorithm-Evolutionary/t/0101-string.t,v 3.4 2013/01/23 13:07:12 jmerelo Exp $ 
-  $Author: jmerelo $ 
-  $Revision: 3.4 $
-  $Name $
 
 =cut
