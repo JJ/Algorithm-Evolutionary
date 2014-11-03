@@ -2,6 +2,20 @@ use ExtUtils::MakeMaker;
 
 my @scripts = grep {-f } glob("scripts/*.pl "); # Ripped from Text::PDF
 
+my %make;
+if ($ExtUtils::MakeMaker::VERSION > 6.64) {
+   $make{META_MERGE} = {
+    'meta-spec' => { version => 2 },
+        resources => {
+            repository => {
+                type => 'git',
+                url  => 'https://github.com/JJ/Algorithm-Evolutionary.git',
+                web  => 'https://github.com/JJ/Algorithm-Evolutionary',
+            },
+        },
+    };
+}
+
 WriteMakefile(
     NAME                => 'Algorithm::Evolutionary',
     AUTHOR              => 'JJ Merelo <jj /at/ merelo.net>',
