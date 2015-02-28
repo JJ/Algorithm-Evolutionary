@@ -85,7 +85,7 @@ href='http://arxiv.org/abs/0908.0516'>Still doing evolutionary
 algorithms with Perl</a>, a gentle introduction to evolutionary
 algorithms in general and working with them using this module in particular.</p>
 
-<p>I have used this continously for my research all these year, and
+<p>I have used this library continously for my research all these year, and
 any search will return a number of papers; a journal article is
 already submitted, but meanwhile if you use it for any of your
 research, I would be very grateful if you quoted papers such as these
