@@ -1,4 +1,4 @@
-use ExtUtils::MakeMaker;
+use ExtUtils::MakeMaker; #-*-cperl-*-
 
 my @scripts = grep {-f } glob("scripts/*.pl "); # Ripped from Text::PDF
 
