@@ -33,7 +33,7 @@ WriteMakefile(
 		  'Math::Random' => 0.63,
 		  'Memoize' => 0, 
 		  'Object::Array' => 0,
-		  'Pod::Escapes'	=> '0', #Dependence from Test::Pod, but produces failure in 1 platform
+		  'Pod::Escapes' => '0', #Dependence from Test::Pod, but produces failure in 1 platform
 		  'Sort::Key' => 0,		  
 		  'Statistics::Basic' => 1.6,
 		  'String::Random' => 0,
