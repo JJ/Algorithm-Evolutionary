@@ -32,11 +32,11 @@ use Algorithm::Evolutionary::Op::Bitflip;
 use Time::HiRes qw( gettimeofday tv_interval );
 
 my $length = 16;
-my $iterations = 1000000;
+my $iterations = 100000;
 my $top_length = 2**15;
 do {
     my $indi = new Algorithm::Evolutionary::Individual::BitString($length);
-    print_format("perl", "BitString", $length, time_mutations( $length, $indi ));
+    print_format("perl", "BitString", $length, time_mutations( $iterations, $indi ));
     $length *= 2;
 } while $length <= $top_length;
 
