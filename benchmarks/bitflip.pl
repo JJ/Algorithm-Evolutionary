@@ -44,7 +44,7 @@ $length = 16;
 do {
     my $indi = Algorithm::Evolutionary::Individual::Bit_Vector->new( {
 	length => $length } );
-    print_format("perl", "Bit_Vector", $length, time_mutations( $length, $indi ));
+    print_format("perl", "Bit_Vector", $length, time_mutations( $iterations, $indi ));
     $length *= 2;
 } while $length <= $top_length;
 
