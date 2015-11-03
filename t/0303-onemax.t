@@ -4,7 +4,7 @@
 
 #########################
 
-use Test::More tests => 6;
+use Test::More tests => 7;
 
 use warnings;
 use strict;
