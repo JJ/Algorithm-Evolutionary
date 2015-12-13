@@ -25,7 +25,6 @@ WriteMakefile(
     LICENSE => 'gpl',
     PL_FILES            => {},
     PREREQ_PM => {'Algorithm::Permute' => 0.01,
-		  'B::Deparse' => 0.56,
 		  'Bit::Vector' => 0,
 		  'Clone' => 0.31,
 		  constant => 0,
