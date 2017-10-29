@@ -20,7 +20,9 @@ Algorithm::Evolutionary::Fitness::SkewTrap - 'Trap' fitness function for evoluti
     my $a = $number_of_bits -1; # Usual default values follow
     my $b = $number_of_bits;
     my $z = $number_of_bits -1;
-    my $trap = Algorithm::Evolutionary::Fitness::SkewTrap->new( $number_of_bits, $a, $b, $z );
+    my $skewness = 1; # Skewed shape function, positive or negative; this is the default
+    my $sigma = 0.1; # Normal distribution sigma used to generate skewed distribution
+    my $trap = Algorithm::Evolutionary::Fitness::SkewTrap->new( $number_of_bits, $skewness, $sigma, $a, $b, $z );
 
 =head1 DESCRIPTION
 
@@ -30,10 +32,11 @@ they "trap" population into going to easier, but local, optima.
 =head1 METHODS
 
 
-=head2 new( $number_of_bits, [$a = $number_of_bits -1, $b = $number_of_bits, $z=$number_of_bits-1])
+=head2 new( $number_of_bits, [$skewness = 1, $normal_sigma = 0.1, $a = $number_of_bits -1, $b = $number_of_bits, $z=$number_of_bits-1])
 
 Creates a new instance of the problem, with the said number of bits
-and traps. Uses default values from C<$number_of_bits> if needed
+and traps. Uses default values computed from C<$number_of_bits> if needed. 
+Since noise is added at the block level, the derivation from normal is relatively small as a default value. 
 
 =cut
 
