@@ -1,19 +1,18 @@
-package Algorithm::Evolutionary::Fitness::Trap; # -*- cperl -*-
+package Algorithm::Evolutionary::Fitness::SkewTrap; # -*- cperl -*-
 
 use strict; 
 use warnings;
 use Carp qw(croak);
 
-our $VERSION = '3.2';
+our $VERSION = '0.1';
 
 use lib qw(../../.. ../.. .. ../../../../lib);
 
 use base qw(Algorithm::Evolutionary::Fitness::String);
 
-
 =head1 NAME
 
-Algorithm::Evolutionary::Fitness::Trap - 'Trap' fitness function for evolutionary algorithms
+Algorithm::Evolutionary::Fitness::SkewTrap - 'Trap' fitness function for evolutionary algorithms with noise
 
 =head1 SYNOPSIS
 
@@ -21,14 +20,7 @@ Algorithm::Evolutionary::Fitness::Trap - 'Trap' fitness function for evolutionar
     my $a = $number_of_bits -1; # Usual default values follow
     my $b = $number_of_bits;
     my $z = $number_of_bits -1;
-    my $trap = Algorithm::Evolutionary::Fitness::Trap->new( $number_of_bits, $a, $b, $z );
-
-# Equivalent to
-
-    $trap = Algorithm::Evolutionary::Fitness::Trap->new( $number_of_bits );
-
-    my $chromosome = "10101111110000";
-    my $fitness = $trap->apply( $chromosome );
+    my $trap = Algorithm::Evolutionary::Fitness::SkewTrap->new( $number_of_bits, $a, $b, $z );
 
 =head1 DESCRIPTION
 
@@ -48,6 +40,8 @@ and traps. Uses default values from C<$number_of_bits> if needed
 sub new {
   my $class = shift;
   my $number_of_bits = shift || croak "Need non-null number of bits\n";
+  my $skewness = shift || 1;
+  my $normal_sigma = shift || 0.1;
   my $a = shift || $number_of_bits - 1;
   my $b = shift || $number_of_bits;
   my $z = shift || $number_of_bits - 1;
@@ -57,12 +51,27 @@ sub new {
   croak "A must be less than B" if $a > $b;
   my $self = $class->SUPER::new();
   bless $self, $class;
-  $self->initialize();
   $self->{'l'} = $number_of_bits;
   $self->{'a'} = $a;
   $self->{'b'} = $b;
   $self->{'z'} = $z;
+  $self->{'_skewness'} = $skewness;
+  $self->{'_sigma'} = $skewness / sqrt(1 + $skewness ** 2);
+  $self->{'_generator'} = rand_nd_generator(0,$normal_sigma);
   return $self;
+}
+
+use constant TWOPI => 2.0 * 4.0 * atan2(1.0, 1.0);
+
+sub rand_nd_generator(;@)
+{
+    my ($mean, $stddev) = @_;
+    $mean = 0.0 if ! defined $mean;
+    $stddev = 1.0 if ! defined $stddev;
+
+    return sub {
+        return $mean + $stddev * cos(TWOPI * (1.0 - rand)) * sqrt(-2.0 * log(1.0 - rand));
+    }
 }
 
 =head2 _really_apply
@@ -73,45 +82,50 @@ Applies the instantiated problem to a chromosome
 
 sub _really_apply {
   my $self = shift;
-  return $self->trap( @_ );
+  return $self->skewtrap( @_ );
 }
 
-=head2 trap( $string )
+=head2 skewtrap( $string )
 
 Computes the value of the trap function on the C<$string>. Optimum is
 number_of_blocs * $b (by default, $b = $l or number of ones) 
 
 =cut
 
-sub trap {
-    my $self = shift;
-    my $string = shift;
-    my $cache = $self->{'_cache'};
-    if ( $cache->{$string} ) {
-	return $cache->{$string};
+sub skewtrap {
+  my $self = shift;
+  my $string = shift;
+  my $l = $self->{'l'};
+  my $z = $self->{'z'};
+  my $total = 0;
+  for ( my $i = 0; $i < length( $string); $i+= $l ) {
+    my $substr = substr( $string, $i, $l );
+    my $key = $substr;
+    my $num_ones = 0;
+    while ( $substr ) {
+      $num_ones += chop( $substr );
     }
-    my $l = $self->{'l'};
-    my $z = $self->{'z'};
-    my $total = 0;
-    for ( my $i = 0; $i < length( $string); $i+= $l ) {
-      my $substr = substr( $string, $i, $l );
-      my $key = $substr;
-      if ( !$cache->{$substr} ) {
-	my $num_ones = 0;
-	while ( $substr ) {
-	  $num_ones += chop( $substr );
-	}
-	if ( $num_ones <= $z ) {
-	  $cache->{$key} = $self->{'a'}*($z-$num_ones)/$z;
-	} else {
-	  $cache->{$key} = $self->{'b'}*($num_ones -$z)/($l-$z);
-	}
-      }
-      $total += $cache->{$key};
+    my $partial;
+    if ( $num_ones <= $z ) {
+      $partial = $self->{'a'}*($z-$num_ones)/$z;
+    } else {
+      $partial = $self->{'b'}*($num_ones -$z)/($l-$z);
     }
-    $cache->{$string} = $total;
-    return $cache->{$string};
+    $total += $partial + $self->generate_sn();
+  }
+  return $total;
+  
+}
 
+sub generate_sn {
+  my $self = shift;
+  my $skewness = $self->{'_skewness'};
+  my $a = $self->{'_generator'}();
+  my $b = $self->{'_generator'}();
+  my $sconst = $self->{'_sigma'};
+  my $c = $sconst * $a + sqrt(1 - $sconst ** 2) * $b;
+#  say "$a, $c";
+  return $a > 0 ? $c : -$c ;
 }
 
 =head1 Copyright
