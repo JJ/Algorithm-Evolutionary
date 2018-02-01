@@ -66,6 +66,12 @@ sub new {
 
 use constant TWOPI => 2.0 * 4.0 * atan2(1.0, 1.0);
 
+=head2 rand_nd_generator(;@)
+
+    Generates a random number with provided mean and standard deviation
+
+=cut
+
 sub rand_nd_generator(;@)
 {
     my ($mean, $stddev) = @_;
@@ -88,10 +94,11 @@ sub _really_apply {
   return $self->skewtrap( @_ );
 }
 
+
 =head2 skewtrap( $string )
 
 Computes the value of the trap function on the C<$string>. Optimum is
-number_of_blocs * $b (by default, $b = $l or number of ones) 
+number_of_blocs * $b (by default, $b = $l or number of ones). Applies skewness.
 
 =cut
 
@@ -119,6 +126,12 @@ sub skewtrap {
   return $total;
   
 }
+
+=head2 generate_sn( $string )
+
+Generates skewed normal with internal sigma. 
+ 
+=cut
 
 sub generate_sn {
   my $self = shift;
