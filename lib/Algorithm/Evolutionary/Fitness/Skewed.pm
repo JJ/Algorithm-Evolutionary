@@ -83,14 +83,14 @@ Creates a new fitness function with a RNG and an underlying function
 sub new {
   my $class = shift;
   my $fitness_function = shift || croak "Need a fitness function\n";
-
-
+  my $skewness = shift || 1;
+  my $normal_sigma = shift || 0.1;
   my $self = $class->SUPER::new($fitness_function);
   bless $self, $class;
   $self->{'_skewness'} = $skewness;
   $self->{'_sigma'} = $skewness / sqrt(1 + $skewness ** 2);
   $self->{'_generator'} = rand_nd_generator(0,$normal_sigma);
-  $self->{'rng'} = $self->generate_sn();
+  $self->{'rng'} = sub { $self->generate_sn };
   return $self;
 }
 
