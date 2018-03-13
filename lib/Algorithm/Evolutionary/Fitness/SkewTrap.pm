@@ -127,7 +127,7 @@ sub skewtrap {
   
 }
 
-=head2 generate_sn( $string )
+=head2 generate_sn()
 
 Generates skewed normal with internal sigma. 
  
