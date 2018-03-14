@@ -3,7 +3,7 @@ use warnings;
 
 =head1 NAME
 
-Algorithm::Evolutionary::Op::Generation_Skeleton_Ref - Even more customizable single generation for an evolutionary algorithm. Use it with ref-API genitors
+Algorithm::Evolutionary::Op::Generation_Skeleton_Ref_No_Replace - Even more customizable single generation for an evolutionary algorithm. Use it with ref-API genitors
                  
 =head1 SYNOPSIS
 
@@ -33,7 +33,7 @@ Algorithm::Evolutionary::Op::Generation_Skeleton_Ref - Even more customizable si
     my $selector = new Algorithm::Evolutionary::Op::Tournament_Selection $tournament_size; #One of the possible selectors
 
     my $generation = 
-      new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref( $onemax, $selector, [$m, $c], $replacement_rate );
+      new Algorithm::Evolutionary::Op::Generation_Skeleton_Ref_No_Replace( $onemax, $selector, [$m, $c], $replacement_rate );
 
     my @sortPop = sort { $b->Fitness() <=> $a->Fitness() } @pop;
     my $bestIndi = $sortPop[0];

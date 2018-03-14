@@ -14,8 +14,8 @@ Algorithm::Evolutionary::Fitness::Skewed - Adds skewed noise to underlying fitne
       #Noisy with normal distribution
       my $noisy = new Algorithm::Evolutionary::Fitness::Skewed( $trap ); 
 
-      #Noisy with normal depending on the number of traps
-      my $noisy = new Algorithm::Evolutionary::Fitness::Noisy( $trap, function() { return random_normal( 1, 0, $a*$number_of_traps ) }); 
+      # Skews towards origin instead of default 1.
+      my $noisy = new Algorithm::Evolutionary::Fitness::Skewed( $trap, -1, 0.1 ); 
 
 =head1 DESCRIPTION
 
@@ -29,10 +29,7 @@ package Algorithm::Evolutionary::Fitness::Skewed;
 
 our $VERSION = "0.0.1" ;
 
-use Math::Random qw(random_normal);
 use Carp qw(croak);
-
-use lib qw(../../.. ../.. ..);
 
 use base qw(Algorithm::Evolutionary::Fitness::Noisy);
 
