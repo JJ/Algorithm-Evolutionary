@@ -33,7 +33,6 @@ use Carp qw(croak);
 
 use base qw(Algorithm::Evolutionary::Fitness::Noisy);
 
-
 use constant TWOPI => 2.0 * 4.0 * atan2(1.0, 1.0);
 
 =head2 rand_nd_generator(;@)

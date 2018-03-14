@@ -75,7 +75,7 @@ sub new {
   my $class = shift; 
   my $chars = [ '0', '1' ];
   my $self = 
-      Algorithm::Evolutionary::Individual::String::new( 'Algorithm::Evolutionary::Individual::BitString', $chars, @_ );
+      Algorithm::Evolutionary::Individual::String::new( $class, $chars, @_ );
   return $self;
 }
 
