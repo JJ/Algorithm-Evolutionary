@@ -46,7 +46,8 @@ WriteMakefile(
 		  YAML => 0
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz' },
-    clean               => { FILES => 'Algorithm-Evolutionary-*' }
+    clean               => { FILES => 'Algorithm-Evolutionary-*' },
+    %make,
     );
 
 #Add new targets
