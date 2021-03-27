@@ -28,12 +28,12 @@ WriteMakefile(
 		  'Bit::Vector' => 0,
 		  'Clone' => 0.31,
 		  constant => 0,
-		  'GD' => 2.17,   
+		  'GD' => 2.17,
 		  'Math::Random' => 0.63,
-		  'Memoize' => 0, 
+		  'Memoize' => 0,
 		  'Object::Array' => 0,
 		  'Pod::Escapes' => '0', #Dependence from Test::Pod, but produces failure in 1 platform
-		  'Sort::Key' => 0,		  
+		  'Sort::Key' => 0,
 		  'Statistics::Basic' => 1.6,
 		  'String::Random' => 0,
 		  'Test::More' => 0,
@@ -60,7 +60,7 @@ docs:
 	for i in *.pod; do base=`basename $$i .pod`; echo $$base; pod2html --verbose --htmlroot ../..   --podpath=Individual:Op --outfile $$base.html $$i; done; \
 	cd Op; for i in *.pm; do base=`basename $$i .pm`; echo $$base; pod2html --verbose --htmlroot ../../.. --podroot ..  --outfile $$base.html $$i; done ; \
 	cd ../Individual; for i in *.pm; do base=`basename $$i .pm`; echo $$base; pod2html --verbose --htmlroot ../../.. --podroot .. --outfile $$base.html $$i; done
-	
+
 $(DISTVNAME)-examples.tar$(SUFFIX) : distdir
 	$(PREOP)
 	$(TO_UNIX)
