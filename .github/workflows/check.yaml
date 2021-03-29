@@ -8,6 +8,8 @@ jobs:
       - uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: '5.32'
+      - name: Installs prereqs
+        run: sudo apt-get install libgd2-xpm-dev
       - run: cpanm --installdeps .
       - name: Run tests
         run: prove -lv t
