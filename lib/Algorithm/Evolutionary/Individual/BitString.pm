@@ -15,9 +15,9 @@ Algorithm::Evolutionary::Individual::BitString - Classic bitstring individual fo
 
     my $indi3 = new Algorithm::Evolutionary::Individual::BitString;
     $indi3->set( { length => 20 } );   #Sets values, but does not build the string
-    
+
     $indi3->randomize(); #Creates a random bitstring with length as above
- 
+
     print $indi3->Atom( 7 );       #Returns the value of the 7th character
     $indi3->Atom( 3 ) = 1;       #Sets the value
 

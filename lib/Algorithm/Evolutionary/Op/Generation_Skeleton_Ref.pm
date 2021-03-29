@@ -4,13 +4,13 @@ use warnings;
 =head1 NAME
 
 Algorithm::Evolutionary::Op::Generation_Skeleton_Ref - Even more customizable single generation for an evolutionary algorithm. Use it with ref-API genitors
-                 
+
 =head1 SYNOPSIS
 
-    use Algorithm::Evolutionary qw( Individual::BitString 
+    use Algorithm::Evolutionary qw( Individual::BitString
 				Op::Mutation Op::Crossover
 				Op::RouletteWheel
-				Fitness::ONEMAX Op::Generation_Skeleton
+				Fitness::ONEMAX Op::Generation_Skeleton_Ref
 				Op::Replace_Worst);
 
     use Algorithm::Evolutionary::Utils qw(average);
