@@ -3,7 +3,7 @@ Algorithm::Evolutionary
 
 This is the repo for development of
 [`Algorithm::Evolutionary`](http://search.cpan.org/dist/Algorithm-Evolutionary/),
-a CPAN module for creating evolutionary algorithms using Perl. 
+a CPAN module for creating evolutionary algorithms using Perl.
 
 
 ## Pre-installation
@@ -17,7 +17,7 @@ or
     sudo apt-get install libgd2-xpm-dev
 
 if that fails. Type equivalent incantations for other distros. You're
-good to go if you have the `GD` module already installed, though.
+good to go if you have the `GD` module already installed, though. This is mainly used for generation of animated graphics, so if you're not really interested in that repeat installation with `--force`
 
 ## INSTALLATION
 
@@ -40,7 +40,7 @@ do). Check also the DEPENDENCIES section below for non-perl dependencies.
 ## WARNING
 
 Since evolutionary algorithms are stochastic optimization algorithms,
-some tests, specially in the `general.t` test, might fail; running
+some tests, specially in the `general.t` file, might fail; running
 them again might yield a different result. If your installation (from
 CPAN, CPANPLUS or cpanminus) fails for this reason, run a force install, or try
 to `make install` disregarding the tests.
@@ -51,7 +51,7 @@ to `make install` disregarding the tests.
 Install demo dependencies with
 
 	cpanm --installdeps .
-	
+
 You can run the demos included in the [`scripts`](scripts/) directory,
 for instance
 
