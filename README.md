@@ -46,13 +46,13 @@ CPAN, CPANPLUS or cpanminus) fails for this reason, run a force install, or try
 to `make install` disregarding the tests.
 
 
-##DEMO
+## DEMO
 
 Install demo dependencies with
 
 	cpanm --installdeps .
 
-You can run the demos included in the [`scripts`](scripts/) directory,
+in the corresponding directory. You can run the demos included in the [`scripts`](scripts/) directory,
 for instance
 
 	./rectangle-coverage.pl
@@ -61,9 +61,9 @@ for a beautiful and slightly annoying test with a certain
 Mondrianesque aspect.
 
 
-##COPYRIGHT AND LICENCE
+## COPYRIGHT AND LICENCE
 
-Copyright (C) 2002-2015 J. J. Merelo-Guervós, jmerelo (at) geneura.ugr.es
+Copyright (C) 2002-2021 J. J. Merelo-Guervós, jmerelo (at) geneura.ugr.es
 This module is released under the GNU General Public License (see the
 [`LICENSE`](LICENSE) file in this distribution).
 
