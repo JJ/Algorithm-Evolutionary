@@ -11,4 +11,5 @@ perl:
 
 before_install:
   - sudo apt-get install libgd2-xpm-dev
+  - cpanm --self-upgrade
 script: "perl Makefile.PL && make disttest"
