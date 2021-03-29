@@ -1,4 +1,5 @@
 name: Run tests latest version of perl
+on: [push, pull_request]
 jobs:
   check:
     steps:
@@ -7,4 +8,5 @@ jobs:
         with:
           perl-version: '5.32'
       - run: cpanm --installdeps .
-      - run: prove -lv t
+      - name: Run tests
+        run: prove -lv t
